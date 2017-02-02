@@ -1,0 +1,14 @@
+node_modules/
+public/components
+coverage/
+
+.sass-cache
+npm-debug.log
+npm-debug.log.*
+.env
+.DS_Store
+.coveralls.yml
+
+*.swp
+.idea/*
+
