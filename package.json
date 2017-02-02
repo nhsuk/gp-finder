@@ -2,15 +2,15 @@
   "name": "profiles",
   "version": "0.0.1",
   "description": "Web app to display useful information about GP practices Pharmacies",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "lint": "eslint --ext .js,.json .",
     "test": "NODE_ENV=test mocha --recursive test",
     "istanbul": "NODE_ENV=test istanbul",
     "generate-coverage": "npm run istanbul -- cover _mocha -- --recursive",
     "check-coverage": "istanbul check-coverage --config .istanbul.yml",
-    "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan",
+    "watch-dev": "nodemon server.js | ./node_modules/.bin/bunyan",
     "watch-lint": "esw --watch .",
     "watch-test": "npm run test -- --watch --reporter min",
     "git-hook": "npm run lint && npm run generate-coverage && npm run check-coverage"
@@ -27,9 +27,12 @@
   "homepage": "https://github.com/nhsuk/profiles#readme",
   "dependencies": {
     "express": "^4.14.1",
+    "helmet": "^3.4.0",
     "nhsuk-bunyan-logger": "nhsuk/bunyan-logger#1.0.4"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "eslint": "^3.2.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
