@@ -1,0 +1,45 @@
+{
+  "name": "profiles",
+  "version": "0.0.1",
+  "description": "Web app to display useful information about GP practices Pharmacies",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "lint": "eslint --ext .js,.json .",
+    "test": "NODE_ENV=test mocha --recursive test",
+    "istanbul": "NODE_ENV=test istanbul",
+    "generate-coverage": "npm run istanbul -- cover _mocha -- --recursive",
+    "check-coverage": "istanbul check-coverage --config .istanbul.yml",
+    "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan",
+    "watch-lint": "esw --watch .",
+    "watch-test": "npm run test -- --watch --reporter min",
+    "git-hook": "npm run lint && npm run generate-coverage && npm run check-coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhsuk/profiles.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nhsuk/profiles/issues"
+  },
+  "homepage": "https://github.com/nhsuk/profiles#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "nhsuk-bunyan-logger": "nhsuk/bunyan-logger#1.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.2.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-jsx-a11y": "^2.0.0",
+    "eslint-plugin-mocha": "^4.3.0",
+    "eslint-plugin-react": "^6.0.0",
+    "eslint-watch": "^2.1.11",
+    "istanbul": "^0.4.3",
+    "mocha": "^3.0.2",
+    "nodemon": "^1.11.0"
+  }
+}
