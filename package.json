@@ -10,6 +10,7 @@
     "istanbul": "NODE_ENV=test istanbul",
     "generate-coverage": "npm run istanbul -- cover _mocha -- --recursive",
     "check-coverage": "istanbul check-coverage --config .istanbul.yml",
+    "upload-coverage-coveralls": "cat ./coverage/lcov.info | coveralls",
     "watch-dev": "nodemon server.js | ./node_modules/.bin/bunyan",
     "watch-lint": "esw --watch .",
     "watch-test": "npm run test -- --watch --reporter min",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "coveralls": "^2.11.15",
     "eslint": "^3.2.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",

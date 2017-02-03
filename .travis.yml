@@ -1,0 +1,15 @@
+sudo: required
+
+services:
+  - docker
+
+language: node_js
+
+node_js:
+- node
+script:
+- npm run lint
+- npm run generate-coverage
+- npm run check-coverage
+- npm run upload-coverage-coveralls
+
