@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 PUSH_TO_DOCKER=true
-DOCKER_REPO="nhsuk/connecting-to-services"
+DOCKER_REPO="nhsuk/profiles"
 TAGS=""
 TEMP_IMAGE_NAME="temp_nhsuk_docker_image"
 DOCKERFILE="Dockerfile"

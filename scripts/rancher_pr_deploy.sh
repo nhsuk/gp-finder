@@ -19,18 +19,15 @@ if [[ -n "$TRAVIS" ]]; then
 
     install_rancher
 
-    curl -s https://raw.githubusercontent.com/nhsuk/nhsuk-rancher-templates/master/templates/c2s-pharmacy-finder/0/docker-compose.yml  -o docker-compose.yml
-    curl -s https://raw.githubusercontent.com/nhsuk/nhsuk-rancher-templates/master/templates/c2s-pharmacy-finder/0/rancher-compose.yml -o rancher-compose.yml
-
-    LATEST_RELEASE=$(curl -s https://api.github.com/repos/nhsuk/nearby-services-api/releases/latest | jq -r '.tag_name')
+    curl -s https://raw.githubusercontent.com/nhsuk/nhsuk-rancher-templates/master/templates/c2s-profiles/0/docker-compose.yml  -o docker-compose.yml
+    curl -s https://raw.githubusercontent.com/nhsuk/nhsuk-rancher-templates/master/templates/c2s-profiles/0/rancher-compose.yml -o rancher-compose.yml
 
     touch answers.txt
     echo -n "" > answers.txt
 
     {
       echo "traefik_domain=dev.c2s.nhschoices.net"
-      echo "c2s_docker_image_tag=pr-${TRAVIS_PULL_REQUEST}"
-      echo "nearbyservices_docker_image_tag=${LATEST_RELEASE}"
+      echo "profiles_docker_image_tag=pr-${TRAVIS_PULL_REQUEST}"
       echo "splunk_hec_endpoint=https://splunk-collector.cloudapp.net:8088"
       echo "splunk_hec_token=${SPLUNK_HEC_TOKEN}"
       echo "hotjar_id=265857"
@@ -38,12 +35,12 @@ if [[ -n "$TRAVIS" ]]; then
       echo "webtrends_id=dcs222rfg0jh2hpdaqwc2gmki_9r4q"
     } >> answers.txt
 
-    RANCHER_STACK_NAME="connecting-to-services-pr-${TRAVIS_PULL_REQUEST}"
+    RANCHER_STACK_NAME="profiles-pr-${TRAVIS_PULL_REQUEST}"
 
     rancher -w up --pull --upgrade -d --stack "${RANCHER_STACK_NAME}" --env-file answers.txt
 
     # SLACK NOTIFICATION
-    SLACK_MSG="connecting-to-services pull request ${TRAVIS_PULL_REQUEST} deployed to ${RANCHER_STACK_NAME}.dev.c2s.nhschoices.net and using the latest release of nearby-services-api (${LATEST_RELEASE})"
+    SLACK_MSG="profiles pull request ${TRAVIS_PULL_REQUEST} deployed to ${RANCHER_STACK_NAME}.dev.c2s.nhschoices.net"
 
     echo "${SLACK_MSG}"
 
