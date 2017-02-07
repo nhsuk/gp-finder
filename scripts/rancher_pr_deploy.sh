@@ -39,13 +39,12 @@ if [[ -n "$TRAVIS" ]]; then
 
     rancher -w up --pull --upgrade -d --stack "${RANCHER_STACK_NAME}" --env-file answers.txt
 
-    # SLACK NOTIFICATION
-    SLACK_MSG="profiles pull request ${TRAVIS_PULL_REQUEST} deployed to ${RANCHER_STACK_NAME}.dev.c2s.nhschoices.net"
+    DEPLOY_URL="http://${RANCHER_STACK_NAME}.dev.c2s.nhschoices.net"
+    MSG=":rocket: deployed to [${DEPLOY_URL}](${DEPLOY_URL})"
 
-    echo "${SLACK_MSG}"
+    PAYLOAD="{\"body\": \"${MSG}\" }"
 
-    PAYLOAD="{\"text\": \"${SLACK_MSG}\" }"
-    curl -X POST --data-urlencode "payload=${PAYLOAD}" "${SLACK_HOOK_URL}"
+    curl -s -d "${PAYLOAD}" "https://api.github.com/repos/nhsuk/connecting-to-services/issues/${TRAVIS_PULL_REQUEST}/comments?access_token=${GITHUB_ACCESS_TOKEN}"
 
   fi
 
