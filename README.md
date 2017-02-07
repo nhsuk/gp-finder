@@ -22,5 +22,7 @@ the application is being run. This is best practice as described by
 
 ## Application development
 
+Start off by cloning the repo and all submodules i.e. `git clone https://github.com/nhsuk/profiles.git && git submodule update --init --recursive`
+
 In order to get the application running locally (with Docker) use the information available in https://github.com/nhsuk/nhsuk-rancher-templates. Specifically in `profiles_local_dev`, available from https://github.com/nhsuk/nhsuk-rancher-templates/tree/master/templates
 
