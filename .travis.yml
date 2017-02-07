@@ -5,8 +5,8 @@ services:
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - ./scripts/docker_ci.sh
-  - ./scripts/rancher_pr_deploy.sh
+  - ./ci-deployment/docker_ci.sh
+  - ./ci-deployment/rancher_pr_deploy.sh
 
 script:
   - docker build --build-arg NODE_ENV=development -t nhsuk/profiles .

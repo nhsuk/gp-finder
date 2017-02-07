@@ -1,0 +1,3 @@
+[submodule "ci-deployment"]
+	path = ci-deployment
+	url = https://github.com/nhsuk/ci-deployment.git
