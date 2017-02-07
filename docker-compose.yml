@@ -1,0 +1,21 @@
+version: '2.1'
+
+services:
+
+  profiles-frontend:
+    build:
+      context: .
+    command: npm run watch-dev
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/code
+      - profiles-node_modules:/code/node_modules
+    environment:
+      NODE_ENV: ${NODE_ENV-development}
+      SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
+      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT-https://splunk-collector.cloudapp.net:8087}
+
+volumes:
+  profiles-node_modules:
+

@@ -22,7 +22,11 @@ the application is being run. This is best practice as described by
 
 ## Application development
 
-Start off by cloning the repo and all submodules i.e. `git clone https://github.com/nhsuk/profiles.git && git submodule update --init --recursive`
+Start by cloning the repo and all submodules i.e. `git clone https://github.com/nhsuk/profiles.git && git submodule update --init --recursive`
 
-In order to get the application running locally (with Docker) use the information available in https://github.com/nhsuk/nhsuk-rancher-templates. Specifically in `profiles_local_dev`, available from https://github.com/nhsuk/nhsuk-rancher-templates/tree/master/templates
+Run the application with Docker via `docker-compose up --build --force-recreate`. This will build an image based on the code in the current working directory and start it running. It will most likely be available locally on http://localhost:3000 as long as the port exposed in `docker-compose.yml` is `3000`.
+
+When finished with the application `docker-compose down -v` should be run to shutdown all services including volumes. This is the correct way to close down resource used by the `up` command.
+
+It is good practice to run the tests in a Docker container. To do this run `docker-compose -f docker-compose-tests.yml up --build --force-recreate`. A new container will be started where the tests will run and rerun when changes are made to the source code.
 
