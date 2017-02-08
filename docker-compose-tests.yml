@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+
+  web-app-test:
+    build:
+      context: .
+      args:
+        NODE_ENV: development
+    command: npm run watch-test
+    volumes:
+      - .:/code
+      - test-node_modules:/code/node_modules
+    environment:
+      NODE_ENV: test
+
+volumes:
+  test-node_modules:
+
