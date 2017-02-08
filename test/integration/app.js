@@ -49,6 +49,19 @@ describe('app', () => {
         });
     });
   });
+  describe('GP page', () => {
+    it('should return Unknown Practice GP Page for an invalid Org Code', (done) => {
+      chai.request(app)
+        .get('/gp-surgeries/12345')
+        .end((err, res) => {
+          expect(err).to.equal(null);
+          expect(res).to.have.status(200);
+          // eslint-disable-next-line no-unused-expressions
+          expect(res.text).to.contain('Unknown Practice');
+          done();
+        });
+    });
+  });
 
   describe('Book a GP appointment page', () => {
     it('should return a book a GP Appointment Page for a valid Org Code', (done) => {
