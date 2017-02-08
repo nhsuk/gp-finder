@@ -5,6 +5,8 @@ services:
   profiles-frontend:
     build:
       context: .
+      args:
+        NODE_ENV: development
     command: npm run watch-dev
     ports:
       - 3000:3000

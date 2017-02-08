@@ -5,13 +5,15 @@ services:
   web-app-test:
     build:
       context: .
+      args:
+        NODE_ENV: development
     command: npm run watch-test
     volumes:
       - .:/code
-      - profiles-test-node_modules:/code/node_modules
+      - test-node_modules:/code/node_modules
     environment:
       NODE_ENV: test
 
 volumes:
-  profiles-test-node_modules:
+  test-node_modules:
 
