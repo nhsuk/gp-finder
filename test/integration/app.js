@@ -43,7 +43,6 @@ describe('app', () => {
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
-          // eslint-disable-next-line no-unused-expressions
           expect(res.text).to.contain('GP Page');
           done();
         });
@@ -56,7 +55,6 @@ describe('app', () => {
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
-          // eslint-disable-next-line no-unused-expressions
           expect(res.text).to.contain('Unknown Practice');
           done();
         });
@@ -70,7 +68,6 @@ describe('app', () => {
         .end((err, res) => {
           expect(err).to.equal(null);
           expect(res).to.have.status(200);
-          // eslint-disable-next-line no-unused-expressions
           expect(res.text).to.contain('Book an appointment');
           done();
         });
