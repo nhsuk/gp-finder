@@ -1,8 +1,8 @@
-# Profiles
+# GP Finder
 
-[![Coverage Status](https://coveralls.io/repos/github/nhsuk/profiles/badge.svg?branch=master)](https://coveralls.io/github/nhsuk/profiles?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/nhsuk/gp-finder/badge.svg?branch=master)](https://coveralls.io/github/nhsuk/gp-finder?branch=master)
 
-A collection of health service provider profiles. Initially containing GP practices and Pharmacies.
+A GP finder application. Will used for booking a GP and to find a new GP to register with.
 
 
 ## Environment variables
@@ -22,7 +22,7 @@ the application is being run. This is best practice as described by
 
 ## Application development
 
-Start by cloning the repo and all submodules i.e. `git clone https://github.com/nhsuk/profiles.git && cd profiles/ && git submodule update --init --recursive`
+Start by cloning the repo and all submodules i.e. `git clone https://github.com/nhsuk/gp-finder.git && cd gp-finder/ && git submodule update --init --recursive`
 
 Run the application with Docker via `docker-compose up --build --force-recreate`. This will build an image based on the code in the current working directory and start it running. It will most likely be available locally on http://localhost:3000 as long as the port exposed in `docker-compose.yml` is `3000`.
 

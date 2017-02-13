@@ -9,6 +9,6 @@ after_success:
   - ./ci-deployment/rancher_pr_deploy.sh
 
 script:
-  - docker build --build-arg NODE_ENV=development -t nhsuk/profiles .
-  - docker run -e TRAVIS=true -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID -e TRAVIS_BRANCH=$TRAVIS_BRANCH -e COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN nhsuk/profiles sh -c "cd /code && npm run git-hook && npm run upload-coverage-coveralls"
+  - docker build --build-arg NODE_ENV=development -t nhsuk/gp-finder .
+  - docker run -e TRAVIS=true -e TRAVIS_JOB_ID=$TRAVIS_JOB_ID -e TRAVIS_BRANCH=$TRAVIS_BRANCH -e COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN nhsuk/gp-finder sh -c "cd /code && npm run git-hook && npm run upload-coverage-coveralls"
 
