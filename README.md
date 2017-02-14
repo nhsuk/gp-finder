@@ -2,7 +2,7 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/nhsuk/gp-finder/badge.svg?branch=master)](https://coveralls.io/github/nhsuk/gp-finder?branch=master)
 
-A GP finder application. Will used for booking a GP and to find a new GP to register with.
+A GP finder application. The results will be pointing to the profile app for booking an appointment with a GP or register with a GP.
 
 
 ## Environment variables
@@ -18,7 +18,8 @@ the application is being run. This is best practice as described by
 | `SPLUNK_HEC_TOKEN`               | [HTTP Event Collector token](http://dev.splunk.com/view/event-collector/SP-CAAAE7C)    |                          | In `production` |
 | `SPLUNK_HEC_ENDPOINT`            | [HTTP Event Collector endpoint](http://dev.splunk.com/view/event-collector/SP-CAAAE7H) |                          | In `production` |
 | `LOG_LEVEL`                      | [bunyan log level](https://github.com/trentm/node-bunyan#levels)                       | Depends on `NODE_ENV`    |                 |
-
+| `DOCKER_COMPOSE_VERSION`         | the docker-compose file version                                                        | 1.11.1 - supports 2.1    | In `travis`     |
+| `COVERALLS_REPO_TOKEN`           | using the coveralls service                                                            | generated for Github user| In `travis`     |  
 
 ## Application development
 

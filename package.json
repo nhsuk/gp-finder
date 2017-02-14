@@ -1,7 +1,7 @@
 {
   "name": "gp-finder",
   "version": "0.0.1",
-  "description": "Web app to display useful information about GP practices Pharmacies",
+  "description": "Web app to find a GP",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

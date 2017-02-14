@@ -10,8 +10,8 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 script:
-  - docker-compose -f docker-compose-travis.yml build nearby-services-api-tests
-  - docker-compose -f docker-compose-travis.yml run nearby-services-api-tests
+  - docker-compose -f docker-compose-travis.yml build web-app-test
+  - docker-compose -f docker-compose-travis.yml run web-app-test
 
 after_script:
   - docker-compose -f docker-compose-travis.yml down -v
