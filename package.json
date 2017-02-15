@@ -1,7 +1,7 @@
 {
-  "name": "profiles",
+  "name": "gp-finder",
   "version": "0.0.1",
-  "description": "Web app to display useful information about GP practices Pharmacies",
+  "description": "Web app to find a GP",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nhsuk/profiles.git"
+    "url": "git+https://github.com/nhsuk/gp-finder.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nhsuk/profiles/issues"
+    "url": "https://github.com/nhsuk/gp-finder/issues"
   },
-  "homepage": "https://github.com/nhsuk/profiles#readme",
+  "homepage": "https://github.com/nhsuk/gp-finder#readme",
   "dependencies": {
     "express": "^4.14.1",
     "helmet": "^3.4.0",
