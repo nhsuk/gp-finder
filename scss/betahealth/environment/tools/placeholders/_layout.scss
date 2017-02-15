@@ -1,0 +1,83 @@
+/// Site width container
+/// --------------------
+/// An extendable selector to wrap your entire site content block. It limits
+/// sites width to the value defined in settings/_grid-layout.scss and maintains
+/// consistent margins.
+///
+/// @example scss - Site width of #container
+///   #container {
+///     @extend %site-width-container;
+///   }
+%site-width-container {
+  margin: 0 ($gutter / 2);
+  max-width: $site-width;
+
+  @include ie-lte(8) {
+    width: $site-width;
+  }
+
+
+  @include media(desktop) {
+    margin: 0 $gutter;
+  }
+
+  @include media($min-width: ($site-width + $gutter * 2)) {
+    margin: 0 auto;
+  }
+}
+
+/// Outdent
+/// -------
+/// An extendable selector to outdent to the full page-width.
+/// So that you can create elements that take up the gutters on the side of the
+/// page and butt up to the edge of the browser on smaller screens (rather than
+/// leaving a gutter at the edge of the page).
+///
+/// @example scss - Site width of #container
+///   .hero-image-container {
+///     @extend %outdent-to-full-width;
+///   }
+%outdent-to-full-width {
+  margin-left: -($gutter / 2);
+  margin-right: -($gutter / 2);
+
+  @include media(desktop) {
+    margin-left: -$gutter;
+    margin-right: -$gutter;
+  }
+}
+
+/// Outdent
+/// -------
+/// An extendable selector to define a row for grid columns to sit in
+///
+/// @example scss - Site width of #container
+///   .row {
+///     @extend %grid-row;
+///   }
+%grid-row {
+  @extend %clearfix;
+  margin: 0 (-($gutter / 2));
+
+  @include media(desktop) {
+    .page-section &,
+    .local-header & {
+      > * {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+/// Measure
+/// -------
+/// Set a max width of $measure for a comfortable reading width
+///
+/// @example scss - Width of .article
+///   .article {
+///     @extend %measure;
+///   }
+%measure,
+.reading-width {
+  max-width: $measure;
+}

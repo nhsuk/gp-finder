@@ -1,6 +1,11 @@
-const log = require('./app/lib/logger');
-const app = require('./app');
+const express = require('express');
+const config = require('./config/config');
+const configExpress = require('./config/express');
 
-app.listen(app.port, () => {
-  log.info(`Express GP Finder web app listening on port ${app.port}`);
-});
+const app = express();
+
+module.exports = (() => {
+  configExpress(app, config);
+  app.port = config.port;
+  return app;
+})();

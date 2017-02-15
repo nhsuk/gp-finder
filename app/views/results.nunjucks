@@ -1,0 +1,37 @@
+{% extends 'layout.nunjucks' %}
+
+{% block pageTitle %}All service results{% endblock %}
+
+{% block meta %}
+<meta name="DCSext.ServiceName" content="GP Finder" />
+{% endblock %}
+
+{% block content %}
+<a href="{{ SITE_ROOT }}/find-help?context={{ context }}" class="link-back">Back to find a GP</a>
+
+<div class="grid-row">
+
+  <h1 class="sr-only">Search results</h1>
+
+  {% if gps.length === 0 %}
+
+    {% include "includes/no-results.nunjucks" %}
+
+  {% else %}
+
+    <h2 class="results__header">List of GPs for {{ location }}</h2>
+    <ul>
+      {% for gp in gps %}
+        <li class="results__item results__item--nearby">
+          <div class="results__details results__details--nearby column--two-thirds">
+            {% include "includes/result-item.nunjucks" %}
+          </div>
+          <!--[if IE]><div style="clear: both;" class="clear-both"></div><![endif]-->
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+</div>
+
+{% endblock %}

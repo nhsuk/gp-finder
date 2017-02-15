@@ -1,5 +1,6 @@
 const chai = require('chai');
-const app = require('../../app');
+const app = require('../../server');
+const constants = require('../../app/lib/constants');
 const chaiHttp = require('chai-http');
 
 const expect = chai.expect;
@@ -13,7 +14,7 @@ describe('app', () => {
         .get('/')
         .end((err, res) => {
           expect(res).to.have.header('X-Xss-Protection', '1; mode=block');
-          expect(res).to.have.header('X-Frame-Options', 'SAMEORIGIN');
+          expect(res).to.have.header('X-Frame-Options', 'DENY');
           expect(res).to.have.header('X-Content-Type-Options', 'nosniff');
           expect(res).to.have.header('X-Download-Options', 'noopen');
           expect(res).to.not.have.header('X-Powered-By');

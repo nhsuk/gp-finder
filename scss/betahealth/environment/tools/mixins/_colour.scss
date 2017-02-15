@@ -1,0 +1,14 @@
+// Colour functions
+
+$_white: #fff;
+$_black: #000;
+
+// Add a percentage of white to a color
+@function tint($color, $percent) {
+  @return mix($_white, $color, $percent);
+}
+
+// Add a percentage of black to a color
+@function shade($color, $percent) {
+  @return mix($_black, $color, $percent);
+}

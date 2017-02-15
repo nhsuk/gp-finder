@@ -7,17 +7,17 @@ services:
       context: .
       args:
         NODE_ENV: development
-    command: npm run watch-dev
+    command: sh -c 'npm install && npm run watch-dev'
     ports:
       - 3000:3000
     volumes:
       - .:/code
-      - gp-finder-node_modules:/code/node_modules
+      - gp-finder-node_modules1:/code/node_modules
     environment:
       NODE_ENV: ${NODE_ENV-development}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
-      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT-https://splunk-collector.cloudapp.net:8087}
+      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT-https://splunk-collector.cloudapp.net:8088}
 
 volumes:
-  gp-finder-node_modules:
+  gp-finder-node_modules1:
 

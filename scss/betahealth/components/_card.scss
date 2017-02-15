@@ -1,0 +1,30 @@
+.card__container + * {
+  margin-top: 0;
+}
+
+.card {
+  @include element-spacing(bottom);
+  background-color: tint($blue, 80%);
+  display: inline-block;
+  margin-top: 0;
+  vertical-align: top;
+
+  @include media(tablet) {
+    margin-right: $default-spacing-unit;
+    max-width: 300px;
+  }
+}
+
+.card__caption {
+  margin-top: 0;
+  padding: $default-spacing-unit;
+}
+
+.card--full-width {
+  margin-right: 0;
+  max-width: 40em;
+
+  img {
+    width: 100%;
+  }
+}

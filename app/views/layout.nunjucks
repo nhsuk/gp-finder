@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!--[if IE]><link rel="shortcut icon" href="{{ SITE_ROOT }}/assets/images/favicon.ico"><![endif]-->
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+    <link rel="apple-touch-icon" href="{{ SITE_ROOT }}/images/apple-touch-icon.png">
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 192x192 pixels in size. -->
+    <link rel="icon" href="{{ SITE_ROOT }}/images/favicon.png">
+
+    <title>{% if errorMessage %}Please retry - {% endif %}{% block pageTitle %}NHS.UK{% endblock %}</title>
+
+    <meta property="og:image" content="{{ SITE_ROOT }}/images/opengraph-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="1200">
+
+    {% set qs = '?v=6' %}
+
+    <!--[if gt IE 8]><!--><link href="{{ SITE_ROOT }}/css/nhsuk.css{{ qs }}" media="screen" rel="stylesheet" type="text/css"><!--<![endif]-->
+    <!--[if IE 6]><link href="{{ SITE_ROOT }}/css/nhsuk-ie6.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link href="{{ SITE_ROOT }}/css/nhsuk-ie7.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 8]><link href="{{ SITE_ROOT }}/css/nhsuk-ie8.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+
+    <link rel="stylesheet" href="{{ SITE_ROOT }}/css/print.css{{ qs }}" media="print" type="text/css">
+
+    {% if HOTJAR_TRACKING_ID %}
+       <!-- rational for this code being in head: https://docs.hotjar.com/v1.0/docs/manual -->
+      <script>
+        (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:{{ HOTJAR_TRACKING_ID }},hjsv:5};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+        })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+      </script>
+    {% endif %}
+
+    {% block meta %}{% endblock %}
+  </head>
+
+  <body>
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+    <!-- <script>(function(d){d.className=d.className.replace(/\bno-js\b/,'js-enabled')})(document.documentElement);</script> -->
+    <div class="skiplinks">
+      <div class="skiplinks--inner">
+        <a href="#content" class="skiplinks--link">Skip to main content</a>
+      </div>
+    </div>
+
+    <div class="notification-banner notification-banner__js-hidden" id="global-cookies-banner" role="alert">
+      <p class="notification-banner--inner">
+      NHS.UK uses cookies to make the site simpler.
+      <a href="https://beta.nhs.uk/help/cookies">Find out more about cookies</a>
+      </p>
+    </div>
+
+    {% include "includes/back-to-choices.nunjucks" %}
+
+    {% block banner %}{% endblock %}
+
+    <header role="banner">
+      <div class="global-header">
+        <div class="global-header--inner">
+          <a href="/" class="global-header--link" title="Go to the NHS.UK homepage">
+            <img src="{{ SITE_ROOT }}/images/logotype-nhs-mono.png" alt="">
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="content" role="main" class="util-nofocus">
+      {% block article %}
+      <div class="local-header-white-bg">
+        <div class="local-header--question">
+          {% block header %}{% endblock %}
+          {% block pageIntro %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <div class="page-section">
+        {% block pageSection %}
+          {% block content %}{% endblock %}
+        {% endblock %}
+      </div>
+      {% endblock %}
+    </main>
+
+    <footer role="contentinfo">
+      {% include "includes/footer.nunjucks" %}
+    </footer>
+
+    {% include "includes/foot.nunjucks" %}
+  </body>
+</html>

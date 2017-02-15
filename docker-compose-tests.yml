@@ -7,7 +7,7 @@ services:
       context: .
       args:
         NODE_ENV: development
-    command: npm run watch-test
+    command: sh -c 'npm install && npm run watch-test'
     volumes:
       - .:/code
       - test-node_modules:/code/node_modules
