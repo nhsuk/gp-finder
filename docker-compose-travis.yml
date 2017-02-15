@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
 
-  web-app-test:
+  gp-finder-travis-test:
     build:
       context: .
       args:
@@ -10,7 +10,7 @@ services:
     command: sh -c "npm run git-hook && npm run upload-coverage-coveralls"
     volumes:
       - .:/code
-      - test-node_modules:/code/node_modules
+      - gp-finder-travis-test-node_modules:/code/node_modules
     environment:
       COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
       NODE_ENV: development
@@ -20,4 +20,4 @@ services:
       TRAVIS_JOB_ID: ${TRAVIS_JOB_ID}
 
 volumes:
-  test-node_modules:
+  gp-finder-travis-test-node_modules:

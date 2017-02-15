@@ -2,18 +2,18 @@ version: '2.1'
 
 services:
 
-  web-app-test:
+  gp-finder-test:
     build:
       context: .
       args:
-        NODE_ENV: development
-    command: sh -c 'npm install && npm run watch-test'
+        NODE_ENV: test
+    command: npm run watch-test
     volumes:
       - .:/code
-      - test-node_modules:/code/node_modules
+      - gp-finder-test-node_modules:/code/node_modules
     environment:
       NODE_ENV: test
 
 volumes:
-  test-node_modules:
+  gp-finder-test-node_modules:
 

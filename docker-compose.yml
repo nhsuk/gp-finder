@@ -7,7 +7,7 @@ services:
       context: .
       args:
         NODE_ENV: development
-    command: sh -c 'npm install && npm run watch-dev'
+    command: npm run watch-dev
     ports:
       - 3000:3000
     volumes:
