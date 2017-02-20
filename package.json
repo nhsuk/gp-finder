@@ -28,11 +28,13 @@
   "homepage": "https://github.com/nhsuk/gp-finder#readme",
   "dependencies": {
     "body-parser": "^1.16.1",
+    "cheerio": "^0.22.0",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.1",
     "helmet": "^3.4.0",
     "nhsuk-bunyan-logger": "nhsuk/bunyan-logger#1.0.4",
+    "nock": "^9.0.6",
     "normalize.css": "^5.0.0",
     "nunjucks": "^2.5.2",
     "object.values": "^1.0.4",
