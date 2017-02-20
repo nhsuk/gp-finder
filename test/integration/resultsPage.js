@@ -19,19 +19,19 @@
 // describe('The results page', () => {
 //   it('should return 3 nearby results, by default', (done) => {
 //     const testLocation = 'any location';
-//     // const appResponse = getSampleResponse('data/testLocation.json');
-//     // const appResult = JSON.parse(appResponse).result;
+//     const appResponse = getSampleResponse('data/testLocation.json');
+//     const appResult = JSON.parse(appResponse).result;
 //     const context = contexts.stomachAche.context;
 //
-//     // nock('https://api.postcodes.io')
-//     //   .get(`/postcodes/${encodeURIComponent(ls27ue)}`)
-//     //   .times(1)
-//     //   .reply(200, ls27ueResponse);
+//     nock('https://api.postcodes.io')
+//       .get(`/postcodes/${encodeURIComponent(ls27ue)}`)
+//       .times(1)
+//       .reply(200, ls27ueResponse);
 //
-//     // nock(process.env.API_BASE_URL)
-//     //   .get(`/nearby?latitude=${latitude}&longitude=${longitude}&limits:results:nearby=${numberOfNearbyResults}`)
-//     //   .times(1)
-//     //   .reply(200, appResponse);
+//     nock(process.env.API_BASE_URL)
+//       .get(`/nearby?limits:results:nearby=${numberOfNearbyResults}`)
+//       .times(1)
+//       .reply(200, appResponse);
 //
 //     chai.request(server)
 //       .get(resultsRoute)
@@ -55,7 +55,8 @@
 //     });
 //
 //     expect($('.link-back').text()).to.equal('Back to find a pharmacy');
-//     expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}/find-help?context=${context}`);
+//     expect($('.link-back').attr('href')).
+//       to.equal(`${constants.SITE_ROOT}/find-help?context=${context}`);
 //     done();
 //     });
 //   });

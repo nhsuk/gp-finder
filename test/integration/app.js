@@ -40,15 +40,15 @@ describe('app', () => {
 
   describe('redirection', () => {
     it('default should be find help page', (done) => {
-    chai.request(app)
-      .get('/')
-      .end((err, res) => {
-        iExpect.htmlWith200Status(err, res);
-        // eslint-disable-next-line no-unused-expressions
-        expect(res).to.redirect;
-        expect(res.req.path).to.equal(`${constants.SITE_ROOT}/find-help`);
-        done();
-      });
+      chai.request(app)
+        .get('/')
+        .end((err, res) => {
+          iExpect.htmlWith200Status(err, res);
+          // eslint-disable-next-line no-unused-expressions
+          expect(res).to.redirect;
+          expect(res.req.path).to.equal(`${constants.SITE_ROOT}/find-help`);
+          done();
+        });
     });
 
     it('/finder should redirect to find help page', (done) => {

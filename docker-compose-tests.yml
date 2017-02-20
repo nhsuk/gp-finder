@@ -7,7 +7,7 @@ services:
       context: .
       args:
         NODE_ENV: test
-    command: npm run watch-test
+    command: sh -c "npm run git-hook && npm run watch-test"
     volumes:
       - .:/code
       - gp-finder-test-node_modules:/code/node_modules

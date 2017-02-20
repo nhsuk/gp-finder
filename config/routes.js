@@ -8,8 +8,8 @@ const logZeroResults = require('../app/middleware/logZeroResults');
 
 router.get('/',
   (req, res) => {
-  res.redirect('find-help');
-}
+    res.redirect('find-help');
+  }
 );
 
 router.get('/results',

@@ -82,8 +82,8 @@ module.exports = (app, config) => {
 
   app.use((req, res, next) => {
     log.debug({ req });
-  next();
-});
+    next();
+  });
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
@@ -98,24 +98,24 @@ module.exports = (app, config) => {
   app.use(constants.SITE_ROOT, router);
   app.use(constants.SITE_ROOT, (req, res) => {
     log.warn({ req }, 404);
-  res.status(404);
-  res.render('error-404');
-});
+    res.status(404);
+    res.render('error-404');
+  });
 
   // eslint-disable-next-line no-unused-vars
   app.use(constants.SITE_ROOT, (err, req, res, next) => {
     const statusCode = err.statusCode || 500;
 
-  log.error(err, 'Error');
-  res.status(statusCode);
-  res.render('error', {
-    message: err,
-    error: app.get('env') === 'development' ? err : {},
-    title: 'error',
+    log.error(err, 'Error');
+    res.status(statusCode);
+    res.render('error', {
+      message: err,
+      error: app.get('env') === 'development' ? err : {},
+      title: 'error',
+    });
   });
-});
 
   app.get('/', (req, res) => {
     res.redirect(constants.SITE_ROOT);
-});
+  });
 };

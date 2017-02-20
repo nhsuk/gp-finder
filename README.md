@@ -29,6 +29,6 @@ Run the application with Docker via `docker-compose up --build --force-recreate`
 
 When finished with the application `docker-compose down -v` should be run to shutdown all services including volumes. This is the correct way to close down resource used by the `up` command.
 
-It is good practice to run the tests in a Docker container. To do this run `docker-compose -f docker-compose-tests.yml up --build --force-recreate`. A new container will be started where the tests will run and rerun when changes are made to the source code.
-When finished with the tests run `docker-compose -f docker-compose-tests.yml down -v` to tidy up.
+It is good practice to run the tests in a Docker container. To do this run `docker-compose -p gp-finder-test -f docker-compose-tests.yml up --build --force-recreate`. A new container will be started where the tests will run and rerun when changes are made to the source code.
+When finished with the tests run `docker-compose -p gp-finder-test -f docker-compose-tests.yml down -v` to tidy up.
 
