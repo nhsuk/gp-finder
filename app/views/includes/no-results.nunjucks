@@ -1,6 +1,6 @@
 <div class="results">
   <div class="results-block results-block--none">
-    <h2 class="results__header results__header--none">There are no surgeries within 20 miles of {{ location }}</h2>
+    <h2 class="results__header results__header--none">There are no surgeries matching {{ search }}</h2>
     <div class="results__none-content">
       <p>This service only provides information about surgeries in England.</p>
     </div>

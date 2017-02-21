@@ -14,12 +14,12 @@
 // chai.use(chaiHttp);
 //
 // const resultsRoute = `${constants.SITE_ROOT}/results`;
-// const numberOfNearbyResults = constants.numberOfNearbyResultsToRequest;
+// const numberOfNearbyResults = constants.numberOfNearbyResults;
 //
 // describe('The results page', () => {
 //   it('should return 3 nearby results, by default', (done) => {
-//     const testLocation = 'any location';
-//     const appResponse = getSampleResponse('data/testLocation.json');
+//     const testSearch = 'any search';
+//     const appResponse = getSampleResponse('data/testSearch.json');
 //     const appResult = JSON.parse(appResponse).result;
 //     const context = contexts.stomachAche.context;
 //

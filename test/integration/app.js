@@ -1,7 +1,5 @@
 const chai = require('chai');
 const app = require('../../server');
-const constants = require('../../app/lib/constants');
-const iExpect = require('../lib/expectations');
 const chaiHttp = require('chai-http');
 
 const expect = chai.expect;
@@ -38,31 +36,6 @@ describe('app', () => {
     });
   });
 
-  describe('redirection', () => {
-    it('default should be find help page', (done) => {
-      chai.request(app)
-        .get('/')
-        .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
-          // eslint-disable-next-line no-unused-expressions
-          expect(res).to.redirect;
-          expect(res.req.path).to.equal(`${constants.SITE_ROOT}/find-help`);
-          done();
-        });
-    });
-
-    it('/finder should redirect to find help page', (done) => {
-      chai.request(app)
-        .get(constants.SITE_ROOT)
-        .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
-          // eslint-disable-next-line no-unused-expressions
-          expect(res).to.redirect;
-          expect(res.req.path).to.equal(`${constants.SITE_ROOT}/find-help`);
-          done();
-        });
-    });
-  });
   // describe('GP page', () => {
   //   it('should return a GP Page for a valid Org Code', (done) => {
   //     chai.request(app)

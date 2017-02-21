@@ -1,9 +1,9 @@
-function invalidLocationMessage(location) {
-  return `We can't find the location ${location.toLocaleUpperCase()}. Check the location is correct and try again.`;
+function invalidSearchMessage(search) {
+  return `We can't find the search ${search.toLocaleUpperCase()}. Check the search is correct and try again.`;
 }
 
-function emptyLocationMessage() {
-  return 'You must insert a location to find a surgery.';
+function emptySearchMessage() {
+  return 'You must insert a search to find a surgery.';
 }
 
 function technicalProblems() {
@@ -11,7 +11,7 @@ function technicalProblems() {
 }
 
 module.exports = {
-  invalidLocationMessage,
-  emptyLocationMessage,
+  invalidSearchMessage,
+  emptySearchMessage,
   technicalProblems,
 };

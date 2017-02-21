@@ -4,17 +4,17 @@ const expect = chai.expect;
 
 function findHelpPageBase($) {
   expect($('.local-header--title--question').text().trim()).to.match(/^Book an appointment with a GP/);
-  expect($('#location').is('input')).is.equal(true);
+  expect($('#search').is('input')).is.equal(true);
 }
 
 function findHelpPageInvalidEntry($) {
   findHelpPageBase($);
-  expect($('label[for=location]').text()).to.contain('Enter a valid surgery name');
+  expect($('label[for=search]').text()).to.contain('Enter a valid surgery name');
 }
 
 function findHelpPage($) {
   findHelpPageBase($);
-  expect($('label[for=location]').text()).to.contain('Enter a surgery name');
+  expect($('label[for=search]').text()).to.contain('Enter a surgery name');
 }
 
 function htmlWith200Status(err, res) {

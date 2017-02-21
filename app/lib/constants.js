@@ -1,5 +1,4 @@
 module.exports = {
-  SITE_ROOT: '/gp-finder',
-  numberOfNearbyResultsToRequest: 4,
-  numberOfNearbyResultsToDisplay: 3
+  SITE_ROOT: '/book-a-gp-appointment',
+  numberOfNearbyResults: 3
 };

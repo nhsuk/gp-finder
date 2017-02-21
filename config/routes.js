@@ -3,27 +3,23 @@ const router = require('express').Router();
 const renderer = require('../app/middleware/renderer');
 const setLocals = require('../app/middleware/setLocals');
 const log = require('../app/middleware/logger');
-const setGps = require('../app/middleware/setGps');
+const searchValidator = require('../app/middleware/searchValidator');
+const getGps = require('../app/middleware/getGps');
 const logZeroResults = require('../app/middleware/logZeroResults');
-
-router.get('/',
-  (req, res) => {
-    res.redirect('find-help');
-  }
-);
 
 router.get('/results',
   log.info,
   setLocals.fromRequest,
-  setGps,
+  searchValidator,
+  getGps,
   logZeroResults,
   renderer.results
 );
 
-router.get('/find-help',
+router.get('/',
   log.info,
   setLocals.fromRequest,
-  renderer.findHelp
+  renderer.searchYourGP
 );
 
 module.exports = router;

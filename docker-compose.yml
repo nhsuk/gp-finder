@@ -2,21 +2,31 @@ version: '2.1'
 
 services:
 
-  gp-finder-frontend:
+  base-app:
     build:
       context: .
       args:
         NODE_ENV: development
     command: npm run watch-dev
-    ports:
-      - 3000:3000
     volumes:
       - .:/code
-      - gp-finder-node_modules:/code/node_modules
     environment:
       NODE_ENV: ${NODE_ENV-development}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT-https://splunk-collector.cloudapp.net:8088}
+
+  gp-finder-frontend:
+    extends:
+      service: base-app
+    links:
+      - gp-finder-db:mongo
+    ports:
+      - 3000:3000
+    volumes:
+      - gp-finder-node_modules:/code/node_modules
+
+  gp-finder-db:
+    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-latest}"
 
 volumes:
   gp-finder-node_modules:
