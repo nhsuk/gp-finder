@@ -1,0 +1,11 @@
+.util-visuallyhidden {
+  @extend %visuallyhidden;
+}
+
+.util-nofocus:focus {
+  outline: none;
+}
+
+.util-bg-tint__yellow {
+  background-color: tint($yellow, 80%);
+}

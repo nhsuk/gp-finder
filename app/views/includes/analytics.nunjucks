@@ -1,0 +1,46 @@
+{% if GOOGLE_ANALYTICS_TRACKING_ID %}
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', '{{ GOOGLE_ANALYTICS_TRACKING_ID }}', 'auto');
+    ga('send', 'pageview');
+  </script>
+{% endif %}
+
+{% if WEBTRENDS_TRACKING_ID %}
+  <script>
+    // WebTrends SmartSource Data Collector Tag v10.4.23
+    // Copyright (c) 2016 Webtrends Inc.  All rights reserved.
+    // Tag Builder Version: 4.1.3.5
+    // Created: 2016.01.13
+    window.webtrendsAsyncInit=function(){
+      var dcs=new Webtrends.dcs().init({
+        dcsid:'{{ WEBTRENDS_TRACKING_ID }}',
+        domain:'statse.webtrendslive.com',
+        timezone:0,
+        i18n:true,
+        adimpressions:true,
+        adsparam:'WT.ac',
+        offsite:true,
+        download:true,
+        downloadtypes:'xls,doc,pdf,txt,csv,zip,docx,xlsx,rar,gzip',
+        onsitedoms:'nhs.uk',
+        fpcdom:'.nhs.uk',
+        plugins:{
+          hm:{src:'//s.webtrends.com/js/webtrends.hm.js'}
+        }
+      }).track();
+    };
+    (function(){
+      var s=document.createElement('script'); s.async=true; s.src="{{ SITE_ROOT }}/js/vendor/tracking/webtrends.min.js";
+      var s2=document.getElementsByTagName('script')[0]; s2.parentNode.insertBefore(s,s2);
+    }());
+  </script>
+
+  <noscript>
+    <img alt="dcsimg" id="dcsimg" width="1" height="1" src="//statse.webtrendslive.com/{{ WEBTRENDS_TRACKING_ID }}/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=10.4.23&amp;dcssip=.nhs.uk"/>
+  </noscript>
+{% endif %}

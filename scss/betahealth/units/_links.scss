@@ -1,0 +1,47 @@
+a {
+  &:link {
+    color: $link-colour;
+  }
+
+  &:visited {
+    color: $link-visited-colour;
+  }
+
+  &:hover {
+    color: $link-hover-colour;
+  }
+
+  &:active {
+    color: $link-active-colour;
+  }
+
+  &:focus {
+    outline: 3px solid $focus-colour;
+  }
+}
+
+%link--reverse-polarity {
+  &:link {
+    color: $link-reverse-polarity;
+  }
+
+  &:visited {
+    color: $link-visited-reverse-polarity;
+  }
+
+  &:hover {
+    color: $link-hover-reverse-polarity;
+  }
+
+  &:active {
+    color: $link-active-reverse-polarity;
+  }
+
+  &:focus {
+    outline: 3px solid $focus-colour;
+  }
+}
+
+.link--reverse-polarity {
+  @extend %link--reverse-polarity;
+}

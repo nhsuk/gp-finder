@@ -4,14 +4,14 @@
   "description": "Web app to find a GP",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "lint": "eslint --ext .js,.json .",
     "test": "NODE_ENV=test mocha --recursive test",
     "istanbul": "NODE_ENV=test istanbul",
     "generate-coverage": "npm run istanbul -- cover _mocha -- --recursive",
     "check-coverage": "istanbul check-coverage --config .istanbul.yml",
     "upload-coverage-coveralls": "cat ./coverage/lcov.info | coveralls",
-    "watch-dev": "nodemon server.js | ./node_modules/.bin/bunyan",
+    "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan",
     "watch-lint": "esw --watch .",
     "watch-test": "npm run test -- --watch --reporter min",
     "git-hook": "npm run lint && npm run generate-coverage && npm run check-coverage"
@@ -27,9 +27,19 @@
   },
   "homepage": "https://github.com/nhsuk/gp-finder#readme",
   "dependencies": {
+    "body-parser": "^1.16.1",
+    "cheerio": "^0.22.0",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.1",
     "helmet": "^3.4.0",
-    "nhsuk-bunyan-logger": "nhsuk/bunyan-logger#1.0.4"
+    "nhsuk-bunyan-logger": "nhsuk/bunyan-logger#1.0.4",
+    "nock": "^9.0.6",
+    "normalize.css": "^5.0.0",
+    "nunjucks": "^2.5.2",
+    "object.values": "^1.0.4",
+    "request": "^2.79.0",
+    "require-environment-variables": "^1.1.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",

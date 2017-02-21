@@ -1,0 +1,29 @@
+.global-header {
+  background-color: $white;
+  border-bottom: $baseline-grid-unit / 2 solid $nhs-blue;
+}
+
+.global-header__inner {
+  @extend %site-width-container;
+  padding-bottom: $baseline-grid-unit * 4;
+  padding-top: $baseline-grid-unit * 4;
+
+  @include media(tablet) {
+    padding-bottom: $baseline-grid-unit * 6;
+    padding-top: $baseline-grid-unit * 6;
+  }
+}
+
+.global-header__link {
+  background: url("../images/logotype-nhs-colour__reverse.png") no-repeat;
+  background-size: contain;
+  display: block;
+  height: 32px;
+  text-indent: -999em;
+  width: 79px;
+
+  @include device-pixel-ratio {
+    background-image: url("../images/logotype-nhs-colour__reverse@2x.png");
+    background-size: 79px 32px;
+  }
+}

@@ -1,22 +1,8 @@
-const express = require('express');
-const helmet = require('helmet');
-const gpLookup = require('./app/middleware/gpLookup');
+const log = require('./app/lib/logger');
+const app = require('./server');
 
-const app = express();
-
-app.port = process.env.PORT || 3000;
-app.use(helmet());
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-app.get('/gp-surgeries/:orgCode', (req, res) => {
-  res.send(`GP Page for ${gpLookup(req.params.orgCode).name}`);
-});
-
-app.get('/gp-surgeries/:orgCode/book-a-gp-appointment', (req, res) => {
-  res.send(`Book an appointment at ${gpLookup(req.params.orgCode).name}`);
+app.listen(app.port, () => {
+  log.info(`Express server listening on port ${app.port}`);
 });
 
 module.exports = app;

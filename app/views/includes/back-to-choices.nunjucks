@@ -1,0 +1,6 @@
+<div class="notification-banner notification-banner__hiviz js-feedback-banner">
+  <p class="notification-banner--inner">
+    This is a new service. Go <a href="http://www.nhs.uk/">back to NHS Choices.</a>
+  </p>
+</div>
+

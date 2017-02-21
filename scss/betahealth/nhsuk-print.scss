@@ -1,0 +1,61 @@
+// PRINT STYLESHEET COMPILER
+
+$is-print: true;
+
+@import "environment/settings/globals";
+@import "environment/settings/colours";
+@import "environment/settings/typography";
+
+@import "environment/tools/mixins/colour";
+@import "environment/tools/mixins/conditionals";
+@import "environment/tools/mixins/typography";
+@import "environment/tools/placeholders/shims";
+
+@import "environment/generic/reset";
+@import "../../node_modules/normalize.css/normalize"; //Need to set SASS_PATHS for this
+
+// units
+@import "units/images";
+@import "units/headings";
+@import "units/lists";
+@import "units/links";
+@import "units/quotes";
+
+body {
+  @include core-font(16);
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+a {
+  &:visited {
+    word-wrap: break-word;
+  }
+
+  &[href^="/"]:after {
+    content: " (https://www.nhs.uk" attr(href) ")";
+    font-size: 90%;
+  }
+
+  &[href^="http://"]:after,
+  &[href^="https://"]:after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+  }
+
+  &[href^="javascript:"]:after,
+  &[href^="#"]:after {
+    content: "";
+  }
+}
+
+select {
+  background: $white;
+}
+
+// hide the unnecessary page elements
+body footer,
+.visuallyhidden {
+  display: none;
+}

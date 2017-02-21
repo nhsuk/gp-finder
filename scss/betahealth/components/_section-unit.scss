@@ -1,0 +1,39 @@
+.section-unit--divider {
+  @extend %measure;
+  @include element-padding(bottom);
+  position: relative;
+
+  &:after {
+    background-color: $grey-3;
+    bottom: -($baseline-grid-unit / 2);
+    content: "";
+    display: block;
+    height: $baseline-grid-unit;
+    left: 0;
+    position: absolute;
+    width: 130px;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+
+    &:after {
+      display: none;
+    }
+  }
+}
+
+.section-unit__prefix {
+  @include core-font(20);
+  border-top: $baseline-grid-unit solid $grey-3;
+  display: inline-block;
+  padding-top: $baseline-grid-unit;
+
+  + * {
+    margin-top: $default-spacing-unit / 2;
+
+    @include media(desktop) {
+      margin-top: $default-spacing-unit;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{% extends 'layout.nunjucks' %}
+
+{% block header %}
+<h1 class="local-header--title--question">Book an appointment with a GP</h1>
+{% endblock %}
+
+{% block pageTitle %}Find a GP to book an appointment with{% endblock %}
+
+{% block content %}
+
+{% if errorMessage %}
+<div class="error-summary">
+  <h2 class="local-header--error error-summary-heading">
+    {{ errorMessage }}
+  </h2>
+</div>
+{% endif %}
+
+<form method="get" class="form" action="{{ SITE_ROOT }}/results">
+  <div class="reading-width">
+    <div class="form-item-wrapper">
+
+      {% if errorMessage %}
+      <div class="form-group error">
+        {% else %}
+        <div class="form-group">
+          {% endif %}
+          <label class="form-label-bold" for="location">{{ locationLabel }}</label>
+
+          <div class="form-group">
+            <input autocomplete="off" type="text" class="form-control" name="location" id="location" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
+            <input type="hidden" name="context" value="{{ context }}">
+          </div>
+        </div>
+
+        <div class="form-item-wrapper">
+          <div class="form-group form-group--submit">
+            <input type="submit" class="button" value="Search">
+          </div>
+        </div>
+        <p class="u-margintop5"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
+      </div>
+    </div>
+</form>
+
+{% endblock %}
