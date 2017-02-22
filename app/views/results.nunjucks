@@ -20,7 +20,7 @@
   {% else %}
 
     <h2 class="results__header">List of GPs for {{ location }}</h2>
-    <ul>
+    <ol class="results">
       {% for gp in gps %}
         <li class="results__item results__item--nearby">
           <div class="results__details results__details--nearby column--two-thirds">
