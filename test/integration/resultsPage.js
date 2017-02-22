@@ -1,63 +1,79 @@
-// const nock = require('nock');
-// const cheerio = require('cheerio');
-// const chai = require('chai');
-// const chaiHttp = require('chai-http');
-// const server = require('../../server');
-// const constants = require('../../app/lib/constants');
-// const messages = require('../../app/lib/messages');
-// const getSampleResponse = require('../resources/getSampleResponse');
-// const iExpect = require('../lib/expectations');
-// const contexts = require('../../app/lib/contexts');
-//
-// const expect = chai.expect;
-//
-// chai.use(chaiHttp);
-//
-// const resultsRoute = `${constants.SITE_ROOT}/results`;
-// const numberOfNearbyResults = constants.numberOfNearbyResults;
-//
-// describe('The results page', () => {
-//   it('should return 3 nearby results, by default', (done) => {
-//     const testSearch = 'any search';
-//     const appResponse = getSampleResponse('data/testSearch.json');
-//     const appResult = JSON.parse(appResponse).result;
-//     const context = contexts.stomachAche.context;
-//
-//     nock('https://api.postcodes.io')
-//       .get(`/postcodes/${encodeURIComponent(ls27ue)}`)
-//       .times(1)
-//       .reply(200, ls27ueResponse);
-//
-//     nock(process.env.API_BASE_URL)
-//       .get(`/nearby?limits:results:nearby=${numberOfNearbyResults}`)
-//       .times(1)
-//       .reply(200, appResponse);
-//
-//     chai.request(server)
-//       .get(resultsRoute)
-//       .query({ location: "location", context })
-//       .end((err, res) => {
-//         iExpect.htmlWith200Status(err, res);
-//         const $ = cheerio.load(res.text);
-//
-//     expect($('.results__header--nearby').text())
-//       .to.equal('Other pharmacies nearby');
-//
-//     const openResults = $('.results__details-nearest .results__maplink');
-//     expect(openResults.length).to.equal(1);
-//
-//     const nearbyResults = $('.results__item--nearby');
-//     expect(nearbyResults.length).to.equal(constants.numberOfNearbyResultsToDisplay);
-//
-//     const mapLinks = $('.results__maplink');
-//     mapLinks.toArray().forEach((link) => {
-//       expect($(link).attr('href')).to.have.string('https://maps.google.com');
-//     });
-//
-//     expect($('.link-back').text()).to.equal('Back to find a pharmacy');
-//     expect($('.link-back').attr('href')).
-//       to.equal(`${constants.SITE_ROOT}/find-help?context=${context}`);
-//     done();
-//     });
-//   });
-// });
+const cheerio = require('cheerio');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../../server');
+const constants = require('../../app/lib/constants');
+const iExpect = require('../lib/expectations');
+const contexts = require('../../app/lib/contexts');
+
+const expect = chai.expect;
+
+chai.use(chaiHttp);
+
+const resultsRoute = `${constants.SITE_ROOT}/results/`;
+const numberOfNearbyResults = constants.numberOfNearbyResults;
+const context = contexts.stomachAche.context;
+
+describe('Results page', () => {
+  it('should return an object containing up to 10 GP surgeries matching the query by default', (done) => {
+    const search = 'Raven';
+    chai.request(app)
+      .get(resultsRoute)
+      .query({ search, context })
+      .end((err, res) => {
+        iExpect.htmlWith200Status(err, res);
+
+        const $ = cheerio.load(res.text);
+
+        const resultsHeader = $('.results__header').text();
+        expect(resultsHeader).to.contain(`List of GP Surgeries for ${search}`);
+
+        const searchResults = $('.results__item--nearby');
+        expect(searchResults.length).to.be.greaterThan(0);
+        expect(searchResults.length).to.be.lessThan(numberOfNearbyResults - 1);
+
+        expect($('.link-back').text()).to.equal('Back to find your GP');
+        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}?context=${context}`);
+        done();
+      });
+  });
+});
+
+describe('Results page error handling', () => {
+  describe('when search is not included', () => {
+    // TODO: fix 500 when empty message
+    it('should return a descriptive error messages', (done) => {
+      const search = '';
+      chai.request(app)
+      .get(resultsRoute)
+      .query({ search, context })
+      .end((err, res) => {
+        // expect(err).to.equal([Error: Internal Server Error]);
+        // iExpect.htmlWith200Status(err, res);
+        const $ = cheerio.load(res.text);
+
+
+        const resultsHeader500 = $('.local-header-white-bg').text();
+        expect(resultsHeader500).to.contain('Sorry, we are experiencing technical problems');
+        done();
+      });
+    });
+  });
+
+  describe("when search doesn't bring back results", () => {
+    xit('should return a descriptive error messages', (done) => {
+      const search = 'asdasdasd';
+      chai.request(app)
+        .get(resultsRoute)
+        .query({ search })
+        .end((err, res) => {
+          iExpect.htmlWith200Status(err, res);
+          const $ = cheerio.load(res.text);
+
+          const noResultsHeader = $('.results__header .results__header--none').text();
+          expect(noResultsHeader).to.contain(`There are no surgeries matching ${search}`);
+          done();
+        });
+    });
+  });
+});

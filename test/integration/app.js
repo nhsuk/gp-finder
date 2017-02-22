@@ -1,6 +1,10 @@
+const cheerio = require('cheerio');
 const chai = require('chai');
-const app = require('../../server');
 const chaiHttp = require('chai-http');
+const app = require('../../server');
+const constants = require('../../app/lib/constants');
+const iExpect = require('../lib/expectations');
+const contexts = require('../../app/lib/contexts');
 
 const expect = chai.expect;
 
@@ -36,42 +40,75 @@ describe('app', () => {
     });
   });
 
-  // describe('GP page', () => {
-  //   it('should return a GP Page for a valid Org Code', (done) => {
-  //     chai.request(app)
-  //       .get('/gp-surgeries/A81001')
-  //       .end((err, res) => {
-  //         expect(err).to.equal(null);
-  //         expect(res).to.have.status(200);
-  //         expect(res.text).to.contain('GP Page');
-  //         done();
-  //       });
-  //   });
-  // });
-  // describe('GP page', () => {
-  //   it('should return Unknown Practice GP Page for an invalid Org Code', (done) => {
-  //     chai.request(app)
-  //       .get('/gp-surgeries/12345')
-  //       .end((err, res) => {
-  //         expect(err).to.equal(null);
-  //         expect(res).to.have.status(200);
-  //         expect(res.text).to.contain('Unknown Practice');
-  //         done();
-  //       });
-  //   });
-  // });
-  //
-  // describe('Book a GP appointment page', () => {
-  //   it('should return a book a GP Appointment Page for a valid Org Code', (done) => {
-  //     chai.request(app)
-  //       .get('/gp-surgeries/A81001/book-a-gp-appointment')
-  //       .end((err, res) => {
-  //         expect(err).to.equal(null);
-  //         expect(res).to.have.status(200);
-  //         expect(res.text).to.contain('Book an appointment');
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('An unknown page', () => {
+    it('should return a 404', (done) => {
+      chai.request(app)
+        .get(`${constants.SITE_ROOT}/not-known`)
+        .end((err, res) => {
+          expect(err).to.not.be.equal(null);
+          expect(res).to.have.status(404);
+          // eslint-disable-next-line no-unused-expressions
+          expect(res).to.be.html;
+
+          const $ = cheerio.load(res.text);
+
+          expect($('.local-header--title--question').text().trim())
+            .to.equal('Page not found');
+          done();
+        });
+    });
+  });
+
+  describe('The home page', () => {
+    describe('with a context of stomach ache', () => {
+      it('should contain a back link specific for the context', (done) => {
+        chai.request(app)
+        .get(`${constants.SITE_ROOT}/`)
+        .query({ context: contexts.stomachAche.context })
+        .end((err, res) => {
+          iExpect.htmlWith200Status(err, res);
+
+          const $ = cheerio.load(res.text);
+
+          expect($('.link-back').text()).to.equal(contexts.stomachAche.text);
+          iExpect.homePage($);
+          done();
+        });
+      });
+    });
+
+    describe('with no context', () => {
+      it('should contain a generic back link', (done) => {
+        chai.request(app)
+          .get(`${constants.SITE_ROOT}/`)
+          .end((err, res) => {
+            iExpect.htmlWith200Status(err, res);
+
+            const $ = cheerio.load(res.text);
+
+            expect($('.link-back').text()).to.equal('Back');
+            iExpect.homePage($);
+            done();
+          });
+      });
+    });
+
+    describe('with an unknown context', () => {
+      it('should contain a generic back link', (done) => {
+        chai.request(app)
+          .get(`${constants.SITE_ROOT}/`)
+          .query({ context: 'unknown' })
+          .end((err, res) => {
+            iExpect.htmlWith200Status(err, res);
+
+            const $ = cheerio.load(res.text);
+
+            expect($('.link-back').text()).to.equal('Back');
+            iExpect.homePage($);
+            done();
+          });
+      });
+    });
+  });
 });
 

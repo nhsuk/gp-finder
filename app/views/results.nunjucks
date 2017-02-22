@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<a href="{{ SITE_ROOT }}?context={{ context }}" class="link-back">Back to find a GP</a>
+<a href="{{ SITE_ROOT }}?context={{ context }}" class="link-back">Back to find your GP</a>
 
 <div class="grid-row">
 

@@ -2,18 +2,18 @@ const chai = require('chai');
 
 const expect = chai.expect;
 
-function findHelpPageBase($) {
+function homePageBase($) {
   expect($('.local-header--title--question').text().trim()).to.match(/^Book an appointment with a GP/);
   expect($('#search').is('input')).is.equal(true);
 }
 
-function findHelpPageInvalidEntry($) {
-  findHelpPageBase($);
+function homePageInvalidEntry($) {
+  homePageBase($);
   expect($('label[for=search]').text()).to.contain('Enter a valid surgery name');
 }
 
-function findHelpPage($) {
-  findHelpPageBase($);
+function homePage($) {
+  homePageBase($);
   expect($('label[for=search]').text()).to.contain('Enter a surgery name');
 }
 
@@ -25,7 +25,7 @@ function htmlWith200Status(err, res) {
 }
 
 module.exports = {
-  findHelpPage,
-  findHelpPageInvalidEntry,
+  homePage,
+  homePageInvalidEntry,
   htmlWith200Status,
 };
