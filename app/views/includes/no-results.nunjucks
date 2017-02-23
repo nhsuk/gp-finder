@@ -3,7 +3,7 @@
     <h2 class="results__header results__header--none">There are no GP surgeries matching '{{ search }}'</h2>
     <div class="results__none-content">
       <p>You can only search using the name of GP surgery's in England. Check that you're using the correct name for your
-        surgery and <a href="{{ SITE_ROOT }}" class="link-back">search again</a>. </p>
+        surgery and <a href="{{ SITE_ROOT }}">search again</a>. </p>
 
       <p>If you think your surgery is missing from this service, <a href= "mailto:abc@example.com">email us</a> with
         the name of the surgery you have tried to look for.</p>
