@@ -24,7 +24,7 @@ function validateSearch(req, res, next) {
     // eslint-disable-next-line no-param-reassign
     res.locals.errorMessage = validationResult.errorMessage;
     setSearchLabel(res, search);
-    renderer.findHelp(req, res);
+    renderer.searchForYourGp(req, res);
   } else {
     next();
   }

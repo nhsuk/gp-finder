@@ -1,9 +1,5 @@
-function invalidSearchMessage(search) {
-  return `We can't find the search ${search.toLocaleUpperCase()}. Check the search is correct and try again.`;
-}
-
 function emptySearchMessage() {
-  return 'You must insert a search to find a surgery.';
+  return 'You must type in part of your GP surgery name before searching.';
 }
 
 function technicalProblems() {
@@ -11,7 +7,6 @@ function technicalProblems() {
 }
 
 module.exports = {
-  invalidSearchMessage,
   emptySearchMessage,
   technicalProblems,
 };

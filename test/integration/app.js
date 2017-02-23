@@ -4,7 +4,6 @@ const chaiHttp = require('chai-http');
 const app = require('../../server');
 const constants = require('../../app/lib/constants');
 const iExpect = require('../lib/expectations');
-const contexts = require('../../app/lib/contexts');
 
 const expect = chai.expect;
 
@@ -60,54 +59,18 @@ describe('app', () => {
   });
 
   describe('The home page', () => {
-    describe('with a context of stomach ache', () => {
-      it('should contain a back link specific for the context', (done) => {
-        chai.request(app)
+    it('should contain a generic back link', (done) => {
+      chai.request(app)
         .get(`${constants.SITE_ROOT}/`)
-        .query({ context: contexts.stomachAche.context })
         .end((err, res) => {
           iExpect.htmlWith200Status(err, res);
 
           const $ = cheerio.load(res.text);
 
-          expect($('.link-back').text()).to.equal(contexts.stomachAche.text);
+          expect($('.link-back').text()).to.equal('Back');
           iExpect.homePage($);
           done();
         });
-      });
-    });
-
-    describe('with no context', () => {
-      it('should contain a generic back link', (done) => {
-        chai.request(app)
-          .get(`${constants.SITE_ROOT}/`)
-          .end((err, res) => {
-            iExpect.htmlWith200Status(err, res);
-
-            const $ = cheerio.load(res.text);
-
-            expect($('.link-back').text()).to.equal('Back');
-            iExpect.homePage($);
-            done();
-          });
-      });
-    });
-
-    describe('with an unknown context', () => {
-      it('should contain a generic back link', (done) => {
-        chai.request(app)
-          .get(`${constants.SITE_ROOT}/`)
-          .query({ context: 'unknown' })
-          .end((err, res) => {
-            iExpect.htmlWith200Status(err, res);
-
-            const $ = cheerio.load(res.text);
-
-            expect($('.link-back').text()).to.equal('Back');
-            iExpect.homePage($);
-            done();
-          });
-      });
     });
   });
 });

@@ -29,7 +29,6 @@
 
           <div class="form-group">
             <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
-            <input type="hidden" name="context" value="{{ context }}">
           </div>
         </div>
 

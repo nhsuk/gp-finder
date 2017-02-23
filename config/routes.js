@@ -19,7 +19,7 @@ router.get('/results',
 router.get('/',
   log.info,
   setLocals.fromRequest,
-  renderer.searchYourGP
+  renderer.searchForYourGp
 );
 
 module.exports = router;

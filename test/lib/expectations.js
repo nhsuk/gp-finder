@@ -7,14 +7,9 @@ function homePageBase($) {
   expect($('#search').is('input')).is.equal(true);
 }
 
-function homePageInvalidEntry($) {
-  homePageBase($);
-  expect($('label[for=search]').text()).to.contain('Enter a valid surgery name');
-}
-
 function homePage($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain('Enter a surgery name');
+  expect($('label[for=search]').text()).to.contain('Enter your GP surgery’s name');
 }
 
 function htmlWith200Status(err, res) {
@@ -26,6 +21,5 @@ function htmlWith200Status(err, res) {
 
 module.exports = {
   homePage,
-  homePageInvalidEntry,
   htmlWith200Status,
 };

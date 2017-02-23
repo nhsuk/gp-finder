@@ -2,11 +2,11 @@ function results(req, res) {
   res.render('results');
 }
 
-function searchYourGP(req, res) {
-  res.render('search-your-gp');
+function searchForYourGp(req, res) {
+  res.render('search-for-your-gp');
 }
 
 module.exports = {
   results,
-  searchYourGP,
+  searchForYourGp,
 };
