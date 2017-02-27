@@ -15,7 +15,7 @@ function getGps(req, res, next) {
     const searchTerm = res.locals.search;
     const limits = constants.numberOfNearbyResults;
 
-    collection.find({ name: new RegExp(searchTerm) }).limit(limits).toArray((errSearch, docs) => {
+    collection.find({ name: new RegExp(searchTerm, 'i') }).limit(limits).toArray((errSearch, docs) => {
       if (errSearch) {
         const errMsg = 'MongoDB error while searching';
         log.error({ err: new VError(errSearch, errMsg) }, errMsg);
