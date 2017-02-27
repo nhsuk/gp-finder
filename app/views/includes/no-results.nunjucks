@@ -2,11 +2,9 @@
   <div class="results-block results-block--none">
     <h2 class="results__header results__header--none">There are no GP surgeries matching '{{ search }}'</h2>
     <div class="results__none-content">
-      <p>You can only search using the name of GP surgeries in England. Check that you're using the correct name for your
-        surgery and <a href="{{ SITE_ROOT }}">search again</a>. </p>
+      <p>You can only search for surgeries in England. Check that you're using the correct name and <a href="{{ SITE_ROOT }}">search again</a>. </p>
 
-      <p>If you think your surgery is missing from this service, <a href= "mailto:abc@example.com">email us</a> with
-        the name of the surgery you have tried to look for.</p>
+      <p>If you think your surgery is missing, <a href= "mailto:nhschoicesservicedesk@nhs.net?Subject=Book%20an%20appointment%20with%20your%20GP%20-%20Surgery%20missing&body=Search%20term%20used:%20{{ search }}">email us</a> to help us improve this service.</p>
     </div>
   </div>
 </div>

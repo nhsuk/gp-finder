@@ -7,7 +7,6 @@
 {% block pageTitle %}Find a GP to book an appointment with{% endblock %}
 
 {% block content %}
-<p>You can book an appointment if you're a registered patient with a GP.</p>
 
 {% if errorMessage %}
 <div class="error-summary">
@@ -15,6 +14,8 @@
     {{ errorMessage }}
   </h2>
 </div>
+{% else %}
+  <p>You can book an appointment if you already have a GP.</p>
 {% endif %}
 
 <form method="get" class="form" action="{{ SITE_ROOT }}/results">
@@ -38,6 +39,12 @@
             <input type="submit" class="button" value="{{ searchButton }}">
           </div>
         </div>
+        <p>If you don't have a GP, you can:</p>
+            <ul>
+               <li><a href='http://www.nhs.uk/Service-Search/GP/LocationSearch/4'>find a GP surgery near to you</a></li>
+               <li><a href='http://www.nhs.uk/NHSEngland/AboutNHSservices/doctors/Pages/NHSGPs.aspx'>register as a permanent or temporary patient</a></li>
+            </ul>
+
         <p class="u-margintop5"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
       </div>
     </div>
