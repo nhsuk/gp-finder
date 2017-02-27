@@ -28,8 +28,7 @@ describe('Results page', () => {
         expect(resultsHeader).to.contain(`List of GP Surgeries for ${search}`);
 
         const searchResults = $('.results__item--nearby');
-        expect(searchResults.length).to.be.greaterThan(0);
-        expect(searchResults.length).to.be.lessThan(numberOfNearbyResults - 1);
+        expect(searchResults.length).to.equal(numberOfNearbyResults);
 
         expect($('.link-back').text()).to.equal('Back to find your GP Surgery');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
