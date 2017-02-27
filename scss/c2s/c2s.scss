@@ -388,7 +388,7 @@ form {
 }
 
 /*
-  Utilities
+  Utilities.
 */
 .u-nomargin {
   margin:0;
@@ -399,8 +399,13 @@ form {
 }
 
 /*
-  Other
+  Other.
 */
-.local-header--question {
+.local-header{
+  &--question {
     padding: 0;
+    .results__header{
+      padding-top:32px;
+    }
+  }
 }
