@@ -9,7 +9,7 @@ function homePageBase($) {
 
 function homePage($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain('Enter your GP surgery’s name');
+  expect($('label[for=search]').text()).to.contain('Enter the name of your GP surgery to see your booking options. You can only search using your surgery name.');
 }
 
 function htmlWith200Status(err, res) {

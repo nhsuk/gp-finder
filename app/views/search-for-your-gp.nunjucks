@@ -7,6 +7,7 @@
 {% block pageTitle %}Find a GP to book an appointment with{% endblock %}
 
 {% block content %}
+<p>You can book an appointment if you're a registered patient with a GP.</p>
 
 {% if errorMessage %}
 <div class="error-summary">
@@ -34,7 +35,7 @@
 
         <div class="form-item-wrapper">
           <div class="form-group form-group--submit">
-            <input type="submit" class="button" value="Search">
+            <input type="submit" class="button" value="{{ searchButton }}">
           </div>
         </div>
         <p class="u-margintop5"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>

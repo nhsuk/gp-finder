@@ -6,6 +6,10 @@
 <meta name="DCSext.ServiceName" content="GP Finder" />
 {% endblock %}
 
+{% block header %}
+<h2 class="results__header">List of GP Surgeries for {{ search }}</h2>
+{% endblock %}
+
 {% block content %}
 <a href="{{ SITE_ROOT }}" class="link-back">Back to find your GP Surgery</a>
 
@@ -19,7 +23,6 @@
 
   {% else %}
 
-    <h2 class="results__header">List of GP Surgeries for {{ search }}</h2>
     <ol class="results">
       {% for gp in gps %}
         <li class="results__item results__item--nearby">
