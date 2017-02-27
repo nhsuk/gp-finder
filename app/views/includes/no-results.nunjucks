@@ -1,8 +1,12 @@
 <div class="results">
   <div class="results-block results-block--none">
-    <h2 class="results__header results__header--none">There are no surgeries within 20 miles of {{ location }}</h2>
+    <h2 class="results__header results__header--none">There are no GP surgeries matching '{{ search }}'</h2>
     <div class="results__none-content">
-      <p>This service only provides information about surgeries in England.</p>
+      <p>You can only search using the name of GP surgeries in England. Check that you're using the correct name for your
+        surgery and <a href="{{ SITE_ROOT }}">search again</a>. </p>
+
+      <p>If you think your surgery is missing from this service, <a href= "mailto:abc@example.com">email us</a> with
+        the name of the surgery you have tried to look for.</p>
     </div>
   </div>
 </div>

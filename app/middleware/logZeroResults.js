@@ -1,10 +1,10 @@
 const log = require('../lib/logger');
 
 function logZeroResults(req, res, next) {
-  const location = res.locals.location;
+  const search = res.locals.search;
 
   if (res.locals.gps.length === 0) {
-    log.warn({ location }, `No results were found for ${location}`);
+    log.warn({ search }, `No results were found for ${search}`);
   }
 
   next();

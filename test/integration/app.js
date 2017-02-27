@@ -1,8 +1,9 @@
+const cheerio = require('cheerio');
 const chai = require('chai');
+const chaiHttp = require('chai-http');
 const app = require('../../server');
 const constants = require('../../app/lib/constants');
 const iExpect = require('../lib/expectations');
-const chaiHttp = require('chai-http');
 
 const expect = chai.expect;
 
@@ -38,67 +39,39 @@ describe('app', () => {
     });
   });
 
-  describe('redirection', () => {
-    it('default should be find help page', (done) => {
+  describe('An unknown page', () => {
+    it('should return a 404', (done) => {
       chai.request(app)
-        .get('/')
+        .get(`${constants.SITE_ROOT}/not-known`)
         .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
+          expect(err).to.not.be.equal(null);
+          expect(res).to.have.status(404);
           // eslint-disable-next-line no-unused-expressions
-          expect(res).to.redirect;
-          expect(res.req.path).to.equal(`${constants.SITE_ROOT}/find-help`);
-          done();
-        });
-    });
+          expect(res).to.be.html;
 
-    it('/finder should redirect to find help page', (done) => {
-      chai.request(app)
-        .get(constants.SITE_ROOT)
-        .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
-          // eslint-disable-next-line no-unused-expressions
-          expect(res).to.redirect;
-          expect(res.req.path).to.equal(`${constants.SITE_ROOT}/find-help`);
+          const $ = cheerio.load(res.text);
+
+          expect($('.local-header--title--question').text().trim())
+            .to.equal('Page not found');
           done();
         });
     });
   });
-  // describe('GP page', () => {
-  //   it('should return a GP Page for a valid Org Code', (done) => {
-  //     chai.request(app)
-  //       .get('/gp-surgeries/A81001')
-  //       .end((err, res) => {
-  //         expect(err).to.equal(null);
-  //         expect(res).to.have.status(200);
-  //         expect(res.text).to.contain('GP Page');
-  //         done();
-  //       });
-  //   });
-  // });
-  // describe('GP page', () => {
-  //   it('should return Unknown Practice GP Page for an invalid Org Code', (done) => {
-  //     chai.request(app)
-  //       .get('/gp-surgeries/12345')
-  //       .end((err, res) => {
-  //         expect(err).to.equal(null);
-  //         expect(res).to.have.status(200);
-  //         expect(res.text).to.contain('Unknown Practice');
-  //         done();
-  //       });
-  //   });
-  // });
-  //
-  // describe('Book a GP appointment page', () => {
-  //   it('should return a book a GP Appointment Page for a valid Org Code', (done) => {
-  //     chai.request(app)
-  //       .get('/gp-surgeries/A81001/book-a-gp-appointment')
-  //       .end((err, res) => {
-  //         expect(err).to.equal(null);
-  //         expect(res).to.have.status(200);
-  //         expect(res.text).to.contain('Book an appointment');
-  //         done();
-  //       });
-  //   });
-  // });
+
+  describe('The home page', () => {
+    it('should contain a generic back link', (done) => {
+      chai.request(app)
+        .get(`${constants.SITE_ROOT}/`)
+        .end((err, res) => {
+          iExpect.htmlWith200Status(err, res);
+
+          const $ = cheerio.load(res.text);
+
+          expect($('.link-back').text()).to.equal('Back');
+          iExpect.homePage($);
+          done();
+        });
+    });
+  });
 });
 

@@ -2,18 +2,40 @@ version: '2.1'
 
 services:
 
-  gp-finder-test:
-    build:
-      context: .
-      args:
-        NODE_ENV: test
+  tests:
+    extends:
+      file: docker-compose.yml
+      service: base-app
     command: sh -c "npm run git-hook && npm run watch-test"
     volumes:
-      - .:/code
-      - gp-finder-test-node_modules:/code/node_modules
+      - gp-finder-tests-node_modules:/code/node_modules
     environment:
       NODE_ENV: test
+    links:
+      - gp-finder-db:mongo
+
+  travis-tests:
+    extends:
+      file: docker-compose.yml
+      service: base-app
+    command:
+      sh -c "npm run git-hook && npm run upload-coverage-coveralls"
+    volumes:
+      - gp-finder-travis-tests-node_modules:/code/node_modules
+    environment:
+      COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
+      NODE_ENV: development
+      SNYK_TOKEN: ${SNYK_TOKEN}
+      TRAVIS: ${TRAVIS}
+      TRAVIS_BRANCH: ${TRAVIS_BRANCH}
+      TRAVIS_COMMIT: ${TRAVIS_COMMIT}
+      TRAVIS_JOB_ID: ${TRAVIS_JOB_ID}
+    links:
+      - gp-finder-db:mongo
+
+  gp-finder-db:
+    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.1.0}"
 
 volumes:
-  gp-finder-test-node_modules:
-
+  gp-finder-tests-node_modules:
+  gp-finder-travis-tests-node_modules:

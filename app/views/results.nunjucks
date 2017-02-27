@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<a href="{{ SITE_ROOT }}/find-help?context={{ context }}" class="link-back">Back to find a GP</a>
+<a href="{{ SITE_ROOT }}" class="link-back">Back to find your GP Surgery</a>
 
 <div class="grid-row">
 
@@ -19,7 +19,7 @@
 
   {% else %}
 
-    <h2 class="results__header">List of GPs for {{ location }}</h2>
+    <h2 class="results__header">List of GP Surgeries for {{ search }}</h2>
     <ol class="results">
       {% for gp in gps %}
         <li class="results__item results__item--nearby">
@@ -29,7 +29,7 @@
           <!--[if IE]><div style="clear: both;" class="clear-both"></div><![endif]-->
         </li>
       {% endfor %}
-    </ul>
+    </ol>
   {% endif %}
 
 </div>
