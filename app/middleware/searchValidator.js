@@ -3,7 +3,7 @@ const renderer = require('../middleware/renderer');
 const searchValidator = require('../lib/searchValidator');
 
 function setSearchLabel(res, search) {
-  if (!search) {
+  if ((!search) || ((search) && (search.trim() === ''))) {
     // eslint-disable-next-line no-param-reassign
     res.locals.searchLabel = "Enter part or all of your GP surgery's name";
   }
