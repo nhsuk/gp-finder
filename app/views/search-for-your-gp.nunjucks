@@ -1,7 +1,7 @@
 {% extends 'layout.nunjucks' %}
 
 {% block header %}
-<h1 class="local-header--title--question">Book an appointment with a GP</h1>
+<h1 class="local-header--title--question">Find your GP Surgery</h1>
 {% endblock %}
 
 {% block pageTitle %}Find a GP to book an appointment with{% endblock %}
@@ -14,8 +14,6 @@
       {{ errorMessage }}
     </h2>
   </div>
-{% else %}
-  <p>You can book an appointment if you already have a GP.</p>
 {% endif %}
 
   <form method="get" class="form" action="{{ SITE_ROOT }}/results">
@@ -54,13 +52,7 @@
   <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
 =======
   <hr class="hr--no-color"/>
-  {% if(errorMessage == null) %}
-    <p>If you don't have a GP, you can:</p>
-    <ul>
-       <li><a href='http://www.nhs.uk/Service-Search/GP/LocationSearch/4'>find a GP surgery near to you</a></li>
-       <li><a href='http://www.nhs.uk/NHSEngland/AboutNHSservices/doctors/Pages/NHSGPs.aspx'>register as a permanent or temporary patient</a></li>
-    </ul>
-  {% endif %}
+
   <p class="u-margintop5"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
 >>>>>>> b00db60... :innocent: extend empty search
 </div>

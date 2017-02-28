@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<a href="{{ SITE_ROOT }}" class="link-back">Back to Book an appointment with a GP</a>
+<a href="{{ SITE_ROOT }}" class="link-back">Back to Find your GP Surgery</a>
 
 <h1 class="sr-only">Search results</h1>
 
