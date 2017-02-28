@@ -11,8 +11,8 @@ before_install:
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - ./ci-deployment/docker_ci.sh
-#  - ./ci-deployment/rancher_pr_deploy.sh
+  - ./scripts/ci-deployment/docker_ci.sh
+  - ./scripts/ci-deployment/rancher_pr_deploy.sh
 
 script:
   - docker-compose -f docker-compose-tests.yml build travis-tests
