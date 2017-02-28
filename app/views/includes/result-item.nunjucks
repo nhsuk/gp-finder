@@ -1,4 +1,4 @@
-<h3 class="results__name"><a href="https://beta.nhs.uk/gp-surgeries/{{gp.choicesId}}/book-appointment">{{gp.name}}</a></h3>
+<h3 class="results__name"><a href="/gp-surgeries/{{gp.choicesId}}/book-appointment">{{gp.name}}</a></h3>
 {% if gp.location.address %} {{ gp.location.address|safe | replace(",", ", ") }}<br>{% endif %}
 {% if gp.location.postcode %} {{ gp.location.postcode }}<br> {% endif %}
 {% if gp.phone %} {{ gp.phone }}<br> {% endif %}
