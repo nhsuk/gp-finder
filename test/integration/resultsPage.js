@@ -39,7 +39,45 @@ describe('Results page', () => {
 describe('Results page error handling', () => {
   describe('when search is not included', () => {
     it('should return a descriptive error messages', (done) => {
+      const search = null;
+      const errorMessage = messages.emptySearchMessage();
+
+      chai.request(app)
+        .get(resultsRoute)
+        .query({ search })
+        .end((err, res) => {
+          iExpect.htmlWith200Status(err, res);
+          const $ = cheerio.load(res.text);
+
+          iExpect.homePageEmptyEntry($);
+          const errorHeader = $('#content').text();
+          expect(errorHeader).to.contain(errorMessage);
+          done();
+        });
+    });
+  });
+  describe('when search is an empty string', () => {
+    it('should return a descriptive error messages', (done) => {
       const search = '';
+      const errorMessage = messages.emptySearchMessage();
+
+      chai.request(app)
+         .get(resultsRoute)
+         .query({ search })
+         .end((err, res) => {
+           iExpect.htmlWith200Status(err, res);
+           const $ = cheerio.load(res.text);
+
+           iExpect.homePageEmptyEntry($);
+           const errorHeader = $('#content').text();
+           expect(errorHeader).to.contain(errorMessage);
+           done();
+         });
+    });
+  });
+  describe('when search is some empty spaces', () => {
+    it('should return a descriptive error messages', (done) => {
+      const search = '   ';
       const errorMessage = messages.emptySearchMessage();
 
       chai.request(app)

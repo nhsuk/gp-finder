@@ -4,7 +4,7 @@ function validateSearch(search) {
   let errorMessage = null;
   let searchToReturn = search;
 
-  if (!search) {
+  if ((!search) || ((search) && (search.trim() === ''))) {
     errorMessage = messages.emptySearchMessage();
   } else {
     searchToReturn = search.trim();
