@@ -7,9 +7,14 @@ function homePageBase($) {
   expect($('#search').is('input')).is.equal(true);
 }
 
+function homePageEmptyEntry($) {
+  homePageBase($);
+  expect($('label[for=search]').text()).to.contain("Enter part or all of your GP surgery's name");
+}
+
 function homePage($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain('Enter your GP surgery’s name');
+  expect($('label[for=search]').text()).to.contain("Enter all or part of your GP surgery's name to see your booking options.");
 }
 
 function htmlWith200Status(err, res) {
@@ -21,5 +26,6 @@ function htmlWith200Status(err, res) {
 
 module.exports = {
   homePage,
+  homePageEmptyEntry,
   htmlWith200Status,
 };

@@ -3,7 +3,8 @@ const backLinkUtils = require('../lib/backLinkUtils');
 function fromRequest(req, res, next) {
   /* eslint-disable no-param-reassign */
   res.locals.search = req.query.search;
-  res.locals.searchLabel = 'Enter your GP surgery’s name';
+  res.locals.searchLabel = "Enter all or part of your GP surgery's name to see your booking options.";
+  res.locals.searchButton = 'Find your GP surgery';
 
   const backLink = backLinkUtils(req, res);
   res.locals.backLink = {

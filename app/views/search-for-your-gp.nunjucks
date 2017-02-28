@@ -7,39 +7,48 @@
 {% block pageTitle %}Find a GP to book an appointment with{% endblock %}
 
 {% block content %}
-
+<div class="reading-width">
 {% if errorMessage %}
-<div class="error-summary">
-  <h2 class="local-header--error error-summary-heading">
-    {{ errorMessage }}
-  </h2>
-</div>
+  <div class="error-summary">
+    <h2 class="local-header--error error-summary-heading">
+      {{ errorMessage }}
+    </h2>
+  </div>
+{% else %}
+  <p>You can book an appointment if you already have a GP.</p>
 {% endif %}
 
-<form method="get" class="form" action="{{ SITE_ROOT }}/results">
-  <div class="reading-width">
-    <div class="form-item-wrapper">
+  <form method="get" class="form" action="{{ SITE_ROOT }}/results">
+    <div>
+      <div class="form-item-wrapper">
 
-      {% if errorMessage %}
-      <div class="form-group error">
-        {% else %}
-        <div class="form-group">
-          {% endif %}
-          <label class="form-label-bold" for="search">{{ searchLabel }}</label>
-
+        {% if errorMessage %}
+        <div class="form-group error">
+          {% else %}
           <div class="form-group">
-            <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
-          </div>
-        </div>
+            {% endif %}
+            <label class="form-label-bold" for="search">{{ searchLabel }}</label>
 
-        <div class="form-item-wrapper">
-          <div class="form-group form-group--submit">
-            <input type="submit" class="button" value="Search">
+            <div class="form-group">
+              <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
+            </div>
+          </div>
+
+          <div class="form-item-wrapper">
+            <div class="form-group form-group--submit">
+              <input type="submit" class="button" value="{{ searchButton }}">
+            </div>
           </div>
         </div>
-        <p class="u-margintop5"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
       </div>
-    </div>
-</form>
+  </form>
+  <hr class="hr--no-color"/>
+  <p>If you don't have a GP, you can:</p>
+      <ul>
+         <li><a href='http://www.nhs.uk/Service-Search/GP/LocationSearch/4'>find a GP surgery near to you</a></li>
+         <li><a href='http://www.nhs.uk/NHSEngland/AboutNHSservices/doctors/Pages/NHSGPs.aspx'>register as a permanent or temporary patient</a></li>
+      </ul>
 
+  <p class="u-margintop5"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
+</div>
 {% endblock %}

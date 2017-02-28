@@ -7,19 +7,19 @@
 {% endblock %}
 
 {% block content %}
-<a href="{{ SITE_ROOT }}" class="link-back">Back to find your GP Surgery</a>
+<a href="{{ SITE_ROOT }}" class="link-back">Back to Book an appointment with a GP</a>
 
-<div class="grid-row">
+<h1 class="sr-only">Search results</h1>
 
-  <h1 class="sr-only">Search results</h1>
+{% if gps.length === 0 %}
 
-  {% if gps.length === 0 %}
-
+  <div class="grid-row">
     {% include "includes/no-results.nunjucks" %}
+  </div>
 
-  {% else %}
-
-    <h2 class="results__header">List of GP Surgeries for {{ search }}</h2>
+{% else %}
+  <h2 class="results__header">GP Surgeries matching '{{ search }}' </h2>
+  <div class="grid-row">
     <ol class="results">
       {% for gp in gps %}
         <li class="results__item results__item--nearby">
@@ -30,8 +30,9 @@
         </li>
       {% endfor %}
     </ol>
-  {% endif %}
+  </div>
+{% endif %}
 
-</div>
+
 
 {% endblock %}

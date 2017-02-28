@@ -25,12 +25,12 @@ describe('Results page', () => {
         const $ = cheerio.load(res.text);
 
         const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`List of GP Surgeries for ${search}`);
+        expect(resultsHeader).to.contain(`GP Surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby');
         expect(searchResults.length).to.equal(numberOfNearbyResults);
 
-        expect($('.link-back').text()).to.equal('Back to find your GP Surgery');
+        expect($('.link-back').text()).to.equal('Back to Book an appointment with a GP');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
@@ -50,6 +50,7 @@ describe('Results page error handling', () => {
           iExpect.htmlWith200Status(err, res);
           const $ = cheerio.load(res.text);
 
+          iExpect.homePageEmptyEntry($);
           const errorHeader = $('#content').text();
           expect(errorHeader).to.contain(errorMessage);
           done();
@@ -71,6 +72,7 @@ describe('Results page error handling', () => {
 
           const noResultsHeader = $('#content').text();
           expect(noResultsHeader).to.contain(errorMessage);
+
           done();
         });
     });
