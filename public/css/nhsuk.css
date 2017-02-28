@@ -759,6 +759,8 @@ b, strong { font-weight: 600; }
 /* Colours. */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
+hr--no-color, .hr--no-color { background-color: transparent; }
+
 .local-header--question, .local-header > *, .global-header--question, .global-header > *, .global-footer--question, .global-footer > *, .notification-banner--question, .notification-banner > * { max-width: 960px; margin: 0 16px; padding: 8px 0; font-size: 16px; line-height: 24px; }
 
 @media (min-width: 641px) { .local-header--question, .local-header > *, .global-header--question, .global-header > *, .global-footer--question, .global-footer > *, .notification-banner--question, .notification-banner > * { margin: 0 16px; } }
@@ -868,6 +870,8 @@ form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; 
 
 @media (min-width: 925px) { .page-section .grid-row .results-block--none .results__none-content { padding: 32px; } }
 
+.page-section .results__header { margin-bottom: 32px; }
+
 /* Links */
 .link-back { border-bottom: 1px solid #0b0c0c; color: #000000; display: inline-block; font-size: 16px; font-weight: 400; line-height: 1.25; margin-top: 16px; margin-bottom: 32px; padding-left: 14px; position: relative; text-decoration: none; text-transform: none; }
 
@@ -900,10 +904,10 @@ form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; 
 
 .error-summary p { margin-bottom: 10px; }
 
-/* Utilities */
+/* Utilities. */
 .u-nomargin { margin: 0; }
 
 .u-margintop5 { margin-top: 5px; }
 
-/* Other */
+/* Other. */
 .local-header--question { padding: 0; }

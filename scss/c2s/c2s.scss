@@ -18,6 +18,12 @@ $blue: #0072c6;
   border: 0;
 }
 
+hr, .hr {
+  &--no-color {
+    background-color:transparent;
+  }
+}
+
 .local-header,
 .global-header,
 .global-footer,
@@ -290,6 +296,9 @@ form {
       }
     }
   }
+  .results__header{
+    margin-bottom:32px;
+  }
 }
 
 /*
@@ -404,8 +413,5 @@ form {
 .local-header{
   &--question {
     padding: 0;
-    .results__header{
-      padding-top:32px;
-    }
   }
 }
