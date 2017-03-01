@@ -15,4 +15,6 @@ EXPOSE 3000
 
 COPY . /code
 
+RUN [ "npm", "run", "build-css" ]
+
 CMD [ "npm", "start" ]

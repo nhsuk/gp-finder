@@ -17,7 +17,10 @@ $blue: #0072c6;
   clip: rect(0,0,0,0);
   border: 0;
 }
-
+h1 {
+  font-size:36px;
+  line-height:48px;
+}
 hr, .hr {
   &--no-color {
     background-color:transparent;
