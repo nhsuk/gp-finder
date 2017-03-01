@@ -763,6 +763,8 @@ h1 { font-size: 36px; line-height: 48px; }
 
 hr--no-color, .hr--no-color { background-color: transparent; }
 
+hr--higher, .hr--higher { height: 64px; }
+
 .local-header--question, .local-header > *, .global-header--question, .global-header > *, .global-footer--question, .global-footer > *, .notification-banner--question, .notification-banner > * { max-width: 960px; margin: 0 16px; padding: 8px 0; font-size: 16px; line-height: 24px; }
 
 @media (min-width: 641px) { .local-header--question, .local-header > *, .global-header--question, .global-header > *, .global-footer--question, .global-footer > *, .notification-banner--question, .notification-banner > * { margin: 0 16px; } }
@@ -919,3 +921,5 @@ form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; 
 
 /* Other. */
 .local-header--question { padding: 0; }
+
+.local-header--smaller { font-size: 24px; line-height: 36px; }

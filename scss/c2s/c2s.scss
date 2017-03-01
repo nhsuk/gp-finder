@@ -25,6 +25,9 @@ hr, .hr {
   &--no-color {
     background-color:transparent;
   }
+  &--higher {
+    height:64px;
+  }
 }
 
 .local-header,
@@ -424,5 +427,9 @@ form {
 .local-header{
   &--question {
     padding: 0;
+  }
+  &--smaller {
+    font-size: 24px;
+    line-height: 36px;
   }
 }
