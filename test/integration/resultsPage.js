@@ -24,7 +24,7 @@ describe('Results page', () => {
         const $ = cheerio.load(res.text);
 
         const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`GP Surgeries matching '${search}'`);
+        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby');
         expect(searchResults.length).to.equal(11);
