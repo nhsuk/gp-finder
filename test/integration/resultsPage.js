@@ -15,7 +15,6 @@ const resultsRoute = `${constants.SITE_ROOT}/results/`;
 describe('Results page', () => {
   it('should return an object containing up to 10 GP surgeries matching the query by default', (done) => {
     const search = 'Raven';
-    const numberOfNearbyResults = constants.numberOfNearbyResults;
     chai.request(app)
       .get(resultsRoute)
       .query({ search })
@@ -28,7 +27,7 @@ describe('Results page', () => {
         expect(resultsHeader).to.contain(`GP Surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby');
-        expect(searchResults.length).to.equal(numberOfNearbyResults);
+        expect(searchResults.length).to.equal(11);
 
         expect($('.link-back').text()).to.equal('Back to Book an appointment with a GP');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
@@ -73,27 +72,6 @@ describe('Results page error handling', () => {
           const noResultsHeader = $('#content').text();
           expect(noResultsHeader).to.contain(errorMessage);
 
-          done();
-        });
-    });
-  });
-
-  describe('when there might be some problems with the db', () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = 'sa';
-      const errorMessage = messages.technicalProblems();
-      constants.numberOfNearbyResults = 'NaN';
-      chai.request(app)
-        .get(resultsRoute)
-        .query({ search })
-        .end((err, res) => {
-          expect(err).to.not.be.equal(null);
-          expect(res).to.have.status(500);
-          // eslint-disable-next-line no-unused-expressions
-          expect(res).to.be.html;
-          const $ = cheerio.load(res.text);
-
-          expect($('#content').text()).to.contain(errorMessage);
           done();
         });
     });
