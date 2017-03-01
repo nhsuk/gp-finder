@@ -803,7 +803,11 @@ form .form-control { -webkit-box-sizing: border-box; -moz-box-sizing: border-box
 
 @media (min-width: 925px) { form .form-control { font-size: 24px; line-height: 32px; } }
 
-form .form-label-bold { font-family: "FS Me", Arial, sans-serif; font-size: 24px; font-weight: 600; line-height: 32px; text-transform: none; }
+form .form-label { font-family: "FS Me", Arial, sans-serif; line-height: 32px; text-transform: none; }
+
+form .form-label--bold { font-size: 24px; font-weight: 600; }
+
+form .form-label--smaller { font-size: 20px; }
 
 form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; float: left; width: 100%; }
 

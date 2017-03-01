@@ -27,7 +27,7 @@
           {% else %}
           <div class="form-group">
             {% endif %}
-            <label class="form-label-bold" for="search">{{ searchLabel }}</label>
+            <label class="form-label--smaller" for="search">{{ searchLabel }}</label>
 
             <div class="form-group">
               <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>

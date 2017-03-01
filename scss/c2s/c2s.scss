@@ -145,12 +145,17 @@ form {
       line-height: 32px;
     }
   }
-  .form-label-bold {
+  .form-label{
     font-family: "FS Me", Arial, sans-serif;
-    font-size: 24px;
-    font-weight: 600;
     line-height: 32px;
     text-transform: none;
+    &--bold {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    &--smaller {
+      font-size:20px;
+    }
   }
   .form-group {
     -webkit-box-sizing: border-box;
