@@ -1,6 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
-const constants = require('../lib/constants');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
 
@@ -13,9 +12,8 @@ function getGps(req, res, next) {
     const collection = db.collection(config.collection);
 
     const searchTerm = res.locals.search;
-    const limits = constants.numberOfNearbyResults;
 
-    collection.find({ name: new RegExp(searchTerm, 'i') }).limit(limits).toArray((errSearch, docs) => {
+    collection.find({ name: new RegExp(searchTerm, 'i') }).toArray((errSearch, docs) => {
       if (errSearch) {
         const errMsg = 'MongoDB error while searching';
         log.error({ err: new VError(errSearch, errMsg) }, errMsg);
