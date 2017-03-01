@@ -1,10 +1,14 @@
 const messages = require('../lib/messages');
 
+function isEmpty(search) {
+  return !search || !search.trim();
+}
+
 function validateSearch(search) {
   let errorMessage = null;
   let searchToReturn = search;
 
-  if ((!search) || ((search) && (search.trim() === ''))) {
+  if (isEmpty(search)) {
     errorMessage = messages.emptySearchMessage();
   } else {
     searchToReturn = search.trim();
@@ -16,4 +20,7 @@ function validateSearch(search) {
   };
 }
 
-module.exports = validateSearch;
+module.exports = {
+  isEmpty,
+  validateSearch,
+};
