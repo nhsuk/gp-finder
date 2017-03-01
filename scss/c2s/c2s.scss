@@ -17,10 +17,16 @@ $blue: #0072c6;
   clip: rect(0,0,0,0);
   border: 0;
 }
-
+h1 {
+  font-size:36px;
+  line-height:48px;
+}
 hr, .hr {
   &--no-color {
     background-color:transparent;
+  }
+  &--higher {
+    height:64px;
   }
 }
 
@@ -145,12 +151,17 @@ form {
       line-height: 32px;
     }
   }
-  .form-label-bold {
+  .form-label{
     font-family: "FS Me", Arial, sans-serif;
-    font-size: 24px;
-    font-weight: 600;
     line-height: 32px;
     text-transform: none;
+    &--bold {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    &--smaller {
+      font-size:20px;
+    }
   }
   .form-group {
     -webkit-box-sizing: border-box;
@@ -406,6 +417,9 @@ form {
 .u-margintop5 {
   margin-top:5px;
 }
+.u-margintop32 {
+  margin-top:32px;
+}
 
 /*
   Other.
@@ -413,5 +427,9 @@ form {
 .local-header{
   &--question {
     padding: 0;
+  }
+  &--smaller {
+    font-size: 24px;
+    line-height: 36px;
   }
 }

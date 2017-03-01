@@ -759,7 +759,11 @@ b, strong { font-weight: 600; }
 /* Colours. */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
+h1 { font-size: 36px; line-height: 48px; }
+
 hr--no-color, .hr--no-color { background-color: transparent; }
+
+hr--higher, .hr--higher { height: 64px; }
 
 .local-header--question, .local-header > *, .global-header--question, .global-header > *, .global-footer--question, .global-footer > *, .notification-banner--question, .notification-banner > * { max-width: 960px; margin: 0 16px; padding: 8px 0; font-size: 16px; line-height: 24px; }
 
@@ -803,7 +807,11 @@ form .form-control { -webkit-box-sizing: border-box; -moz-box-sizing: border-box
 
 @media (min-width: 925px) { form .form-control { font-size: 24px; line-height: 32px; } }
 
-form .form-label-bold { font-family: "FS Me", Arial, sans-serif; font-size: 24px; font-weight: 600; line-height: 32px; text-transform: none; }
+form .form-label { font-family: "FS Me", Arial, sans-serif; line-height: 32px; text-transform: none; }
+
+form .form-label--bold { font-size: 24px; font-weight: 600; }
+
+form .form-label--smaller { font-size: 20px; }
 
 form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; float: left; width: 100%; }
 
@@ -909,5 +917,9 @@ form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; 
 
 .u-margintop5 { margin-top: 5px; }
 
+.u-margintop32 { margin-top: 32px; }
+
 /* Other. */
 .local-header--question { padding: 0; }
+
+.local-header--smaller { font-size: 24px; line-height: 36px; }
