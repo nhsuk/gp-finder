@@ -1,7 +1,7 @@
 {% extends 'layout.nunjucks' %}
 
 {% block header %}
-<h1 class="local-header--title--question">Book an appointment with a GP</h1>
+<h1 class="local-header--title--question">Find your GP surgery</h1>
 {% endblock %}
 
 {% block pageTitle %}Find a GP to book an appointment with{% endblock %}
@@ -14,8 +14,6 @@
       {{ errorMessage }}
     </h2>
   </div>
-{% else %}
-  <p>You can book an appointment if you already have a GP.</p>
 {% endif %}
 
   <form method="get" class="form" action="{{ SITE_ROOT }}/results">
@@ -42,14 +40,8 @@
         </div>
       </div>
   </form>
-  <hr class="hr--no-color hr--higher"/>
-  {% if(errorMessage == null) %}
-    <p>If you don't have a GP:</p>
-    <ul>
-      <li><a href='http://www.nhs.uk/Service-Search/GP/LocationSearch/4'>find a new GP near to you</a></li>
-      <li><a href='http://www.nhs.uk/NHSEngland/AboutNHSservices/doctors/Pages/NHSGPs.aspx'>register as a permanent or temporary patient</a></li>
-    </ul>
-  {% endif %}
+  <hr class="hr--no-color"/>
   <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
 </div>
 {% endblock %}
+

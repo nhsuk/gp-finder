@@ -1,3 +1,3 @@
-<h3 class="results__name"><a href="/gp-surgeries/{{gp.choicesId}}/book-appointment">{{gp.name}}</a></h3>
+<h3 class="results__name"><a href="/gp-surgeries/{{gp.choicesId}}/book-appointment">{{gp.name|safe | title }}</a></h3>
 {% if gp.location.address %} {{ gp.location.address|safe | replace(",", ", ") }}, {% endif %}
 {% if gp.location.postcode %} {{ gp.location.postcode }} {% endif %}

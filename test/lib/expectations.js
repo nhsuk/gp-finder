@@ -3,18 +3,18 @@ const chai = require('chai');
 const expect = chai.expect;
 
 function homePageBase($) {
-  expect($('.local-header--title--question').text().trim()).to.match(/^Book an appointment with a GP/);
+  expect($('.local-header--title--question').text().trim()).to.match(/^Find your GP surgery/);
   expect($('#search').is('input')).is.equal(true);
 }
 
 function homePageEmptyEntry($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain("Enter part or all of your GP surgery's name");
+  expect($('label[for=search]').text()).to.contain("You must type at least part of your GP surgery's name before searching.");
 }
 
 function homePage($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain("Enter all or part of your GP surgery's name to see your booking options.");
+  expect($('label[for=search]').text()).to.contain("Enter part or all of your surgery's name.");
 }
 
 function htmlWith200Status(err, res) {

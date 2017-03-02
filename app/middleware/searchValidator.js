@@ -4,7 +4,7 @@ const searchValidator = require('../lib/searchValidator');
 
 function setSearchLabel(res) {
   // eslint-disable-next-line no-param-reassign
-  res.locals.searchLabel = "Enter part or all of your GP surgery's name";
+  res.locals.searchLabel = "You must type at least part of your GP surgery's name before searching.";
 }
 
 function validateSearch(req, res, next) {
