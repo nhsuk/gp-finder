@@ -40,7 +40,6 @@
         </div>
       </div>
   </form>
-<<<<<<< HEAD
   <hr class="hr--no-color hr--higher"/>
   {% if(errorMessage == null) %}
     <p>If you don't have a GP:</p>
@@ -49,11 +48,7 @@
       <li><a href='http://www.nhs.uk/NHSEngland/AboutNHSservices/doctors/Pages/NHSGPs.aspx'>register as a permanent or temporary patient</a></li>
     </ul>
   {% endif %}
-  <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
-=======
   <hr class="hr--no-color"/>
-
-  <p class="u-margintop5"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
->>>>>>> b00db60... :innocent: extend empty search
+  <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
 </div>
 {% endblock %}
