@@ -29,7 +29,7 @@ describe('Results page', () => {
         const searchResults = $('.results__item--nearby');
         expect(searchResults.length).to.equal(11);
 
-        expect($('.link-back').text()).to.equal('Back to Book an appointment with a GP');
+        expect($('.link-back').text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
