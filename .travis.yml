@@ -9,19 +9,12 @@ services:
 
 env:
   global:
-  - DOCKER_COMPOSE_VERSION=1.11.1
   - DOCKER_REPO=nhsuk/gp-finder
   - DOCKER_USERNAME=nhsukautomata
   - RANCHER_ACCESS_KEY=655696CC96424E6D4DB0
   - RANCHER_ENVIRONMENT=c2s-dev
   - RANCHER_TEMPLATE_NAME=c2s-gp-finder
   - RANCHER_URL=https://rancher.nhschoices.net
-
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
