@@ -18,7 +18,7 @@
   </div>
 
 {% else %}
-  <h2 class="results__header">GP Surgeries matching '{{ search }}' </h2>
+  <h2 class="results__header">GP surgeries matching '{{ search }}' </h2>
   <div class="grid-row">
     <ol class="results">
       {% for gp in gps %}

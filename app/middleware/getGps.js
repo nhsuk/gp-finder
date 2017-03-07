@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
+const properCapitalize = require('../lib/utils/properCapitalize');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
 
@@ -23,7 +24,11 @@ function getGps(req, res, next) {
       log.debug(`Found ${docs.length} results for search term ${searchTerm}`);
 
       // eslint-disable-next-line no-param-reassign
-      res.locals.gps = docs;
+      res.locals.gps = docs.map((gp) => {
+        // eslint-disable-next-line no-param-reassign
+        gp.name = properCapitalize(gp.name);
+        return gp;
+      });
 
       db.close((errClose, result) => {
         if (errClose) {

@@ -1,4 +1,4 @@
-const backLinkUtils = require('../lib/backLinkUtils');
+const backLinkUtils = require('../lib/utils/backLink');
 
 function fromRequest(req, res, next) {
   /* eslint-disable no-param-reassign */
