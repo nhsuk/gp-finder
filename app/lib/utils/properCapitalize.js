@@ -36,7 +36,13 @@ function capitalizeNameWithApostrophes(str) {
 function titleize(input) {
   let stringArray = input.replace(/ {2}/g, ' ').split(' ');
   stringArray = stringArray.map((str) => {
-    if (str.includes("'")) {
+    if ((str.includes("'"))) {
+      if ((str.lastIndexOf('\'s')) && (str.lastIndexOf('\'s') === str.length - 2)) {
+        if (str.split(/'/).length === 2) {
+          return `${titleize(str.split(/'(.+)/)[0])}'s`;
+        }
+        return `${capitalizeNameWithApostrophes(str.replace(new RegExp('\'s$'), ''))}'s`;
+      }
       return capitalizeNameWithApostrophes(str);
     }
     if (str.toUpperCase() === str) {

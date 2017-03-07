@@ -52,6 +52,30 @@ describe('Proper capitalize ', () => {
     expect(result).to.be.equal(expectedResult);
   });
 
+  it('for a string that has a name with an apostrophe at the end', () => {
+    const str = 'CLAPHAM bishop\'s practice';
+    const expectedResult = 'Clapham Bishop\'s Practice';
+    const result = properCapitalize(str);
+
+    expect(result).to.be.equal(expectedResult);
+  });
+
+  it('for a string that has a name with an apostrophe in it that starts with an S', () => {
+    const str = 'CLAPHAM  O\'sullivan practice';
+    const expectedResult = 'Clapham O\'Sullivan Practice';
+    const result = properCapitalize(str);
+
+    expect(result).to.be.equal(expectedResult);
+  });
+
+  it('for a string that has a name with an apostrophe in it that starts with an S and ends with S', () => {
+    const str = 'CLAPHAM  O\'sullivan\'s practice';
+    const expectedResult = 'Clapham O\'Sullivan\'s Practice';
+    const result = properCapitalize(str);
+
+    expect(result).to.be.equal(expectedResult);
+  });
+
   it('for a string that has a name with an apostrophe in it and and apostrophe at the end', () => {
     const str = 'CLAPHAM  o\'toole\'s practice';
     const expectedResult = 'Clapham O\'Toole\'s Practice';
