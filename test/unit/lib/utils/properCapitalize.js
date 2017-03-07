@@ -11,6 +11,7 @@ describe('Proper capitalize ', () => {
 
     expect(result).to.be.equal(expectedResult);
   });
+
   it('for a lowercase string that starts with a non-alphanumeric character should capitalize only the first letter', () => {
     const str = 'clapham (park group) practice';
     const expectedResult = 'Clapham (Park Group) Practice';
@@ -18,6 +19,7 @@ describe('Proper capitalize ', () => {
 
     expect(result).to.be.equal(expectedResult);
   });
+
   it('for an uppercase string should leave the first letter alone and downcase the rest', () => {
     const str = 'CLAPHAM PARK GROUP PRACTICE';
     const expectedResult = 'Clapham Park Group Practice';
@@ -25,9 +27,34 @@ describe('Proper capitalize ', () => {
 
     expect(result).to.be.equal(expectedResult);
   });
+
+  it('for a lowercase single string', () => {
+    const str = 'clapham';
+    const expectedResult = 'Clapham';
+    const result = properCapitalize(str);
+
+    expect(result).to.be.equal(expectedResult);
+  });
+
   it('for a lowercase string that starts with a non-alphanumeric character should leave the first letter alone but downcase the rest', () => {
     const str = 'CLAPHAM (PARK GROUP) PRACTICE';
     const expectedResult = 'Clapham (Park Group) Practice';
+    const result = properCapitalize(str);
+
+    expect(result).to.be.equal(expectedResult);
+  });
+
+  it('for a string that has a name with an apostrophe in it', () => {
+    const str = 'CLAPHAM  o\'toole practice';
+    const expectedResult = 'Clapham O\'Toole Practice';
+    const result = properCapitalize(str);
+
+    expect(result).to.be.equal(expectedResult);
+  });
+
+  it('for a string that has a name with an apostrophe in it and and apostrophe at the end', () => {
+    const str = 'CLAPHAM  o\'toole\'s practice';
+    const expectedResult = 'Clapham O\'Toole\'s Practice';
     const result = properCapitalize(str);
 
     expect(result).to.be.equal(expectedResult);
