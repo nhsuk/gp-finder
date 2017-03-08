@@ -4,46 +4,48 @@ const properCapitalize = require('../lib/utils/properCapitalize');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
 
+function handleError(error, next) {
+  const errMsg = 'Error with MongoDB search';
+  log.error({ err: new VError(error.stack, errMsg) }, errMsg);
+  next(error);
+}
+
+function closeDb(db) {
+  return db.close();
+}
+
+function mapResults(db, res, documents, searchTerm) {
+  log.debug(`Found ${documents.length} results for search term ${searchTerm}`);
+
+  // eslint-disable-next-line no-param-reassign
+  res.locals.gps = documents.map((gp) => {
+    // eslint-disable-next-line no-param-reassign
+    gp.name = properCapitalize(gp.name);
+    return gp;
+  });
+
+  return db;
+}
+
+function runQuery(db, res, connectionString) {
+  log.info(`Connected to ${connectionString}`);
+
+  const collection = db.collection(config.collection);
+  const searchTerm = res.locals.search;
+  return collection.find({ name: new RegExp(searchTerm, 'i') })
+      .toArray()
+      .then(documents => mapResults(db, res, documents, searchTerm));
+}
+
 function getGps(req, res, next) {
   const connectionString = config.connectionString;
 
-  MongoClient.connect(connectionString).then((db) => {
-    log.info(`Connected to ${connectionString}`);
-
-    const collection = db.collection(config.collection);
-
-    const searchTerm = res.locals.search;
-
-    collection.find({ name: new RegExp(searchTerm, 'i') }).toArray((errSearch, docs) => {
-      if (errSearch) {
-        const errMsg = 'MongoDB error while searching';
-        log.error({ err: new VError(errSearch, errMsg) }, errMsg);
-        next(errSearch);
-      }
-
-      log.debug(`Found ${docs.length} results for search term ${searchTerm}`);
-
-      // eslint-disable-next-line no-param-reassign
-      res.locals.gps = docs.map((gp) => {
-        // eslint-disable-next-line no-param-reassign
-        gp.name = properCapitalize(gp.name);
-        return gp;
-      });
-
-      db.close((errClose, result) => {
-        if (errClose) {
-          const errMsg = 'MongoDB error while closing connection';
-          log.error({ err: new VError(errClose, errMsg) }, errMsg);
-          next(errClose);
-        }
-        log.debug({ result }, 'Closed MongoDB connection');
-      });
-      next();
-    });
-  }).catch((err) => {
-    log.error(err.stack, `Error connecting to ${connectionString}`);
-    next(err);
-  });
+  MongoClient.connect(connectionString)
+    .then(db => runQuery(db, res, connectionString))
+    .then(db => closeDb(db))
+    .then(next)
+    .catch(error => handleError(error, next));
 }
 
 module.exports = getGps;
+

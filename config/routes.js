@@ -4,14 +4,14 @@ const renderer = require('../app/middleware/renderer');
 const setLocals = require('../app/middleware/setLocals');
 const log = require('../app/middleware/logger');
 const searchValidator = require('../app/middleware/searchValidator');
-const getGps2 = require('../app/middleware/getGps2');
+const getGps = require('../app/middleware/getGps');
 const logZeroResults = require('../app/middleware/logZeroResults');
 
 router.get('/results',
   log.info,
   setLocals.fromRequest,
   searchValidator,
-  getGps2,
+  getGps,
   logZeroResults,
   renderer.results
 );
