@@ -13,7 +13,7 @@ chai.use(chaiHttp);
 const resultsRoute = `${constants.SITE_ROOT}/results/`;
 
 describe('Results page', () => {
-  it('should return an object containing up to 10 GP surgeries matching the query by default', (done) => {
+  it('should return an object containing GP surgeries matching the query', (done) => {
     const search = 'Raven';
     chai.request(app)
       .get(resultsRoute)
@@ -27,7 +27,29 @@ describe('Results page', () => {
         expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby');
-        expect(searchResults.length).to.equal(11);
+        expect(searchResults.length).to.equal(14);
+
+        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
+        done();
+      });
+  });
+
+  it('should return an object containing GP surgeries matching queries that contain non-alphanumeric character', (done) => {
+    const search = '(';
+    chai.request(app)
+      .get(resultsRoute)
+      .query({ search })
+      .end((err, res) => {
+        iExpect.htmlWith200Status(err, res);
+
+        const $ = cheerio.load(res.text);
+
+        const resultsHeader = $('.results__header').text();
+        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
+
+        const searchResults = $('.results__item--nearby');
+        expect(searchResults.length).to.equal(279);
 
         expect($('.link-back').text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);

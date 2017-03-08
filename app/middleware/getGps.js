@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
 const properCapitalize = require('../lib/utils/properCapitalize');
+const regexQuote = require('../lib/utils/regexQuote');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
 
@@ -31,9 +32,11 @@ function runQuery(db, res, connectionString) {
   log.info(`Connected to ${connectionString}`);
 
   const collection = db.collection(config.collection);
-  const searchTerm = res.locals.search;
-  return collection.find({ name: new RegExp(searchTerm, 'i') })
-      .toArray()
+  const searchTerm = regexQuote(res.locals.search);
+  return collection.find(
+    { $or: [{ name: new RegExp(searchTerm, 'i') },
+            { 'address.addressLines.0': new RegExp(searchTerm, 'i') }]
+    }).toArray()
       .then(documents => mapResults(db, res, documents, searchTerm));
 }
 
