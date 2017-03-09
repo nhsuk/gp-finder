@@ -14,7 +14,7 @@
     "upload-coverage-coveralls": "cat ./coverage/lcov.info | coveralls",
     "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan & nodemon -e scss -x npm run build-css -- compact",
     "watch-lint": "esw --watch .",
-    "watch-test": "npm run test -- --watch --reporter min",
+    "watch-test": "npm run test -- --reporter min --watch",
     "git-hook": "npm run lint && npm run generate-coverage && npm run check-coverage"
   },
   "repository": {
