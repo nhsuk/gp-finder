@@ -1,2 +1,3 @@
-module.exports = require('nhsuk-bunyan-logger')('gp-finder');
+const bunyan = require('bunyan');
 
+module.exports = bunyan.createLogger({ name: 'gp-finder' });

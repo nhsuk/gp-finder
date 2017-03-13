@@ -12,8 +12,6 @@ services:
       - .:/code
     environment:
       NODE_ENV: ${NODE_ENV-development}
-      SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
-      SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT-https://splunk-collector.cloudapp.net:8088}
 
   gp-finder-frontend:
     extends:
@@ -30,4 +28,3 @@ services:
 
 volumes:
   gp-finder-node_modules:
-
