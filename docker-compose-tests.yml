@@ -11,6 +11,7 @@ services:
       - gp-finder-tests-node_modules:/code/node_modules
     environment:
       NODE_ENV: test
+    user: root
     links:
       - gp-finder-db:mongo
 
@@ -30,6 +31,7 @@ services:
       TRAVIS_BRANCH: ${TRAVIS_BRANCH}
       TRAVIS_COMMIT: ${TRAVIS_COMMIT}
       TRAVIS_JOB_ID: ${TRAVIS_JOB_ID}
+    user: root
     links:
       - gp-finder-db:mongo
 
