@@ -34,7 +34,10 @@ function runQuery(db, res, connectionString) {
   const collection = db.collection(config.collection);
   const searchTerm = regexQuote(res.locals.search);
   return collection.find(
-    { $text: { $search: searchTerm } }
+    { $text: { $search: searchTerm } },
+      { score: { $meta: 'textScore' } }
+    ).sort(
+      { score: { $meta: 'textScore' } }
     ).toArray()
       .then(documents => mapResults(db, res, documents, searchTerm));
 }
