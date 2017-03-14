@@ -37,7 +37,7 @@ function runQuery(db, res, connectionString) {
     { $text: { $search: `"${searchTerm}"` } },
       { score: { $meta: 'textScore' } }
     ).sort(
-      { score: { $meta: 'textScore' } }
+      { score: { $meta: 'textScore' }, name: 1 }
     ).toArray()
       .then(documents => mapResults(db, res, documents, searchTerm));
 }
