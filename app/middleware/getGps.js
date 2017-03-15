@@ -32,6 +32,8 @@ function runQuery(db, res, connectionString) {
   log.info(`Connected to ${connectionString}`);
 
   const collection = db.collection(config.collection);
+  collection.createIndex({ name: 'text', 'address.addressLines': 'text' },
+    { weights: { name: 1, 'address.addressLines': 1 }, name: 'SearchIndex' });
   const searchTerm = regexQuote(res.locals.search);
   return collection.find({ $text: { $search: `${searchTerm}` } },
     { score: { $meta: 'textScore' } }

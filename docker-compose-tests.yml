@@ -36,7 +36,7 @@ services:
       - gp-finder-db:mongo
 
   gp-finder-db:
-    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-pr-20}"
+    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-latest}"
 
 volumes:
   gp-finder-tests-node_modules:
