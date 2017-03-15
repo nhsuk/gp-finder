@@ -33,11 +33,12 @@ function runQuery(db, res, connectionString) {
 
   const collection = db.collection(config.collection);
   const searchTerm = regexQuote(res.locals.search);
-  return collection.find(
-    { $or: [{ name: new RegExp(searchTerm, 'i') },
-            { 'address.addressLines.0': new RegExp(searchTerm, 'i') }]
-    }).toArray()
-      .then(documents => mapResults(db, res, documents, searchTerm));
+  return collection.find({ $text: { $search: `${searchTerm}` } },
+    { score: { $meta: 'textScore' } }
+    ).sort(
+    { score: { $meta: 'textScore' }, name: 1 }
+    ).toArray()
+    .then(documents => mapResults(db, res, documents, searchTerm));
 }
 
 function getGps(req, res, next) {
