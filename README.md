@@ -15,9 +15,6 @@ the application is being run. This is best practice as described by
 |:---------------------------------|:---------------------------------------------------------------------------------------|:-------------------------|-----------------|
 | `NODE_ENV`                       | node environment                                                                       | development              |                 |
 | `PORT`                           | server port                                                                            | 3000                     |                 |
-| `SPLUNK_HEC_TOKEN`               | [HTTP Event Collector token](http://dev.splunk.com/view/event-collector/SP-CAAAE7C)    |                          | In `production` |
-| `SPLUNK_HEC_ENDPOINT`            | [HTTP Event Collector endpoint](http://dev.splunk.com/view/event-collector/SP-CAAAE7H) |                          | In `production` |
-| `LOG_LEVEL`                      | [bunyan log level](https://github.com/trentm/node-bunyan#levels)                       | Depends on `NODE_ENV`    |                 |
 | `DOCKER_COMPOSE_VERSION`         | the docker-compose file version                                                        | 1.11.1 - supports 2.1    | In `travis`     |
 | `COVERALLS_REPO_TOKEN`           | using the coveralls service                                                            | generated for Github user| In `travis`     |  
 
@@ -31,4 +28,3 @@ When finished with the application `docker-compose down -v` should be run to shu
 
 It is good practice to run the tests in a Docker container. To do this run `docker-compose -p gp-finder-test -f docker-compose-tests.yml up --build --force-recreate tests`. A new container will be started where the tests will run and rerun when changes are made to the source code.
 When finished with the tests run `docker-compose -p gp-finder-test -f docker-compose-tests.yml down -v` to tidy up.
-
