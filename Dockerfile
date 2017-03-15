@@ -15,13 +15,12 @@ ENV NODE_ENV=${NODE_ENV}
 
 COPY npm-shrinkwrap.json /code
 RUN if [ "$NODE_ENV" == "production" ]; then npm install --quiet --only=prod; else npm install --quiet ; fi
-
 EXPOSE 3000
 
 COPY . /code
 
 USER root
-RUN chown -R $USERNAME:$USERNAME /code
+RUN find /code -user 0 -print0 | xargs -0 chown $USERNAME:$USERNAME
 USER $USERNAME
 
 RUN [ "npm", "run", "build-css" ]
