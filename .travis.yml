@@ -14,6 +14,7 @@ env:
   - DOCKER_USERNAME=nhsukautomata
   - RANCHER_TEMPLATE_NAME=c2s-gp-finder
   - RANCHER_URL=https://rancher.nhschoices.net
+  - RANCHER_TEMPLATE_BRANCH_NAME==feature/changes-for-ci-script
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
