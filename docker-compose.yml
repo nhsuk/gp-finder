@@ -26,7 +26,7 @@ services:
       - gp-finder-node_modules:/code/node_modules
 
   gp-finder-db:
-    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-pr-13}"
+    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-pr-20}"
 
 volumes:
   gp-finder-node_modules:
