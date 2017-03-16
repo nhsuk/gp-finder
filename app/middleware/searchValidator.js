@@ -4,7 +4,7 @@ const searchValidator = require('../lib/searchValidator');
 
 function setSearchLabel(res) {
   // eslint-disable-next-line no-param-reassign
-  res.locals.searchLabel = "Enter part or all of your GP surgery's name";
+  res.locals.searchLabel = "To find your booking system, enter your surgery's name - error?";
 }
 
 function validateSearch(req, res, next) {
