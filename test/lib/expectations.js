@@ -3,7 +3,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 function homePageBase($) {
-  expect($('.local-header--title--question').text().trim()).to.match(/^Book an appointment with a GP/);
+  expect($('.local-header--title--question').text().trim()).to.match(/^Book a GP appointment online/);
   expect($('#search').is('input')).is.equal(true);
 }
 
