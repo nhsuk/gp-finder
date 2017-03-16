@@ -1,22 +1,32 @@
 {% extends 'layout.nunjucks' %}
 
 {% block header %}
-<h1 class="local-header--title--question">Book an appointment with a GP</h1>
+<h1 class="local-header--title--question">Book a GP appointment online</h1>
 {% endblock %}
 
-{% block pageTitle %}Find a GP to book an appointment with{% endblock %}
+{% block pageTitle %}Book a GP appointment online{% endblock %}
 
 {% block content %}
 <div class="reading-width">
-{% if errorMessage %}
-  <div class="error-summary">
-    <h2 class="local-header--smaller local-header--error error-summary-heading">
-      {{ errorMessage }}
-    </h2>
-  </div>
-{% else %}
-  <p>You can book an appointment if you already have a GP.</p>
-{% endif %}
+  {% if errorMessage %}
+    <div class="error-summary">
+      <h2 class="local-header--smaller local-header--error error-summary-heading">
+        {{ errorMessage }}
+      </h2>
+    </div>
+  {% else %}
+    <p>To book an appointment, you need to be registered with your GP's online services.</p>
+  {% endif %}
+
+  <details class="">
+    <summary data-analytics="summary">
+      <span class="details__summary">I'm not registered to use online services.</span>
+    </summary>
+
+    <div>
+    <p>To register for online services, ask your GP surgery for a registration form. After you fill in the form, the surgery will send you a username and password.</p>
+    </div>
+   </details>
 
   <form method="get" class="form" action="{{ SITE_ROOT }}/results">
     <div>
@@ -28,7 +38,7 @@
           <div class="form-group">
             {% endif %}
             <label class="form-label--bold form-label--smaller" for="search">{{ searchLabel }}</label>
-
+            <p>We need to know this so we can take you to the right booking system.</p>
             <div class="form-group">
               <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
             </div>
@@ -43,13 +53,6 @@
       </div>
   </form>
   <hr class="hr--no-color hr--higher"/>
-  {% if(errorMessage == null) %}
-    <p>If you don't have a GP:</p>
-    <ul>
-      <li><a href='http://www.nhs.uk/Service-Search/GP/LocationSearch/4'>find a new GP near to you</a></li>
-      <li><a href='http://www.nhs.uk/NHSEngland/AboutNHSservices/doctors/Pages/NHSGPs.aspx'>register as a permanent or temporary patient</a></li>
-    </ul>
-  {% endif %}
-  <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
+  <p class="u-margintop32 sr-only"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
 </div>
 {% endblock %}
