@@ -14,7 +14,7 @@ const resultsRoute = `${constants.SITE_ROOT}/results/`;
 
 describe('Results page', () => {
   it('should return an object containing GP surgeries matching the query', (done) => {
-    const search = 'Raven';
+    const search = 'Idle';
     chai.request(app)
       .get(resultsRoute)
       .query({ search })
@@ -27,7 +27,7 @@ describe('Results page', () => {
         expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby');
-        expect(searchResults.length).to.equal(14);
+        expect(searchResults.length).to.equal(1);
 
         expect($('.link-back').text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
@@ -36,7 +36,7 @@ describe('Results page', () => {
   });
 
   it('should return an object containing GP surgeries matching queries that contain non-alphanumeric character', (done) => {
-    const search = '(';
+    const search = 'Ireland Wood Leeds';
     chai.request(app)
       .get(resultsRoute)
       .query({ search })
@@ -49,7 +49,7 @@ describe('Results page', () => {
         expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby');
-        expect(searchResults.length).to.equal(279);
+        expect(searchResults.length).to.equal(208);
 
         expect($('.link-back').text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
