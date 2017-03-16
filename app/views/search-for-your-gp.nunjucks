@@ -61,6 +61,5 @@
       </div>
   </form>
   <hr class="hr--no-color hr--higher"/>
-  <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
 </div>
 {% endblock %}
