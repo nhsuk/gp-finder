@@ -9,12 +9,12 @@ function homePageBase($) {
 
 function homePageEmptyEntry($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain("Enter part or all of your GP surgery's name");
+  expect($('label[for=search]').text()).to.contain("What's your GP surgery's name - error?");
 }
 
 function homePage($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain("Enter all or part of your GP surgery's name to see your booking options.");
+  expect($('label[for=search]').text()).to.contain("What's your GP surgery's name?");
 }
 
 function htmlWith200Status(err, res) {

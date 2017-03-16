@@ -8,15 +8,25 @@
 
 {% block content %}
 <div class="reading-width">
-{% if errorMessage %}
-  <div class="error-summary">
-    <h2 class="local-header--smaller local-header--error error-summary-heading">
-      {{ errorMessage }}
-    </h2>
-  </div>
-{% else %}
-  <p>You can book an appointment if you already have a GP.</p>
-{% endif %}
+  {% if errorMessage %}
+    <div class="error-summary">
+      <h2 class="local-header--smaller local-header--error error-summary-heading">
+        {{ errorMessage }}
+      </h2>
+    </div>
+  {% else %}
+    <p>To book an appointment, you need to be registered with your GP's online services.</p>
+  {% endif %}
+
+  <details class="">
+    <summary data-analytics="summary">
+      <span class="details__summary">I'm not registered to use online services.</span>
+    </summary>
+
+    <div>
+    <p>To register for online services, ask your GP surgery for a registration form. After you fill in the form, the surgery will send you a username and password.</p>
+    </div>
+   </details>
 
   <form method="get" class="form" action="{{ SITE_ROOT }}/results">
     <div>
@@ -28,7 +38,7 @@
           <div class="form-group">
             {% endif %}
             <label class="form-label--bold form-label--smaller" for="search">{{ searchLabel }}</label>
-
+            <p>We need to know this so we can take you to the right booking system.</p>
             <div class="form-group">
               <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
             </div>
