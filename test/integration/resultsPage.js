@@ -35,7 +35,53 @@ describe('Results page', () => {
       });
   });
 
-  it('should return an object containing GP surgeries matching queries that contain non-alphanumeric character', (done) => {
+  it('should return a booking link for a surgery that has a booking supplier', (done) => {
+    const search = 'Crookes Valley Medical Centre Sheffield';
+    chai.request(app)
+      .get(resultsRoute)
+      .query({ search })
+      .end((err, res) => {
+        iExpect.htmlWith200Status(err, res);
+
+        const $ = cheerio.load(res.text);
+
+        const resultsHeader = $('.results__header').text();
+        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
+
+        const searchResults = $('.results__item--nearby .results__details').first();
+        expect(searchResults.html()).to.not.contain('Unfortunately');
+        expect(searchResults.html()).to.contain('href');
+
+        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
+        done();
+      });
+  });
+
+  it('should return no booking link and some info for a surgery that has no booking supplier', (done) => {
+    const search = 'Bents Green Surgery Sheffield';
+    chai.request(app)
+      .get(resultsRoute)
+      .query({ search })
+      .end((err, res) => {
+        iExpect.htmlWith200Status(err, res);
+
+        const $ = cheerio.load(res.text);
+
+        const resultsHeader = $('.results__header').text();
+        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
+
+        const searchResults = $('.results__item--nearby .results__details').first();
+        expect(searchResults.html()).to.contain('Unfortunately');
+        expect(searchResults.html()).to.not.contain('href');
+
+        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
+        done();
+      });
+  });
+
+  it('should return an object containing GP surgeries matching multiple word queries', (done) => {
     const search = 'Ireland Wood Leeds';
     chai.request(app)
       .get(resultsRoute)

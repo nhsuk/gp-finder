@@ -1,4 +1,8 @@
-<h3 class="results__name"><a href="/gp-surgeries/{{gp.choicesId}}/book-appointment">{{ gp.name }}</a></h3>
+{% if gp.supplier %}
+  <h3 class="results__name"><a href="{{gp.supplier}}">{{ gp.name }}</a></h3>
+{% else %}
+  <h3 class="results__name">{{ gp.name }}</h3><i>  Unfortunately, there is no booking system available.</i></br>
+{% endif %}
 {% if gp.address %}
   {% if gp.address.addressLines %} {{ gp.address.addressLines | safe | replace(",", ", ") }}, {% endif %}
   {% if gp.address.postcode %} {{ gp.address.postcode }} {% endif %}
