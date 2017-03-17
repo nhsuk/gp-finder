@@ -7,14 +7,6 @@ node_js:
 services:
   - docker
 
-env:
-  global:
-  - DOCKER_COMPOSE_VERSION=1.11.1
-  - DOCKER_REPO=nhsuk/gp-finder
-  - DOCKER_USERNAME=nhsukautomata
-  - RANCHER_TEMPLATE_NAME=c2s-gp-finder
-  - RANCHER_URL=https://rancher.nhschoices.net
-
 before_install:
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
