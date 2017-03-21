@@ -14,7 +14,6 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 after_success:
-  - pip install pyyaml
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - ./scripts/ci-deployment/docker_ci.sh
   - ./scripts/ci-deployment/rancher_pr_deploy.sh
