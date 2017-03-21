@@ -14,8 +14,6 @@
       {{ errorMessage }}
     </h2>
   </div>
-{% else %}
-  <p>You can book an appointment if you already have a GP.</p>
 {% endif %}
 
   <form method="get" class="form" action="{{ SITE_ROOT }}/results">
