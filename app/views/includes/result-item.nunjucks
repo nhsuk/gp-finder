@@ -1,6 +1,6 @@
 <h3 class="results__name">
-  {% if gp.supplier %}
-    <a href="{{gp.supplier}}">{{ gp.name }}</a>
+  {% if gp.bookingSystem %}
+    <a href="{{gp.bookingSystem.bookOnlineLink}}">{{ gp.name }}</a>
   {% else %}
     {{ gp.name }}
   {% endif %}
@@ -9,7 +9,7 @@
   {% if gp.address.addressLines %} {{ gp.address.addressLines | safe | replace(",", ", ") }}, {% endif %}
   {% if gp.address.postcode %} {{ gp.address.postcode }} {% endif %}
 {% endif %}
-{% if gp.supplier %}
+{% if gp.bookingSystem %}
 {% else %}
   <section class="callout callout--info callout--compact">
     <p>Unfortunately, there is no booking system available. Please call the surgery for more information on {{gp.contact.telephone}}.</p>

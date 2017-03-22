@@ -95,7 +95,7 @@ describe('Results page', () => {
         expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby');
-        expect(searchResults.length).to.equal(208);
+        expect(searchResults.length).to.equal(206);
 
         expect($('.link-back').text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
