@@ -1,7 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
 const properCapitalize = require('../lib/utils/properCapitalize');
-const bookOnlineLink = require('../lib/utils/bookOnlineLink');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
 
@@ -22,8 +21,6 @@ function mapResults(db, res, documents, searchTerm) {
   res.locals.gps = documents.map((gp) => {
     // eslint-disable-next-line no-param-reassign
     gp.name = properCapitalize(gp.name);
-    // eslint-disable-next-line no-param-reassign
-    gp.supplier = bookOnlineLink(gp);
     return gp;
   });
 
@@ -34,8 +31,6 @@ function runQuery(db, res, connectionString) {
   log.info(`Connected to ${connectionString}`);
 
   const collection = db.collection(config.collection);
-  collection.createIndex({ name: 'text', 'address.addressLines': 'text' },
-    { weights: { name: 1, 'address.addressLines': 1 }, name: 'SearchIndex' });
   const searchTerm = res.locals.search;
   return collection.find({ $text: { $search: `${searchTerm}` } },
     { score: { $meta: 'textScore' } }
