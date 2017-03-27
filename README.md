@@ -1,5 +1,8 @@
 # GP Finder
 
+
+
+[![Build Status](https://travis-ci.org/nhsuk/gp-finder.svg?branch=master)](https://travis-ci.org/nhsuk/gp-finder)
 [![Coverage Status](https://coveralls.io/repos/github/nhsuk/gp-finder/badge.svg?branch=master)](https://coveralls.io/github/nhsuk/gp-finder?branch=master)
 
 A GP finder application. The results will be pointing to the profile app for booking an appointment with a GP or register with a GP.
