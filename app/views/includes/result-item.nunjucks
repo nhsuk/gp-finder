@@ -11,6 +11,6 @@
 {% endif %}
 {% if not gp.bookingSystem %}
   <section class="callout callout--info callout--compact">
-    <p>Unfortunately, there is no booking system available. Please call the surgery for more information on {{gp.contact.telephone}}.</p>
+    <p>This surgery doesn't have an online booking system. Call reception {% if gp.contact.telephone %}on {{gp.contact.telephone}}{% endif %} to book an appointment.
   </section>
 {% endif %}

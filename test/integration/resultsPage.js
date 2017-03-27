@@ -13,6 +13,8 @@ chai.use(chaiHttp);
 const resultsRoute = `${constants.SITE_ROOT}/results/`;
 
 describe('Results page', () => {
+  const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
+
   it('should return an object containing GP surgeries matching the query', (done) => {
     const search = 'Idle';
     chai.request(app)
@@ -29,7 +31,8 @@ describe('Results page', () => {
         const searchResults = $('.results__item--nearby');
         expect(searchResults.length).to.equal(1);
 
-        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
@@ -49,10 +52,11 @@ describe('Results page', () => {
         expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby .results__details').first();
-        expect(searchResults.html()).to.not.contain('Unfortunately');
+        expect(searchResults.html()).to.not.contain(noOnlineBookingLinkMessage);
         expect(searchResults.html()).to.contain('href');
 
-        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
@@ -72,10 +76,11 @@ describe('Results page', () => {
         expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
 
         const searchResults = $('.results__item--nearby .results__details').first();
-        expect(searchResults.html()).to.contain('Unfortunately');
+        expect(searchResults.html()).to.contain(noOnlineBookingLinkMessage);
         expect(searchResults.html()).to.not.contain('href');
 
-        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
@@ -97,7 +102,8 @@ describe('Results page', () => {
         const searchResults = $('.results__item--nearby');
         expect(searchResults.length).to.equal(206);
 
-        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
@@ -166,7 +172,7 @@ describe('Results page error handling', () => {
   describe("when search doesn't bring back results", () => {
     it('should return a descriptive error messages', (done) => {
       const search = 'asdasdas';
-      const errorMessage = `There are no GP surgeries matching '${search}'`;
+      const errorMessage = `We can't find a surgery matching '${search}'`;
 
       chai.request(app)
         .get(resultsRoute)
