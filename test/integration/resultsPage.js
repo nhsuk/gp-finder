@@ -31,7 +31,8 @@ describe('Results page', () => {
         const searchResults = $('.results__item--nearby');
         expect(searchResults.length).to.equal(1);
 
-        expect($('.link-back').each().text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
@@ -54,7 +55,8 @@ describe('Results page', () => {
         expect(searchResults.html()).to.not.contain(noOnlineBookingLinkMessage);
         expect(searchResults.html()).to.contain('href');
 
-        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
@@ -77,7 +79,8 @@ describe('Results page', () => {
         expect(searchResults.html()).to.contain(noOnlineBookingLinkMessage);
         expect(searchResults.html()).to.not.contain('href');
 
-        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
@@ -99,7 +102,8 @@ describe('Results page', () => {
         const searchResults = $('.results__item--nearby');
         expect(searchResults.length).to.equal(206);
 
-        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
+        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
