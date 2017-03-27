@@ -1,7 +1,7 @@
 {% extends 'layout.nunjucks' %}
 
 {% block header %}
-<h1 class="local-header--title--question">Book an appointment with a GP</h1>
+<h1 class="local-header--title--question">Book a GP appointment online</h1>
 {% endblock %}
 
 {% block pageTitle %}Find a GP to book an appointment with{% endblock %}
@@ -15,32 +15,25 @@
     </h2>
   </div>
 {% endif %}
+<p>You can book an appointment online if:</p>
+<ul>
+  <li>your GP is in England</li>
+  <li>you have registered for your GP's online services</li>
+</ul>
+<details class="" role="group">
+  <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
+    <span class="details__summary">I haven't registered for online services</span>
+  </summary>
 
-  <form method="get" class="form" action="{{ SITE_ROOT }}/results">
-    <div>
-      <div class="form-item-wrapper">
+  <div id="details-content-0" aria-hidden="true">
+    <div class="reading-width">
+      <p>Ask your surgery for an online services registration form. After you fill in the form, the surgery will send you a username and password.</p>
+    </div>
+  </div>
+</details>
 
-        {% if errorMessage %}
-        <div class="form-group error">
-          {% else %}
-          <div class="form-group">
-            {% endif %}
-            <label class="form-label--bold form-label--smaller" for="search">{{ searchLabel }}</label>
-
-            <div class="form-group">
-              <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
-            </div>
-          </div>
-
-          <div class="form-item-wrapper">
-            <div class="form-group form-group--submit">
-              <input type="submit" class="button" value="{{ searchButton }}">
-            </div>
-          </div>
-        </div>
-      </div>
-  </form>
-  <hr class="hr--no-color hr--higher"/>
+  {% include "includes/search-form.nunjucks" %}
+  
   {% if(errorMessage == null) %}
     <p>If you don't have a GP:</p>
     <ul>

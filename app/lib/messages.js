@@ -1,5 +1,5 @@
 function emptySearchMessage() {
-  return "You didn't enter any text into the search box. You must type at least part of your GP surgery's name before searching.";
+  return 'You need to enter your surgery name.';
 }
 
 function technicalProblems() {
