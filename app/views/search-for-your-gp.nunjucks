@@ -25,7 +25,7 @@
     <span class="details__summary">I haven't registered for online services</span>
   </summary>
 
-  <div id="details-content-0" aria-hidden="true">
+  <div id="details-content-0" aria-hidden="true" class="callout callout--info callout--friendly">
     <div class="reading-width">
       <p>Ask your surgery for an online services registration form. After you fill in the form, the surgery will send you a username and password.</p>
     </div>
@@ -33,14 +33,6 @@
 </details>
 
   {% include "includes/search-form.nunjucks" %}
-  
-  {% if(errorMessage == null) %}
-    <p>If you don't have a GP:</p>
-    <ul>
-      <li><a href='http://www.nhs.uk/Service-Search/GP/LocationSearch/4'>find a new GP near to you</a></li>
-      <li><a href='http://www.nhs.uk/NHSEngland/AboutNHSservices/doctors/Pages/NHSGPs.aspx'>register as a permanent or temporary patient</a></li>
-    </ul>
-  {% endif %}
-  <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
+  <!--<p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>-->
 </div>
 {% endblock %}

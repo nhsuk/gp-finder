@@ -140,7 +140,7 @@ form {
     width: 100%;
     padding: 4px;
     background-color: #fff;
-    border: 2px solid #000;
+    border: 3px solid #000;
     @include media(tablet) {
       font-size: 24px;
       line-height: 32px;
@@ -178,6 +178,14 @@ form {
 /*
   Results page
 */
+.callout {
+  display:block;
+  &--friendly {
+    background-color: transparent;
+    border-color: $blue;
+    padding: 16px 32px;
+  }
+}
 
 .page-section{
   .grid-row {
@@ -268,6 +276,9 @@ form {
         }
         .callout {
           display:block;
+          &--friendly {
+            display:none;
+          }
         }
       }
       &__nearby {
