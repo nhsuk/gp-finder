@@ -31,7 +31,7 @@ describe('Results page', () => {
         const searchResults = $('.results__item--nearby');
         expect(searchResults.length).to.equal(1);
 
-        expect($('.link-back').text()).to.equal('Back');
+        expect($('.link-back').each().text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });

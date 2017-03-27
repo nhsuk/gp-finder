@@ -67,11 +67,10 @@ describe('app', () => {
 
           const $ = cheerio.load(res.text);
 
-          expect($('.link-back').text()).to.equal('Back');
+          expect($('.link-back').text()).to.equal('');
           iExpect.homePage($);
           done();
         });
     });
   });
 });
-
