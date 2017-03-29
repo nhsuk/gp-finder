@@ -8,13 +8,7 @@
 
 {% block content %}
 <div class="reading-width">
-{% if errorMessage %}
-  <div class="error-summary">
-    <h2 class="local-header--smaller local-header--error error-summary-heading">
-      {{ errorMessage }}
-    </h2>
-  </div>
-{% endif %}
+{% if not errorMessage %}
 <p>You can book an appointment online if:</p>
 <ul>
   <li>your GP is in England</li>
@@ -22,7 +16,7 @@
 </ul>
 <details class="" role="group">
   <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
-    <span class="details__summary">I haven't registered for online services</span>
+    <span class="details__summary">If you haven't registered for online services</span>
   </summary>
 
   <div id="details-content-0" aria-hidden="true" class="callout callout--info callout--friendly">
@@ -31,7 +25,7 @@
     </div>
   </div>
 </details>
-
+{% endif %}
   {% include "includes/search-form.nunjucks" %}
   <!--<p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>-->
 </div>
