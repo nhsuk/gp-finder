@@ -4,11 +4,15 @@
 
       {% if errorMessage %}
       <div class="form-group error">
-        {% else %}
-        <div class="form-group">
-          {% endif %}
+      {% else %}
+      <div class="form-group">
+      {% endif %}
           <label class="form-label--bold form-label--smaller" for="search">{{ searchLabel }}</label>
+          {% if errorMessage %}
+          <p>{{ errorMessage }}</p>
+          {% elif gps.length != 0 %}
           <p>We need to know this so we can take you to the right booking system. </p>
+          {% endif %}
           <div class="form-group">
             <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
           </div>
