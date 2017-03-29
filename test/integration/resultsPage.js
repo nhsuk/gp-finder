@@ -16,8 +16,8 @@ describe('Results page', () => {
   const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
 
   describe('page layout', () => {
-    const search = 'Surgery';
     it('should contain HTML', (done) => {
+      const search = 'Surgery';
       chai.request(app)
         .get(resultsRoute)
         .query({ search })
@@ -27,6 +27,7 @@ describe('Results page', () => {
         });
     });
     it('should contain a back link', (done) => {
+      const search = 'Surgery';
       chai.request(app)
         .get(resultsRoute)
         .query({ search })
@@ -40,6 +41,7 @@ describe('Results page', () => {
         });
     });
     it('should contain a a header with the search string', (done) => {
+      const search = 'Surgery';
       chai.request(app)
         .get(resultsRoute)
         .query({ search })
@@ -83,6 +85,7 @@ describe('Results page', () => {
       });
       describe('multiple matches', () => {
         it('should have more than one result', (done) => {
+          const search = 'Surgery';
           chai.request(app)
             .get(resultsRoute)
             .query({ search })
@@ -140,7 +143,6 @@ describe('Results page', () => {
           .get(resultsRoute)
           .query({ search })
           .end((err, res) => {
-
             const $ = cheerio.load(res.text);
 
             const searchResults = $('.results__item--nearby .results__details').first();
@@ -168,10 +170,9 @@ describe('Results page', () => {
           });
       });
     });
-
   });
 
-  describe('Surgeries with booking system', () => {
+  describe('Surgeries with booking system which can be linked to', () => {
     it('should return a booking link for a surgery', (done) => {
       const search = 'Crookes Valley Medical Centre Sheffield';
       chai.request(app)
@@ -180,18 +181,51 @@ describe('Results page', () => {
         .end((err, res) => {
           const $ = cheerio.load(res.text);
 
-          const resultsHeader = $('.results__header').text();
-          expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
-
-          const searchResults = $('.results__item--nearby .results__details').first();
-          expect(searchResults.html()).to.not.contain(noOnlineBookingLinkMessage);
-          expect(searchResults.html()).to.contain('href');
+          const searchResults = $('.results__item--nearby .results__details .results__name a').first();
+          expect(searchResults.text()).to.equal('Crookes Valley Medical Centre');
+          expect(searchResults.attr('href')).to.equal('https://systmonline.tpp-uk.com/Login?PracticeId=C88057');
 
           done();
         });
     });
   });
 
+  describe('Surgeries with booking system which can not be linked to', () => {
+    describe('when the surgery has a website', () => {
+      it('should return a booking link to the surgery website', (done) => {
+        const search = 'Hambleden Surgery';
+        chai.request(app)
+          .get(resultsRoute)
+          .query({ search })
+          .end((err, res) => {
+            const $ = cheerio.load(res.text);
+
+            const searchResults = $('.results__item--nearby .results__details .results__name a').first();
+            expect(searchResults.text()).to.equal('Hambleden Surgery');
+            expect(searchResults.attr('href')).to.equal('http://www.marlowdoctors.co.uk');
+
+            done();
+          });
+      });
+    });
+    describe('when the surgery does not have a website', () => {
+      it('should display a call the reception message', (done) => {
+        const search = 'Sabden';
+        chai.request(app)
+          .get(resultsRoute)
+          .query({ search })
+          .end((err, res) => {
+            const $ = cheerio.load(res.text);
+
+            const searchResults = $('.results__item--nearby .results__details').first();
+            expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 01282 772045 to book an appointment.');
+            expect($('a[href^="tel:"]', searchResults).text()).to.equal('01282 772045');
+
+            done();
+          });
+      });
+    });
+  });
 });
 
 describe('Results page error handling', () => {
