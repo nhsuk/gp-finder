@@ -67,7 +67,7 @@
     <header role="banner">
       <div class="global-header">
         <div class="global-header--inner">
-          <a href="/" class="global-header--link" title="Go to the NHS.UK homepage">
+          <a href="/" class="global-header__link" title="Go to the NHS.UK homepage">
             <img src="{{ SITE_ROOT }}/images/logotype-nhs-mono.png" alt="">
           </a>
         </div>
