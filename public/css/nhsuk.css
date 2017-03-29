@@ -757,6 +757,8 @@ b, strong { font-weight: 600; }
 .js-enabled .js-tabs-content > div.is-active { display: block; }
 
 /* Colours. */
+html { background-color: #005eb8; }
+
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
 h1 { font-size: 36px; line-height: 48px; }
@@ -764,6 +766,8 @@ h1 { font-size: 36px; line-height: 48px; }
 hr--no-color, .hr--no-color { background-color: transparent; }
 
 hr--higher, .hr--higher { height: 64px; }
+
+@media (min-width: 925px) { a[href^="tel:"] { color: #000; text-decoration: none; } }
 
 .local-header--question, .local-header > *, .global-header--question, .global-header > *, .global-footer--question, .global-footer > *, .notification-banner--question, .notification-banner > * { max-width: 960px; margin: 0 16px; padding: 8px 0; font-size: 16px; line-height: 24px; }
 
@@ -775,21 +779,23 @@ hr--higher, .hr--higher { height: 64px; }
 
 .local-header__js-hidden, .global-header__js-hidden, .global-footer__js-hidden, .notification-banner__js-hidden { display: none; }
 
-.local-header__hiviz, .global-header__hiviz, .global-footer__hiviz, .notification-banner__hiviz { background-color: #ffca55; }
+.local-header__hiviz, .global-header__hiviz, .global-footer__hiviz, .notification-banner__hiviz { background-color: #fada8b; }
 
 .global-header--inner { padding-bottom: 16px; padding-top: 16px; }
 
 @media (min-width: 641px) { .global-header--inner { padding-bottom: 24px; padding-top: 24px; } }
 
-.global-header--link { background: url(../images/logotype-nhs-colour__reverse.png) no-repeat; background-size: contain; display: block; height: 32px; text-indent: -999em; width: 79px; }
+.global-header__link { background-size: contain; display: block; height: 32px; text-indent: -999em; width: 79px; }
 
-.global-footer--inner { padding-bottom: 96px; padding-top: 32px; }
+.global-footer { background-color: #005eb8; }
 
-.global-footer--inner::before { background: url(../images/logotype-nhs-colour.png) no-repeat; background-size: contain; content: ""; display: block; height: 32px; margin-bottom: 32px; text-indent: -999em; width: 79px; }
+.global-footer__inner { padding-bottom: 96px; padding-top: 32px; }
 
-@media (min-width: 925px) { .global-footer--inner::before { margin-bottom: 48px; } }
+.global-footer__inner::before { background-size: contain; content: ""; display: block; height: 32px; margin-bottom: 32px; text-indent: -999em; width: 79px; }
 
-@media (min-width: 925px) { .global-footer--inner { padding-bottom: 128px; padding-top: 48px; } }
+@media (min-width: 925px) { .global-footer__inner::before { margin-bottom: 48px; } }
+
+@media (min-width: 925px) { .global-footer__inner { padding-bottom: 128px; padding-top: 48px; } }
 
 /* Skip Links */
 .skiplinks { background-color: #a6ceeb; }
@@ -820,7 +826,7 @@ form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; 
 /* Results page */
 .callout { display: block; }
 
-.callout--friendly { background-color: transparent; border-color: #0072c6; padding: 16px 32px; }
+.callout--friendly { background-color: transparent; border-color: #005eb8; padding: 16px 32px; }
 
 .page-section .grid-row { margin: 0 -16px; }
 
@@ -836,7 +842,7 @@ form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; 
 
 .page-section .grid-row .results__item { margin-top: 8px; }
 
-.page-section .grid-row .results__item--nearest { border: 16px solid #0072c6; padding: 0; }
+.page-section .grid-row .results__item--nearest { border: 16px solid #005eb8; padding: 0; }
 
 .page-section .grid-row .results__item--nearby { margin-top: 48px; }
 
@@ -850,7 +856,7 @@ form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; 
 
 .page-section .grid-row .results__header { font-size: 32px; line-height: 40px; padding: 0 8px; }
 
-.page-section .grid-row .results__header--nearest { background-color: #0072c6; color: #fff; padding: 8px 8px 24px 8px; }
+.page-section .grid-row .results__header--nearest { background-color: #005eb8; color: #fff; padding: 8px 8px 24px 8px; }
 
 @media (min-width: 641px) { .page-section .grid-row .results__header { line-height: 48px; padding: 0; }
   .page-section .grid-row .results__header--nearest { padding: 16px 16px 32px 16px; }

@@ -3,9 +3,13 @@
 /*
    Colours.
 */
-$hiviz: #ffca55;
-$blue: #0072c6;
+$hiviz: #fada8b;
+$blue: #005eb8;
+$grey: #d9dde0;
 
+html {
+  background-color:$blue;
+}
 
 .sr-only {
   position: absolute;
@@ -27,6 +31,15 @@ hr, .hr {
   }
   &--higher {
     height:64px;
+  }
+}
+
+a {
+  &[href^="tel:"] {
+    @include media(desktop) {
+      color:$black;
+      text-decoration: none;
+    }
   }
 }
 
@@ -67,8 +80,7 @@ hr, .hr {
       padding-top: 24px;
     }
   }
-  &--link {
-    background: url(../images/logotype-nhs-colour__reverse.png) no-repeat;
+  &__link {
     background-size: contain;
     display: block;
     height: 32px;
@@ -77,11 +89,11 @@ hr, .hr {
   }
 }
 .global-footer {
-  &--inner {
+  background-color: $blue;
+  &__inner {
     padding-bottom: 96px;
     padding-top: 32px;
     &::before {
-      background: url(../images/logotype-nhs-colour.png) no-repeat;
       background-size: contain;
       content: "";
       display: block;
