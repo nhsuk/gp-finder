@@ -18,7 +18,7 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
 
-    {% set qs = '?v=1' %} <!-- DO NOT USE 6 -->
+    {% set qs = '?v=2' %} <!-- DO NOT USE 6 -->
 
     <!--[if gt IE 8]><!--><link href="{{ SITE_ROOT }}/css/nhsuk.css{{ qs }}" media="screen" rel="stylesheet" type="text/css"><!--<![endif]-->
     <!--[if IE 6]><link href="{{ SITE_ROOT }}/css/nhsuk-ie6.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
