@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/nhsuk/gp-finder/badge.svg?branch=master)](https://coveralls.io/github/nhsuk/gp-finder?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/nhsuk/gp-finder/badge.svg)](https://snyk.io/test/github/nhsuk/gp-finder)
 
-A GP surgery finder application to allow the user to easily navigate to a GP surgeries online booking system.
+A GP surgery finder application to allow the user to easily navigate to a GP surgery's online booking system.
 
 ## Environment variables
 
