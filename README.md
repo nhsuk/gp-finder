@@ -1,12 +1,9 @@
 # GP Finder
 
-
-
 [![Build Status](https://travis-ci.org/nhsuk/gp-finder.svg?branch=master)](https://travis-ci.org/nhsuk/gp-finder)
 [![Coverage Status](https://coveralls.io/repos/github/nhsuk/gp-finder/badge.svg?branch=master)](https://coveralls.io/github/nhsuk/gp-finder?branch=master)
 
-A GP finder application. The results will be pointing to the profile app for booking an appointment with a GP or register with a GP.
-
+A GP surgery finder application to allow the user to easily navigate to a GP surgeries online booking system.
 
 ## Environment variables
 
@@ -14,12 +11,13 @@ Environment variables are expected to be managed by the environment in which
 the application is being run. This is best practice as described by
 [twelve-factor](https://12factor.net/config).
 
-| Variable                         | Description                                                                            | Default                  | Required        |
-|:---------------------------------|:---------------------------------------------------------------------------------------|:-------------------------|-----------------|
-| `NODE_ENV`                       | node environment                                                                       | development              |                 |
-| `PORT`                           | server port                                                                            | 3000                     |                 |
-| `DOCKER_COMPOSE_VERSION`         | the docker-compose file version                                                        | 1.11.1 - supports 2.1    | In `travis`     |
-| `COVERALLS_REPO_TOKEN`           | using the coveralls service                                                            | generated for Github user| In `travis`     |  
+| Variable                         | Description                                                        | Default      | Required        |
+|:---------------------------------|:-------------------------------------------------------------------|:-------------|-----------------|
+| `NODE_ENV`                       | node environment                                                   | development  |                 |
+| `PORT`                           | server port                                                        | 3000         |                 |
+| `GOOGLE_ANALYTICS_TRACKING_ID`   | [Google Analytics](https://www.google.co.uk/analytics) property id |              |                 |
+| `WEBTRENDS_ANALYTICS_TRACKING_ID`| [Webtrends](https://www.webtrends.com/) tracking id                |              |                 |
+| `HOTJAR_ANALYTICS_TRACKING_ID`   | [Hotjar](https://www.hotjar.com/) tracking id                      |              |                 |
 
 ## Application development
 
