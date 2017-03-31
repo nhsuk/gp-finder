@@ -33,6 +33,22 @@ jQuery(function($) {
       console.log('Start custom analytics');
   }
 
+  $('.results__item a').each(function(){
+    $(this).on('click',function(event){
+      if(!scroller) {
+        currentTime = new Date();
+        clickTime = currentTime.getTime();
+        timeToClick = Math.round((clickTime - beginning) / 1000);
+        if (!debugMode) {
+            ga('send', 'event', 'User clicked item before the fold', timeToClick+'s');
+        } else {
+            event.preventDefault();
+            alert('User clicked item before the fold (Time: ' + timeToClick + 's)');
+        }
+      }
+    })
+  })
+
   // Check the location and track user
   function trackLocation() {
       bottom = $(window).height() + $(window).scrollTop();
@@ -41,6 +57,7 @@ jQuery(function($) {
       results_14 = Math.round(results / 4);
       results_12 = Math.round(results / 2);
       results_34 = Math.round(results_14 * 3);
+
 
       // If user starts to scroll send an event
       if (bottom > readerLocation && !scroller) {
