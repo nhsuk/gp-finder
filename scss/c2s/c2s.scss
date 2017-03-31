@@ -24,6 +24,7 @@ html {
 h1 {
   font-size:36px;
   line-height:48px;
+  margin-top:48px;
 }
 hr, .hr {
   &--no-color {
@@ -140,6 +141,12 @@ a {
    Form elements
 */
 form {
+  &.form {
+    margin-top:48px;
+    &--error {
+      margin-top:0px;
+    }
+  }
   .form-control {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -164,7 +171,8 @@ form {
     }
     &:focus {
       outline: solid 5px #FFB81C;
-
+      border: 3px solid $blue;
+      outline-offset: 0px;
     }
   }
   .form-label{
@@ -189,6 +197,15 @@ form {
     box-sizing: border-box;
     float: left;
     width: 100%;
+    margin-top:16px;
+  }
+  .error {
+    @include media(desktop) {
+      padding-left:32px;
+    }
+  }
+  .form-item-wrapper {
+    clear:both;
   }
 }
 /*
@@ -199,7 +216,7 @@ form {
   &--friendly {
     background-color: transparent;
     border-color: $blue;
-    padding: 16px 32px;
+    padding: 0px 32px;
   }
 }
 

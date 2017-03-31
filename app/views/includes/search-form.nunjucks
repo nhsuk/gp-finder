@@ -1,16 +1,26 @@
+{% if errorMessage %}
+<form method="get" class="form form--error" action="{{ SITE_ROOT }}/results">
+{% elif gps.length === 0 %}
+<form method="get" class="form form--error" action="{{ SITE_ROOT }}/results">
+{% else %}
 <form method="get" class="form" action="{{ SITE_ROOT }}/results">
+{% endif %}
   <div>
     <div class="form-item-wrapper">
 
       {% if errorMessage %}
+      <div class="form-group error">
+      {% elif gps.length === 0 %}
       <div class="form-group error">
       {% else %}
       <div class="form-group">
       {% endif %}
           <label class="form-label--bold form-label--smaller" for="search">{{ searchLabel }}</label>
           {% if errorMessage %}
-          <p>{{ errorMessage }}</p>
-          {% elif gps.length != 0 %}
+          <p>{{ errorMessage }} </p>
+          {% elif gps.length === 0 %}
+          <p>You need to enter your surgery name</p>
+          {% else %}
           <p>We need to know this so we can take you to the right booking system. </p>
           {% endif %}
           <div class="form-group">

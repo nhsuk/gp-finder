@@ -6,18 +6,15 @@
 <meta name="DCSext.ServiceName" content="GP Finder" />
 {% endblock %}
 
+{% block header %}
+{% if gps.length === 0 %}
+<h1 class="local-header--title--question">We can't find a surgery matching '{{ search }}'</h1>
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <div class="reading-width">
   {% if gps.length === 0 %}
-    <div class="error-summary">
-      <h2 class="local-header--smaller local-header--error error-summary-heading">We can't find a surgery matching '{{ search }}'</h2>
-      <p>Check</p>
-      <ul>
-        <li>the name you're using is the one your surgery uses</li>
-        <li>you've spelt the name correctly</li>
-        <li>you don't have spaces between words that should be joined up</li>
-      </ul>
-    </div>
     {% include "includes/search-form.nunjucks" %}
 
   {% else %}
