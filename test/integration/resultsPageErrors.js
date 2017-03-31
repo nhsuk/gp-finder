@@ -29,7 +29,6 @@ describe('Results page error handling', () => {
 
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
-
         iExpect.homePageEmptyEntry($);
         const errorHeader = $('#content').text();
         expect(errorHeader).to.contain(errorMessage);
@@ -48,7 +47,6 @@ describe('Results page error handling', () => {
       assertSearchResponse(search, (err, res) => {
         iExpect.htmlWith200Status(err, res);
         const $ = cheerio.load(res.text);
-
         iExpect.homePageEmptyEntry($);
         const errorHeader = $('#content').text();
         expect(errorHeader).to.contain(errorMessage);
@@ -59,7 +57,6 @@ describe('Results page error handling', () => {
     it('should not contain a back link', (done) => {
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
-
         expect($('.link-back:first-of-type').length).to.equal(0);
         done();
       });
@@ -76,7 +73,6 @@ describe('Results page error handling', () => {
       assertSearchResponse(search, (err, res) => {
         iExpect.htmlWith200Status(err, res);
         const $ = cheerio.load(res.text);
-
         iExpect.homePageEmptyEntry($);
         const errorHeader = $('#content').text();
         expect(errorHeader).to.contain(errorMessage);

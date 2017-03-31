@@ -35,7 +35,6 @@ describe('Results page', () => {
       const search = 'Surgery';
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
-
         expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
         expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
@@ -47,7 +46,6 @@ describe('Results page', () => {
       const search = 'Surgery';
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
-
         const resultsHeader = $('.results__header').text();
         expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
         done();
@@ -62,10 +60,8 @@ describe('Results page', () => {
         it('should have only one result', (done) => {
           assertSearchResponse(search, (err, res) => {
             const $ = cheerio.load(res.text);
-
             const searchResults = $('.results__item--nearby');
             expect(searchResults.length).to.equal(1);
-
             done();
           });
         });
@@ -73,10 +69,8 @@ describe('Results page', () => {
         it('should display singular message text', (done) => {
           assertSearchResponse(search, (err, res) => {
             const $ = cheerio.load(res.text);
-
             const resultsHeader = $('.results__header').text();
             expect(resultsHeader).to.contain(`GP surgery matching '${search}'`);
-
             done();
           });
         });
@@ -89,10 +83,8 @@ describe('Results page', () => {
           const search = 'Surgery';
           assertSearchResponse(search, (err, res) => {
             const $ = cheerio.load(res.text);
-
             const searchResults = $('.results__item--nearby');
             expect(searchResults.length).to.be.above(1);
-
             done();
           });
         });
@@ -101,10 +93,8 @@ describe('Results page', () => {
           const search = 'Surgery';
           assertSearchResponse(search, (err, res) => {
             const $ = cheerio.load(res.text);
-
             const resultsHeader = $('.results__header').text();
             expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
-
             done();
           });
         });
@@ -120,10 +110,8 @@ describe('Results page', () => {
 
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
-
           const noResultsHeader = $('#content').text();
           expect(noResultsHeader).to.contain(errorMessage);
-
           done();
         });
       });
@@ -139,11 +127,9 @@ describe('Results page', () => {
         const search = 'Bents Green Surgery Sheffield';
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
-
           const searchResults = $('.results__item--nearby .results__details').first();
           expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 0114 236 0641 to book an appointment.');
           expect($('a[href^="tel:"]', searchResults).text()).to.equal('0114 236 0641');
-
           done();
         });
       });
@@ -156,11 +142,9 @@ describe('Results page', () => {
         const search = 'St Martins Healthcare Services';
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
-
           const searchResults = $('.results__item--nearby .results__details').first();
           expect(searchResults.html()).to.contain(noOnlineBookingLinkMessage);
           expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception to book an appointment.');
-
           done();
         });
       });
@@ -174,11 +158,9 @@ describe('Results page', () => {
       const search = 'Crookes Valley Medical Centre Sheffield';
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
-
         const searchResults = $('.results__item--nearby .results__details .results__name a').first();
         expect(searchResults.text()).to.equal('Crookes Valley Medical Centre');
         expect(searchResults.attr('href')).to.equal('https://systmonline.tpp-uk.com/Login?PracticeId=C88057');
-
         done();
       });
     });
@@ -193,11 +175,9 @@ describe('Results page', () => {
         const search = 'Hambleden Surgery';
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
-
           const searchResults = $('.results__item--nearby .results__details .results__name a').first();
           expect(searchResults.text()).to.equal('Hambleden Surgery');
           expect(searchResults.attr('href')).to.equal('http://www.marlowdoctors.co.uk');
-
           done();
         });
       });
@@ -210,11 +190,9 @@ describe('Results page', () => {
         const search = 'Sabden';
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
-
           const searchResults = $('.results__item--nearby .results__details').first();
           expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 01282 772045 to book an appointment.');
           expect($('a[href^="tel:"]', searchResults).text()).to.equal('01282 772045');
-
           done();
         });
       });
