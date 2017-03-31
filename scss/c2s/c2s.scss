@@ -410,8 +410,13 @@ form {
   margin-right: 15px;
   border-left: 4px solid $red;
   padding-left: 10px;
-  > .form-control {
-    border: 4px solid #b10e1e;
+  .form-group {
+    .form-control {
+      border: 4px solid #b10e1e;
+      &:focus {
+        border: 4px solid #b10e1e;
+      }
+    }
   }
   @include media(tablet) {
     border-left: 6px solid $red;

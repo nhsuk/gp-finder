@@ -36,6 +36,8 @@
       </ol>
     </div>
   {% endif %}
+  {% if gps.length != 0 %}
   <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
+  {% endif %}
 </div>
 {% endblock %}

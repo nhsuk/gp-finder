@@ -916,7 +916,9 @@ form .form-item-wrapper { clear: both; }
 /* Error styling */
 .error { margin-right: 15px; border-left: 4px solid #d81e05; padding-left: 10px; }
 
-.error > .form-control { border: 4px solid #b10e1e; }
+.error .form-group .form-control { border: 4px solid #b10e1e; }
+
+.error .form-group .form-control:focus { border: 4px solid #b10e1e; }
 
 @media (min-width: 641px) { .error { border-left: 6px solid #d81e05; padding-left: 15px; } }
 
