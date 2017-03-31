@@ -4,7 +4,6 @@ const chaiHttp = require('chai-http');
 const app = require('../../server');
 const constants = require('../../app/lib/constants');
 const iExpect = require('../lib/expectations');
-const messages = require('../../app/lib/messages');
 
 const expect = chai.expect;
 
@@ -12,218 +11,193 @@ chai.use(chaiHttp);
 
 const resultsRoute = `${constants.SITE_ROOT}/results/`;
 
+function assertSearchResponse(search, assertions) {
+  chai.request(app)
+    .get(resultsRoute)
+    .query({ search })
+    .end(assertions);
+}
+
 describe('Results page', () => {
   const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
 
-  it('should return an object containing a GP surgery matching the query', (done) => {
-    const search = 'Idle';
-    chai.request(app)
-      .get(resultsRoute)
-      .query({ search })
-      .end((err, res) => {
+  describe('page layout', () => {
+
+    it('should contain HTML', (done) => {
+      const search = 'Surgery';
+      assertSearchResponse(search, (err, res) => {
         iExpect.htmlWith200Status(err, res);
+        done();
+      });
+    });
 
+    it('should contain a back link', (done) => {
+      const search = 'Surgery';
+      assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
-
-        const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`GP surgery matching '${search}'`);
-
-        const searchResults = $('.results__item--nearby');
-        expect(searchResults.length).to.equal(1);
-
         expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
         expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
         expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
         done();
       });
-  });
+    });
 
-  it('should return an object containing GP surgeries matching the query', (done) => {
-    const search = 'David';
-    chai.request(app)
-      .get(resultsRoute)
-      .query({ search })
-      .end((err, res) => {
-        iExpect.htmlWith200Status(err, res);
-
+    it('should contain a a header with the search string', (done) => {
+      const search = 'Surgery';
+      assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
-
         const resultsHeader = $('.results__header').text();
         expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
-
         done();
       });
-  });
+    });
 
-  it('should return a booking link for a surgery that has a booking supplier', (done) => {
-    const search = 'Crookes Valley Medical Centre Sheffield';
-    chai.request(app)
-      .get(resultsRoute)
-      .query({ search })
-      .end((err, res) => {
-        iExpect.htmlWith200Status(err, res);
+    describe('matching surgeries found', () => {
 
-        const $ = cheerio.load(res.text);
+      describe('single match', () => {
+        const search = 'Idle';
 
-        const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
-
-        const searchResults = $('.results__item--nearby .results__details').first();
-        expect(searchResults.html()).to.not.contain(noOnlineBookingLinkMessage);
-        expect(searchResults.html()).to.contain('href');
-
-        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
-        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
-        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
-        done();
-      });
-  });
-
-  it('should return no booking link and some info for a surgery that has no booking supplier and has phone number', (done) => {
-    const search = 'Bents Green Surgery Sheffield';
-    chai.request(app)
-      .get(resultsRoute)
-      .query({ search })
-      .end((err, res) => {
-        iExpect.htmlWith200Status(err, res);
-
-        const $ = cheerio.load(res.text);
-
-        const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
-
-        const searchResults = $('.results__item--nearby .results__details').first();
-        expect(searchResults.html()).to.contain(noOnlineBookingLinkMessage);
-        expect(searchResults.html()).to.contain('href');
-
-        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
-        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
-        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
-        done();
-      });
-  });
-
-  it('should return no booking link and some info for a surgery that has no booking supplier and no phone number', (done) => {
-    const search = 'St Martins Healthcare Services';
-    chai.request(app)
-      .get(resultsRoute)
-      .query({ search })
-      .end((err, res) => {
-        iExpect.htmlWith200Status(err, res);
-
-        const $ = cheerio.load(res.text);
-
-        const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
-
-        const searchResults = $('.results__item--nearby .results__details').first();
-        expect(searchResults.html()).to.contain(noOnlineBookingLinkMessage);
-        expect(searchResults.html()).to.not.contain('href');
-
-        done();
-      });
-  });
-
-  it('should return an object containing GP surgeries matching multiple word queries', (done) => {
-    const search = 'Ireland Wood Leeds';
-    chai.request(app)
-      .get(resultsRoute)
-      .query({ search })
-      .end((err, res) => {
-        iExpect.htmlWith200Status(err, res);
-
-        const $ = cheerio.load(res.text);
-
-        const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
-
-        const searchResults = $('.results__item--nearby');
-        expect(searchResults.length).to.equal(206);
-
-        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
-        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
-        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
-        done();
-      });
-  });
-});
-
-describe('Results page error handling', () => {
-  describe('when search is not included', () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = null;
-      const errorMessage = messages.emptySearchMessage();
-
-      chai.request(app)
-        .get(resultsRoute)
-        .query({ search })
-        .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
-          const $ = cheerio.load(res.text);
-
-          iExpect.homePageEmptyEntry($);
-          const errorHeader = $('#content').text();
-          expect(errorHeader).to.contain(errorMessage);
-          done();
+        it('should have only one result', (done) => {
+          assertSearchResponse(search, (err, res) => {
+            const $ = cheerio.load(res.text);
+            const searchResults = $('.results__item--nearby');
+            expect(searchResults.length).to.equal(1);
+            done();
+          });
         });
-    });
-  });
-  describe('when search is an empty string', () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = '';
-      const errorMessage = messages.emptySearchMessage();
 
-      chai.request(app)
-         .get(resultsRoute)
-         .query({ search })
-         .end((err, res) => {
-           iExpect.htmlWith200Status(err, res);
-           const $ = cheerio.load(res.text);
-
-           iExpect.homePageEmptyEntry($);
-           const errorHeader = $('#content').text();
-           expect(errorHeader).to.contain(errorMessage);
-           done();
-         });
-    });
-  });
-  describe('when search is some empty spaces', () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = '   ';
-      const errorMessage = messages.emptySearchMessage();
-
-      chai.request(app)
-        .get(resultsRoute)
-        .query({ search })
-        .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
-          const $ = cheerio.load(res.text);
-
-          iExpect.homePageEmptyEntry($);
-          const errorHeader = $('#content').text();
-          expect(errorHeader).to.contain(errorMessage);
-          done();
+        it('should display singular message text', (done) => {
+          assertSearchResponse(search, (err, res) => {
+            const $ = cheerio.load(res.text);
+            const resultsHeader = $('.results__header').text();
+            expect(resultsHeader).to.contain(`GP surgery matching '${search}'`);
+            done();
+          });
         });
+
+      });
+
+      describe('multiple matches', () => {
+
+        it('should have more than one result', (done) => {
+          const search = 'Surgery';
+          assertSearchResponse(search, (err, res) => {
+            const $ = cheerio.load(res.text);
+            const searchResults = $('.results__item--nearby');
+            expect(searchResults.length).to.be.above(1);
+            done();
+          });
+        });
+
+        it('should display plural message text', (done) => {
+          const search = 'Surgery';
+          assertSearchResponse(search, (err, res) => {
+            const $ = cheerio.load(res.text);
+            const resultsHeader = $('.results__header').text();
+            expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
+            done();
+          });
+        });
+
+      });
     });
-  });
 
-  describe("when search doesn't bring back results", () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = 'asdasdas';
-      const errorMessage = `We can't find a surgery matching '${search}'`;
+    describe('no matching surgeries found', () => {
 
-      chai.request(app)
-        .get(resultsRoute)
-        .query({ search })
-        .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
+      it('should return a descriptive message', (done) => {
+        const search = 'asdasdas';
+        const errorMessage = `We can't find a surgery matching '${search}'`;
+
+        assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
-
           const noResultsHeader = $('#content').text();
           expect(noResultsHeader).to.contain(errorMessage);
-
           done();
         });
+      });
+
+    });
+  });
+
+  describe('Surgeries without booking system', () => {
+
+    describe('Surgeries with phone number', () => {
+
+      it('should return message to contact reception with phone number link', (done) => {
+        const search = 'Bents Green Surgery Sheffield';
+        assertSearchResponse(search, (err, res) => {
+          const $ = cheerio.load(res.text);
+          const searchResults = $('.results__item--nearby .results__details').first();
+          expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 0114 236 0641 to book an appointment.');
+          expect($('a[href^="tel:"]', searchResults).text()).to.equal('0114 236 0641');
+          done();
+        });
+      });
+
+    });
+
+    describe('Surgeries without phone number', () => {
+
+      it('should return message to contact reception without phone number link', (done) => {
+        const search = 'St Martins Healthcare Services';
+        assertSearchResponse(search, (err, res) => {
+          const $ = cheerio.load(res.text);
+          const searchResults = $('.results__item--nearby .results__details').first();
+          expect(searchResults.html()).to.contain(noOnlineBookingLinkMessage);
+          expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception to book an appointment.');
+          done();
+        });
+      });
+
+    });
+  });
+
+  describe('Surgeries with booking system which can be linked to', () => {
+
+    it('should return a booking link for a surgery', (done) => {
+      const search = 'Crookes Valley Medical Centre Sheffield';
+      assertSearchResponse(search, (err, res) => {
+        const $ = cheerio.load(res.text);
+        const searchResults = $('.results__item--nearby .results__details .results__name a').first();
+        expect(searchResults.text()).to.equal('Crookes Valley Medical Centre');
+        expect(searchResults.attr('href')).to.equal('https://systmonline.tpp-uk.com/Login?PracticeId=C88057');
+        done();
+      });
+    });
+
+  });
+
+  describe('Surgeries with booking system which can not be linked to', () => {
+
+    describe('when the surgery has a website', () => {
+
+      it('should return a booking link to the surgery website', (done) => {
+        const search = 'Hambleden Surgery';
+        assertSearchResponse(search, (err, res) => {
+          const $ = cheerio.load(res.text);
+          const searchResults = $('.results__item--nearby .results__details .results__name a').first();
+          expect(searchResults.text()).to.equal('Hambleden Surgery');
+          expect(searchResults.attr('href')).to.equal('http://www.marlowdoctors.co.uk');
+          done();
+        });
+      });
+
+    });
+
+    describe('when the surgery does not have a website', () => {
+
+      it('should display a call the reception message', (done) => {
+        const search = 'Sabden';
+        assertSearchResponse(search, (err, res) => {
+          const $ = cheerio.load(res.text);
+          const searchResults = $('.results__item--nearby .results__details').first();
+          expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 01282 772045 to book an appointment.');
+          expect($('a[href^="tel:"]', searchResults).text()).to.equal('01282 772045');
+          done();
+        });
+      });
+
     });
   });
 });
+
