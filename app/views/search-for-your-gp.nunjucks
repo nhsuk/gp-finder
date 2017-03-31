@@ -4,6 +4,14 @@
 <h1 class="local-header--title--question">Book a GP appointment online</h1>
 {% endblock %}
 
+
+{% block meta %}
+<meta name="DCSext.ServiceName" content="GP Finder" />
+{% if errorMessage %}
+  <meta name="DCSext.GPBlank" content="1">
+{% endif %}
+{% endblock %}
+
 {% block pageTitle %}Find a GP to book an appointment with{% endblock %}
 
 {% block content %}
