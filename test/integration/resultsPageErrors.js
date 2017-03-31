@@ -20,7 +20,9 @@ function assertSearchResponse(search, assertions) {
 }
 
 describe('Results page error handling', () => {
+
   describe('when search is not included', () => {
+
     it('should return a descriptive error messages', (done) => {
       const search = null;
       const errorMessage = messages.emptySearchMessage();
@@ -34,10 +36,12 @@ describe('Results page error handling', () => {
         done();
       });
     });
+
   });
 
   describe('when search is an empty string', () => {
     const search = '';
+
     it('should return a descriptive error messages', (done) => {
       const errorMessage = messages.emptySearchMessage();
 
@@ -51,6 +55,7 @@ describe('Results page error handling', () => {
         done();
       });
     });
+
     it('should not contain a back link', (done) => {
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
@@ -59,9 +64,11 @@ describe('Results page error handling', () => {
         done();
       });
     });
+
   });
 
   describe('when search is some empty spaces', () => {
+
     it('should return a descriptive error messages', (done) => {
       const search = '   ';
       const errorMessage = messages.emptySearchMessage();
@@ -76,5 +83,6 @@ describe('Results page error handling', () => {
         done();
       });
     });
+
   });
 });
