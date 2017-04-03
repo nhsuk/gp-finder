@@ -769,6 +769,8 @@ hr--higher, .hr--higher { height: 64px; }
 
 @media (min-width: 925px) { a[href^="tel:"] { color: #000; text-decoration: none; } }
 
+details summary { color: #005eb8; }
+
 .local-header--question, .local-header > *, .global-header--question, .global-header > *, .global-footer--question, .global-footer > *, .notification-banner--question, .notification-banner > * { max-width: 960px; margin: 0 16px; padding: 8px 0; font-size: 16px; line-height: 24px; }
 
 @media (min-width: 641px) { .local-header--question, .local-header > *, .global-header--question, .global-header > *, .global-footer--question, .global-footer > *, .notification-banner--question, .notification-banner > * { margin: 0 16px; } }
@@ -916,11 +918,11 @@ form .form-item-wrapper { clear: both; }
 /* Error styling */
 .error { margin-right: 15px; border-left: 4px solid #da291c; padding-left: 10px; }
 
-.error .form-group .form-control { border: 4px solid #da291c; }
+.error .form-group .form-control { border: 3px solid #da291c; }
 
-.error .form-group .form-control:focus { border: 4px solid #da291c; }
+.error .form-group .form-control:focus { border: 3px solid #da291c; }
 
-@media (min-width: 641px) { .error { border-left: 6px solid #da291c; padding-left: 15px; } }
+@media (min-width: 641px) { .error { padding-left: 15px; } }
 
 .error p { color: #da291c; }
 

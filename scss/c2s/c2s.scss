@@ -45,6 +45,11 @@ a {
   }
 }
 
+details {
+  summary {
+    color:$blue;
+  }
+}
 .local-header,
 .global-header,
 .global-footer,
@@ -413,14 +418,13 @@ form {
   padding-left: 10px;
   .form-group {
     .form-control {
-      border: 4px solid $red;
+      border: 3px solid $red;
       &:focus {
-        border: 4px solid $red;
+        border: 3px solid $red;
       }
     }
   }
   @include media(tablet) {
-    border-left: 6px solid $red;
     padding-left: 15px;
   }
   p {
