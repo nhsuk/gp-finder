@@ -6,6 +6,7 @@
 $hiviz: #fada8b;
 $blue: #005eb8;
 $grey: #d9dde0;
+$red: #da291c;
 
 html {
   background-color:$blue;
@@ -412,9 +413,9 @@ form {
   padding-left: 10px;
   .form-group {
     .form-control {
-      border: 4px solid #b10e1e;
+      border: 4px solid $red;
       &:focus {
-        border: 4px solid #b10e1e;
+        border: 4px solid $red;
       }
     }
   }

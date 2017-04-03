@@ -914,17 +914,17 @@ form .form-item-wrapper { clear: both; }
 .link-back:link, .link-back:visited, .link-back:hover, .link-back:active { color: #000000; }
 
 /* Error styling */
-.error { margin-right: 15px; border-left: 4px solid #d81e05; padding-left: 10px; }
+.error { margin-right: 15px; border-left: 4px solid #da291c; padding-left: 10px; }
 
-.error .form-group .form-control { border: 4px solid #b10e1e; }
+.error .form-group .form-control { border: 4px solid #da291c; }
 
-.error .form-group .form-control:focus { border: 4px solid #b10e1e; }
+.error .form-group .form-control:focus { border: 4px solid #da291c; }
 
-@media (min-width: 641px) { .error { border-left: 6px solid #d81e05; padding-left: 15px; } }
+@media (min-width: 641px) { .error { border-left: 6px solid #da291c; padding-left: 15px; } }
 
-.error p { color: #d81e05; }
+.error p { color: #da291c; }
 
-.error .form-control { border-color: #d81e05; }
+.error .form-control { border-color: #da291c; }
 
 /* Utilities. */
 .u-nomargin { margin: 0; }
