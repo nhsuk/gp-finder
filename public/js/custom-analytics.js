@@ -1,7 +1,7 @@
 jQuery(function($) {
 
   // Debug flag
-  var debugMode = true;
+  var debugMode = false;
 
   // Default time delay before checking location
   var callBackTime = 100;
@@ -66,7 +66,7 @@ jQuery(function($) {
           timeToScroll = Math.round((scrollStart - beginning) / 1000);
           if (!debugMode) {
               console.log('started reading ' + timeToScroll);
-              ga('send', 'event', 'Started reading', timeToScroll+'s');
+              ga('send', 'event', 'User started scrolling', timeToScroll+'s');
           } else {
               alert('User started scrolling (Time: ' + timeToScroll + 's)');
           }
@@ -78,7 +78,7 @@ jQuery(function($) {
           quarterScrollEnd = currentTime.getTime();
           timeToQuarterEnd = Math.round((quarterScrollEnd - scrollStart) / 1000);
           if (!debugMode) {
-              ga('send', 'event', 'Reached "Nearest open pharmacy" bottom', timeToQuarterEnd+'s');
+              ga('send', 'event', 'User reached quater of the results', timeToQuarterEnd+'s');
           } else {
               alert('User reached quater of the results (Time: ' + timeToQuarterEnd + 's)');
           }
@@ -90,7 +90,7 @@ jQuery(function($) {
           halfScrollEnd = currentTime.getTime();
           timeToHalfEnd = Math.round((halfScrollEnd - scrollStart) / 1000);
           if (!debugMode) {
-              ga('send', 'event', 'Reached "Nearest open pharmacy" bottom', timeToHalfEnd);
+              ga('send', 'event', 'User reached half of the results', timeToHalfEnd);
           } else {
               alert('User reached half of the results (Time: ' + timeToHalfEnd + 's)');
           }
@@ -102,7 +102,7 @@ jQuery(function($) {
           threeQuarterScrollEnd = currentTime.getTime();
           timeToThreeQuarterEnd = Math.round((threeQuarterScrollEnd - scrollStart) / 1000);
           if (!debugMode) {
-              ga('send', 'event', 'Reached "Nearest open pharmacy" bottom', timeToThreeQuarterEnd);
+              ga('send', 'event', 'User reached three quaters of the results', timeToThreeQuarterEnd);
           } else {
               alert('User reached three quaters of the results (Time: ' + timeToThreeQuarterEnd + 's)');
           }
@@ -110,7 +110,7 @@ jQuery(function($) {
       }
 
       // If user has hit the bottom of page send an event
-      if (bottom >= height && !didComplete) {
+      if (bottom > $('footer ul.link-list').offset().top + $('footer ul.link-list').outerHeight() && !didComplete) {
           currentTime = new Date();
           end = currentTime.getTime();
           totalTime = Math.round((end - scrollStart) / 1000);
@@ -120,9 +120,9 @@ jQuery(function($) {
               } else {
                   _gaq.push(['_setCustomVar', 5, 'ReaderType', 'Reader', 2]);
               }
-              ga('send', 'event', 'Reached page bottom', totalTime+'s');
+              ga('send', 'event', 'User reached the end of the page', totalTime+'s');
           } else {
-              alert('User reached the end of the results (Time: ' + totalTime + 's)');
+              alert('User reached the end of the page (Time: ' + totalTime + 's)');
           }
           didComplete = true;
       }
