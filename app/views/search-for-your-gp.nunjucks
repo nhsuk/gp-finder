@@ -4,6 +4,14 @@
 <h1 class="local-header--title--question">Book a GP appointment online</h1>
 {% endblock %}
 
+
+{% block meta %}
+<meta name="DCSext.ServiceName" content="GP Finder" />
+{% if errorMessage %}
+  <meta name="DCSext.GPBlank" content="1">
+{% endif %}
+{% endblock %}
+
 {% block pageTitle %}Find a GP to book an appointment with{% endblock %}
 
 {% block content %}
@@ -14,7 +22,7 @@
   <li>your GP is in England</li>
   <li>you have registered for your GP's online services</li>
 </ul>
-<details class="" role="group">
+<details class="" role="group" ontoggle="dcsMultiTrack('GPAppointment', 'Not_Registered', 'WT.dl', '121')">
   <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
     <span class="details__summary">If you haven't registered for online services</span>
   </summary>

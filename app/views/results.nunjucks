@@ -4,6 +4,12 @@
 
 {% block meta %}
 <meta name="DCSext.ServiceName" content="GP Finder" />
+<meta name="WT.gposs" content="{{ search }}"></meta>
+{% if gps.length === 0 %}
+  <meta name="WT.gposs_r" content="0"></meta>
+{% else %}
+  <meta name="WT.gposs_r" content="1"></meta>
+{% endif %}
 {% endblock %}
 
 {% block header %}
@@ -20,7 +26,7 @@
   {% else %}
 
     <a href="{{ SITE_ROOT }}" class="link-back">Back</a>
-    <h1 class="sr-only">Search results</h1>
+    <h1 class="sr-only" data-results="{{gps.length}}">Search results</h1>
     <h2 class="results__header">GP {% if gps.length === 1 %}surgery{% else %}surgeries{%endif %} matching '{{ search }}' </h2>
     <p>If you can't see your surgery, check that you're using the right name and try searching again.</p>
     <div class="grid-row">
@@ -28,7 +34,7 @@
         {% for gp in gps %}
           <li class="results__item results__item--nearby">
             <div class="results__details results__details--nearby column--two-thirds">
-              {% include "includes/result-item.nunjucks" %}
+                {% include "includes/result-item.nunjucks" %}
             </div>
             <!--[if IE]><div style="clear: both;" class="clear-both"></div><![endif]-->
           </li>
