@@ -78,7 +78,7 @@ jQuery(function($) {
           quarterScrollEnd = currentTime.getTime();
           timeToQuarterEnd = Math.round((quarterScrollEnd - scrollStart) / 1000);
           if (!debugMode) {
-              ga('send', 'event', 'User reached quater of the results', timeToQuarterEnd+'s');
+              ga('send', 'event', '(Results: ' + results + ') User reached quater of the results', timeToQuarterEnd+'s');
           } else {
               alert('User reached quater of the results (Time: ' + timeToQuarterEnd + 's)');
           }
@@ -90,7 +90,7 @@ jQuery(function($) {
           halfScrollEnd = currentTime.getTime();
           timeToHalfEnd = Math.round((halfScrollEnd - scrollStart) / 1000);
           if (!debugMode) {
-              ga('send', 'event', 'User reached half of the results', timeToHalfEnd);
+              ga('send', 'event', '(Results: ' + results + ') User reached half of the results', timeToHalfEnd);
           } else {
               alert('User reached half of the results (Time: ' + timeToHalfEnd + 's)');
           }
@@ -102,7 +102,7 @@ jQuery(function($) {
           threeQuarterScrollEnd = currentTime.getTime();
           timeToThreeQuarterEnd = Math.round((threeQuarterScrollEnd - scrollStart) / 1000);
           if (!debugMode) {
-              ga('send', 'event', 'User reached three quaters of the results', timeToThreeQuarterEnd);
+              ga('send', 'event', '(Results: ' + results + ') User reached three quaters of the results', timeToThreeQuarterEnd);
           } else {
               alert('User reached three quaters of the results (Time: ' + timeToThreeQuarterEnd + 's)');
           }
@@ -120,7 +120,7 @@ jQuery(function($) {
               } else {
                   _gaq.push(['_setCustomVar', 5, 'ReaderType', 'Reader', 2]);
               }
-              ga('send', 'event', 'User reached the end of the page', totalTime+'s');
+              ga('send', 'event', '(Results: ' + results + ') User reached the end of the page', totalTime+'s');
           } else {
               alert('User reached the end of the page (Time: ' + totalTime + 's)');
           }
