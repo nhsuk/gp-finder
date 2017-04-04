@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
-const properCapitalize = require('../lib/utils/properCapitalize');
+const gpDataMapper = require('../lib/utils/gpDataMapper');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
 
@@ -20,7 +20,7 @@ function mapResults(db, res, documents, searchTerm) {
   // eslint-disable-next-line no-param-reassign
   res.locals.gps = documents.map((gp) => {
     // eslint-disable-next-line no-param-reassign
-    gp.name = properCapitalize(gp.name);
+    gp.bookOnlineLink = gpDataMapper(gp);
     return gp;
   });
 
