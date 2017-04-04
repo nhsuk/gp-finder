@@ -40,7 +40,7 @@ jQuery(function($) {
         clickTime = currentTime.getTime();
         timeToClick = Math.round((clickTime - beginning) / 1000);
         if (!debugMode) {
-            ga('send', 'event', 'User clicked item before the fold', timeToClick+'s');
+            ga('send', 'event', '(Results: ' + results + ') User clicked item before the fold', timeToClick+'s');
         } else {
             event.preventDefault();
             alert('User clicked item before the fold (Time: ' + timeToClick + 's)');
