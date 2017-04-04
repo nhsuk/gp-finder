@@ -84,7 +84,7 @@ describe('Results page', () => {
           assertSearchResponse(search, (err, res) => {
             const $ = cheerio.load(res.text);
             const searchResults = $('.results__item--nearby');
-            expect(searchResults.length).to.be.above(1);
+            expect(searchResults.length).to.equal(30);
             done();
           });
         });
