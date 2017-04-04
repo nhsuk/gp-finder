@@ -6,6 +6,7 @@
 $hiviz: #fada8b;
 $blue: #005eb8;
 $grey: #d9dde0;
+$red: #da291c;
 
 html {
   background-color:$blue;
@@ -24,6 +25,7 @@ html {
 h1 {
   font-size:36px;
   line-height:48px;
+  margin-top:48px;
 }
 hr, .hr {
   &--no-color {
@@ -43,6 +45,11 @@ a {
   }
 }
 
+details {
+  summary {
+    color:$blue;
+  }
+}
 .local-header,
 .global-header,
 .global-footer,
@@ -140,6 +147,12 @@ a {
    Form elements
 */
 form {
+  &.form {
+    margin-top:48px;
+    &--error {
+      margin-top:0px;
+    }
+  }
   .form-control {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -164,7 +177,8 @@ form {
     }
     &:focus {
       outline: solid 5px #FFB81C;
-
+      border: 3px solid $blue;
+      outline-offset: 0px;
     }
   }
   .form-label{
@@ -189,6 +203,15 @@ form {
     box-sizing: border-box;
     float: left;
     width: 100%;
+    margin-top:16px;
+  }
+  .error {
+    @include media(desktop) {
+      padding-left:32px;
+    }
+  }
+  .form-item-wrapper {
+    clear:both;
   }
 }
 /*
@@ -199,7 +222,7 @@ form {
   &--friendly {
     background-color: transparent;
     border-color: $blue;
-    padding: 16px 32px;
+    padding: 0px 32px;
   }
 }
 
@@ -393,11 +416,15 @@ form {
   margin-right: 15px;
   border-left: 4px solid $red;
   padding-left: 10px;
-  > .form-control {
-    border: 4px solid #b10e1e;
+  .form-group {
+    .form-control {
+      border: 3px solid $red;
+      &:focus {
+        border: 3px solid $red;
+      }
+    }
   }
   @include media(tablet) {
-    border-left: 6px solid $red;
     padding-left: 15px;
   }
   p {

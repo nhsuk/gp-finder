@@ -1,14 +1,5 @@
 <div class="results">
   <div class="results-block results-block--none">
     <h2 class="results__header results__header--none">There are no GP surgeries matching '{{ search }}'</h2>
-    <div class="results__none-content">
-      <p>Check:</p>
-      <ul>
-        <li>the name you're using is the one your surgery uses</li>
-        <li>you've spelt the name correctly</li>
-        <li>you don't have spaces between words that should be joined up</li>
-      </ul>
-      <!--<a href="{{ SITE_ROOT }}">search again</a>.-->
-    </div>
   </div>
 </div>
