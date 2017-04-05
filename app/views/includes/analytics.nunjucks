@@ -45,6 +45,7 @@
       var s2=document.getElementsByTagName('script')[0]; s2.parentNode.insertBefore(s,s2);
     }());
   </script>
+  <script src="{{ SITE_ROOT }}/js/custom-webtrends.js" type="text/javascript"></script>
 
   <noscript>
     <img alt="dcsimg" id="dcsimg" width="1" height="1" src="//statse.webtrendslive.com/{{ WEBTRENDS_TRACKING_ID }}/njs.gif?dcsuri=/nojavascript&amp;WT.js=No&amp;WT.tv=10.4.23&amp;dcssip=.nhs.uk"/>

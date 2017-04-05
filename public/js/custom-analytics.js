@@ -137,5 +137,4 @@ jQuery(function($) {
       // Use a buffer so we don't call trackLocation too often.
       timer = setTimeout(trackLocation, callBackTime);
   });
-
 });
