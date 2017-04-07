@@ -22,9 +22,9 @@ describe('Results page', () => {
   const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
 
   describe('page layout', () => {
-
     it('should contain HTML', (done) => {
       const search = 'Surgery';
+
       assertSearchResponse(search, (err, res) => {
         iExpect.htmlWith200Status(err, res);
         done();
@@ -33,6 +33,7 @@ describe('Results page', () => {
 
     it('should contain a back link', (done) => {
       const search = 'Surgery';
+
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
@@ -44,6 +45,7 @@ describe('Results page', () => {
 
     it('should contain a a header with the search string', (done) => {
       const search = 'Surgery';
+
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         const resultsHeader = $('.results__header').text();
@@ -53,7 +55,6 @@ describe('Results page', () => {
     });
 
     describe('matching surgeries found', () => {
-
       describe('single match', () => {
         const search = 'Idle';
 
@@ -74,13 +75,12 @@ describe('Results page', () => {
             done();
           });
         });
-
       });
 
       describe('multiple matches', () => {
-
         it('should have more than one result', (done) => {
           const search = 'Surgery';
+
           assertSearchResponse(search, (err, res) => {
             const $ = cheerio.load(res.text);
             const searchResults = $('.results__item--nearby');
@@ -91,6 +91,7 @@ describe('Results page', () => {
 
         it('should display plural message text', (done) => {
           const search = 'Surgery';
+
           assertSearchResponse(search, (err, res) => {
             const $ = cheerio.load(res.text);
             const resultsHeader = $('.results__header').text();
@@ -98,12 +99,10 @@ describe('Results page', () => {
             done();
           });
         });
-
       });
     });
 
     describe('no matching surgeries found', () => {
-
       it('should return a descriptive message', (done) => {
         const search = 'asdasdas';
         const errorMessage = `We can't find a surgery matching '${search}'`;
@@ -115,16 +114,14 @@ describe('Results page', () => {
           done();
         });
       });
-
     });
   });
 
   describe('Surgeries without booking system', () => {
-
     describe('Surgeries with phone number', () => {
-
       it('should return message to contact reception with phone number link', (done) => {
         const search = 'Bents Green Surgery Sheffield';
+
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
@@ -133,13 +130,12 @@ describe('Results page', () => {
           done();
         });
       });
-
     });
 
     describe('Surgeries without phone number', () => {
-
       it('should return message to contact reception without phone number link', (done) => {
         const search = 'St Martins Healthcare Services';
+
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
@@ -148,14 +144,13 @@ describe('Results page', () => {
           done();
         });
       });
-
     });
   });
 
   describe('Surgeries with booking system which can be linked to', () => {
-
     it('should return a booking link for a surgery', (done) => {
       const search = 'Crookes Valley Medical Centre Sheffield';
+
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         const searchResults = $('.results__item--nearby .results__details .results__name a').first();
@@ -164,15 +159,13 @@ describe('Results page', () => {
         done();
       });
     });
-
   });
 
   describe('Surgeries with booking system which can not be linked to', () => {
-
     describe('when the surgery has a website', () => {
-
       it('should return a booking link to the surgery website', (done) => {
         const search = 'Hambleden Surgery';
+
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details .results__name a').first();
@@ -181,13 +174,12 @@ describe('Results page', () => {
           done();
         });
       });
-
     });
 
     describe('when the surgery does not have a website', () => {
-
       it('should display a call the reception message', (done) => {
         const search = 'Sabden';
+
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
@@ -196,8 +188,6 @@ describe('Results page', () => {
           done();
         });
       });
-
     });
   });
 });
-
