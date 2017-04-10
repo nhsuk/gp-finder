@@ -1,11 +1,11 @@
 jQuery(function($) {
   $(document).ready(function () {
     $('.not-registered').on('toggle', function () {
-      // dcsMultiTrack('DCSext.GPAppointment', 'Not_Registered', 'WT.dl', '121');
-      Webtrends.multiTrack({
-        element: $(this),
-        argsa: ['GPAppointment', 'Not_Registered', 'WT.dl', '121']
-      });
+      window.Webtrends.multiTrack({argsa: ['DCSext.GPAppointment', 'Not_Registered', 'WT.dl', '121']});
+      // Webtrends.multiTrack({
+      //   element: $(this),
+      //   argsa: ['DCSext.GPAppointment', 'Not_Registered', 'WT.dl', '121']
+      // });
     });
   });
 });
