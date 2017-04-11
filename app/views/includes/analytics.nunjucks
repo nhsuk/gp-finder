@@ -12,10 +12,6 @@
   </script>
 {% endif %}
 
-{% if gps.length > 0 %}
-  <script src="{{ SITE_ROOT }}/js/custom-analytics.js" type="text/javascript"></script>
-{% endif %}
-
 {% if WEBTRENDS_TRACKING_ID %}
   <script>
     // WebTrends SmartSource Data Collector Tag v10.4.23
