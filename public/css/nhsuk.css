@@ -825,8 +825,6 @@ form .form-label { font-family: "FS Me", Arial, sans-serif; line-height: 32px; t
 
 form .form-label--bold { font-size: 24px; font-weight: 600; }
 
-form .form-label--smaller { font-size: 20px; line-height: 32px; }
-
 form .form-label--smaller + p { margin-top: 0; }
 
 form .form-group { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; float: left; width: 100%; margin-top: 16px; }
