@@ -17,6 +17,8 @@
     <meta property="og:image" content="{{ SITE_ROOT }}/images/opengraph-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="1200">
+    <meta name="DCSext.ServiceName" content="GP Appointment Finder" />
+    {% block meta %}{% endblock %}
 
     {% set qs = '?v=3' %} <!-- DO NOT USE 6 -->
 
@@ -26,6 +28,8 @@
     <!--[if IE 8]><link href="{{ SITE_ROOT }}/css/nhsuk-ie8.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
 
     <link rel="stylesheet" href="{{ SITE_ROOT }}/css/print.css{{ qs }}" media="print" type="text/css">
+
+    <script type="text/javascript" src="{{ SITE_ROOT }}/js/vendor/polyfills/details.polyfill.js"></script>
 
     {% if HOTJAR_TRACKING_ID %}
        <!-- rational for this code being in head: https://docs.hotjar.com/v1.0/docs/manual -->
@@ -41,7 +45,6 @@
       </script>
     {% endif %}
 
-    {% block meta %}{% endblock %}
   </head>
 
   <body>

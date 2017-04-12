@@ -6,7 +6,6 @@
 
 
 {% block meta %}
-<meta name="DCSext.ServiceName" content="GP Finder" />
 {% if errorMessage %}
   <meta name="DCSext.GPBlank" content="1">
 {% endif %}
