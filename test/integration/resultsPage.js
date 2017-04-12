@@ -18,7 +18,7 @@ function assertSearchResponse(search, assertions) {
     .end(assertions);
 }
 
-describe('Results page', () => {
+xdescribe('Results page', () => {
   const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
 
   describe('page layout', () => {

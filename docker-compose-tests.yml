@@ -2,6 +2,20 @@ version: '2.1'
 
 services:
 
+  local-tests:
+    extends:
+      file: docker-compose.yml
+      service: base-app
+    command: sh -c "npm run watch-test-mid"
+    volumes:
+      - gp-finder-tests-node_modules:/code/node_modules
+    environment:
+      NODE_ENV: test
+    user: root
+    links:
+      - gp-finder-db:mongo
+      - gp-finder-es:es
+
   tests:
     extends:
       file: docker-compose.yml
@@ -14,6 +28,7 @@ services:
     user: root
     links:
       - gp-finder-db:mongo
+      - gp-finder-es:es
 
   travis-tests:
     extends:
@@ -34,9 +49,15 @@ services:
     user: root
     links:
       - gp-finder-db:mongo
+      - gp-finder-es:es
 
   gp-finder-db:
     image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.7.0}"
+
+  gp-finder-es:
+    image: "nhsuk/profiles-db-elastic:pr-1"
+    ports:
+      - 9200:9200
 
 volumes:
   gp-finder-tests-node_modules:

@@ -34,7 +34,7 @@ function runQuery(db, res, connectionString) {
   const searchTerm = res.locals.search;
   return collection.find({ $text: { $search: `${searchTerm}` } },
     { score: { $meta: 'textScore' } }
-    ).sort(
+  ).sort(
     { score: { $meta: 'textScore' }, name: 1 }
     )
     .limit(30)
@@ -53,4 +53,3 @@ function getGps(req, res, next) {
 }
 
 module.exports = getGps;
-

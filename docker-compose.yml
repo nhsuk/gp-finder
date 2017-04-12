@@ -23,6 +23,7 @@ services:
       service: base-app
     links:
       - gp-finder-db:mongo
+      - gp-finder-es:es
     ports:
       - 3000:3000
     volumes:
@@ -30,6 +31,9 @@ services:
 
   gp-finder-db:
     image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.7.0}"
+
+  gp-finder-es:
+    image: "nhsuk/profiles-db-elastic:pr-1"
 
 volumes:
   gp-finder-node_modules:
