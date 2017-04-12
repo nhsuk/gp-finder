@@ -7,6 +7,7 @@
     "start": "node app.js",
     "lint": "eslint --ext .js,.json .",
     "test": "NODE_ENV=test mocha --recursive test",
+    "test-mid": "NODE_ENV=test mocha --recursive test/integration/middleware",
     "build-css": "./css-build",
     "istanbul": "NODE_ENV=test istanbul",
     "generate-coverage": "npm run istanbul -- cover _mocha -- --recursive",
@@ -15,6 +16,7 @@
     "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan & nodemon -e scss -x npm run build-css -- compact",
     "watch-lint": "esw --watch .",
     "watch-test": "npm run test -- --reporter min --watch",
+    "watch-test-mid": "npm run test-mid -- --reporter min --watch",
     "git-hook": "npm run lint && npm run generate-coverage && npm run check-coverage"
   },
   "repository": {
@@ -36,6 +38,8 @@
     "express": "^4.14.1",
     "helmet": "^3.4.0",
     "mongodb": "^2.2.24",
+    "node-rest-client": "^3.1.0",
+    "node-rest-client-promise": "^2.0.0",
     "node-sass": "^4.5.0",
     "normalize.css": "^5.0.0",
     "nunjucks": "^2.5.2",
@@ -45,7 +49,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "coveralls": "^2.12.0",
+    "coveralls": "^2.11.16",
     "eslint": "^3.2.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",

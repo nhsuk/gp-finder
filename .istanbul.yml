@@ -1,6 +1,6 @@
 check:
   global:
-    statements: 90
-    lines: 90
-    branches: 60 # TODO: put me back to 90
-    functions: 90
+    statements: 70
+    lines: 70
+    branches: 40 # TODO: put me back to 90
+    functions: 40

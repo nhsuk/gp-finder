@@ -220,6 +220,11 @@
       "from": "block-stream@*",
       "resolved": "https://registry.npmjs.org/block-stream/-/block-stream-0.0.9.tgz"
     },
+    "bluebird": {
+      "version": "3.5.0",
+      "from": "bluebird@>=3.4.7 <4.0.0",
+      "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.5.0.tgz"
+    },
     "body-parser": {
       "version": "1.16.1",
       "from": "body-parser@>=1.16.1 <2.0.0",
@@ -1204,6 +1209,11 @@
       "from": "flat-cache@>=1.2.1 <2.0.0",
       "resolved": "https://registry.npmjs.org/flat-cache/-/flat-cache-1.2.2.tgz",
       "dev": true
+    },
+    "follow-redirects": {
+      "version": "1.2.3",
+      "from": "follow-redirects@>=1.2.0",
+      "resolved": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.2.3.tgz"
     },
     "for-in": {
       "version": "0.1.6",
@@ -3008,6 +3018,45 @@
         }
       }
     },
+    "node-rest-client": {
+      "version": "3.1.0",
+      "from": "node-rest-client@>=3.1.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/node-rest-client/-/node-rest-client-3.1.0.tgz",
+      "dependencies": {
+        "debug": {
+          "version": "2.2.0",
+          "from": "debug@>=2.2.0 <2.3.0",
+          "resolved": "https://registry.npmjs.org/debug/-/debug-2.2.0.tgz"
+        },
+        "ms": {
+          "version": "0.7.1",
+          "from": "ms@0.7.1",
+          "resolved": "https://registry.npmjs.org/ms/-/ms-0.7.1.tgz"
+        }
+      }
+    },
+    "node-rest-client-promise": {
+      "version": "2.0.0",
+      "from": "node-rest-client-promise@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/node-rest-client-promise/-/node-rest-client-promise-2.0.0.tgz",
+      "dependencies": {
+        "debug": {
+          "version": "2.2.0",
+          "from": "debug@~2.2.0",
+          "resolved": "https://registry.npmjs.org/debug/-/debug-2.2.0.tgz"
+        },
+        "ms": {
+          "version": "0.7.1",
+          "from": "ms@0.7.1",
+          "resolved": "https://registry.npmjs.org/ms/-/ms-0.7.1.tgz"
+        },
+        "node-rest-client": {
+          "version": "2.5.0",
+          "from": "node-rest-client@>=2.5.0 <3.0.0",
+          "resolved": "https://registry.npmjs.org/node-rest-client/-/node-rest-client-2.5.0.tgz"
+        }
+      }
+    },
     "node-sass": {
       "version": "4.5.0",
       "from": "node-sass@latest",
@@ -3555,6 +3604,11 @@
         }
       }
     },
+    "sax": {
+      "version": "1.2.2",
+      "from": "sax@>=0.6.0",
+      "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.2.tgz"
+    },
     "semver": {
       "version": "5.3.0",
       "from": "semver@>=5.1.0 <6.0.0",
@@ -4064,6 +4118,16 @@
       "from": "xdg-basedir@>=2.0.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/xdg-basedir/-/xdg-basedir-2.0.0.tgz",
       "dev": true
+    },
+    "xml2js": {
+      "version": "0.4.17",
+      "from": "xml2js@>=0.2.4",
+      "resolved": "https://registry.npmjs.org/xml2js/-/xml2js-0.4.17.tgz"
+    },
+    "xmlbuilder": {
+      "version": "4.2.1",
+      "from": "xmlbuilder@>=4.1.0 <5.0.0",
+      "resolved": "https://registry.npmjs.org/xmlbuilder/-/xmlbuilder-4.2.1.tgz"
     },
     "xtend": {
       "version": "4.0.1",

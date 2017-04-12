@@ -19,7 +19,7 @@ function assertSearchResponse(search, assertions) {
     .end(assertions);
 }
 
-describe('Results page error handling', () => {
+xdescribe('Results page error handling', () => {
   describe('when search is not included', () => {
     it('should return a descriptive error messages', (done) => {
       const search = null;
