@@ -31,7 +31,7 @@
     <div class="grid-row">
       <ol class="results">
         {% for gp in gps %}
-          <li class="results__item results__item--nearby">
+          <li class="results__item results__item--nearby" data-index="{{loop.index}}">
             <div class="results__details results__details--nearby column--two-thirds">
                 {% include "includes/result-item.nunjucks" %}
             </div>
