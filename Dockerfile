@@ -15,7 +15,7 @@ ENV NODE_ENV=${NODE_ENV}
 
 COPY yarn.lock /code
 COPY package.json /code
-RUN yarn && if [ "$NODE_ENV" == "production" ]; then yarn install --production; else yarn install ; fi
+RUN if [ "$NODE_ENV" == "production" ]; then yarn install --production; else yarn install ; fi
 EXPOSE 3000
 
 COPY . /code
