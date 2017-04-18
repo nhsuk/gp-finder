@@ -1,12 +1,5 @@
 @charset "UTF-8";
-@font-face { font-family: "FS Me"; font-style: normal; font-weight: 200; src: url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Light.eot?") format("eot"), url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Light.woff") format("woff"); }
-
-@font-face { font-family: "FS Me"; font-style: normal; font-weight: 400; src: url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Regular.eot?") format("eot"), url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Regular.woff") format("woff"); }
-
-@font-face { font-family: "FS Me"; font-style: bold; font-weight: 600; src: url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Bold.eot?") format("eot"), url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Bold.woff") format("woff"); }
-
-@font-face { font-family: "FS Me"; font-style: bold; font-weight: 800; src: url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Heavy.eot?") format("eot"), url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Heavy.woff") format("woff"); }
-
+@import url("https://fast.fonts.net/cssapi/0985eb4d-eec4-488b-baa4-22fe85c5ce32.css");
 .page-section, .global-header__inner, .global-footer__inner, .local-header, .notification-banner__inner, .skiplinks__inner { margin: 0 16px; max-width: 960px; width: 960px; margin: 0 32px; margin: 0 auto; }
 
 .grid-row, .link-list__row { margin: 0 -16px; }
@@ -171,13 +164,13 @@ template { display: none; }
 /** Add the correct display in IE 10-. */
 [hidden] { display: none; }
 
-html, body, button, input, table, td, th { font-family: "FS Me", Arial, sans-serif; }
+html, body, button, input, table, td, th { font-family: "Frutiger W01", Arial, sans-serif; }
 
 html { background-color: #0072c6; }
 
 body { background-color: #fff; }
 
-.button { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; margin-top: 16px; margin-top: 32px; appearance: none; background-color: #008a40; border: 0; color: #fff; cursor: pointer; display: inline-block; letter-spacing: .5px; padding: 12px 24px; text-align: center; width: 100%; margin-right: 16px; width: auto; margin-right: 32px; }
+.button { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; margin-top: 16px; margin-top: 32px; appearance: none; background-color: #008a40; border: 0; color: #fff; cursor: pointer; display: inline-block; letter-spacing: .5px; padding: 12px 24px; text-align: center; width: 100%; margin-right: 16px; width: auto; margin-right: 32px; }
 
 .button:link, .button:hover, .button:focus, .button:visited { background-color: #008a40; color: #fff; text-decoration: none; }
 
@@ -187,7 +180,7 @@ body { background-color: #fff; }
 
 details { clear: both; display: block; }
 
-details summary { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; color: #0072c6; cursor: pointer; display: inline-block; margin-bottom: em(5); position: relative; }
+details summary { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; color: #0072c6; cursor: pointer; display: inline-block; margin-bottom: em(5); position: relative; }
 
 details summary:hover { color: #0091c9; }
 
@@ -221,27 +214,27 @@ fieldset { border: 0; margin: 0; min-width: 0; padding: 0; }
 
 body:not(:-moz-handler-blocked) fieldset { display: table-cell; }
 
-legend { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; color: #000; display: table; padding: 0; }
+legend { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; color: #000; display: table; padding: 0; }
 
 legend + * { -webkit-margin-top-collapse: separate; }
 
-textarea { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; border: 2px solid #768692; display: block; padding: 0 4px; width: 100%; }
+textarea { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; border: 2px solid #768692; display: block; padding: 0 4px; width: 100%; }
 
 textarea:focus { outline: 3px solid #ffb81c; }
 
 img { border: 0; max-width: 100%; vertical-align: middle; }
 
-h1 { font-family: "FS Me", Arial, sans-serif; font-size: 40px; font-weight: 600; line-height: 48px; text-transform: none; font-size: 48px; line-height: 64px; font-size: 64px; line-height: 80px; }
+h1 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 40px; font-weight: 600; line-height: 48px; text-transform: none; font-size: 48px; line-height: 64px; font-size: 64px; line-height: 80px; }
 
-h2 { font-family: "FS Me", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; font-size: 32px; line-height: 48px; font-size: 36px; line-height: 48px; }
+h2 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; font-size: 32px; line-height: 48px; font-size: 36px; line-height: 48px; }
 
-h3 { font-family: "FS Me", Arial, sans-serif; font-size: 24px; font-weight: 600; line-height: 32px; text-transform: none; font-size: 24px; line-height: 32px; font-size: 24px; line-height: 32px; }
+h3 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 24px; font-weight: 600; line-height: 32px; text-transform: none; font-size: 24px; line-height: 32px; font-size: 24px; line-height: 32px; }
 
-h4 { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; }
+h4 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; }
 
-h5 { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; }
+h5 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; }
 
-h6 { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; }
+h6 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; }
 
 hr { background-color: #d9e1e2; border: 0; height: 4px; text-align: left; width: 130px; }
 
@@ -249,13 +242,13 @@ hr { background-color: #d9e1e2; border: 0; height: 4px; text-align: left; width:
 
 .callout--severe hr { background-color: #fff; }
 
-ul { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; list-style: disc outside; padding-left: 1em; }
+ul { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; list-style: disc outside; padding-left: 1em; }
 
-ol { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; list-style: decimal outside; padding-left: 1em; padding-left: 1.5em; }
+ol { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; list-style: decimal outside; padding-left: 1em; padding-left: 1.5em; }
 
 ol li { padding-left: .2em; }
 
-dl { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; }
+dl { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; }
 
 .local-header li + li, .page-section li + li, .global-footer li + li { margin-top: 8px; }
 
@@ -315,13 +308,13 @@ a:focus { outline: 3px solid #ffb81c; }
 
 .link--reverse-polarity:focus, .callout--severe a:focus, .global-footer a:focus, .local-header a:focus, .local-header__return:focus { outline: 3px solid #ffb81c; }
 
-p { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; }
+p { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; }
 
 table { border-collapse: collapse; border-spacing: 0; margin: 16px 0 32px; width: 100%; }
 
-table th, table td { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; border-bottom: 2px solid #d9e1e2; padding: 12px 12px 12px 0; vertical-align: top; }
+table th, table td { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; border-bottom: 2px solid #d9e1e2; padding: 12px 12px 12px 0; vertical-align: top; }
 
-table th { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; text-align: left; }
+table th { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; text-align: left; }
 
 .table--two-column th { width: 50%; }
 
@@ -377,7 +370,7 @@ b, strong { font-weight: 600; }
 
 .article-pagination__item--right { float: right; text-align: right; width: 47%; }
 
-.article-pagination__prefix { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; color: #000; display: block; }
+.article-pagination__prefix { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; color: #000; display: block; }
 
 .article-pagination__title { text-decoration: underline; }
 
@@ -423,7 +416,7 @@ b, strong { font-weight: 600; }
 
 .global-footer { background-color: #0072c6; border-top: 4px solid #005b9e; color: #fff; }
 
-.global-footer * { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; }
+.global-footer * { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; }
 
 .global-footer * + * { margin-top: 16px; margin-top: 32px; }
 
@@ -441,7 +434,7 @@ b, strong { font-weight: 600; }
 
 .inline-list--slash .inline-list__item:last-child:after { content: ""; }
 
-.form-label--large { font-family: "FS Me", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; font-size: 32px; line-height: 48px; font-size: 36px; line-height: 48px; display: block; }
+.form-label--large { font-family: "Frutiger W01", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; font-size: 32px; line-height: 48px; font-size: 36px; line-height: 48px; display: block; }
 
 .link-list { list-style: none; padding-left: 0; }
 
@@ -463,7 +456,7 @@ b, strong { font-weight: 600; }
 
 .local-header__return:hover { border-color: #99c7e8; color: #fff; }
 
-.local-header__title { font-family: "FS Me", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; font-size: 32px; line-height: 48px; font-size: 36px; line-height: 48px; color: #fff; margin: 0; padding-top: 16px; }
+.local-header__title { font-family: "Frutiger W01", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; font-size: 32px; line-height: 48px; font-size: 36px; line-height: 48px; color: #fff; margin: 0; padding-top: 16px; }
 
 .local-header__intro { color: #fff; margin-top: 16px; max-width: 40em; padding-top: 16px; position: relative; margin-top: 32px; padding-top: 16px; }
 
@@ -471,7 +464,7 @@ b, strong { font-weight: 600; }
 
 .notification-banner { background-color: #eff1f2; }
 
-.notification-banner * { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; }
+.notification-banner * { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; }
 
 .js-enabled .notification-banner--js-hidden { display: none; }
 
@@ -513,11 +506,11 @@ b, strong { font-weight: 600; }
 
 .section-unit--divider:last-child:after { display: none; }
 
-.section-unit__prefix { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; border-top: 4px solid #d9e1e2; display: inline-block; padding-top: 4px; }
+.section-unit__prefix { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; border-top: 4px solid #d9e1e2; display: inline-block; padding-top: 4px; }
 
 .section-unit__prefix + * { margin-top: 8px; margin-top: 16px; }
 
-.selection-button { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; cursor: pointer; display: block; min-height: 38px; padding: 2px 0; position: relative; }
+.selection-button { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; font-size: 20px; line-height: 32px; font-size: 20px; line-height: 32px; cursor: pointer; display: block; min-height: 38px; padding: 2px 0; position: relative; }
 
 .js-enabled .selection-button { padding-left: 50px; width: auto; padding-left: 0; }
 
@@ -547,7 +540,7 @@ b, strong { font-weight: 600; }
 
 .skiplinks__link:focus { background-color: #f2f8fc; border: 3px solid #ffb81c; outline: none; position: static; }
 
-.step-list { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; counter-reset: li; padding: 4px 0; }
+.step-list { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; font-size: 16px; line-height: 24px; font-size: 16px; line-height: 24px; counter-reset: li; padding: 4px 0; }
 
 .step-list__item { border-left: 2px solid #fff; list-style: none; margin-left: 16px; padding-bottom: 24px; padding-left: 32px; position: relative; padding-bottom: 40px; }
 

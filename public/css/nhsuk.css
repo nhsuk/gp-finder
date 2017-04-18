@@ -1,12 +1,5 @@
 @charset "UTF-8";
-@font-face { font-family: "FS Me"; font-style: normal; font-weight: 200; src: url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Light.eot?") format("eot"), url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Light.woff") format("woff"); }
-
-@font-face { font-family: "FS Me"; font-style: normal; font-weight: 400; src: url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Regular.eot?") format("eot"), url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Regular.woff") format("woff"); }
-
-@font-face { font-family: "FS Me"; font-style: bold; font-weight: 600; src: url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Bold.eot?") format("eot"), url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Bold.woff") format("woff"); }
-
-@font-face { font-family: "FS Me"; font-style: bold; font-weight: 800; src: url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Heavy.eot?") format("eot"), url("https://dhrlmnmyf2njb.cloudfront.net/assets/fonts/fsme/FSMeWeb-Heavy.woff") format("woff"); }
-
+@import url("https://fast.fonts.net/cssapi/0985eb4d-eec4-488b-baa4-22fe85c5ce32.css");
 .page-section, .global-header__inner, .global-footer__inner, .local-header, .notification-banner__inner, .skiplinks__inner { margin: 0 16px; max-width: 960px; }
 
 @media (min-width: 925px) { .page-section, .global-header__inner, .global-footer__inner, .local-header, .notification-banner__inner, .skiplinks__inner { margin: 0 32px; } }
@@ -173,13 +166,13 @@ template { display: none; }
 /** Add the correct display in IE 10-. */
 [hidden] { display: none; }
 
-html, body, button, input, table, td, th { font-family: "FS Me", Arial, sans-serif; }
+html, body, button, input, table, td, th { font-family: "Frutiger W01", Arial, sans-serif; }
 
 html { background-color: #0072c6; }
 
 body { background-color: #fff; }
 
-.button { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; margin-top: 16px; appearance: none; background-color: #008a40; border: 0; color: #fff; cursor: pointer; display: inline-block; letter-spacing: .5px; padding: 12px 24px; text-align: center; width: 100%; }
+.button { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; margin-top: 16px; appearance: none; background-color: #008a40; border: 0; color: #fff; cursor: pointer; display: inline-block; letter-spacing: .5px; padding: 12px 24px; text-align: center; width: 100%; }
 
 @media (min-width: 641px) { .button { font-size: 20px; line-height: 32px; } }
 
@@ -199,7 +192,7 @@ body { background-color: #fff; }
 
 details { clear: both; display: block; }
 
-details summary { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; color: #0072c6; cursor: pointer; display: inline-block; margin-bottom: em(5); position: relative; }
+details summary { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; color: #0072c6; cursor: pointer; display: inline-block; margin-bottom: em(5); position: relative; }
 
 @media (min-width: 641px) { details summary { font-size: 20px; line-height: 32px; } }
 
@@ -237,7 +230,7 @@ fieldset { border: 0; margin: 0; min-width: 0; padding: 0; }
 
 body:not(:-moz-handler-blocked) fieldset { display: table-cell; }
 
-legend { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; color: #000; display: table; padding: 0; }
+legend { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; color: #000; display: table; padding: 0; }
 
 @media (min-width: 641px) { legend { font-size: 20px; line-height: 32px; } }
 
@@ -245,7 +238,7 @@ legend { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 
 
 legend + * { -webkit-margin-top-collapse: separate; }
 
-textarea { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; border: 2px solid #768692; display: block; padding: 0 4px; width: 100%; }
+textarea { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; border: 2px solid #768692; display: block; padding: 0 4px; width: 100%; }
 
 @media (min-width: 641px) { textarea { font-size: 20px; line-height: 32px; } }
 
@@ -255,37 +248,37 @@ textarea:focus { outline: 3px solid #ffb81c; }
 
 img { border: 0; max-width: 100%; vertical-align: middle; }
 
-h1 { font-family: "FS Me", Arial, sans-serif; font-size: 40px; font-weight: 600; line-height: 48px; text-transform: none; }
+h1 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 40px; font-weight: 600; line-height: 48px; text-transform: none; }
 
 @media (min-width: 641px) { h1 { font-size: 48px; line-height: 64px; } }
 
 @media (min-width: 925px) { h1 { font-size: 64px; line-height: 80px; } }
 
-h2 { font-family: "FS Me", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; }
+h2 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; }
 
 @media (min-width: 641px) { h2 { font-size: 32px; line-height: 48px; } }
 
 @media (min-width: 925px) { h2 { font-size: 36px; line-height: 48px; } }
 
-h3 { font-family: "FS Me", Arial, sans-serif; font-size: 24px; font-weight: 600; line-height: 32px; text-transform: none; }
+h3 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 24px; font-weight: 600; line-height: 32px; text-transform: none; }
 
 @media (min-width: 641px) { h3 { font-size: 24px; line-height: 32px; } }
 
 @media (min-width: 925px) { h3 { font-size: 24px; line-height: 32px; } }
 
-h4 { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; }
+h4 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; }
 
 @media (min-width: 641px) { h4 { font-size: 20px; line-height: 32px; } }
 
 @media (min-width: 925px) { h4 { font-size: 20px; line-height: 32px; } }
 
-h5 { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; text-transform: none; }
+h5 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 24px; text-transform: none; }
 
 @media (min-width: 641px) { h5 { font-size: 16px; line-height: 24px; } }
 
 @media (min-width: 925px) { h5 { font-size: 16px; line-height: 24px; } }
 
-h6 { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; }
+h6 { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; }
 
 @media (min-width: 641px) { h6 { font-size: 16px; line-height: 24px; } }
 
@@ -297,13 +290,13 @@ hr { background-color: #d9e1e2; border: 0; height: 4px; text-align: left; width:
 
 .callout--severe hr { background-color: #fff; }
 
-ul { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; list-style: disc outside; padding-left: 1em; }
+ul { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; list-style: disc outside; padding-left: 1em; }
 
 @media (min-width: 641px) { ul { font-size: 20px; line-height: 32px; } }
 
 @media (min-width: 925px) { ul { font-size: 20px; line-height: 32px; } }
 
-ol { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; list-style: decimal outside; padding-left: 1em; }
+ol { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; list-style: decimal outside; padding-left: 1em; }
 
 @media (min-width: 641px) { ol { font-size: 20px; line-height: 32px; } }
 
@@ -311,7 +304,7 @@ ol { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400;
 
 ol li { padding-left: .2em; }
 
-dl { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; }
+dl { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; }
 
 @media (min-width: 641px) { dl { font-size: 20px; line-height: 32px; } }
 
@@ -375,7 +368,7 @@ a:focus { outline: 3px solid #ffb81c; }
 
 .link--reverse-polarity:focus, .callout--severe a:focus, .global-footer a:focus, .local-header a:focus, .local-header__return:focus { outline: 3px solid #ffb81c; }
 
-p { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; }
+p { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; }
 
 @media (min-width: 641px) { p { font-size: 20px; line-height: 32px; } }
 
@@ -383,13 +376,13 @@ p { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; 
 
 table { border-collapse: collapse; border-spacing: 0; margin: 16px 0 32px; width: 100%; }
 
-table th, table td { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; border-bottom: 2px solid #d9e1e2; padding: 12px 12px 12px 0; vertical-align: top; }
+table th, table td { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; border-bottom: 2px solid #d9e1e2; padding: 12px 12px 12px 0; vertical-align: top; }
 
 @media (min-width: 641px) { table th, table td { font-size: 16px; line-height: 24px; } }
 
 @media (min-width: 925px) { table th, table td { font-size: 16px; line-height: 24px; } }
 
-table th { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; text-align: left; }
+table th { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 600; line-height: 32px; text-transform: none; text-align: left; }
 
 @media (min-width: 641px) { table th { font-size: 20px; line-height: 32px; } }
 
@@ -474,7 +467,7 @@ b, strong { font-weight: 600; }
 @media (min-width: 641px) { .article-pagination__item--left { float: left; width: 47%; }
   .article-pagination__item--right { float: right; text-align: right; width: 47%; } }
 
-.article-pagination__prefix { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; color: #000; display: block; }
+.article-pagination__prefix { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; color: #000; display: block; }
 
 @media (min-width: 641px) { .article-pagination__prefix { font-size: 16px; line-height: 24px; } }
 
@@ -532,7 +525,7 @@ b, strong { font-weight: 600; }
 
 .global-footer { background-color: #0072c6; border-top: 4px solid #005b9e; color: #fff; }
 
-.global-footer * { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; }
+.global-footer * { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; }
 
 @media (min-width: 641px) { .global-footer * { font-size: 16px; line-height: 24px; } }
 
@@ -559,7 +552,7 @@ b, strong { font-weight: 600; }
 @media (min-width: 641px) { .inline-list--slash .inline-list__item:after { content: "/"; }
   .inline-list--slash .inline-list__item:last-child:after { content: ""; } }
 
-.form-label--large { font-family: "FS Me", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; display: block; }
+.form-label--large { font-family: "Frutiger W01", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; display: block; }
 
 @media (min-width: 641px) { .form-label--large { font-size: 32px; line-height: 48px; } }
 
@@ -599,7 +592,7 @@ b, strong { font-weight: 600; }
 
 .local-header__return:hover { border-color: #99c7e8; color: #fff; }
 
-.local-header__title { font-family: "FS Me", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; color: #fff; margin: 0; }
+.local-header__title { font-family: "Frutiger W01", Arial, sans-serif; font-size: 28px; font-weight: 600; line-height: 40px; text-transform: none; color: #fff; margin: 0; }
 
 @media (min-width: 641px) { .local-header__title { font-size: 32px; line-height: 48px; } }
 
@@ -615,7 +608,7 @@ b, strong { font-weight: 600; }
 
 .notification-banner { background-color: #eff1f2; }
 
-.notification-banner * { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; }
+.notification-banner * { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; }
 
 @media (min-width: 641px) { .notification-banner * { font-size: 16px; line-height: 24px; } }
 
@@ -669,7 +662,7 @@ b, strong { font-weight: 600; }
 
 .section-unit--divider:last-child:after { display: none; }
 
-.section-unit__prefix { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; border-top: 4px solid #d9e1e2; display: inline-block; padding-top: 4px; }
+.section-unit__prefix { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; border-top: 4px solid #d9e1e2; display: inline-block; padding-top: 4px; }
 
 @media (min-width: 641px) { .section-unit__prefix { font-size: 20px; line-height: 32px; } }
 
@@ -679,7 +672,7 @@ b, strong { font-weight: 600; }
 
 @media (min-width: 925px) { .section-unit__prefix + * { margin-top: 16px; } }
 
-.selection-button { font-family: "FS Me", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; cursor: pointer; display: block; min-height: 38px; padding: 2px 0; position: relative; }
+.selection-button { font-family: "Frutiger W01", Arial, sans-serif; font-size: 20px; font-weight: 400; line-height: 32px; text-transform: none; cursor: pointer; display: block; min-height: 38px; padding: 2px 0; position: relative; }
 
 @media (min-width: 641px) { .selection-button { font-size: 20px; line-height: 32px; } }
 
@@ -714,7 +707,7 @@ b, strong { font-weight: 600; }
 
 .skiplinks__link:focus { background-color: #f2f8fc; border: 3px solid #ffb81c; outline: none; position: static; }
 
-.step-list { font-family: "FS Me", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; counter-reset: li; padding: 4px 0; }
+.step-list { font-family: "Frutiger W01", Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; text-transform: none; counter-reset: li; padding: 4px 0; }
 
 @media (min-width: 641px) { .step-list { font-size: 16px; line-height: 24px; } }
 
