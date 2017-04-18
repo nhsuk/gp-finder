@@ -30,3 +30,6 @@ When finished with the application `docker-compose down -v` should be run to shu
 
 It is good practice to run the tests in a Docker container. To do this run `docker-compose -p gp-finder-test -f docker-compose-tests.yml up --build --force-recreate tests`. A new container will be started where the tests will run and rerun when changes are made to the source code.
 When finished with the tests run `docker-compose -p gp-finder-test -f docker-compose-tests.yml down -v` to tidy up.
+
+The script `scripts/start.sh` starts the application containers cleanly by running a docker-compose down, immediately followed by a docker-compose up.
+`scripts/test.sh` performs the equivalent actions for running the test containers.

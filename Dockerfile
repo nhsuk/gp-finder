@@ -1,4 +1,4 @@
-FROM node:7.4-alpine
+FROM node:7.9-alpine
 RUN apk add --no-cache git
 
 ENV USERNAME nodeuser
@@ -13,8 +13,9 @@ WORKDIR /code
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-COPY npm-shrinkwrap.json /code
-RUN if [ "$NODE_ENV" == "production" ]; then npm install --quiet --only=prod; else npm install --quiet ; fi
+COPY yarn.lock /code
+COPY package.json /code
+RUN if [ "$NODE_ENV" == "production" ]; then yarn install --production; else yarn install ; fi
 EXPOSE 3000
 
 COPY . /code
@@ -25,6 +26,6 @@ USER $USERNAME
 
 VOLUME /code/perf-tests
 
-RUN [ "npm", "run", "build-css" ]
+RUN [ "yarn", "run", "build-css" ]
 
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
