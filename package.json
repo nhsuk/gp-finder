@@ -9,13 +9,13 @@
     "test": "NODE_ENV=test mocha --recursive test",
     "build-css": "./css-build",
     "istanbul": "NODE_ENV=test istanbul",
-    "generate-coverage": "npm run istanbul -- cover _mocha -- --recursive",
+    "generate-coverage": "yarn run istanbul -- cover _mocha -- --recursive",
     "check-coverage": "istanbul check-coverage --config .istanbul.yml",
     "upload-coverage-coveralls": "cat ./coverage/lcov.info | coveralls",
-    "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan & nodemon -e scss -x npm run build-css -- compact",
+    "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan & nodemon -e scss -x yarn run build-css -- compact",
     "watch-lint": "esw --watch .",
-    "watch-test": "npm run test -- --reporter min --watch",
-    "git-hook": "npm run lint && npm run generate-coverage && npm run check-coverage"
+    "watch-test": "yarn run test -- --reporter min --watch",
+    "git-hook": "yarn run lint && yarn run generate-coverage && yarn run check-coverage"
   },
   "repository": {
     "type": "git",
