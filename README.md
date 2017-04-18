@@ -24,12 +24,14 @@ the application is being run. This is best practice as described by
 
 Start by cloning the repo and all submodules i.e. `git clone https://github.com/nhsuk/gp-finder.git && cd gp-finder/ && git submodule update --init --recursive`
 
-Run the application with Docker via `docker-compose up --build --force-recreate`. This will build an image based on the code in the current working directory and start it running. It will most likely be available locally on http://localhost:3000 as long as the port exposed in `docker-compose.yml` is `3000`.
+You can run the application with Docker via `docker-compose up --build --force-recreate`. This will build an image based on the code in the current working directory and start it running. It will most likely be available locally on http://localhost:3000 as long as the port exposed in `docker-compose.yml` is `3000`.
 
 When finished with the application `docker-compose down -v` should be run to shutdown all services including volumes. This is the correct way to close down resource used by the `up` command.
 
 It is good practice to run the tests in a Docker container. To do this run `docker-compose -p gp-finder-test -f docker-compose-tests.yml up --build --force-recreate tests`. A new container will be started where the tests will run and rerun when changes are made to the source code.
 When finished with the tests run `docker-compose -p gp-finder-test -f docker-compose-tests.yml down -v` to tidy up.
 
-The script `scripts/start.sh` starts the application containers cleanly by running a docker-compose down, immediately followed by a docker-compose up.
-`scripts/test.sh` performs the equivalent actions for running the test containers.
+For brevity, the scripts `scripts/start.sh`, that starts the application containers cleanly by running a docker-compose down, immediately followed by a docker-compose up,
+and `scripts/test.sh`, which performs the equivalent actions for running the test containers, were provided.
+ 
+You can run the application using `./scripts/start.sh` and the tests using `./scripts/test.sh`.
