@@ -10,7 +10,7 @@ services:
     volumes:
       - gp-finder-tests-node_modules:/code/node_modules
     environment:
-      NODE_ENV: test
+      NODE_ENV: ${NODE_ENV-test}
     user: root
     links:
       - gp-finder-db:mongo
@@ -25,7 +25,7 @@ services:
       - gp-finder-travis-tests-node_modules:/code/node_modules
     environment:
       COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
-      NODE_ENV: development
+      NODE_ENV: ${NODE_ENV-development}
       SNYK_TOKEN: ${SNYK_TOKEN}
       TRAVIS: ${TRAVIS}
       TRAVIS_BRANCH: ${TRAVIS_BRANCH}
