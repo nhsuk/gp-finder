@@ -7,22 +7,36 @@ function handleError(err) {
    $("#searchResults").html('<h2>Error retrieving results</h2>');
 }
 
+function clearSearch() {
+   $("#searchResults").html('');
+}
+
 function disableFormElements() {
   var searchForm = $('#searchForm').submit(function () { return false; });
   $('.form-group--submit').remove();
   $('.hr--higher').remove();
 }
 
+function removeWhitespace(text) {
+  return text.replace(/^\s+|\s+$/gm,'');
+}
+
 function createSearchObservable() {
   var searchInput = $('#search')[0];
 
-  var throttledInput = Rx.DOM.keyup(searchInput)
-    .pluck('target', 'value')
+  var inputEvents = Rx.DOM.keyup(searchInput)
+    .pluck('target', 'value').map(removeWhitespace).debounce(500);
+
+  var noText = inputEvents
+    .filter(function (text) { return text.length == 0; })
+    .subscribe(clearSearch);
+
+  var words = inputEvents
     .filter(function (text) { return text.length > 2; })
-    .debounce(500)
     .distinctUntilChanged();
 
-  return throttledInput;
+
+  return words;
 }
 
 function subscribeToFieldChange(siteRoot) {
