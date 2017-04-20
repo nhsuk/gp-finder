@@ -22,14 +22,15 @@ the application is being run. This is best practice as described by
 
 ## Application development
 
-Start by cloning the repo and all submodules i.e. `git clone https://github.com/nhsuk/gp-finder.git && cd gp-finder/ && git submodule update --init --recursive`
+The application has some scripts to make things easier for development. For more information about scrips, please read 
+the info [here](scripts/README.md).
 
-Run the application with Docker via `docker-compose up --build --force-recreate`. This will build an image based on the code in the current working directory and start it running. It will most likely be available locally on http://localhost:3000 as long as the port exposed in `docker-compose.yml` is `3000`.
+Please run the [`./scripts/bootstrap`](scripts/bootstrap) script first and follow the instructions.
 
-When finished with the application `docker-compose down -v` should be run to shutdown all services including volumes. This is the correct way to close down resource used by the `up` command.
+For application specific development, start by cloning the repo and all submodules 
+i.e. `git clone https://github.com/nhsuk/gp-finder.git && cd gp-finder/ && git submodule update --init --recursive`
 
-It is good practice to run the tests in a Docker container. To do this run `docker-compose -p gp-finder-test -f docker-compose-tests.yml up --build --force-recreate tests`. A new container will be started where the tests will run and rerun when changes are made to the source code.
-When finished with the tests run `docker-compose -p gp-finder-test -f docker-compose-tests.yml down -v` to tidy up.
+You can run the application using [`./scripts/start`](scripts/start). 
+The application will be available locally on `http://localhost:3000`.
 
-The script `scripts/start.sh` starts the application containers cleanly by running a docker-compose down, immediately followed by a docker-compose up.
-`scripts/test.sh` performs the equivalent actions for running the test containers.
+You can run the tests using [`./scripts/test`](scripts/test).

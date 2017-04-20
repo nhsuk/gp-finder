@@ -1,0 +1,5 @@
+#!/bin/bash
+# -p flag stands for --project-name and will create a different network for the test container
+# so it won't interfere with the app container
+docker-compose -p gp-finder-test -f docker-compose-tests.yml down -v
+docker-compose -p gp-finder-test -f docker-compose-tests.yml up --build --force-recreate tests
