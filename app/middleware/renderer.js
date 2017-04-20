@@ -1,5 +1,10 @@
 function results(req, res) {
-  res.render('results');
+  // return results partial if jax request
+  if (req.xhr) {
+    res.render('includes/results-list', { layout: false });
+  } else {
+    res.render('results');
+  }
 }
 
 function searchForYourGp(req, res) {
