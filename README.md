@@ -22,12 +22,15 @@ the application is being run. This is best practice as described by
 
 ## Application development
 
-The application has some scripts to make things easier for development. For more information about scrips, please read the info [here](https://github.com/nhsuk/gp-finder/blob/master/scripts/README.md)  
+The application has some scripts to make things easier for development. For more information about scrips, please read 
+the info [here](scripts/README.md).
 
-Please run the `./scripts/bootstrap` script first and follow the instructions.
+Please run the [`./scripts/bootstrap`](scripts/bootstrap) script first and follow the instructions.
 
-For application specific development, start by cloning the repo and all submodules i.e. `git clone https://github.com/nhsuk/gp-finder.git && cd gp-finder/ && git submodule update --init --recursive`
+For application specific development, start by cloning the repo and all submodules 
+i.e. `git clone https://github.com/nhsuk/gp-finder.git && cd gp-finder/ && git submodule update --init --recursive`
 
-You can run the application using `./scripts/start`. The application will be available locally on `http://localhost:3000`.
+You can run the application using [`./scripts/start`](scripts/start). 
+The application will be available locally on `http://localhost:3000`.
 
-You can run the tests using `./scripts/test`.
+You can run the tests using [`./scripts/test`](scripts/test).

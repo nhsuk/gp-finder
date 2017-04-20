@@ -2,10 +2,11 @@
 
 The scripts in these folder are meant to help the user/contributor to get up and running with the application fast.
 
-`bootstrap` - will point you towards the setup you will need before picking up this application
+[`bootstrap`](scripts/bootstrap)- will point you towards the setup you will need before picking up this application
 
-`ci-deployment` - these scripts are used behind the scenes to continually deploy the application to out development environment
+[`ci-deployment`](scripts/ci-deployment) - these scripts are used behind the scenes to continually deploy the 
+application to out development environment
 
-`start` - will start the application in dev mode: `http://localhost:3000`
+[`start`](scripts/start) - will start the application in dev mode: `http://localhost:3000`
 
-`test` - will continually run the tests
+[`test`](scripts/test) - will continually run the tests
