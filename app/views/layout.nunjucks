@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ SITE_ROOT }}/css/print.css{{ qs }}" media="print" type="text/css">
 
     <script type="text/javascript" src="{{ SITE_ROOT }}/js/vendor/polyfills/details.polyfill.js"></script>
+    <script src="{{ SITE_ROOT }}/js/jquery-1.12.4.min.js" type="text/javascript"></script>
 
     {% if HOTJAR_TRACKING_ID %}
        <!-- rational for this code being in head: https://docs.hotjar.com/v1.0/docs/manual -->
