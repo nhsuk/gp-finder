@@ -10,6 +10,12 @@ describe('messages', () => {
     expect(message).to.equal('You need to enter your surgery name.');
   });
 
+  it('should have an error message for when there are no results', () => {
+    const message = messages.noGpsFoundMessage();
+
+    expect(message).to.equal('You need to enter your surgery name.');
+  });
+
   it('should have an error message for technical problems', () => {
     const message = messages.technicalProblems();
 

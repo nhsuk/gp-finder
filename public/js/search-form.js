@@ -1,20 +1,21 @@
-
 function updatePage(html) {
-  $("#searchResults").html(html);
+  $('#searchResults').html(html);
+  $('.results__subheader').remove();
 }
 
 function handleError(err) {
-   $("#searchResults").html('<h2>Error retrieving results</h2>');
+  $('#searchResults').html('<p>We have problems retrieving results. Please try again later.</p>');
 }
 
 function clearSearch() {
-   $("#searchResults").html('');
+  $('#searchResults').html('');
 }
 
-function disableFormElements() {
+function disableAndPrepFormElements() {
   var searchForm = $('#searchForm').submit(function () { return false; });
   $('.form-group--submit').remove();
   $('.hr--higher').remove();
+  $('#search').attr('placeholder', 'Start typing to see results...');
 }
 
 function removeWhitespace(text) {
@@ -48,7 +49,7 @@ function subscribeToFieldChange(siteRoot) {
 }
 
 function enableSPA(siteRoot) {
-  disableFormElements();
+  disableAndPrepFormElements();
   subscribeToFieldChange(siteRoot);
 }
 

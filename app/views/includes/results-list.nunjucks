@@ -1,6 +1,11 @@
-<h2 class="results__header">GP {% if gps.length === 1 %}surgery{% else %}surgeries{%endif %} matching '{{ search }}' </h2>
+{% if gps.length === 0 %}
+  <p class="results__header">We can't find a surgery matching '{{ search }}'.
+  Try removing some characters or <a href= {{ROOT_SITE}} >start again.</a></p>
+{% else %}
+  <h2 class="results__header">GP {% if gps.length === 1 %}surgery{% else %}surgeries{%endif %} matching '{{ search }}'</h2>
+  <p class="results__subheader">If you can't see your surgery, check that you're using the right name and try searching again.</p>
+{% endif %}
 
-<p>If you can't see your surgery, check that you're using the right name and try searching again.</p>
 <div class="grid-row">
   <ol class="results">
     {% for gp in gps %}

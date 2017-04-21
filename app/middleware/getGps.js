@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
+const messages = require('../lib/messages');
 const gpDataMapper = require('../lib/utils/gpDataMapper');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
@@ -23,6 +24,10 @@ function mapResults(db, res, documents, searchTerm) {
     gp.bookOnlineLink = gpDataMapper(gp);
     return gp;
   });
+  if (res.locals.gps === 0) {
+    // eslint-disable-next-line no-param-reassign
+    res.locals.errorMessage = messages.noGpsFoundMessage();
+  }
 
   return db;
 }

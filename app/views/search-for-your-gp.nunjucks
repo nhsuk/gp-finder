@@ -11,15 +11,15 @@
 {% endif %}
 {% endblock %}
 
-{% block pageTitle %}Find a GP to book an appointment with{% endblock %}
+{% block pageTitle %}Find a GP surgery to book an appointment with{% endblock %}
 
 {% block content %}
 <div class="reading-width">
 {% if not errorMessage %}
 <p>You can book an appointment online if:</p>
 <ul>
-  <li>your GP is in England</li>
-  <li>you have registered for your GP's online services</li>
+  <li>your GP surgery is in England</li>
+  <li>you have registered for your GP surgery's online services</li>
 </ul>
 <details class="not-registered" role="group">
   <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
