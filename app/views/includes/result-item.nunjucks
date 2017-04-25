@@ -5,6 +5,13 @@
     {{ gp.displayName }}
   {% endif %}
 </h3>
+{% if gp.doctors %}
+  <ul>
+    {% for doctor in gp.doctors %}
+      <li>{{ doctor | title }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
 {% if gp.address %}
   {% if gp.address.addressLines %} {{ gp.address.addressLines | safe | replace(",", ", ") }}, {% endif %}
   {% if gp.address.postcode %} {{ gp.address.postcode }} {% endif %}
