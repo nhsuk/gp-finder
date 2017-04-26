@@ -5,9 +5,9 @@
     {{ gp.displayName }}
   {% endif %}
 </h3>
-{% if gp.doctors %}
+{% if gp.filterGps %}
   <ul>
-    {% for doctor in gp.doctors %}
+    {% for doctor in gp.filterGps %}
       <li>{{ doctor | title }}</li>
     {% endfor %}
   </ul>
