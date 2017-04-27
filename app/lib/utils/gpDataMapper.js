@@ -3,4 +3,15 @@ function getBookOnlineLink(gpData) {
     ? gpData.onlineServices.appointments.url : undefined;
 }
 
-module.exports = getBookOnlineLink;
+function getFilteredGps(gpData, searchStr) {
+  if (gpData.doctors) {
+    const regexp = new RegExp(searchStr, 'i');
+    return gpData.doctors.filter(doctor => regexp.test(doctor));
+  }
+  return undefined;
+}
+
+module.exports = {
+  getBookOnlineLink,
+  getFilteredGps,
+};
