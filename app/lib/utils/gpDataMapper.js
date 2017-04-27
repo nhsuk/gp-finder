@@ -1,8 +1,6 @@
 function getBookOnlineLink(gpData) {
-  if (gpData.bookingSystem && gpData.bookingSystem.bookOnlineLink) {
-    return gpData.bookingSystem.bookOnlineLink;
-  }
-  return undefined;
+  return (gpData.onlineServices && gpData.onlineServices.appointments)
+    ? gpData.onlineServices.appointments.url : undefined;
 }
 
 module.exports = getBookOnlineLink;
