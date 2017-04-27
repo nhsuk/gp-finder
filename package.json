@@ -8,6 +8,7 @@
     "lint": "eslint --ext .js,.json .",
     "test": "NODE_ENV=test mocha --recursive test",
     "build-css": "./css-build",
+    "build-js": "webpack public/src/main.js -d public/dist/main.js",
     "istanbul": "NODE_ENV=test istanbul",
     "generate-coverage": "yarn run istanbul -- cover _mocha -- --recursive",
     "check-coverage": "istanbul check-coverage --config .istanbul.yml",
@@ -43,9 +44,12 @@
     "verror": "^1.3.6"
   },
   "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "coveralls": "^2.12.0",
+    "css-loader": "^0.28.0",
     "eslint": "^3.2.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
@@ -56,6 +60,8 @@
     "eslint-watch": "^2.1.11",
     "istanbul": "^0.4.3",
     "mocha": "^3.0.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.4.1"
   }
 }
