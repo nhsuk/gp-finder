@@ -26,20 +26,7 @@
 
     <a href="{{ SITE_ROOT }}" class="link-back">Back</a>
     <h1 class="sr-only" data-results="{{gps.length}}">Search results</h1>
-    <h2 class="results__header">GP {% if gps.length === 1 %}surgery{% else %}surgeries{%endif %} matching '{{ search }}' </h2>
-    <p>If you can't see your surgery, check that you're using the right name and try searching again.</p>
-    <div class="grid-row">
-      <ol class="results">
-        {% for gp in gps %}
-          <li class="results__item results__item--nearby" data-index="{{loop.index}}">
-            <div class="results__details results__details--nearby column--two-thirds">
-                {% include "includes/result-item.nunjucks" %}
-            </div>
-            <!--[if IE]><div style="clear: both;" class="clear-both"></div><![endif]-->
-          </li>
-        {% endfor %}
-      </ol>
-    </div>
+    {% include "includes/results-list.nunjucks" %}
   {% endif %}
   {% if gps.length != 0 %}
   <p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>
