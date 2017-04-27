@@ -5,21 +5,21 @@ const expect = chai.expect;
 
 describe('GP Surgery Data Mapper', () => {
   describe('booking url', () => {
-    it('for a GP Surgery that has POMI data and a url will return the url', () => {
-      const gpData = { bookingSystem: { supplier: 'EMIS', bookOnlineLink: 'http://example.com' } };
+    it('for a GP Surgery that has appointments POMI data and a url will return the url', () => {
+      const gpData = { onlineServices: { appointments: { supplier: 'EMIS', url: 'http://example.com' } } };
       const result = gpDataMapper.getBookOnlineLink(gpData);
 
       expect(result).to.be.equal('http://example.com');
     });
 
-    it('for a GP Surgery that has POMI data but no url will return undefined', () => {
-      const gpData = { bookingSystem: { supplier: 'EMIS (I)' } };
+    it('for a GP Surgery that has no appointments POMI data will return undefined', () => {
+      const gpData = { onlineServices: { repeatPrescription: {} } };
       const result = gpDataMapper.getBookOnlineLink(gpData);
 
       expect(result).to.be.equal(undefined);
     });
 
-    it('for a GP Surgery that has no POMI data will return undefined', () => {
+    it('for a GP Surgery that has no online services  data will return undefined', () => {
       const gpData = {};
       const result = gpDataMapper.getBookOnlineLink(gpData);
 
