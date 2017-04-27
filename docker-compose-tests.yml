@@ -35,11 +35,7 @@ services:
       - gp-finder-db:mongo
 
   gp-finder-db:
-<<<<<<< HEAD
-    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.8.0}"
-=======
     image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-pr-37}"
->>>>>>> 09f6439... :hospital: initial doctor lookup
 
 volumes:
   gp-finder-tests-node_modules:
