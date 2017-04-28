@@ -4,19 +4,19 @@
   "description": "Web app to find your GP",
   "main": "server.js",
   "scripts": {
-    "start": "node app.js",
-    "lint": "eslint --ext .js,.json .",
-    "test": "NODE_ENV=test mocha --recursive test",
     "build-css": "./css-build",
-    "istanbul": "NODE_ENV=test istanbul",
-    "generate-coverage": "yarn run istanbul -- cover _mocha -- --recursive",
     "check-coverage": "istanbul check-coverage --config .istanbul.yml",
+    "generate-coverage": "yarn run istanbul -- cover _mocha -- --recursive",
+    "git-hook": "yarn run lint && yarn run generate-coverage && yarn run check-coverage && yarn run snyk -- test",
+    "istanbul": "NODE_ENV=test istanbul",
+    "lint": "eslint --ext .js,.json .",
+    "start": "node app.js",
+    "test": "NODE_ENV=test mocha --recursive test",
+    "travis": "yarn run git-hook && yarn run upload-coverage && yarn run snyk -- test --org=nhsuk && yarn run snyk -- monitor --org=nhsuk",
     "upload-coverage": "cat ./coverage/lcov.info | coveralls",
     "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan & nodemon -e scss -x yarn run build-css -- compact",
     "watch-lint": "esw --watch .",
-    "watch-test": "yarn run test -- --reporter min --watch",
-    "git-hook": "yarn run lint && yarn run generate-coverage && yarn run check-coverage && yarn run snyk -- test",
-    "travis": "yarn run git-hook && yarn run upload-coverage && yarn run snyk -- test --org=nhsuk && yarn run snyk -- monitor --org=nhsuk"
+    "watch-test": "yarn run test -- --reporter min --watch"
   },
   "repository": {
     "type": "git",
