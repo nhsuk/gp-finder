@@ -11,11 +11,12 @@
     "istanbul": "NODE_ENV=test istanbul",
     "generate-coverage": "yarn run istanbul -- cover _mocha -- --recursive",
     "check-coverage": "istanbul check-coverage --config .istanbul.yml",
-    "upload-coverage-coveralls": "cat ./coverage/lcov.info | coveralls",
+    "upload-coverage": "cat ./coverage/lcov.info | coveralls",
     "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan & nodemon -e scss -x yarn run build-css -- compact",
     "watch-lint": "esw --watch .",
     "watch-test": "yarn run test -- --reporter min --watch",
-    "git-hook": "yarn run lint && yarn run generate-coverage && yarn run check-coverage"
+    "git-hook": "yarn run lint && yarn run generate-coverage && yarn run check-coverage && yarn run snyk -- test",
+    "travis": "yarn run git-hook && yarn run upload-coverage && yarn run snyk -- test --org=nhsuk && yarn run snyk -- monitor --org=nhsuk"
   },
   "repository": {
     "type": "git",
@@ -56,6 +57,7 @@
     "eslint-watch": "^3.1.0",
     "istanbul": "^0.4.3",
     "mocha": "^3.3.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "snyk": "^1.29.0"
   }
 }

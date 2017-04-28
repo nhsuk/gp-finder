@@ -1,0 +1,112 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  'npm:brace-expansion:20170302':
+    - fstream-ignore > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.448Z'
+    - fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.448Z'
+    - fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.448Z'
+    - node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.449Z'
+    - node-pre-gyp > tar-pack > fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.449Z'
+    - node-pre-gyp > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.449Z'
+    - node-pre-gyp > tar-pack > fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.449Z'
+    - node-pre-gyp > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.449Z'
+    - node-pre-gyp > tar-pack > fstream-ignore > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.450Z'
+    - node-pre-gyp > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.450Z'
+    - node-pre-gyp > tar-pack > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.450Z'
+    - node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.450Z'
+    - node-pre-gyp > tar-pack > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.450Z'
+    - node-sass > node-gyp > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.450Z'
+    - node-sass > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.450Z'
+    - node-sass > gaze > globule > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.451Z'
+    - node-sass > node-gyp > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.451Z'
+    - node-sass > node-gyp > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.451Z'
+    - node-sass > gaze > globule > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.451Z'
+    - node-sass > node-gyp > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.451Z'
+    - node-sass > node-gyp > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.451Z'
+    - node-sass > node-gyp > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.452Z'
+    - node-sass > sass-graph > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.452Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.452Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.452Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.453Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.453Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.453Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.453Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.454Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.456Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.456Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > fstream-ignore > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.457Z'
+    - nunjucks > chokidar > readdirp > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-05-28T11:16:16.457Z'
+  'npm:qs:20170213':
+    - nunjucks > chokidar > fsevents > node-pre-gyp > request > qs:
+        reason: None given
+        expires: '2017-05-28T11:16:16.457Z'
+patch: {}
