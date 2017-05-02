@@ -35,7 +35,7 @@
 
 <script src="{{ SITE_ROOT }}/js/rx.lite.compat.min.js" type="text/javascript"></script>
 <script src="{{ SITE_ROOT }}/js/rx.dom.compat.min.js" type="text/javascript"></script>
-<script src="{{ SITE_ROOT }}/js/search-form.js" type="text/javascript"></script>
+<script src="{{ SITE_ROOT }}/js/dist/search-form.js" type="text/javascript"></script>
 
 <script type='text/javascript'>
   enableSPA('{{SITE_ROOT}}');
