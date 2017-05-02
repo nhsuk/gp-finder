@@ -14,7 +14,7 @@
     "test": "NODE_ENV=test mocha --recursive test",
     "travis": "yarn run git-hook && yarn run upload-coverage && yarn run snyk -- test --org=nhsuk && yarn run snyk -- monitor --org=nhsuk",
     "upload-coverage": "cat ./coverage/lcov.info | coveralls",
-    "watch-dev": "nodemon app.js | ./node_modules/.bin/bunyan & nodemon -e scss -x yarn run build-css -- compact",
+    "watch-dev": "nodemon app.js | ./node_modules/bunyan/bin/bunyan & nodemon -e scss -x yarn run build-css -- compact",
     "watch-lint": "esw --watch .",
     "watch-test": "yarn run test -- --reporter min --watch"
   },
