@@ -6,7 +6,7 @@ services:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: sh -c "yarn run git-hook && yarn run watch-test"
+    command: yarn run watch-test
     volumes:
       - gp-finder-tests-node_modules:/code/node_modules
     environment:
@@ -19,8 +19,7 @@ services:
     extends:
       file: docker-compose.yml
       service: base-app
-    command:
-      sh -c "yarn run git-hook && yarn run upload-coverage-coveralls"
+    command: yarn run travis
     volumes:
       - gp-finder-travis-tests-node_modules:/code/node_modules
     environment:
