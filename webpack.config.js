@@ -1,21 +1,25 @@
 // webpack.config.js
-// Configure CSS processing & injection
 var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  entry: './public/src/main.js',
+  context: path.resolve(__dirname, './public/src'),
+  entry: {
+    app: ['./vendor.js', './events.js', './main.js' ],
+  },
   output: {
-    // Webpack prefers an absolute path:
     path: path.resolve(__dirname, './public/dist'),
-    filename: 'bundle.js'
+    filename: '[name].bundle.js',
   },
   module: {
     rules: [
       {
-        // Uses regex to test for a file type - in this case, ends with `.css`
-        test: /\.css$/,
-        // Apply these loaders if test returns true
+        test: /\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ]
       },
       {
         test: /\.js$/,

@@ -1,1 +1,1 @@
-require('./search-form');
+require('./search-form.js');
