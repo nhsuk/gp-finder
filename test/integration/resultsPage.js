@@ -37,13 +37,12 @@ describe('Results page', () => {
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`Select your surgery`);
+        expect(resultsHeader).to.contain('Select your surgery');
         done();
       });
     });
 
     describe('matching surgeries found', () => {
-
       describe('multiple matches', () => {
         it('should have more than one result', (done) => {
           const search = 'Surgery';
@@ -55,7 +54,6 @@ describe('Results page', () => {
             done();
           });
         });
-
       });
     });
 
