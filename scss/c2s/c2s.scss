@@ -12,6 +12,11 @@ html {
   background-color:$blue;
 }
 
+.highlight {
+  background-color:$hiviz;
+  padding: 0 4px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

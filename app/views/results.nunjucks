@@ -26,7 +26,7 @@
 
     <a href="{{ SITE_ROOT }}" class="link-back">Back</a>
     <h1 class="sr-only" data-results="{{gps.length}}">Search results</h1>
-    <h2 class="results__header">GP {% if gps.length === 1 %}surgery{% else %}surgeries{%endif %} matching '{{ search }}' </h2>
+    <h2 class="results__header">GP {% if gps.length === 1 %}surgery{% else %}surgeries{%endif %} matching '<span class="search-term">{{ search }}</span>' </h2>
     <p>If you can't see your surgery, check that you're using the right name and try searching again.</p>
     <div class="grid-row">
       <ol class="results">
