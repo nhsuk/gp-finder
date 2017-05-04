@@ -5,11 +5,16 @@
 */
 $hiviz: #fada8b;
 $blue: #005eb8;
+$dc-blue: #006bbd;
 $grey: #d9dde0;
 $red: #da291c;
 
 html {
   background-color:$blue;
+}
+
+.highlight {
+  background-color:$hiviz;
 }
 
 .sr-only {
@@ -271,6 +276,21 @@ form {
           clear: both;
           content: "";
           display: block;
+        }
+        .results__details {
+          p, ul {
+            margin-top:0;
+          }
+          ul {
+            margin-left:8px;
+            border-left:4px solid $dc-blue;
+            li {
+              list-style: none;
+              &:first-child{
+                margin-top:8px;
+              }
+            }
+          }
         }
       }
       &__header {
