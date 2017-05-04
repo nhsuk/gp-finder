@@ -32,7 +32,7 @@
       <ol class="results">
         {% for gp in gps %}
           <li class="results__item results__item--nearby" data-index="{{loop.index}}">
-            <div class="results__details results__details--nearby column--two-thirds">
+            <div class="results__details results__details--nearby">
                 {% include "includes/result-item.nunjucks" %}
             </div>
             <!--[if IE]><div style="clear: both;" class="clear-both"></div><![endif]-->
