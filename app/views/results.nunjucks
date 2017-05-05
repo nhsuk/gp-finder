@@ -25,7 +25,7 @@
   {% else %}
     <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{ search }}">Search results</h1>
     <h2 class="results__header">Select your surgery</h2>
-    <p>If you can't see your surgery, check that you're using the right name and try searching again.</p>
+    <p>If you can't see your surgery, check that you're using the right name and try <a href="../">searching again</a>.</p>
     <div class="grid-row">
       <ol class="results">
         {% for gp in gps %}
