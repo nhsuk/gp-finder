@@ -1,5 +1,5 @@
 function emptySearchMessage() {
-  return 'You need to enter your surgery name.';
+  return 'Search using the name of your surgery or GP.';
 }
 
 function technicalProblems() {
