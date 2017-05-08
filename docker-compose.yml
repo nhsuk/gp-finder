@@ -22,14 +22,14 @@ services:
     extends:
       service: base-app
     links:
-      - gp-finder-db:mongo
+      - gp-finder-db:es
     ports:
       - 3000:3000
     volumes:
       - gp-finder-node_modules:/code/node_modules
 
   gp-finder-db:
-    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.8.0}"
+    image: "nhsuk/profiles-db-elastic:${profiles_db_elastic_docker_image_tag-pr-3}"
 
 volumes:
   gp-finder-node_modules:

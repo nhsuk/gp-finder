@@ -13,7 +13,7 @@ services:
       NODE_ENV: test
     user: root
     links:
-      - gp-finder-db:mongo
+      - gp-finder-db:es
 
   travis-tests:
     extends:
@@ -32,10 +32,10 @@ services:
       TRAVIS_JOB_ID: ${TRAVIS_JOB_ID}
     user: root
     links:
-      - gp-finder-db:mongo
+      - gp-finder-db:es
 
   gp-finder-db:
-    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.8.0}"
+    image: "nhsuk/profiles-db-elastic:${profiles_db_elastic_docker_image_tag-pr-3}"
 
 volumes:
   gp-finder-tests-node_modules:
