@@ -31,52 +31,18 @@ describe('Results page', () => {
       });
     });
 
-    it('should contain a back link', (done) => {
-      const search = 'Surgery';
-
-      assertSearchResponse(search, (err, res) => {
-        const $ = cheerio.load(res.text);
-        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
-        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
-        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
-        done();
-      });
-    });
-
-    it('should contain a a header with the search string', (done) => {
+    it('should contain a a header with the string', (done) => {
       const search = 'Surgery';
 
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
+        expect(resultsHeader).to.contain('Which is your surgery?');
         done();
       });
     });
 
     describe('matching surgeries found', () => {
-      describe('single match', () => {
-        const search = 'Idle';
-
-        it('should have only one result', (done) => {
-          assertSearchResponse(search, (err, res) => {
-            const $ = cheerio.load(res.text);
-            const searchResults = $('.results__item--nearby');
-            expect(searchResults.length).to.equal(1);
-            done();
-          });
-        });
-
-        it('should display singular message text', (done) => {
-          assertSearchResponse(search, (err, res) => {
-            const $ = cheerio.load(res.text);
-            const resultsHeader = $('.results__header').text();
-            expect(resultsHeader).to.contain(`GP surgery matching '${search}'`);
-            done();
-          });
-        });
-      });
-
       describe('multiple matches', () => {
         it('should have more than one result', (done) => {
           const search = 'Surgery';
@@ -85,17 +51,6 @@ describe('Results page', () => {
             const $ = cheerio.load(res.text);
             const searchResults = $('.results__item--nearby');
             expect(searchResults.length).to.equal(30);
-            done();
-          });
-        });
-
-        it('should display plural message text', (done) => {
-          const search = 'Surgery';
-
-          assertSearchResponse(search, (err, res) => {
-            const $ = cheerio.load(res.text);
-            const resultsHeader = $('.results__header').text();
-            expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
             done();
           });
         });
