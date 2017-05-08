@@ -1,5 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
+const messages = require('../lib/messages');
 const gpDataMapper = require('../lib/utils/gpDataMapper');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
@@ -20,9 +21,15 @@ function mapResults(db, res, documents, searchTerm) {
   // eslint-disable-next-line no-param-reassign
   res.locals.gps = documents.map((gp) => {
     // eslint-disable-next-line no-param-reassign
-    gp.bookOnlineLink = gpDataMapper(gp);
+    gp.bookOnlineLink = gpDataMapper.getBookOnlineLink(gp);
+    // eslint-disable-next-line no-param-reassign
+    gp.filterGps = gpDataMapper.getFilteredGps(gp, searchTerm);
     return gp;
   });
+  if (res.locals.gps === 0) {
+    // eslint-disable-next-line no-param-reassign
+    res.locals.errorMessage = messages.noGpsFoundMessage();
+  }
 
   return db;
 }
