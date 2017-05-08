@@ -7,7 +7,7 @@ describe('messages', () => {
   it('should have an error message for when nothing has been entered to search with', () => {
     const message = messages.emptySearchMessage();
 
-    expect(message).to.equal('You need to enter your surgery name.');
+    expect(message).to.equal('Search using the name of your surgery or GP.');
   });
 
   it('should have an error message for technical problems', () => {

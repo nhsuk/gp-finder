@@ -37,7 +37,7 @@
     "helmet": "^3.4.0",
     "mongodb": "^2.2.24",
     "nhsuk-bunyan-logger": "^1.2.3",
-    "node-sass": "^4.5.0",
+    "node-sass": "^4.5.2",
     "normalize.css": "^6.0.0",
     "nunjucks": "^3.0.0",
     "require-environment-variables": "^1.1.2",
