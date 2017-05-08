@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+
+  gp-finder-frontend:
+    image: "nhsuk/gp-finder:$DOCKER_IMAGE_TAG"
+    environment:
+      NODE_ENV: production
+      HOTJAR_ANALYTICS_TRACKING_ID: $HOTJAR_ID
+      GOOGLE_ANALYTICS_TRACKING_ID: $GOOGLE_ID
+      WEBTRENDS_ANALYTICS_TRACKING_ID: $WEBTRENDS_ID
+    labels:
+      traefik.enable: stack
+      traefik.domain: $TRAEFIK_DOMAIN
+      traefik.port: 3000
+      io.rancher.container.pull_image: always
+      io.rancher.scheduler.affinity:host_label_soft: c2s=true

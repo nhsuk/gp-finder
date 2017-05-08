@@ -14,9 +14,7 @@ before_install:
   - pip install docker-compose
 
 after_success:
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - ./scripts/ci-deployment/docker_ci.sh
-  - ./scripts/ci-deployment/rancher_pr_deploy.sh
+  - bash ./scripts/ci-deployment/deploy.sh
 
 script:
   - ./scripts/travis-test
