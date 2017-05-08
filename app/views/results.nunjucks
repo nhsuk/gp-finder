@@ -24,9 +24,19 @@
 
   {% else %}
     <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{ search }}">Search results</h1>
-    <h2 class="results__header">Which is your surgery?</h2>
-    <p>We found these surgeries using '{{search}}'. If your surgery isn't here, check the name and <a href="../">search again</a>.
-     You can also search using your GP's name.</p>
+    {% if gps.length === 1 %}
+      <h2 class="results__header">Is this your surgery?</h2>
+    {% else %}
+      <h2 class="results__header">Which is your surgery?</h2>
+    {% endif %}
+    <p>We found
+    {% if gps.length === 1 %}
+      this surgery
+    {% else %}
+      these surgeries
+    {% endif %}
+    using '{{search}}'. If your surgery isn't here, check the name and <a href="../">search again</a>.
+    You can also search using your GP's name.</p>
     <div class="grid-row">
       <ol class="results">
         {% for gp in gps %}
