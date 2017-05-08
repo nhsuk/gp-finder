@@ -37,7 +37,7 @@ describe('Results page', () => {
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain('Select your surgery');
+        expect(resultsHeader).to.contain('Which is your surgery?');
         done();
       });
     });
