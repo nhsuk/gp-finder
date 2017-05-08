@@ -22,7 +22,7 @@ services:
     extends:
       service: base-app
     links:
-      - gp-finder-db:mongo
+      - gp-finder-db:es
     ports:
       - 3000:3000
     volumes:
