@@ -5,8 +5,13 @@ function getBookOnlineLink(gpData) {
 
 function getFilteredGps(gpData, searchStr) {
   if (gpData.doctors) {
-    const regexp = new RegExp(searchStr, 'i');
-    return gpData.doctors.filter(doctor => regexp.test(doctor));
+    let filteredDocs = [];
+    const searchArr = searchStr.split(' ');
+    searchArr.forEach((searchSubStr) => {
+      const regexp = new RegExp(searchSubStr, 'i');
+      filteredDocs = filteredDocs.concat(gpData.doctors.filter(doctor => regexp.test(doctor)));
+    });
+    return [...new Set(filteredDocs)];
   }
   return undefined;
 }
