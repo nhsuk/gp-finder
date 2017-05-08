@@ -52,5 +52,13 @@ describe('GP Surgery Data Mapper', () => {
 
       expect(result).to.be.eql(['Dr. A Farooq', 'Dr. B Farooq']);
     });
+
+    it('for a GP Surgery that has doctors with the some of the name matching the search will return those doctors', () => {
+      const gpData = { doctors: ['Dr. Elizabeth Beech', 'Dr. Elizabeth Ash', 'Dr. Elizabeth', 'Dr. B Beech'] };
+      const searchStr = 'Elizabeth Beech';
+      const result = gpDataMapper.getFilteredGps(gpData, searchStr);
+
+      expect(result).to.be.eql(['Dr. Elizabeth Beech', 'Dr. Elizabeth Ash', 'Dr. Elizabeth', 'Dr. B Beech']);
+    });
   });
 });
