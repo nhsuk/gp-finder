@@ -1,8 +1,11 @@
 jQuery(function($) {
   $(document).ready(function () {
     if ($('h1.sr-only').data('term')){
-      var terms = $('h1.sr-only').data('term').split(/\W+/);
-      terms.push($('h1.sr-only').data('term'));
+      var searchTerm = $('h1.sr-only').data('term');
+      var terms = searchTerm.split(/\W+/);
+      if ($.inArray( searchTerm, terms ) === -1){
+        terms.push(searchTerm);
+      }
       $('.results__item').each(function(){
         var src_str = $(this).html();
         var results_item = $(this)
