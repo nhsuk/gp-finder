@@ -237,11 +237,20 @@ describe('Results page', () => {
         done();
       });
     });
+    it('of `dr Smith` should rank `Dr Smith & Partners` in the first 3 results', (done) => {
+      const search = 'dr Smith';
+      const expected = 'Dr Smith & Partners';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
   });
   describe('Surgeries with the specific doctor query', () => {
-    it('of `dr Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
+    it('of `dr Smith` should rank `Dr Brian Smith` in the first 3 results', (done) => {
       const search = 'dr Smith';
-      const expected = 'Dr Andrew Smith';
+      const expected = 'Dr Brian Smith';
 
       assertSearchResponse(search, (err, res) => {
         searchDoctorRanking(res, expected);
