@@ -219,20 +219,38 @@ describe('Results page', () => {
         done();
       });
     });
+    it('of `Miller` should rank `Miller Street Surgery` in the first 3 results', (done) => {
+      const search = 'Miller';
+      const expected = 'Miller Street Surgery';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Smith` should rank `Smith & Partners` in the first 3 results', (done) => {
+      const search = 'Smith';
+      const expected = 'Smith & Partners';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
   });
   describe('Surgeries with the specific doctor query', () => {
-    it('of `dr Smith` should rank `Dr Lindsay Smith` in the first 3 results', (done) => {
+    it('of `dr Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
       const search = 'dr Smith';
-      const expected = 'Dr Lindsay Smith';
+      const expected = 'Dr Andrew Smith';
 
       assertSearchResponse(search, (err, res) => {
         searchDoctorRanking(res, expected);
         done();
       });
     });
-    it('of `doctor Smith` should rank `Dr Lindsay Smith` in the first 3 results', (done) => {
+    it('of `doctor Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
       const search = 'doctor Smith';
-      const expected = 'Dr Lindsay Smith';
+      const expected = 'Dr Andrew Smith';
 
       assertSearchResponse(search, (err, res) => {
         searchDoctorRanking(res, expected);
@@ -257,8 +275,8 @@ describe('Results page', () => {
         done();
       });
     });
-    it('of `Miller` should rank `Dr Louise Miller` in the first 3 results', (done) => {
-      const search = 'Miller';
+    it('of `Louise Miller` should rank `Dr Louise Miller` in the first 3 results', (done) => {
+      const search = 'Louise Miller';
       const expected = 'Dr Louise Miller';
 
       assertSearchResponse(search, (err, res) => {
