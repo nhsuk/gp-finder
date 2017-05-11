@@ -12,9 +12,8 @@ WORKDIR /code
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-COPY yarn.lock /code
-COPY package.json /code
-RUN if [ "$NODE_ENV" == "production" ]; then yarn install --production; else yarn install ; fi
+COPY yarn.lock package.json /code/
+RUN if [ "$NODE_ENV" == "production" ]; then yarn install --production --ignore-optional; else yarn install --ignore-optional; fi
 EXPOSE 3000
 
 COPY . /code
