@@ -13,10 +13,6 @@ html {
   background-color:$blue;
 }
 
-.highlight {
-  background-color:$hiviz;
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -290,6 +286,10 @@ form {
                 margin-top:8px;
               }
             }
+          }
+          em {
+            font-style: normal;
+            background-color:$hiviz;
           }
         }
       }
