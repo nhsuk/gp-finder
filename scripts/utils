@@ -1,0 +1,18 @@
+#!/bin/bash
+wait_for_es_to_start() {
+  count=1
+  max_count=5
+  wait_seconds=30
+
+  while ! wget -s -q http://es:9200 ; do
+    if [ $count -gt $max_count ];
+    then
+      break
+    fi
+
+    printf "Waiting %s seconds for ES to start..." "$wait_seconds"
+    printf "waited %s seconds in total\n" $((count * wait_seconds))
+    sleep $wait_seconds
+    let count++
+  done;
+}
