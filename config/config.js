@@ -1,8 +1,8 @@
 const path = require('path');
 
 const rootPath = path.normalize(`${__dirname}/..`);
-const host = 'mongo';
-const port = '27017';
+const host = process.env.MONGODB_HOST || 'mongo';
+const port = process.env.MONGODB_PORT || 27017;
 const db = 'profiles';
 
 module.exports = {
