@@ -1,4 +1,7 @@
 #!/bin/bash
-# wait for ES to start
-while ! wget -s http://es:9200; do sleep 30; done;
+# shellcheck disable=SC1091
+. ./scripts/utils
+
+wait_for_es_to_start
+
 yarn run watch-test
