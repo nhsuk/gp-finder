@@ -6,7 +6,7 @@ jQuery(function($) {
         // remove special characters
         searchTerm = searchTerm.replace(/[;]/g,' ');
         // Change Dr to Doctor
-        searchTerm = searchTerm.replace('doc','dr');
+        searchTerm = searchTerm.replace('dr','doctor');
 
     var terms = searchTerm.split(/\W+/);
 
