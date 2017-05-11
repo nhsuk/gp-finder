@@ -1,0 +1,4 @@
+#!/bin/bash
+# wait for ES to start
+while ! wget -s http://es:9200; do sleep 30; done;
+yarn run travis
