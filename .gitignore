@@ -11,3 +11,5 @@ npm-debug.log.*
 
 *.swp
 .idea/*
+
+index.html

@@ -6,7 +6,7 @@ services:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: yarn run watch-test
+    command: sh ./scripts/container-tests
     volumes:
       - gp-finder-tests-node_modules:/code/node_modules
     environment:
@@ -19,7 +19,7 @@ services:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: yarn run travis
+    command: sh ./scripts/container-travis-tests
     volumes:
       - gp-finder-travis-tests-node_modules:/code/node_modules
     environment:
