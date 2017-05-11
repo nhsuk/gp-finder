@@ -6,15 +6,15 @@
   {% endif %}
 </h3>
 {% if gp.address %}
-  <p>
+  <p class="results__address">
     {% if gp.address.addressLines %} {{ gp.address.addressLines | safe | replace(",", ", ") }}, {% endif %}
     {% if gp.address.postcode %} {{ gp.address.postcode }} {% endif %}
   </p>
 {% endif %}
 {% if gp.filterGps %}
   <ul>
-    {% for doctor in gp.filterGps %}
-      <li>{{ doctor | title }}</li>
+    {% for gp in gp.filterGps %}
+      <li class="results__gp">{{ gp | title }}</li>
     {% endfor %}
   </ul>
 {% endif %}
