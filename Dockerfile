@@ -1,5 +1,4 @@
 FROM node:7.9-alpine
-RUN apk add --no-cache git
 
 ENV USERNAME nodeuser
 
