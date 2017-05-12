@@ -5,14 +5,15 @@ jQuery(function($) {
         searchTerm = searchTerm.replace(/[".]/g,'');
         // remove special characters
         searchTerm = searchTerm.replace(/[;]/g,' ');
-        // Change Dr to Doctor
-        searchTerm = searchTerm.replace('dr','doctor');
+        // Change Doctor to Dr
+        searchTerm = searchTerm.replace('doctor','dr');
 
     var terms = searchTerm.split(/\W+/);
 
     for (var i = 0, len = terms.length; i < len-1; i++) {
       terms.push(terms[i]+' '+terms[i+1]);
     }
+
     if ($.inArray( searchTerm, terms ) === -1){
       terms.push(searchTerm);
     }
