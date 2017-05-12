@@ -3,8 +3,10 @@ wait_for_es_to_start() {
   count=1
   max_count=5
   wait_seconds=30
+  ES_HOST=${ES_HOST:-es}
+  ES_PORT=${ES_PORT:-9200}
 
-  while ! wget -s -q http://es:9200 ; do
+  while ! wget -s -q http://"$ES_HOST":"$ES_PORT" ; do
     if [ $count -gt $max_count ];
     then
       break
