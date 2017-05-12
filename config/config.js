@@ -10,7 +10,8 @@ module.exports = {
   root: rootPath,
   port: process.env.PORT || 3000,
   es: {
-    host: 'es:9200',
+    host: process.env.ES_HOST || 'es',
+    port: process.env.ES_PORT || '9200',
   },
   googleAnalyticsId: process.env.GOOGLE_ANALYTICS_TRACKING_ID,
   webtrendsId: process.env.WEBTRENDS_ANALYTICS_TRACKING_ID,

@@ -20,8 +20,11 @@ describe('config', () => {
   });
 
   describe('es', () => {
-    it('should return host and port', () => {
-      expect(config.es.host).to.be.equal('es:9200');
+    it('should return es as default host', () => {
+      expect(config.es.host).to.be.equal('es');
+    });
+    it('should return 9200 as default port', () => {
+      expect(config.es.port).to.be.equal('9200');
     });
   });
 });
