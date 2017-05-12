@@ -22,7 +22,7 @@ function mapResults(db, res, documents, searchTerm) {
     // eslint-disable-next-line no-param-reassign
     gp.bookOnlineLink = gpDataMapper.getBookOnlineLink(gp);
     // eslint-disable-next-line no-param-reassign
-    gp.filterGps = gpDataMapper.getFilteredGps(gp, searchTerm);
+    gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
     return gp;
   });
 

@@ -237,9 +237,9 @@ describe('Results page', () => {
         done();
       });
     });
-    it('of `dr Smith` should rank `Dr Smith & Partners` in the first 3 results', (done) => {
+    it('of `dr Smith` should rank `Smith & Partners` in the first 3 results', (done) => {
       const search = 'dr Smith';
-      const expected = 'Dr Smith & Partners';
+      const expected = 'Smith & Partners';
 
       assertSearchResponse(search, (err, res) => {
         searchNameRanking(res, expected);
@@ -248,9 +248,9 @@ describe('Results page', () => {
     });
   });
   describe('Surgeries with the specific doctor query', () => {
-    it('of `dr Smith` should rank `Dr Brian Smith` in the first 3 results', (done) => {
+    it('of `dr Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
       const search = 'dr Smith';
-      const expected = 'Dr Brian Smith';
+      const expected = 'Dr Andrew Smith';
 
       assertSearchResponse(search, (err, res) => {
         searchDoctorRanking(res, expected);
@@ -275,9 +275,9 @@ describe('Results page', () => {
         done();
       });
     });
-    it('of `Farooq` should rank `Dr. Babar Farooq` in the first 3 results', (done) => {
+    it('of `Farooq` should rank `Dr Babar Farooq` in the first 3 results', (done) => {
       const search = 'Farooq';
-      const expected = 'Dr. Babar Farooq';
+      const expected = 'Dr Babar Farooq';
 
       assertSearchResponse(search, (err, res) => {
         searchDoctorRanking(res, expected);
@@ -287,6 +287,24 @@ describe('Results page', () => {
     it('of `Louise Miller` should rank `Dr Louise Miller` in the first 3 results', (done) => {
       const search = 'Louise Miller';
       const expected = 'Dr Louise Miller';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Doctor Monisha Kurian` should rank `Dr Monisha Kurian` in the first 3 results', (done) => {
+      const search = 'Doctor Monisha Kurian';
+      const expected = 'Dr Monisha Kurian';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Dr Ramdeehul` should rank `Dr Amal Ramdeehul` in the first 3 results', (done) => {
+      const search = 'Dr Ramdeehul';
+      const expected = 'Dr Amal Ramdeehul';
 
       assertSearchResponse(search, (err, res) => {
         searchDoctorRanking(res, expected);
