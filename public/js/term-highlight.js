@@ -4,7 +4,7 @@ jQuery(function($) {
         // remove speach mark
         searchTerm = searchTerm.replace(/[".]/g,'');
         // remove special characters
-        searchTerm = searchTerm.replace(/[;]/g,' ');
+        searchTerm = searchTerm.replace(/[;]/g,'');
         // Change Doctor to Dr
         searchTerm = searchTerm.replace('doctor','dr');
 
@@ -19,15 +19,16 @@ jQuery(function($) {
     }
 
     terms.forEach(function(term, index){
-      $('.results').mark(term, {
-        "wildcards": "withSpaces",
-        "ignoreJoiners": true,
-        "acrossElements": true,
-        "separateWordSearch": false,
-        "element": "em",
-        "className": "highlight",
-        "accuracy": "exactly"
-      });
+      if(term.length >= 3) {
+        $('.results').mark(term, {
+          "wildcards": "withSpaces",
+          "ignoreJoiners": true,
+          "acrossElements": true,
+          "separateWordSearch": false,
+          "element": "em",
+          "className": "highlight"
+        });
+      }
     });
   });
 });
