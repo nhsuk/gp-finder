@@ -1,9 +1,8 @@
 {% extends 'layout.nunjucks' %}
 
 {% block header %}
-<h1 class="local-header--title--question">Book a GP appointment online</h1>
+<h1 class="page-title">Book a GP appointment online</h1>
 {% endblock %}
-
 
 {% block meta %}
 {% if errorMessage %}
@@ -23,12 +22,14 @@
 </ul>
 <details class="not-registered" role="group">
   <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
-    <span class="details__summary">If you haven't registered for online services</span>
+    <span class="details__summary">How to sign up for online services</span>
   </summary>
 
   <div id="details-content-0" aria-hidden="true" class="callout callout--info callout--friendly">
     <div class="reading-width">
-      <p>Ask your surgery for an online services registration form. After you fill in the form, the surgery will send you a username and password.</p>
+      <p>Ask your surgery for a form to join online services. You might have to provide photo identification and proof
+        of address. After you fill in the form the surgery will send you the information you need to sign in.
+      </p>
     </div>
   </div>
 </details>

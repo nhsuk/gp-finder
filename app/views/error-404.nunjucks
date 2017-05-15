@@ -5,7 +5,11 @@
 {% block pageTitle %} {{ message }} {% endblock %}
 
 {% block header %}
-  <h1 class="local-header--title--question">{{ message }}</h1>
+<div>
+  <div class="local-header--question">
+    <h1 class="local-header--title--question">{{ message }}</h1>
+  </div>
+</div>
 {% endblock %}
 
 {% block content %}
