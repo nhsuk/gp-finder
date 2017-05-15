@@ -25,8 +25,6 @@ services:
     environment:
       COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
       NODE_ENV: development
-      ES_HOST: ${ES_HOST}
-      ES_PORT: ${ES_PORT}
       SNYK_TOKEN: ${SNYK_TOKEN}
       TRAVIS: ${TRAVIS}
       TRAVIS_BRANCH: ${TRAVIS_BRANCH}
@@ -37,7 +35,7 @@ services:
       - gp-finder-db:es
 
   gp-finder-db:
-    image: "nhsuk/profiles-db-elastic:${profiles_db_elastic_docker_image_tag-pr-3}"
+    image: "nhsuk/profiles-db-elastic:${profiles_db_elastic_docker_image_tag-pr-6}"
 
 volumes:
   gp-finder-tests-node_modules:
