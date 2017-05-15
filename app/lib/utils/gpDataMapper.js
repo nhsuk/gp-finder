@@ -5,13 +5,14 @@ function getBookOnlineLink(gpData) {
 
 function getFilteredGps(gpData, searchStr) {
   if (gpData.doctors) {
+    let filteredSearchStr = searchStr;
     let filteredDocs = [];
-    const searchArr = searchStr.split(' ');
+    if (searchStr.match(/^DOCTOR|Doctor|doctor|DR|Dr.|Dr|dr.|dr/)) {
+      filteredSearchStr = searchStr.replace(/^\S+ /g, '');
+    }
+    const searchArr = filteredSearchStr.split(' ');
     searchArr.forEach((searchSubStr) => {
       const regexp = new RegExp(searchSubStr, 'i');
-      if (regexp.test('dr') || regexp.test('dr.') || regexp.test('doctor')) {
-        return; // stop processing this iteration
-      }
       filteredDocs = filteredDocs.concat(gpData.doctors.filter(doctor => regexp.test(doctor)));
     });
     return [...new Set(filteredDocs)];
@@ -22,7 +23,7 @@ function getFilteredGps(gpData, searchStr) {
 function mappedTitleForGps(doctors) {
   const mappedTitleGps = [];
   const regexpDrAll = new RegExp(/^(Other|DOCTOR|Doctor|DR|Dr.|Dt|dr|GP|Dr (Mrs)|Miss|Mr|Mr.|Mra|Mrs|Ms|Senior Partner|Dr)/, 'i');
-  const regexpProfAll = new RegExp(/^(Pro|Prof|Professor|Proffessor|Prof)/, 'i');
+  const regexpProfAll = new RegExp(/^(Pro|Prof|Prof.|Professor|Proffessor)/, 'i');
   doctors.forEach((doctor) => {
     let formattedDoctor = '';
     switch (doctor) {
