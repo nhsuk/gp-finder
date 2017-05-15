@@ -12,6 +12,8 @@ services:
       - .:/code
     environment:
       NODE_ENV: ${NODE_ENV-development}
+      ES_HOST: ${ES_HOST}
+      ES_PORT: ${ES_PORT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT-https://splunk-collector.cloudapp.net:8088}
       WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID-WT1}
