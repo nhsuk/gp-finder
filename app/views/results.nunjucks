@@ -12,23 +12,26 @@
 {% endblock %}
 
 {% block header %}
-{% if gps.length === 0 %}
-<h1 class="local-header--title--question">Book a GP appointment online</h1>
-{% endif %}
+
+<h1 class="page-title">
+  {% if gps.length === 0 %}
+    Book a GP appointment online
+  {% else %}
+    <span class="sr-only">Search results.<br /></span>
+    {% if gps.length === 1 %}
+      Is this your surgery?
+    {% else %}
+      Which is your surgery?
+    {% endif %}
+  {% endif %}
+</h1>
 {% endblock %}
 
 {% block content %}
 <div class="reading-width">
   {% if gps.length === 0 %}
     {% include "includes/search-form.nunjucks" %}
-
   {% else %}
-    <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{ search }}">Search results</h1>
-    {% if gps.length === 1 %}
-      <h2 class="results__header">Is this your surgery?</h2>
-    {% else %}
-      <h2 class="results__header">Which is your surgery?</h2>
-    {% endif %}
     <p>We found
     {% if gps.length === 1 %}
       this surgery
