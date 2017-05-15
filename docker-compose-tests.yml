@@ -25,8 +25,6 @@ services:
     environment:
       COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
       NODE_ENV: development
-      ES_HOST: ${ES_HOST}
-      ES_PORT: ${ES_PORT}
       SNYK_TOKEN: ${SNYK_TOKEN}
       TRAVIS: ${TRAVIS}
       TRAVIS_BRANCH: ${TRAVIS_BRANCH}
