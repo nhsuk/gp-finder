@@ -311,6 +311,15 @@ describe('Results page', () => {
         done();
       });
     });
+    it('of `Yule-Smith` should rank `Dr Annabel Louise Yule-Smith` in the first 3 results', (done) => {
+      const search = 'Yule-Smith';
+      const expected = 'Dr Annabel Louise Yule-smith';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
   });
   describe('Surgeries with the specific surgery query that exist in the address', () => {
     it('with `Ireland Wood` should rank `Ireland Wood Surgery` in the first 3 results', (done) => {
