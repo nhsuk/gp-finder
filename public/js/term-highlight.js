@@ -8,7 +8,7 @@ jQuery(function($) {
         // Change Doctor to Dr
         searchTerm = searchTerm.replace('doctor','dr');
 
-    var terms = searchTerm.split(/\W+/);
+    var terms = searchTerm.split(' ');
 
     for (var i = 0, len = terms.length; i < len-1; i++) {
       terms.push(terms[i]+' '+terms[i+1]);
@@ -19,6 +19,7 @@ jQuery(function($) {
     }
 
     terms.forEach(function(term, index){
+      console.log(term);
       if(term.length >= 3) {
         $('.results').mark(term, {
           "wildcards": "withSpaces",
