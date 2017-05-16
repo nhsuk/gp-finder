@@ -7,7 +7,7 @@ function getFilteredGps(gpData, searchStr) {
   if (gpData.doctors) {
     let filteredSearchStr = searchStr;
     let filteredDocs = [];
-    if (searchStr.match(/^DOCTOR|Doctor|doctor|DR|Dr.|Dr|dr.|dr/)) {
+    if (searchStr.match(new RegExp(/^(doctor|dr.|dr)/, 'i'))) {
       filteredSearchStr = searchStr.replace(/^\S+ /g, '');
     }
     const searchArr = filteredSearchStr.split(' ');

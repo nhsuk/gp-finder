@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
 const gpDataMapper = require('../lib/utils/gpDataMapper');
+const resultsFormat = require('../lib/utils/resultsHeaderFormater');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
 
@@ -25,6 +26,8 @@ function mapResults(db, res, documents, searchTerm) {
     gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
     return gp;
   });
+  res.locals.resultsHeader = resultsFormat.pluraliseSurgeryQuestion(res.locals.gps.length);
+  res.locals.resultsSubHeader = resultsFormat.pluraliseSurgery(res.locals.gps.length, searchTerm);
 
   return db;
 }
