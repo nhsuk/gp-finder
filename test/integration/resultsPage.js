@@ -18,6 +18,51 @@ function assertSearchResponse(search, assertions) {
     .end(assertions);
 }
 
+function searchNameRanking(res, expected) {
+  const $ = cheerio.load(res.text);
+  const searchResultArr = [];
+  const searchResultBase = $('.results__item--nearby .results__details');
+  searchResultArr.push($('.results__name', searchResultBase.eq(0)).text().trim());
+  searchResultArr.push($('.results__name', searchResultBase.eq(1)).text().trim());
+  searchResultArr.push($('.results__name', searchResultBase.eq(2)).text().trim());
+
+  let highRank = false;
+  if (searchResultArr.indexOf(expected) > -1) {
+    highRank = true;
+  }
+  expect(highRank).to.equal(true);
+}
+
+function searchDoctorRanking(res, expected) {
+  const $ = cheerio.load(res.text);
+  const searchResultArr = [];
+  const searchResultBase = $('.results__item--nearby .results__details');
+  searchResultArr.push($('.results__gp', searchResultBase.eq(0)).text().trim());
+  searchResultArr.push($('.results__gp', searchResultBase.eq(1)).text().trim());
+  searchResultArr.push($('.results__gp', searchResultBase.eq(2)).text().trim());
+
+  let highRank = false;
+  if (searchResultArr.filter(searchResult => searchResult.includes(expected)).length !== 0) {
+    highRank = true;
+  }
+  expect(highRank).to.equal(true);
+}
+
+function searchAddressRanking(res, expected) {
+  const $ = cheerio.load(res.text);
+  const searchResultArr = [];
+  const searchResultBase = $('.results__item--nearby .results__details');
+  searchResultArr.push($('.results__address', searchResultBase.eq(0)).text().trim());
+  searchResultArr.push($('.results__address', searchResultBase.eq(1)).text().trim());
+  searchResultArr.push($('.results__address', searchResultBase.eq(2)).text().trim());
+
+  let highRank = false;
+  if (searchResultArr.filter(searchResult => searchResult.includes(expected)).length !== 0) {
+    highRank = true;
+  }
+  expect(highRank).to.equal(true);
+}
+
 describe('Results page', () => {
   const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
 
@@ -31,52 +76,18 @@ describe('Results page', () => {
       });
     });
 
-    it('should contain a back link', (done) => {
-      const search = 'Surgery';
-
-      assertSearchResponse(search, (err, res) => {
-        const $ = cheerio.load(res.text);
-        expect($('.link-back:first-of-type').eq(0).text()).to.equal('Back');
-        expect($('.link-back:first-of-type').eq(1).text()).to.equal('Back');
-        expect($('.link-back').attr('href')).to.equal(`${constants.SITE_ROOT}`);
-        done();
-      });
-    });
-
-    it('should contain a a header with the search string', (done) => {
+    it('should contain a header with the string', (done) => {
       const search = 'Surgery';
 
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         const resultsHeader = $('.results__header').text();
-        expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
+        expect(resultsHeader).to.contain('Which is your surgery?');
         done();
       });
     });
 
     describe('matching surgeries found', () => {
-      describe('single match', () => {
-        const search = 'Idle';
-
-        it('should have only one result', (done) => {
-          assertSearchResponse(search, (err, res) => {
-            const $ = cheerio.load(res.text);
-            const searchResults = $('.results__item--nearby');
-            expect(searchResults.length).to.equal(1);
-            done();
-          });
-        });
-
-        it('should display singular message text', (done) => {
-          assertSearchResponse(search, (err, res) => {
-            const $ = cheerio.load(res.text);
-            const resultsHeader = $('.results__header').text();
-            expect(resultsHeader).to.contain(`GP surgery matching '${search}'`);
-            done();
-          });
-        });
-      });
-
       describe('multiple matches', () => {
         it('should have more than one result', (done) => {
           const search = 'Surgery';
@@ -85,17 +96,6 @@ describe('Results page', () => {
             const $ = cheerio.load(res.text);
             const searchResults = $('.results__item--nearby');
             expect(searchResults.length).to.equal(30);
-            done();
-          });
-        });
-
-        it('should display plural message text', (done) => {
-          const search = 'Surgery';
-
-          assertSearchResponse(search, (err, res) => {
-            const $ = cheerio.load(res.text);
-            const resultsHeader = $('.results__header').text();
-            expect(resultsHeader).to.contain(`GP surgeries matching '${search}'`);
             done();
           });
         });
@@ -187,6 +187,157 @@ describe('Results page', () => {
           expect($('a[href^="tel:"]', searchResults).text()).to.equal('01282 772045');
           done();
         });
+      });
+    });
+  });
+
+  describe('Surgeries with the specific surgery query', () => {
+    it('of `park parade` should rank `Park Parade Surgery` in the first 3 results', (done) => {
+      const search = 'park parade';
+      const expected = 'Park Parade Surgery';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Street Lane` should rank `Street Lane Practice` in the first 3 results', (done) => {
+      const search = 'Street Lane';
+      const expected = 'Street Lane Practice';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Baker` should rank `Dr D Baker & Partner` in the first 3 results', (done) => {
+      const search = 'Baker';
+      const expected = 'Dr D Baker & Partner';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Miller` should rank `Miller Street Surgery` in the first 3 results', (done) => {
+      const search = 'Miller';
+      const expected = 'Miller Street Surgery';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Smith` should rank `Smith & Partners` in the first 3 results', (done) => {
+      const search = 'Smith';
+      const expected = 'Smith & Partners';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
+    it('of `dr Smith` should rank `Smith & Partners` in the first 3 results', (done) => {
+      const search = 'dr Smith';
+      const expected = 'Smith & Partners';
+
+      assertSearchResponse(search, (err, res) => {
+        searchNameRanking(res, expected);
+        done();
+      });
+    });
+  });
+  describe('Surgeries with the specific doctor query', () => {
+    it('of `dr Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
+      const search = 'dr Smith';
+      const expected = 'Dr Andrew Smith';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `doctor Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
+      const search = 'doctor Smith';
+      const expected = 'Dr Andrew Smith';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Baker` should rank `Dr David John Baker` in the first 3 results', (done) => {
+      const search = 'Baker';
+      const expected = 'Dr David John Baker';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Farooq` should rank `Dr Babar Farooq` in the first 3 results', (done) => {
+      const search = 'Farooq';
+      const expected = 'Dr Babar Farooq';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Louise Miller` should rank `Dr Louise Miller` in the first 3 results', (done) => {
+      const search = 'Louise Miller';
+      const expected = 'Dr Louise Miller';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Doctor Monisha Kurian` should rank `Dr Monisha Kurian` in the first 3 results', (done) => {
+      const search = 'Doctor Monisha Kurian';
+      const expected = 'Dr Monisha Kurian';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Dr Ramdeehul` should rank `Dr Amal Ramdeehul` in the first 3 results', (done) => {
+      const search = 'Dr Ramdeehul';
+      const expected = 'Dr Amal Ramdeehul';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+    it('of `Yule-Smith` should rank `Dr Annabel Louise Yule-Smith` in the first 3 results', (done) => {
+      const search = 'Yule-Smith';
+      const expected = 'Dr Annabel Louise Yule-smith';
+
+      assertSearchResponse(search, (err, res) => {
+        searchDoctorRanking(res, expected);
+        done();
+      });
+    });
+  });
+  describe('Surgeries with the specific surgery query that exist in the address', () => {
+    it('with `Ireland Wood` should rank `Ireland Wood Surgery` in the first 3 results', (done) => {
+      const search = 'Ireland Wood';
+      const expected = 'Ireland Wood Surgery';
+
+      assertSearchResponse(search, (err, res) => {
+        searchAddressRanking(res, expected);
+        done();
+      });
+    });
+    it('with `Idle` should rank `Idle Medical Centre` in the first 3 results', (done) => {
+      const search = 'Idle';
+      const expected = 'Idle Medical Centre';
+
+      assertSearchResponse(search, (err, res) => {
+        searchAddressRanking(res, expected);
+        done();
       });
     });
   });
