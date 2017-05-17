@@ -1,6 +1,7 @@
 const MongoClient = require('mongodb').MongoClient;
 const log = require('../lib/logger');
 const gpDataMapper = require('../lib/utils/gpDataMapper');
+const resultsFormat = require('../lib/utils/resultsHeaderFormater');
 const config = require('../../config/config').mongodb;
 const VError = require('verror').VError;
 
@@ -20,9 +21,13 @@ function mapResults(db, res, documents, searchTerm) {
   // eslint-disable-next-line no-param-reassign
   res.locals.gps = documents.map((gp) => {
     // eslint-disable-next-line no-param-reassign
-    gp.bookOnlineLink = gpDataMapper(gp);
+    gp.bookOnlineLink = gpDataMapper.getBookOnlineLink(gp);
+    // eslint-disable-next-line no-param-reassign
+    gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
     return gp;
   });
+  res.locals.resultsHeader = resultsFormat.pluraliseSurgeryQuestion(res.locals.gps.length);
+  res.locals.resultsSubHeader = resultsFormat.pluraliseSurgery(res.locals.gps.length, searchTerm);
 
   return db;
 }
