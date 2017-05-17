@@ -31,7 +31,7 @@ services:
       - gp-finder-node_modules:/code/node_modules
 
   gp-finder-db:
-    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.9.0}"
+    image: "nhsuk/profiles-db-elastic:${profiles_db_elastic_docker_image_tag-0.1.0}"
 
 volumes:
   gp-finder-node_modules:
