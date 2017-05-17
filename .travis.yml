@@ -7,11 +7,11 @@ node_js:
 services:
   - docker
 
+install:
+  - sudo sysctl -w vm.max_map_count=262144
+
 before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+  - pip install docker-compose
 
 after_success:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
@@ -19,8 +19,7 @@ after_success:
   - ./scripts/ci-deployment/rancher_pr_deploy.sh
 
 script:
-  - docker-compose -f docker-compose-tests.yml build travis-tests
-  - docker-compose -f docker-compose-tests.yml run travis-tests
+  - ./scripts/travis-test
 
 after_script:
   - docker-compose -f docker-compose-tests.yml down -v

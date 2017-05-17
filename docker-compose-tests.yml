@@ -6,20 +6,20 @@ services:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: yarn run watch-test
+    command: sh ./scripts/container-tests
     volumes:
       - gp-finder-tests-node_modules:/code/node_modules
     environment:
       NODE_ENV: test
     user: root
     links:
-      - gp-finder-db:mongo
+      - gp-finder-db:es
 
   travis-tests:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: yarn run travis
+    command: sh ./scripts/container-travis-tests
     volumes:
       - gp-finder-travis-tests-node_modules:/code/node_modules
     environment:
@@ -32,10 +32,10 @@ services:
       TRAVIS_JOB_ID: ${TRAVIS_JOB_ID}
     user: root
     links:
-      - gp-finder-db:mongo
+      - gp-finder-db:es
 
   gp-finder-db:
-    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.8.0}"
+    image: "nhsuk/profiles-db-elastic:${profiles_db_elastic_docker_image_tag-0.1.0}"
 
 volumes:
   gp-finder-tests-node_modules:

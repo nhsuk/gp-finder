@@ -1,0 +1,21 @@
+#!/bin/bash
+wait_for_es_to_start() {
+  count=1
+  max_count=5
+  wait_seconds=30
+  ES_HOST=${ES_HOST:-es}
+  ES_PORT=${ES_PORT:-9200}
+
+  echo "Waiting for a response from http://$ES_HOST:$ES_PORT"
+  while ! wget -s -q http://"$ES_HOST":"$ES_PORT" ; do
+    if [ $count -gt $max_count ];
+    then
+      break
+    fi
+
+    printf "Waiting %s seconds for ES to start..." "$wait_seconds"
+    printf "waited %s seconds in total\n" $((count * wait_seconds))
+    sleep $wait_seconds
+    let count++
+  done;
+}
