@@ -10,14 +10,14 @@ chai.use(chaiHttp);
 
 const resultsRoute = `${constants.SITE_ROOT}/results/`;
 
-function assertSearchResponse(search, assertions) {
+function makeSearchRequestAndCheckExpectations(search, assertions) {
   chai.request(app)
     .get(resultsRoute)
     .query({ search })
     .end(assertions);
 }
 
-function rankingInResults(res, className) {
+function rankTop3Results(res, className) {
   const $ = cheerio.load(res.text);
   const searchResults = [];
   for (let i = 0; i < 3; i++) {
@@ -26,8 +26,8 @@ function rankingInResults(res, className) {
   return searchResults;
 }
 
-function searchNameRanking(res, expected) {
-  const searchResults = rankingInResults(res, '.results__name');
+function expectHighRankForName(res, expected) {
+  const searchResults = rankTop3Results(res, '.results__name');
   let highRank = false;
   if (searchResults.indexOf(expected) > -1) {
     highRank = true;
@@ -35,8 +35,8 @@ function searchNameRanking(res, expected) {
   expect(highRank).to.equal(true);
 }
 
-function searchDoctorRanking(res, expected) {
-  const searchResults = rankingInResults(res, '.results__gp');
+function expectHighRankForDoctor(res, expected) {
+  const searchResults = rankTop3Results(res, '.results__gp');
   let highRank = false;
   if (searchResults.filter(searchResult => searchResult.includes(expected)).length !== 0) {
     highRank = true;
@@ -44,8 +44,8 @@ function searchDoctorRanking(res, expected) {
   expect(highRank).to.equal(true);
 }
 
-function searchAddressRanking(res, expected) {
-  const searchResults = rankingInResults(res, '.results__address');
+function expectHighRankForAddress(res, expected) {
+  const searchResults = rankTop3Results(res, '.results__address');
   let highRank = false;
   if (searchResults.filter(searchResult => searchResult.includes(expected)).length !== 0) {
     highRank = true;
@@ -53,14 +53,14 @@ function searchAddressRanking(res, expected) {
   expect(highRank).to.equal(true);
 }
 
-describe('Results page /w ranking', () => {
+describe('Results page with ranking', () => {
   describe('Surgeries with the specific surgery query', () => {
     it('of `park parade` should rank `Park Parade Surgery` in the first 3 results', (done) => {
       const search = 'park parade';
       const expected = 'Park Parade Surgery';
 
-      assertSearchResponse(search, (err, res) => {
-        searchNameRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForName(res, expected);
         done();
       });
     });
@@ -68,8 +68,8 @@ describe('Results page /w ranking', () => {
       const search = 'Street Lane';
       const expected = 'Street Lane Practice';
 
-      assertSearchResponse(search, (err, res) => {
-        searchNameRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForName(res, expected);
         done();
       });
     });
@@ -77,8 +77,8 @@ describe('Results page /w ranking', () => {
       const search = 'Baker';
       const expected = 'Dr D Baker & Partner';
 
-      assertSearchResponse(search, (err, res) => {
-        searchNameRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForName(res, expected);
         done();
       });
     });
@@ -86,8 +86,8 @@ describe('Results page /w ranking', () => {
       const search = 'Miller';
       const expected = 'Miller Street Surgery';
 
-      assertSearchResponse(search, (err, res) => {
-        searchNameRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForName(res, expected);
         done();
       });
     });
@@ -95,8 +95,8 @@ describe('Results page /w ranking', () => {
       const search = 'Smith';
       const expected = 'Smith & Partners';
 
-      assertSearchResponse(search, (err, res) => {
-        searchNameRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForName(res, expected);
         done();
       });
     });
@@ -104,8 +104,8 @@ describe('Results page /w ranking', () => {
       const search = 'dr Smith';
       const expected = 'Smith & Partners';
 
-      assertSearchResponse(search, (err, res) => {
-        searchNameRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForName(res, expected);
         done();
       });
     });
@@ -115,8 +115,8 @@ describe('Results page /w ranking', () => {
       const search = 'dr Smith';
       const expected = 'Dr Andrew Smith';
 
-      assertSearchResponse(search, (err, res) => {
-        searchDoctorRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForDoctor(res, expected);
         done();
       });
     });
@@ -124,8 +124,8 @@ describe('Results page /w ranking', () => {
       const search = 'doctor Smith';
       const expected = 'Dr Andrew Smith';
 
-      assertSearchResponse(search, (err, res) => {
-        searchDoctorRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForDoctor(res, expected);
         done();
       });
     });
@@ -133,8 +133,8 @@ describe('Results page /w ranking', () => {
       const search = 'Baker';
       const expected = 'Dr David John Baker';
 
-      assertSearchResponse(search, (err, res) => {
-        searchDoctorRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForDoctor(res, expected);
         done();
       });
     });
@@ -142,8 +142,8 @@ describe('Results page /w ranking', () => {
       const search = 'Farooq';
       const expected = 'Dr Babar Farooq';
 
-      assertSearchResponse(search, (err, res) => {
-        searchDoctorRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForDoctor(res, expected);
         done();
       });
     });
@@ -151,8 +151,8 @@ describe('Results page /w ranking', () => {
       const search = 'Louise Miller';
       const expected = 'Dr Louise Miller';
 
-      assertSearchResponse(search, (err, res) => {
-        searchDoctorRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForDoctor(res, expected);
         done();
       });
     });
@@ -160,8 +160,8 @@ describe('Results page /w ranking', () => {
       const search = 'Doctor Monisha Kurian';
       const expected = 'Dr Monisha Kurian';
 
-      assertSearchResponse(search, (err, res) => {
-        searchDoctorRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForDoctor(res, expected);
         done();
       });
     });
@@ -169,8 +169,8 @@ describe('Results page /w ranking', () => {
       const search = 'Dr Ramdeehul';
       const expected = 'Dr Amal Ramdeehul';
 
-      assertSearchResponse(search, (err, res) => {
-        searchDoctorRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForDoctor(res, expected);
         done();
       });
     });
@@ -178,8 +178,8 @@ describe('Results page /w ranking', () => {
       const search = 'Yule-Smith';
       const expected = 'Dr Annabel Louise Yule-smith';
 
-      assertSearchResponse(search, (err, res) => {
-        searchDoctorRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForDoctor(res, expected);
         done();
       });
     });
@@ -189,8 +189,8 @@ describe('Results page /w ranking', () => {
       const search = 'Ireland Wood';
       const expected = 'Ireland Wood Surgery';
 
-      assertSearchResponse(search, (err, res) => {
-        searchAddressRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForAddress(res, expected);
         done();
       });
     });
@@ -198,8 +198,8 @@ describe('Results page /w ranking', () => {
       const search = 'Idle';
       const expected = 'Idle Medical Centre';
 
-      assertSearchResponse(search, (err, res) => {
-        searchAddressRanking(res, expected);
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForAddress(res, expected);
         done();
       });
     });

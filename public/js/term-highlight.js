@@ -19,7 +19,6 @@ jQuery(function($) {
     }
 
     terms.forEach(function(term, index){
-      console.log(term);
       if(term.length >= 3) {
         $('.results').mark(term, {
           "wildcards": "withSpaces",

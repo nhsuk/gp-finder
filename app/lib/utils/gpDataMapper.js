@@ -7,7 +7,7 @@ function getFilteredGps(gpData, searchStr) {
   if (gpData.doctors) {
     let filteredSearchStr = searchStr;
     let filteredDocs = [];
-    if (searchStr.match(new RegExp(/^(doctor|dr.|dr)/, 'i'))) {
+    if (searchStr.match(/^(doctor|dr.|dr)/i)) {
       filteredSearchStr = searchStr.replace(/^\S+ /g, '');
     }
     const searchArr = filteredSearchStr.split(' ');
@@ -22,8 +22,8 @@ function getFilteredGps(gpData, searchStr) {
 
 function mappedTitleForGps(doctors) {
   const mappedTitleGps = [];
-  const regexpDrAll = new RegExp(/^(Other|DOCTOR|Doctor|DR|Dr.|Dt|dr|GP|Dr (Mrs)|Miss|Mr|Mr.|Mra|Mrs|Ms|Senior Partner|Dr)/, 'i');
-  const regexpProfAll = new RegExp(/^(Pro|Prof|Prof.|Professor|Proffessor)/, 'i');
+  const regexpDrAll = /^(Other|DOCTOR|Doctor|DR|Dr.|Dt|dr|GP|Dr (Mrs)|Miss|Mr|Mr.|Mra|Mrs|Ms|Senior Partner|Dr)/i;
+  const regexpProfAll = /^(Pro|Prof|Prof.|Professor|Proffessor)/i;
   doctors.forEach((doctor) => {
     let formattedDoctor = '';
     switch (doctor) {
