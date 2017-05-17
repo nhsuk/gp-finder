@@ -5,6 +5,9 @@ node_js:
 services:
   - docker
 
+install:
+  - sudo sysctl -w vm.max_map_count=262144
+
 before_install:
   - pip install docker-compose
 
