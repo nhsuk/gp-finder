@@ -15,8 +15,7 @@ after_success:
   - bash ./scripts/ci-deployment/deploy.sh
 
 script:
-  - docker-compose -f docker-compose-tests.yml build travis-tests
-  - docker-compose -f docker-compose-tests.yml run travis-tests
+  - ./scripts/travis-test
 
 after_script:
   - docker-compose -f docker-compose-tests.yml down -v
