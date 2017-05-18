@@ -26,7 +26,8 @@ jQuery(function($) {
           "acrossElements": true,
           "separateWordSearch": false,
           "element": "em",
-          "className": "highlight"
+          "className": "highlight",
+          "accuracy": "exactly"
         });
       }
     });
