@@ -26,7 +26,7 @@
     <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{ search }}">Search results</h1>
     <h2 class='results__header'>{{resultsHeader}}</h2>
     <p>We found {{resultsSubHeader}} using '{{search}}'.
-    If your surgery isn't here, check the name and <a href='../'>search again</a>.
+    If your surgery isn't here, check the name and <a href='/book-a-gp-appointment'>search again</a>.
     You can also search using your GP's name.</p>
     <div class="grid-row">
       <ol class="results">
