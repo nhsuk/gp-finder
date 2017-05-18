@@ -8,7 +8,7 @@ function build(searchTerm) {
         multi_match: {
           query: searchTerm,
           fields: ['name^2', 'address.addressLines', 'doctors'],
-          type: "cross_fields",
+          type: 'cross_fields',
           operator: 'and'
         }
       }
