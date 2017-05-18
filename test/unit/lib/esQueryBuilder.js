@@ -14,12 +14,12 @@ describe('esQueryBuilder', () => {
     const searchTerm = 'search for this';
     const query = esQueryBuilder.build(searchTerm);
 
-    expect(query.q).to.be.equal(searchTerm);
+    expect(query.body.query.multi_match.query).to.be.equal(searchTerm);
   });
 
   it('should return the size as 30', () => {
     const query = esQueryBuilder.build();
 
-    expect(query.size).to.be.equal(30);
+    expect(query.body.size).to.be.equal(30);
   });
 });
