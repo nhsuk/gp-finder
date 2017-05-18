@@ -1,7 +1,18 @@
 function build(searchTerm) {
   return {
-    q: searchTerm,
-    size: 30,
+    index: 'profiles',
+    type: 'gps',
+    body: {
+      size: 30,
+      query: {
+        multi_match: {
+          query: searchTerm,
+          fields: ['name^2', 'address.addressLines', 'doctors'],
+          type: "cross_fields",
+          operator: 'and'
+        }
+      }
+    }
   };
 }
 
