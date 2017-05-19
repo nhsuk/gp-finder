@@ -14,5 +14,6 @@ services:
       traefik.enable: stack
       traefik.domain: $TRAEFIK_DOMAIN
       traefik.port: 3000
+      map-public-http: 3000
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
