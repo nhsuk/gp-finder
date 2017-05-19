@@ -12,6 +12,8 @@ services:
       - .:/code
     environment:
       NODE_ENV: ${NODE_ENV-development}
+      ES_HOST: ${ES_HOST}
+      ES_PORT: ${ES_PORT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
       SPLUNK_HEC_ENDPOINT: ${SPLUNK_HEC_ENDPOINT-https://splunk-collector.cloudapp.net:8088}
       WEBTRENDS_ANALYTICS_TRACKING_ID: ${WEBTRENDS_ANALYTICS_TRACKING_ID-WT1}
@@ -22,14 +24,14 @@ services:
     extends:
       service: base-app
     links:
-      - gp-finder-db:mongo
+      - gp-finder-db:es
     ports:
       - 3000:3000
     volumes:
       - gp-finder-node_modules:/code/node_modules
 
   gp-finder-db:
-    image: "nhsuk/profiles-db:${profiles_db_docker_image_tag-0.9.0}"
+    image: "nhsuk/profiles-db-elastic:${profiles_db_elastic_docker_image_tag-0.2.0}"
 
 volumes:
   gp-finder-node_modules:

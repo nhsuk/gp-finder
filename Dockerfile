@@ -1,5 +1,4 @@
 FROM node:7.9-alpine
-RUN apk add --no-cache git
 
 ENV USERNAME nodeuser
 
@@ -13,9 +12,8 @@ WORKDIR /code
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-COPY yarn.lock /code
-COPY package.json /code
-RUN if [ "$NODE_ENV" == "production" ]; then yarn install --production; else yarn install ; fi
+COPY yarn.lock package.json /code/
+RUN if [ "$NODE_ENV" == "production" ]; then yarn install --pure-lockfile --production --ignore-optional; else yarn install --pure-lockfile --ignore-optional; fi
 EXPOSE 3000
 
 COPY . /code
