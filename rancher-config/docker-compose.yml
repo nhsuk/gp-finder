@@ -9,7 +9,7 @@ services:
       HOTJAR_ANALYTICS_TRACKING_ID: $HOTJAR_ID
       GOOGLE_ANALYTICS_TRACKING_ID: $GOOGLE_ID
       WEBTRENDS_ANALYTICS_TRACKING_ID: $WEBTRENDS_ID
-      MONGODB_HOST: profiles-db.profiles-db
+      ES_HOST: profiles-db-elastic.profiles-db-elastic
     labels:
       traefik.enable: stack
       traefik.domain: $TRAEFIK_DOMAIN
