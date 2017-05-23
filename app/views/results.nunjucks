@@ -13,7 +13,7 @@
 
 {% block header %}
 {% if gps.length === 0 %}
-<h1 class="local-header--title--question">Book a GP appointment online</h1>
+<h1 class="page-title">Book a GP appointment online</h1>
 {% endif %}
 {% endblock %}
 

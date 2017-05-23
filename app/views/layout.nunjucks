@@ -79,19 +79,13 @@
 
     <main id="content" role="main" class="util-nofocus">
       {% block article %}
-      <div class="local-header-white-bg">
-        <div class="local-header--question">
+        <div class="page-section">
           {% block header %}{% endblock %}
-          {% block pageIntro %}
+          {% block pageIntro %}{% endblock %}
+          {% block pageSection %}
+            {% block content %}{% endblock %}
           {% endblock %}
         </div>
-      </div>
-
-      <div class="page-section">
-        {% block pageSection %}
-          {% block content %}{% endblock %}
-        {% endblock %}
-      </div>
       {% endblock %}
     </main>
 
