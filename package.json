@@ -33,31 +33,31 @@
     "cheerio": "^0.22.0",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
-    "express": "^4.14.1",
-    "helmet": "^3.4.0",
-    "mongodb": "^2.2.24",
-    "nhsuk-bunyan-logger": "^1.2.3",
-    "node-sass": "^4.5.2",
-    "normalize.css": "^6.0.0",
+    "elasticsearch": "^13.0.1",
+    "express": "^4.15.2",
+    "helmet": "^3.6.0",
+    "nhsuk-bunyan-logger": "^1.3.0",
+    "node-sass": "^4.5.3",
+    "normalize.css": "^7.0.0",
     "nunjucks": "^3.0.0",
     "require-environment-variables": "^1.1.2",
-    "verror": "^1.3.6"
+    "verror": "^1.10.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "coveralls": "^2.13.1",
     "eslint": "^3.2.2",
-    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-json": "^1.2.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-mocha": "^4.3.0",
-    "eslint-plugin-react": "^6.0.0",
+    "eslint-plugin-react": "^7.0.1",
     "eslint-watch": "^3.1.0",
     "istanbul": "^0.4.3",
-    "mocha": "^3.3.0",
+    "mocha": "^3.4.1",
     "nodemon": "^1.11.0",
-    "snyk": "^1.29.0"
+    "snyk": "^1.30.1"
   }
 }

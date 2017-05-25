@@ -19,18 +19,12 @@ describe('config', () => {
     });
   });
 
-  describe('mongodb', () => {
-    it('should return gps for collection', () => {
-      expect(config.mongodb.collection).to.be.equal('gps');
+  describe('es', () => {
+    it('should return es as default host', () => {
+      expect(config.es.host).to.be.equal('es');
     });
-
-    it('should return a correct connection string', () => {
-      const defaultHost = 'mongo';
-      const defaultPort = '27017';
-      const defaultDb = 'profiles';
-
-      expect(config.mongodb.connectionString)
-        .to.be.equal(`mongodb://${defaultHost}:${defaultPort}/${defaultDb}`);
+    it('should return 9200 as default port', () => {
+      expect(config.es.port).to.be.equal('9200');
     });
   });
 });

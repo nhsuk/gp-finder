@@ -1,9 +1,14 @@
+sudo_required: true
+
 language: node_js
 node_js:
   - node
 
 services:
   - docker
+
+install:
+  - sudo sysctl -w vm.max_map_count=262144
 
 before_install:
   - pip install docker-compose
@@ -12,8 +17,7 @@ after_success:
   - bash ./scripts/ci-deployment/deploy.sh
 
 script:
-  - docker-compose -f docker-compose-tests.yml build travis-tests
-  - docker-compose -f docker-compose-tests.yml run travis-tests
+  - ./scripts/travis-test
 
 after_script:
   - docker-compose -f docker-compose-tests.yml down -v

@@ -12,13 +12,15 @@ Environment variables are expected to be managed by the environment in which
 the application is being run. This is best practice as described by
 [twelve-factor](https://12factor.net/config).
 
-| Variable                         | Description                                                        | Default      | Required        |
-|:---------------------------------|:-------------------------------------------------------------------|:-------------|-----------------|
-| `NODE_ENV`                       | node environment                                                   | development  |                 |
-| `PORT`                           | server port                                                        | 3000         |                 |
-| `GOOGLE_ANALYTICS_TRACKING_ID`   | [Google Analytics](https://www.google.co.uk/analytics) property id |              |                 |
-| `WEBTRENDS_ANALYTICS_TRACKING_ID`| [Webtrends](https://www.webtrends.com/) tracking id                |              |                 |
-| `HOTJAR_ANALYTICS_TRACKING_ID`   | [Hotjar](https://www.hotjar.com/) tracking id                      |              |                 |
+| Variable                         | Description                                                        | Default      |
+|:---------------------------------|:-------------------------------------------------------------------|:-------------|
+| `NODE_ENV`                       | node environment                                                   | development  |
+| `PORT`                           | Port web server is accessible on                                   | 3000         |
+| `ES_HOST`                        | Elasticsearch host name                                            | es           |
+| `ES_PORT`                        | Elasticsearch port                                                 | 9200         |
+| `GOOGLE_ANALYTICS_TRACKING_ID`   | [Google Analytics](https://www.google.co.uk/analytics) property id |              |
+| `WEBTRENDS_ANALYTICS_TRACKING_ID`| [Webtrends](https://www.webtrends.com/) tracking id                |              |
+| `HOTJAR_ANALYTICS_TRACKING_ID`   | [Hotjar](https://www.hotjar.com/) tracking id                      |              |
 
 ## Application development
 

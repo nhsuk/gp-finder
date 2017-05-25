@@ -174,13 +174,24 @@ describe('Results page with ranking', () => {
         done();
       });
     });
-    it('of `Yule-Smith` should rank `Dr Annabel Louise Yule-Smith` in the first 3 results', (done) => {
-      const search = 'Yule-Smith';
-      const expected = 'Dr Annabel Louise Yule-smith';
+    describe('Doctors names which include punctuation', () => {
+      it('of `Yule-Smith` should rank `Dr Annabel Louise Yule-Smith` in the first 3 results', (done) => {
+        const search = 'Yule-Smith';
+        const expected = 'Dr Annabel Louise Yule-smith';
 
-      makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForDoctor(res, expected);
-        done();
+        makeSearchRequestAndCheckExpectations(search, (err, res) => {
+          expectHighRankForDoctor(res, expected);
+          done();
+        });
+      });
+      it('of `Karen O\'Connor` should rank `Dr Karen O\'Connor` in the first 3 results', (done) => {
+        const search = 'Karen O\'Connor';
+        const expected = 'Dr Karen O\'connor';
+
+        makeSearchRequestAndCheckExpectations(search, (err, res) => {
+          expectHighRankForDoctor(res, expected);
+          done();
+        });
       });
     });
   });
