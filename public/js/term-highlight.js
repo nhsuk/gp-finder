@@ -27,7 +27,7 @@ jQuery(function($) {
           "separateWordSearch": false,
           "element": "em",
           "className": "highlight",
-          "accuracy": "complementary"
+          "accuracy": "exact"
         });
       }
     });
