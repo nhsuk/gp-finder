@@ -20,7 +20,7 @@
     <meta name="DCSext.ServiceName" content="GP Appointment Finder" />
     {% block meta %}{% endblock %}
 
-    {% set qs = '?v=7' %}>
+    {% set qs = '?v=7' %}
 
     <!--[if gt IE 8]><!--><link href="{{ SITE_ROOT }}/css/nhsuk.css{{ qs }}" media="screen" rel="stylesheet" type="text/css"><!--<![endif]-->
     <!--[if IE 6]><link href="{{ SITE_ROOT }}/css/nhsuk-ie6.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" href="{{ SITE_ROOT }}/css/print.css{{ qs }}" media="print" type="text/css">
 
-    <script type="text/javascript" src="{{ SITE_ROOT }}/js/vendor/polyfills/details.polyfill.js"></script>
+    <script type="text/javascript" src="{{ SITE_ROOT }}/js/vendor/polyfills/details.polyfill-1.0.0.min.js"></script>
 
     {% if HOTJAR_TRACKING_ID %}
        <!-- rational for this code being in head: https://docs.hotjar.com/v1.0/docs/manual -->
