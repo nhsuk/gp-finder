@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" href="{{ SITE_ROOT }}/css/print.css{{ qs }}" media="print" type="text/css">
 
-    <script type="text/javascript" src="{{ SITE_ROOT }}/js/vendor/polyfills/details.polyfill.min.js"></script>
+    <script type="text/javascript" src="{{ SITE_ROOT }}/js/vendor/polyfills/details.polyfill-1.0.0.min.js"></script>
 
     {% if HOTJAR_TRACKING_ID %}
        <!-- rational for this code being in head: https://docs.hotjar.com/v1.0/docs/manual -->
