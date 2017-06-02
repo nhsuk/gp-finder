@@ -11,7 +11,8 @@ function build(searchTerm) {
               match_phrase: {
                 name: {
                   query: searchTerm,
-                  boost: 2
+                  boost: 2,
+                  slop: 1
                 }
               }
             },
@@ -41,7 +42,8 @@ function build(searchTerm) {
                         match_phrase: {
                           'doctors2.name': {
                             query: searchTerm,
-                            boost: 2
+                            boost: 2,
+                            slop: 1
                           }
                         }
                       },
