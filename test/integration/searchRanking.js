@@ -6,6 +6,8 @@ const constants = require('../../app/lib/constants');
 
 const expect = chai.expect;
 
+const THRESHOLD = 3;
+
 chai.use(chaiHttp);
 
 const resultsRoute = `${constants.SITE_ROOT}/results/`;
@@ -17,40 +19,37 @@ function makeSearchRequestAndCheckExpectations(search, assertions) {
     .end(assertions);
 }
 
-function rankTop3Results(res, className) {
+function rankTopResults(res, className) {
   const $ = cheerio.load(res.text);
   const searchResults = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < THRESHOLD; i++) {
     searchResults.push($(className, $('.results__item--nearby .results__details').eq(i)).text().trim());
   }
   return searchResults;
 }
 
 function expectHighRankForName(res, expected) {
-  const searchResults = rankTop3Results(res, '.results__name');
-  let highRank = false;
-  if (searchResults.indexOf(expected) > -1) {
-    highRank = true;
-  }
-  expect(highRank).to.equal(true);
+  const searchResults = rankTopResults(res, '.results__name');
+  const highRank = (searchResults.indexOf(expected) > -1);
+  expect(highRank).to.equal(true, `expected '${expected}' in top ${THRESHOLD} results (${searchResults})`);
 }
 
 function expectHighRankForDoctor(res, expected) {
-  const searchResults = rankTop3Results(res, '.results__gp');
+  const searchResults = rankTopResults(res, '.results__gp');
   let highRank = false;
   if (searchResults.filter(searchResult => searchResult.includes(expected)).length !== 0) {
     highRank = true;
   }
-  expect(highRank).to.equal(true);
+  expect(highRank).to.equal(true, `expected '${expected}' in top ${THRESHOLD} results (${searchResults})`);
 }
 
 function expectHighRankForAddress(res, expected) {
-  const searchResults = rankTop3Results(res, '.results__address');
+  const searchResults = rankTopResults(res, '.results__address');
   let highRank = false;
   if (searchResults.filter(searchResult => searchResult.includes(expected)).length !== 0) {
     highRank = true;
   }
-  expect(highRank).to.equal(true);
+  expect(highRank).to.equal(true, `expected '${expected}' in top ${THRESHOLD} results (${searchResults})`);
 }
 
 describe('Results page with ranking', () => {
@@ -91,8 +90,8 @@ describe('Results page with ranking', () => {
         done();
       });
     });
-    it('of `Smith` should rank `Smith & Partners` in the first 3 results', (done) => {
-      const search = 'Smith';
+    it('of `Andrew Smith` should rank `Smith & Partners` in the first 3 results', (done) => {
+      const search = 'Andrew Smith';
       const expected = 'Smith & Partners';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
@@ -100,8 +99,8 @@ describe('Results page with ranking', () => {
         done();
       });
     });
-    it('of `dr Smith` should rank `Smith & Partners` in the first 3 results', (done) => {
-      const search = 'dr Smith';
+    it('of `dr Andrew Smith` should rank `Smith & Partners` in the first 3 results', (done) => {
+      const search = 'dr Andrew Smith';
       const expected = 'Smith & Partners';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
@@ -111,8 +110,8 @@ describe('Results page with ranking', () => {
     });
   });
   describe('Surgeries with the specific doctor query', () => {
-    it('of `dr Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
-      const search = 'dr Smith';
+    it('of `dr Andrew Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
+      const search = 'dr Andrew Smith';
       const expected = 'Dr Andrew Smith';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
@@ -120,8 +119,8 @@ describe('Results page with ranking', () => {
         done();
       });
     });
-    it('of `doctor Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
-      const search = 'doctor Smith';
+    it('of `Doctor Andrew Smith` should rank `Dr Andrew Smith` in the first 3 results', (done) => {
+      const search = 'Doctor Andrew Smith';
       const expected = 'Dr Andrew Smith';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
@@ -138,8 +137,8 @@ describe('Results page with ranking', () => {
         done();
       });
     });
-    it('of `Farooq` should rank `Dr Babar Farooq` in the first 3 results', (done) => {
-      const search = 'Farooq';
+    it('of `Babar Farooq` should rank `Dr Babar Farooq` in the first 3 results', (done) => {
+      const search = 'Babar Farooq';
       const expected = 'Dr Babar Farooq';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {

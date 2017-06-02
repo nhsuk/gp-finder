@@ -5,13 +5,62 @@ function build(searchTerm) {
     body: {
       size: 30,
       query: {
-        multi_match: {
-          query: searchTerm,
-          fields: ['name^2', 'address.addressLines', 'doctors'],
-          type: 'cross_fields',
-          operator: 'and'
+        bool: {
+          should: [
+            {
+              match_phrase: {
+                name: {
+                  query: searchTerm,
+                  boost: 2
+                }
+              }
+            },
+            {
+              common: {
+                name: {
+                  query: searchTerm,
+                  cutoff_frequency: 0.0001
+                }
+              }
+            },
+            {
+              common: {
+                name2: {
+                  query: searchTerm,
+                  cutoff_frequency: 0.0001
+                }
+              }
+            },
+            {
+              nested: {
+                path: 'doctors2',
+                query: {
+                  bool: {
+                    should: [
+                      {
+                        match_phrase: {
+                          'doctors2.name': {
+                            query: searchTerm,
+                            boost: 2
+                          }
+                        }
+                      },
+                      {
+                        match: {
+                          'doctors2.name': {
+                            query: searchTerm,
+                            cutoff_frequency: 0.0001
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+              }
+            }]
         }
-      }
+      },
+
     }
   };
 }
