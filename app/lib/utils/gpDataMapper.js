@@ -13,7 +13,12 @@ function getFilteredGps(gpData, searchStr) {
     const searchArr = filteredSearchStr.split(' ');
     searchArr.forEach((searchSubStr) => {
       const regexp = new RegExp(searchSubStr, 'i');
-      filteredDocs = filteredDocs.concat(gpData.doctors.filter(doctor => regexp.test(doctor)));
+      filteredDocs = filteredDocs
+        .concat(
+          gpData.doctors
+            .filter(doctor => regexp.test(doctor.name))
+            .map(doctor => doctor.name)
+        );
     });
     return [...new Set(filteredDocs)];
   }

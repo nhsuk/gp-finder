@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.json .",
     "start": "node app.js",
     "test": "NODE_ENV=test mocha --recursive test",
+    "test-unit": "NODE_ENV=test mocha --recursive test/unit",
     "travis": "yarn run git-hook && yarn run upload-coverage && yarn run snyk -- test --org=nhsuk && yarn run snyk -- monitor --org=nhsuk",
     "upload-coverage": "cat ./coverage/lcov.info | coveralls",
     "watch-dev": "nodemon app.js | ./node_modules/bunyan/bin/bunyan & nodemon -e scss -x yarn run build-css -- compact",

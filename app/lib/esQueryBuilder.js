@@ -26,7 +26,7 @@ function build(searchTerm) {
             },
             {
               common: {
-                name2: {
+                alternativeName: {
                   query: searchTerm,
                   cutoff_frequency: 0.0001
                 }
