@@ -17,6 +17,15 @@ function build(searchTerm) {
               }
             },
             {
+              match_phrase: {
+                alternativeName: {
+                  query: searchTerm,
+                  boost: 2,
+                  slop: 1
+                }
+              }
+            },
+            {
               common: {
                 name: {
                   query: searchTerm,
