@@ -47,9 +47,9 @@ describe('GP Surgery Data Mapper', () => {
 
     it('for a GP Surgery that has doctors with the name matching the search will return those doctors', () => {
       const gpData = { doctors: [
-        { name: 'Dr. A Farooq'},
-        { name:'Dr. Carter'},
-        { name: 'Dr. B Farooq'}
+        { name: 'Dr. A Farooq' },
+        { name: 'Dr. Carter' },
+        { name: 'Dr. B Farooq' }
       ] };
       const searchStr = 'Farooq';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -59,10 +59,10 @@ describe('GP Surgery Data Mapper', () => {
 
     it('for a GP Surgery that has doctors with some of the name matching the search will return those doctors', () => {
       const gpData = { doctors: [
-        { name: 'Dr. Elizabeth Beech'},
-        { name: 'Dr. Elizabeth Ash'},
-        { name: 'Dr. Elizabeth'},
-        { name: 'Dr. B Beech'}
+        { name: 'Dr. Elizabeth Beech' },
+        { name: 'Dr. Elizabeth Ash' },
+        { name: 'Dr. Elizabeth' },
+        { name: 'Dr. B Beech' }
       ] };
       const searchStr = 'Elizabeth Beech';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -72,10 +72,10 @@ describe('GP Surgery Data Mapper', () => {
 
     it('for a GP Surgery that has Dr/Dr. in the title but not related to the search it should be ignored', () => {
       const gpData = { doctors: [
-        { name: 'Dr. Elizabeth Beech'},
-        { name: 'Dr. Elizabeth Ash'},
-        { name: 'Dr. Elizabeth'},
-        { name: 'Dr. B Beech'}
+        { name: 'Dr. Elizabeth Beech' },
+        { name: 'Dr. Elizabeth Ash' },
+        { name: 'Dr. Elizabeth' },
+        { name: 'Dr. B Beech' }
       ] };
       const searchStr = 'Dr Beech';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -92,7 +92,7 @@ describe('GP Surgery Data Mapper', () => {
         'Mrs Elizabeth',
         'Dr. B Beech',
         'Dr. Beech'
-      ] ;
+      ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
       expect(result).to.be.eql(['Dr Elizabeth Beech', 'Dr Elizabeth Ash', 'Dr Elizabeth', 'Dr B Beech', 'Dr Beech']);
@@ -104,7 +104,7 @@ describe('GP Surgery Data Mapper', () => {
         'Proffessor Elizabeth Ash',
         'Prof. Elizabeth',
         'Pro. B Beech'
-      ] ;
+      ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
       expect(result).to.be.eql(['Professor Elizabeth Beech (GP)', 'Professor Elizabeth Ash (GP)', 'Professor Elizabeth (GP)', 'Professor B Beech (GP)']);
@@ -114,7 +114,7 @@ describe('GP Surgery Data Mapper', () => {
       const doctors = [
         'drs Smith',
         'DRS Smith'
-      ] ;
+      ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
       expect(result).to.be.eql(['Drs Smith', 'Drs Smith']);
