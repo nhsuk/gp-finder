@@ -34,13 +34,13 @@ function build(searchTerm) {
             },
             {
               nested: {
-                path: 'doctors2',
+                path: 'doctors',
                 query: {
                   bool: {
                     should: [
                       {
                         match_phrase: {
-                          'doctors2.name': {
+                          'doctors.name': {
                             query: searchTerm,
                             boost: 2,
                             slop: 1
@@ -49,7 +49,7 @@ function build(searchTerm) {
                       },
                       {
                         match: {
-                          'doctors2.name': {
+                          'doctors.name': {
                             query: searchTerm,
                             cutoff_frequency: 0.0001
                           }
