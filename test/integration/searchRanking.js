@@ -53,6 +53,17 @@ function expectHighRankForAddress(res, expected) {
 }
 
 describe('Results page with ranking', () => {
+  describe('Search by postcode', () => {
+    it(`of 'HG5 0JL' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+      const search = 'HG5 0JL';
+      const expected = 'Beech House Surgery';
+
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForName(res, expected);
+        done();
+      });
+    });
+  });
   describe('Surgeries with the specific surgery query', () => {
     it(`of 'park parade' should rank 'Park Parade Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'park parade';

@@ -35,7 +35,7 @@ services:
       - gp-finder-db:es
 
   gp-finder-db:
-    image: "nhsuk/profiles-db-elastic:pr-22"
+    image: "nhsuk/profiles-db-elastic:0.4.0"
 
 volumes:
   gp-finder-tests-node_modules:
