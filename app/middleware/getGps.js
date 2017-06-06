@@ -4,6 +4,7 @@ const gpDataMapper = require('../lib/utils/gpDataMapper');
 const resultsFormat = require('../lib/utils/resultsHeaderFormater');
 const elasticsearchClient = require('../lib/elasticsearchClient');
 const esQueryBuilder = require('../lib/esQueryBuilder');
+const esGeoQueryBuilder = require('../lib/esGeoQueryBuilder');
 
 function handleError(error, next) {
   const errMsg = 'Error with ES';
@@ -23,6 +24,10 @@ function mapResults(results, res, searchTerm) {
     // eslint-disable-next-line no-param-reassign
     gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
 
+    if (result.sort) {
+      gp.distance = result.sort[0];
+    }
+
     return gp;
   });
   res.locals.resultsHeader = resultsFormat.pluraliseSurgeryQuestion(res.locals.gps.length);
@@ -31,7 +36,13 @@ function mapResults(results, res, searchTerm) {
 
 function getGps(req, res, next) {
   const searchTerm = res.locals.search;
-  const esQuery = esQueryBuilder.build(searchTerm);
+  let esQuery;
+
+  if (res.locals.location) {
+    esQuery = esGeoQueryBuilder.build(res.locals.location);
+  } else {
+    esQuery = esQueryBuilder.build(searchTerm);
+  }
 
   elasticsearchClient
     .search(esQuery)
