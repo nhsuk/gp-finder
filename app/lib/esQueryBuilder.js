@@ -59,8 +59,7 @@ function build(searchTerm) {
                       {
                         match: {
                           'doctors.name': {
-                            query: searchTerm,
-                            cutoff_frequency: 0.0001
+                            query: searchTerm
                           }
                         }
                       }
