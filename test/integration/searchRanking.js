@@ -28,24 +28,24 @@ function rankTopResults(res, className) {
   return searchResults;
 }
 
-function expectHighRankForName(res, expected) {
+function expectHighRankForName(res, expected, resultsThreshold) {
   const searchResults = rankTopResults(res, '.results__name');
   const highRank = (searchResults.indexOf(expected) > -1);
-  expect(highRank).to.equal(true, `expected '${expected}' in top ${RESULTS_THRESHOLD} results (${searchResults})`);
+  expect(highRank).to.equal(true, `expected '${expected}' in top ${resultsThreshold} results (${searchResults})`);
 }
 
-function expectHighRankForDoctor(res, expected) {
+function expectHighRankForDoctor(res, expected, resultsThreshold) {
   const searchResults = rankTopResults(res, '.results__gp');
   const highRank =
     (searchResults.filter(searchResult => searchResult.includes(expected)).length > 0);
-  expect(highRank).to.equal(true, `expected '${expected}' in top ${RESULTS_THRESHOLD} results (${searchResults})`);
+  expect(highRank).to.equal(true, `expected '${expected}' in top ${resultsThreshold} results (${searchResults})`);
 }
 
-function expectHighRankForAddress(res, expected) {
+function expectHighRankForAddress(res, expected, resultsThreshold) {
   const searchResults = rankTopResults(res, '.results__address');
   const highRank =
     (searchResults.filter(searchResult => searchResult.includes(expected)).length > 0);
-  expect(highRank).to.equal(true, `expected '${expected}' in top ${RESULTS_THRESHOLD} results (${searchResults})`);
+  expect(highRank).to.equal(true, `expected '${expected}' in top ${resultsThreshold} results (${searchResults})`);
 }
 
 describe('Results page with ranking', () => {
@@ -55,7 +55,7 @@ describe('Results page with ranking', () => {
       const expected = 'Park Parade Surgery';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForName(res, expected);
+        expectHighRankForName(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -64,7 +64,7 @@ describe('Results page with ranking', () => {
       const expected = 'Street Lane Practice';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForName(res, expected);
+        expectHighRankForName(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -73,7 +73,7 @@ describe('Results page with ranking', () => {
       const expected = 'Dr D Baker & Partner';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForName(res, expected);
+        expectHighRankForName(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -82,7 +82,7 @@ describe('Results page with ranking', () => {
       const expected = 'Miller Street Surgery';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForName(res, expected);
+        expectHighRankForName(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -91,7 +91,7 @@ describe('Results page with ranking', () => {
       const expected = 'Smith & Partners';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForName(res, expected);
+        expectHighRankForName(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -100,7 +100,7 @@ describe('Results page with ranking', () => {
       const expected = 'Smith & Partners';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForName(res, expected);
+        expectHighRankForName(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -111,7 +111,7 @@ describe('Results page with ranking', () => {
       const expected = 'Dr Andrew Smith';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForDoctor(res, expected);
+        expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -120,7 +120,7 @@ describe('Results page with ranking', () => {
       const expected = 'Dr Andrew Smith';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForDoctor(res, expected);
+        expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -129,7 +129,7 @@ describe('Results page with ranking', () => {
       const expected = 'Dr David John Baker';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForDoctor(res, expected);
+        expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -138,7 +138,7 @@ describe('Results page with ranking', () => {
       const expected = 'Dr Babar Farooq';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForDoctor(res, expected);
+        expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -147,7 +147,7 @@ describe('Results page with ranking', () => {
       const expected = 'Dr Louise Miller';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForDoctor(res, expected);
+        expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -156,7 +156,7 @@ describe('Results page with ranking', () => {
       const expected = 'Dr Monisha Kurian';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForDoctor(res, expected);
+        expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -165,7 +165,7 @@ describe('Results page with ranking', () => {
       const expected = 'Dr Amal Ramdeehul';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForDoctor(res, expected);
+        expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -175,7 +175,7 @@ describe('Results page with ranking', () => {
         const expected = 'Dr Annabel Louise Yule-smith';
 
         makeSearchRequestAndCheckExpectations(search, (err, res) => {
-          expectHighRankForDoctor(res, expected);
+          expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
           done();
         });
       });
@@ -184,7 +184,7 @@ describe('Results page with ranking', () => {
         const expected = 'Dr Karen O\'connor';
 
         makeSearchRequestAndCheckExpectations(search, (err, res) => {
-          expectHighRankForDoctor(res, expected);
+          expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
           done();
         });
       });
@@ -196,7 +196,7 @@ describe('Results page with ranking', () => {
       const expected = 'Ireland Wood Surgery';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForAddress(res, expected);
+        expectHighRankForAddress(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
@@ -205,7 +205,7 @@ describe('Results page with ranking', () => {
       const expected = 'Idle Medical Centre';
 
       makeSearchRequestAndCheckExpectations(search, (err, res) => {
-        expectHighRankForAddress(res, expected);
+        expectHighRankForAddress(res, expected, RESULTS_THRESHOLD);
         done();
       });
     });
