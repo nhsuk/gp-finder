@@ -12,6 +12,7 @@ function validateSearch(req, res, next) {
 
   log.info('validate-search-start');
   const validationResult = searchValidator.validateSearch(search);
+
   log.info('validate-search-end');
 
   // eslint-disable-next-line no-param-reassign

@@ -21,6 +21,7 @@ module.exports = (app, config) => {
       express: app,
       watch: true,
     });
+
   log.info(nunjucksEnvironment, 'nunjucks environment configuration');
 
   app.use(helmet.contentSecurityPolicy({

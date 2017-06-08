@@ -7,6 +7,7 @@ const esQueryBuilder = require('../lib/esQueryBuilder');
 
 function handleError(error, next) {
   const errMsg = 'Error with ES';
+
   log.error({ err: new VError(error.stack, errMsg) }, errMsg);
   next(error);
 }
@@ -16,10 +17,12 @@ function mapResults(results, res, searchTerm) {
   res.locals.gps = results.hits.hits.map((result) => {
     // eslint-disable-next-line no-underscore-dangle
     const gp = result._source;
+
     // eslint-disable-next-line no-param-reassign
     gp.bookOnlineLink = gpDataMapper.getBookOnlineLink(gp);
     // eslint-disable-next-line no-param-reassign
     gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
+
     return gp;
   });
   res.locals.resultsHeader = resultsFormat.pluraliseSurgeryQuestion(res.locals.gps.length);
