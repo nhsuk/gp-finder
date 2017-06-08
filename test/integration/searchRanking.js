@@ -37,14 +37,14 @@ function expectHighRankForName(res, expected, resultsThreshold) {
 function expectHighRankForDoctor(res, expected, resultsThreshold) {
   const searchResults = rankTopResults(res, '.results__gp');
   const highRank =
-    (searchResults.filter(searchResult => searchResult.includes(expected)).length > 0);
+    searchResults.some(searchResult => searchResult.includes(expected));
   expect(highRank).to.equal(true, `expected '${expected}' in top ${resultsThreshold} results (${searchResults})`);
 }
 
 function expectHighRankForAddress(res, expected, resultsThreshold) {
   const searchResults = rankTopResults(res, '.results__address');
   const highRank =
-    (searchResults.filter(searchResult => searchResult.includes(expected)).length > 0);
+    searchResults.some(searchResult => searchResult.includes(expected));
   expect(highRank).to.equal(true, `expected '${expected}' in top ${resultsThreshold} results (${searchResults})`);
 }
 

@@ -4,22 +4,22 @@ const esQueryBuilder = require('../../../app/lib/esQueryBuilder');
 
 const expect = chai.expect;
 
-function searchObj(obj, propertyName, query) {
-  return Object.keys(obj).filter((key) => {
+function findKeyValuePair(obj, searchKey, searchValue) {
+  return Object.keys(obj).some((key) => {
     const value = obj[key];
 
     if (typeof value === 'object') {
-      if (searchObj(value, propertyName, query)) {
+      if (findKeyValuePair(value, searchKey, searchValue)) {
         return true;
       }
     }
 
-    if (key === propertyName && value === query) {
+    if (key === searchKey && value === searchValue) {
       return true;
     }
 
     return false;
-  }).length > 0;
+  });
 }
 
 describe('esQueryBuilder', () => {
@@ -34,7 +34,7 @@ describe('esQueryBuilder', () => {
     const query = esQueryBuilder.build(searchTerm);
 
     expect(
-      searchObj(query, 'query', searchTerm)
+      findKeyValuePair(query, 'query', searchTerm)
     )
     .to.be.equal(
       true,
