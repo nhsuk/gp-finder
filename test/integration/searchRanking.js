@@ -19,11 +19,11 @@ function makeSearchRequestAndCheckExpectations(search, assertions) {
     .end(assertions);
 }
 
-function rankTopResults(res, className) {
+function rankTopResults(res, className, resultsThreshold) {
   const $ = cheerio.load(res.text);
   const searchResults = [];
 
-  for (let i = 0; i < RESULTS_THRESHOLD; i++) {
+  for (let i = 0; i < resultsThreshold; i++) {
     searchResults.push($(className, $('.results__item--nearby .results__details').eq(i)).text().trim());
   }
 
@@ -31,14 +31,14 @@ function rankTopResults(res, className) {
 }
 
 function expectHighRankForName(res, expected, resultsThreshold) {
-  const searchResults = rankTopResults(res, '.results__name');
+  const searchResults = rankTopResults(res, '.results__name', resultsThreshold);
   const highRank = (searchResults.indexOf(expected) > -1);
 
   expect(highRank).to.equal(true, `expected '${expected}' in top ${resultsThreshold} results (${searchResults})`);
 }
 
 function expectHighRankForDoctor(res, expected, resultsThreshold) {
-  const searchResults = rankTopResults(res, '.results__gp');
+  const searchResults = rankTopResults(res, '.results__gp', resultsThreshold);
   const highRank =
     searchResults.some(searchResult => searchResult.includes(expected));
 
@@ -46,7 +46,7 @@ function expectHighRankForDoctor(res, expected, resultsThreshold) {
 }
 
 function expectHighRankForAddress(res, expected, resultsThreshold) {
-  const searchResults = rankTopResults(res, '.results__address');
+  const searchResults = rankTopResults(res, '.results__address', resultsThreshold);
   const highRank =
     searchResults.some(searchResult => searchResult.includes(expected));
 

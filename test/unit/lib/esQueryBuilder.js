@@ -33,9 +33,7 @@ describe('esQueryBuilder', () => {
     const searchTerm = 'search for this';
     const query = esQueryBuilder.build(searchTerm);
 
-    expect(
-      findKeyValuePair(query, 'query', searchTerm)
-    )
+    expect(findKeyValuePair(query, 'query', searchTerm))
     .to.be.equal(
       true,
       `"query: ${searchTerm}" not found in\n${util.inspect(query, { depth: null })}`
