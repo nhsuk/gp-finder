@@ -1,7 +1,26 @@
+const util = require('util');
 const chai = require('chai');
 const esQueryBuilder = require('../../../app/lib/esQueryBuilder');
 
 const expect = chai.expect;
+
+function findKeyValuePair(obj, searchKey, searchValue) {
+  return Object.keys(obj).some((key) => {
+    const value = obj[key];
+
+    if (typeof value === 'object') {
+      if (findKeyValuePair(value, searchKey, searchValue)) {
+        return true;
+      }
+    }
+
+    if (key === searchKey && value === searchValue) {
+      return true;
+    }
+
+    return false;
+  });
+}
 
 describe('esQueryBuilder', () => {
   it('should return an object', () => {
@@ -10,11 +29,15 @@ describe('esQueryBuilder', () => {
     expect(query).to.be.an('object');
   });
 
-  it('should return the search term as q param', () => {
+  it('should populate the query with the search term', () => {
     const searchTerm = 'search for this';
     const query = esQueryBuilder.build(searchTerm);
 
-    expect(query.body.query.multi_match.query).to.be.equal(searchTerm);
+    expect(findKeyValuePair(query, 'query', searchTerm))
+    .to.be.equal(
+      true,
+      `"query: ${searchTerm}" not found in\n${util.inspect(query, { depth: null })}`
+    );
   });
 
   it('should return the size as 30', () => {

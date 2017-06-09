@@ -7,6 +7,7 @@ function fromRequest(req, res, next) {
   res.locals.searchButton = 'Next';
 
   const backLink = backLinkUtils(req, res);
+
   res.locals.backLink = {
     href: backLink.url,
     text: backLink.text,

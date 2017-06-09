@@ -37,6 +37,7 @@ describe('Results page', () => {
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         const resultsHeader = $('.results__header').text();
+
         expect(resultsHeader).to.contain('Which is your surgery?');
         done();
       });
@@ -50,6 +51,7 @@ describe('Results page', () => {
           assertSearchResponse(search, (err, res) => {
             const $ = cheerio.load(res.text);
             const searchResults = $('.results__item--nearby');
+
             expect(searchResults.length).to.equal(30);
             done();
           });
@@ -65,6 +67,7 @@ describe('Results page', () => {
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const noResultsHeader = $('#content').text();
+
           expect(noResultsHeader).to.contain(errorMessage);
           done();
         });
@@ -80,6 +83,7 @@ describe('Results page', () => {
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
+
           expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 0114 236 0641 to book an appointment.');
           expect($('a[href^="tel:"]', searchResults).text()).to.equal('0114 236 0641');
           done();
@@ -94,6 +98,7 @@ describe('Results page', () => {
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
+
           expect(searchResults.html()).to.contain(noOnlineBookingLinkMessage);
           expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception to book an appointment.');
           done();
@@ -109,6 +114,7 @@ describe('Results page', () => {
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
         const searchResults = $('.results__item--nearby .results__details .results__name a').first();
+
         expect(searchResults.text()).to.equal('Crookes Valley Medical Centre');
         expect(searchResults.attr('href')).to.equal('https://systmonline.tpp-uk.com/Login?PracticeId=C88057');
         done();
@@ -124,6 +130,7 @@ describe('Results page', () => {
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details .results__name a').first();
+
           expect(searchResults.text()).to.equal('Hambleden Surgery');
           expect(searchResults.attr('href')).to.equal('http://www.marlowdoctors.co.uk');
           done();
@@ -138,6 +145,7 @@ describe('Results page', () => {
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
+
           expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 01282 772045 to book an appointment.');
           expect($('a[href^="tel:"]', searchResults).text()).to.equal('01282 772045');
           done();

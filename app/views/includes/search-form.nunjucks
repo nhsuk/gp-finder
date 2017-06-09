@@ -23,7 +23,7 @@
           <p>Check the name you're using is correct and search again. You can also search using the name of your GP.</p>
           {% else %}
           <label class="form-label--bold form-label--smaller" for="search">{{ searchLabel }}</label>
-          <p>This is so we can take you to the right booking system. </p>
+          <p>Search by surgery name or GP name to go to your booking system.</p>
           {% endif %}
           <div class="form-group">
             <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>

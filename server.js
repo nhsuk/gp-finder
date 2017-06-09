@@ -7,5 +7,6 @@ const app = express();
 module.exports = (() => {
   configExpress(app, config);
   app.port = config.port;
+
   return app;
 })();
