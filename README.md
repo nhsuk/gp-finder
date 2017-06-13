@@ -36,5 +36,3 @@ You can run the application using [`./scripts/start`](scripts/start).
 The application will be available locally on `http://localhost:3000`.
 
 You can run the tests using [`./scripts/test`](scripts/test).
-
-
