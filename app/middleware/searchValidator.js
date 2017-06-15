@@ -8,10 +8,11 @@ function setSearchLabel(res) {
 }
 
 function validateSearch(req, res, next) {
-  const search = res.locals.search;
+  const searchTermName = res.locals.search;
+  const searchTermPostcode = res.locals.postcode;
 
   log.info('validate-search-start');
-  const validationResult = searchValidator.validateSearch(search);
+  const validationResult = searchValidator.validateSearch(searchTermName, searchTermPostcode);
 
   log.info('validate-search-end');
 
@@ -19,10 +20,10 @@ function validateSearch(req, res, next) {
   res.locals.search = validationResult.input;
 
   if (validationResult.errorMessage) {
-    log.info({ search }, 'Search failed validation');
+    log.info(validationResult.input, 'Search failed validation');
     // eslint-disable-next-line no-param-reassign
     res.locals.errorMessage = validationResult.errorMessage;
-    if (searchValidator.isEmpty(search)) { setSearchLabel(res); }
+    if (searchValidator.isEmpty(validationResult.input)) { setSearchLabel(res); }
     renderer.searchForYourGp(req, res);
   } else {
     next();
