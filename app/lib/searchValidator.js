@@ -4,14 +4,17 @@ function isEmpty(search) {
   return !search || !search.trim();
 }
 
-function validateSearch(search) {
+function validateSearch(searchTermName, searchTermPostcode) {
   let errorMessage = null;
-  let searchToReturn = search;
+  let searchToReturn = searchTermName;
 
-  if (isEmpty(search)) {
+  if (isEmpty(searchTermName) && isEmpty(searchTermPostcode)) {
     errorMessage = messages.emptySearchMessage();
+  } else if (!isEmpty(searchTermPostcode)) {
+    // TODO: If postcode, ignore the name search - this will be changed soon
+    searchToReturn = searchTermPostcode.trim();
   } else {
-    searchToReturn = search.trim();
+    searchToReturn = searchTermName.trim();
   }
 
   return {
