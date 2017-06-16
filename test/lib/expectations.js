@@ -14,7 +14,7 @@ function homePageEmptyEntry($) {
 
 function homePage($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain('Find your GP surgery');
+  expect($('label[for=search]').text()).to.contain('Surgery or GP name');
 }
 
 function htmlWith200Status(err, res) {
