@@ -182,27 +182,40 @@ form {
       outline-offset: 0px;
     }
   }
-  .form-label{
-    font-family: "FS Me", Arial, sans-serif;
-    line-height: 32px;
-    text-transform: none;
-    &--bold {
-      font-size: 24px;
-      font-weight: 600;
-    }
-    &--smaller {
-      + p {
-        margin-top:0;
-      }
-    }
-  }
   .form-group {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     float: left;
     width: 100%;
-    margin-top:16px;
+    margin-bottom: 0px;
+    margin-top:0px;
+    .form-group {
+      margin-top: 32px;
+    }
+    &--submit {
+      margin-top: 32px;
+    }
+
+    .form-label {
+      line-height: 32px;
+      text-transform: none;
+      display: block;
+      padding-bottom: 2px;
+      font-size: 20px;
+      &--bold {
+        font-weight: 600;
+      }
+      &--smaller {
+        + p {
+          margin-top:0;
+        }
+      }
+    }
+    .form-control {
+      padding:5px 4px 4px;
+      margin-top:0;
+    }
   }
   .error {
     @include media(desktop) {
