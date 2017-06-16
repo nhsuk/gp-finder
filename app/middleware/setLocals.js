@@ -4,7 +4,7 @@ function fromRequest(req, res, next) {
   /* eslint-disable no-param-reassign */
   res.locals.search = req.query.search;
   res.locals.postcode = req.query.postcode;
-  res.locals.searchLabel = 'Find your GP surgery';
+  res.locals.searchLabel = 'Surgery or GP name';
   res.locals.searchButton = 'Next';
 
   const backLink = backLinkUtils(req, res);
