@@ -1,5 +1,5 @@
 function emptySearchMessage() {
-  return 'Search using the name of your surgery or GP or search by postcode';
+  return 'Enter the name of your surgery, the name of your GP or a postcode.';
 }
 
 function technicalProblems() {
