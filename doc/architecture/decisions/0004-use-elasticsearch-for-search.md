@@ -13,8 +13,10 @@ use more complex searches (and/or), full phrase search, stemming as well as geol
 
 ## Decision
 
-A spike has been started to evaluate [ElasticSearch](https://www.elastic.co/products/elasticsearch) as candidate.
-(Funnelback)[https://www.funnelback.com/] has been looked at but discounted due to it being closed-source and for 
+A review of ElasticSearch and Funnelback was undertaken [here](https://docs.google.com/document/d/10xK0on4gzrB1ImZHk3Z_PoCr7V_aUpiieuLdQDg4OwQ/edit)
+and [ElasticSearch](https://www.elastic.co/products/elasticsearch) was chosen as a candidate due to the fact that it was 
+open source and had comprehensive documentation with an established community around it.
+(Funnelback)[https://www.funnelback.com/] was discounted due to it being closed-source and for 
 it's lack of community support.
 A  Docker image of GP data ([profiles-db-elastic](https://hub.docker.com/r/nhsuk/profiles-db-elastic/))
 running an ElasticSearch instance has been created for use by this application and possibly by other applications.

@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-In order to perform a search on surgery name, a repository of GP Surgeries is needed.
+In order to perform a search on GP or surgery name, a repository of GP Surgeries is needed.
 A Docker image of GP data
 ([profiles-db](https://hub.docker.com/r/nhsuk/profiles-db/)) running a MongoDB
 instance has been created for use by other applications and we have chosen to adapt it
