@@ -23,7 +23,7 @@ function validateSearch(req, res, next) {
     log.info(validationResult.input, 'Search failed validation');
     // eslint-disable-next-line no-param-reassign
     res.locals.errorMessage = validationResult.errorMessage;
-    if (searchValidator.isEmpty(validationResult.input)) { setSearchLabel(res); }
+    if (!(validationResult.input)) { setSearchLabel(res); }
     renderer.searchForYourGp(req, res);
   } else {
     next();
