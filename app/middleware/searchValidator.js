@@ -12,7 +12,7 @@ function validateSearch(req, res, next) {
   const searchTermPostcode = res.locals.postcode;
 
   log.info('validate-search-start');
-  const validationResult = searchValidator.validateSearch(searchTermName, searchTermPostcode);
+  const validationResult = searchValidator.checkForEmptySearch(searchTermName, searchTermPostcode);
 
   log.info('validate-search-end');
 
