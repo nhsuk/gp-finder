@@ -35,7 +35,7 @@ function mapResults(results, res, searchTerm) {
 }
 
 function getGps(req, res, next) {
-  const searchTerm = res.locals.search;
+  const searchTerm = res.locals.processedSearch;
   let esQuery;
 
   if (res.locals.location) {

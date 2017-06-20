@@ -17,7 +17,7 @@ function validateSearch(req, res, next) {
   log.info('validate-search-end');
 
   // eslint-disable-next-line no-param-reassign
-  res.locals.search = validationResult.input;
+  res.locals.processedSearch = validationResult.input;
 
   if (validationResult.errorMessage) {
     log.info(validationResult.input, 'Search failed validation');
