@@ -8,14 +8,14 @@
   <div>
     <div class="form-item-wrapper">
       {% if errorMessage %}
-      <h2>{{ searchLabel }}</h2>
-      <p>{{ errorMessage }} </p>
+        <h2>{{ searchLabel }}</h2>
+        <p>{{ errorMessage }} </p>
       {% elif gps.length === 0 %}
-      <h2>We can't find a surgery matching '{{search}}'</h2>
-      <p>Check the name you're using is correct and search again. You can also search using the name of your GP.</p>
+        <h2>We can't find a surgery matching '{{search}}'</h2>
+        <p>Check the text you entered is right. You might get better results if you enter a full name. Or you can search with a postcode instead.</p>
       {% else %}
-      <h2>{{ searchLabel }}</h2>
-      <p>To go to your booking system, enter your surgery's or your GP's name or enter your postcode.</p>
+        <h2>Find your GP surgery</h2>
+        <p>You need to do this to go to your booking system. Enter the name of your surgery, the name of your GP or a postcode.</p>
       {% endif %}
       {% if errorMessage %}
       <div class="form-group error">
