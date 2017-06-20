@@ -1,20 +1,16 @@
 const messages = require('../lib/messages');
 
-function isEmpty(search) {
-  return !search || !search.trim();
-}
-
-function validateSearch(searchTermName, searchTermPostcode) {
+function checkForEmptySearch(searchTermName, searchTermPostcode) {
   let errorMessage = null;
   let searchToReturn = searchTermName;
 
-  if (isEmpty(searchTermName) && isEmpty(searchTermPostcode)) {
+  if (!(searchTermName) && !(searchTermPostcode)) {
     errorMessage = messages.emptySearchMessage();
-  } else if (!isEmpty(searchTermPostcode)) {
+  } else if (searchTermPostcode) {
     // TODO: If postcode, ignore the name search - this will be changed soon
-    searchToReturn = searchTermPostcode.trim();
+    searchToReturn = searchTermPostcode;
   } else {
-    searchToReturn = searchTermName.trim();
+    searchToReturn = searchTermName;
   }
 
   return {
@@ -24,6 +20,5 @@ function validateSearch(searchTermName, searchTermPostcode) {
 }
 
 module.exports = {
-  isEmpty,
-  validateSearch,
+  checkForEmptySearch,
 };
