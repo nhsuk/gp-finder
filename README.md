@@ -43,7 +43,7 @@ You can run the tests using [`./scripts/test`](scripts/test).
 
 ## Continuous development
 
-First time run - please run `yarn install` locally as we are using Husky[https://www.npmjs.com/package/husky]
+First time run - please run `yarn install` locally as we are using [Husky](https://www.npmjs.com/package/husky])
 to manage our git hooks that will ensure a baseline code quality.
 
 You can run the tests continuously using [`./scripts/test`](scripts/test), and once you are happy with the changes you 
