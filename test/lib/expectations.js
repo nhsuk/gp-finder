@@ -9,7 +9,7 @@ function homePageBase($) {
 
 function homePageEmptyEntry($) {
   homePageBase($);
-  expect($('label[for=search]').text()).to.contain('You need to enter some text');
+  expect($('.form--error .form-item-wrapper > h2').text()).to.contain('You need to enter some text');
 }
 
 function homePage($) {
