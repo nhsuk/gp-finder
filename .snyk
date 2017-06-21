@@ -1,50 +1,27 @@
-# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.1
-# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+version: v1.5.2
 ignore:
   'npm:brace-expansion:20170302':
     - nunjucks > chokidar > fsevents > node-pre-gyp > rimraf > glob > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:17:48.690Z'
-      fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
-        reason: None given
-        expires: '2017-06-16T19:19:54.090Z'
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar > fstream > rimraf > glob > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:17:48.690Z'
-      fstream-ignore > minimatch > brace-expansion:
-        reason: None given
-        expires: '2017-06-16T19:19:54.091Z'
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > rimraf > glob > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:17:48.690Z'
-      fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
-        reason: None given
-        expires: '2017-06-16T19:19:54.091Z'
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > fstream > rimraf > glob > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:17:48.690Z'
-      node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
-        reason: None given
-        expires: '2017-06-16T19:19:54.091Z'
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > fstream-ignore > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:17:48.691Z'
-      node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
-        reason: None given
-        expires: '2017-06-16T19:19:54.091Z'
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:17:48.691Z'
-      node-pre-gyp > tar-pack > fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
-        reason: None given
-        expires: '2017-06-16T19:19:54.091Z'
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:17:48.691Z'
-      node-pre-gyp > tar-pack > fstream-ignore > minimatch > brace-expansion:
-        reason: None given
-        expires: '2017-06-16T19:19:54.091Z'
     - node-pre-gyp > rimraf > glob > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:19:54.091Z'
@@ -117,10 +94,34 @@ ignore:
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > fstream-ignore > minimatch > brace-expansion:
         reason: None given
         expires: '2017-06-16T19:19:54.096Z'
+    - fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-06-16T19:19:54.090Z'
+    - fstream-ignore > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-06-16T19:19:54.091Z'
+    - fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-06-16T19:19:54.091Z'
+    - node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-06-16T19:19:54.091Z'
+    - node-pre-gyp > tar-pack > tar > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-06-16T19:19:54.091Z'
+    - node-pre-gyp > tar-pack > fstream-ignore > fstream > rimraf > glob > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-06-16T19:19:54.091Z'
+    - node-pre-gyp > tar-pack > fstream-ignore > minimatch > brace-expansion:
+        reason: None given
+        expires: '2017-06-16T19:19:54.091Z'
   'npm:ms:20170412':
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > debug > ms:
         reason: None given
         expires: '2017-06-16T19:19:54.096Z'
+      compression > debug > ms:
+        reason: None given
+        expires: '2017-07-19T16:08:46.169Z'
     - body-parser > debug > ms:
         reason: None given
         expires: '2017-06-16T19:19:54.096Z'
