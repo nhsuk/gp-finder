@@ -8,7 +8,7 @@
   <div>
     <div class="form-item-wrapper">
       {% if errorMessage %}
-        <h2>{{ searchLabel }}</h2>
+        <h2>{{ searchErrorLabel }}</h2>
         <p>{{ errorMessage }} </p>
       {% elif gps.length === 0 %}
         <h2>We can't find a surgery matching '{{search}}'</h2>

@@ -4,7 +4,7 @@ const searchValidator = require('../lib/searchValidator');
 
 function setSearchLabel(res) {
   // eslint-disable-next-line no-param-reassign
-  res.locals.searchLabel = 'You need to enter some text';
+  res.locals.searchErrorLabel = 'You need to enter some text';
 }
 
 function validateSearch(req, res, next) {
