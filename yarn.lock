@@ -3084,9 +3084,9 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
-postcodesio-client@^0.1.2:
+postcodesio-client@neilbmclaughlin/postcodesio-client-node#feature/add-outcode-lookup:
   version "0.1.2"
-  resolved "https://registry.yarnpkg.com/postcodesio-client/-/postcodesio-client-0.1.2.tgz#88ee6698c9d154989c6601430876cb391298a37c"
+  resolved "https://codeload.github.com/neilbmclaughlin/postcodesio-client-node/tar.gz/ec0e4929711c096a8ab086b6ea0e580d0e9f7fa9"
   dependencies:
     object-merge "^2.5.1"
     q "^1.1.2"
