@@ -64,6 +64,15 @@ describe('Results page with ranking', () => {
         done();
       });
     });
+    it(`of 'HG5' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+      const search = 'HG5';
+      const expected = 'Beech House Surgery';
+
+      makeSearchRequestAndCheckExpectations(search, (err, res) => {
+        expectHighRankForName(res, expected, RESULTS_THRESHOLD);
+        done();
+      });
+    });
   });
   describe('Surgeries with the specific surgery query', () => {
     it(`of 'park parade' should rank 'Park Parade Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
