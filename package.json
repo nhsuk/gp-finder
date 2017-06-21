@@ -19,7 +19,7 @@
     "start": "node app.js",
     "test": "NODE_ENV=test mocha --recursive test",
     "test-unit": "NODE_ENV=test mocha --recursive test/unit",
-    "travis": "yarn run lint && yarn run generate-coverage && yarn run check-coverage && yarn run upload-coverage",
+    "travis": "yarn run lint && yarn run generate-coverage && yarn run check-coverage && yarn run upload-coverage && yarn run snyk-travis",
     "upload-coverage": "cat ./coverage/lcov.info | coveralls",
     "watch-dev": "nodemon app.js | ./node_modules/bunyan/bin/bunyan & nodemon -e scss -x yarn run build-css -- compact",
     "watch-lint": "esw --watch .",
