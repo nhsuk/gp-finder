@@ -244,7 +244,7 @@ form {
     margin-bottom: 56px;
   }
   .reading-width {
-    p {
+    > p {
       &:last-of-type{
         margin-bottom: 64px;
       }
