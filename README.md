@@ -37,9 +37,19 @@ submodules i.e. `git clone https://github.com/nhsuk/gp-finder.git && cd
 gp-finder/ && git submodule update --init --recursive`
 
 You can run the application using [`./scripts/start`](scripts/start).
-The application will be available locally on `http://localhost:3000`.
-
+The application will be available locally on `http://localhost:3000` and any changes you make
+will be reflected in the app.
 You can run the tests using [`./scripts/test`](scripts/test).
+
+## Continuous development
+
+First time run - please run `yarn install` locally as we are using Husky[https://www.npmjs.com/package/husky]
+to manage our git hooks that will ensure a baseline code quality.
+
+You can run the tests continuously using [`./scripts/test`](scripts/test), and once you are happy with the changes you 
+have made and want to commit and push your changes, some git hooks will run as spot checks for linting, unit tests and 
+security vulnerabilities.
+
 
 ## Architecture Decision Records
 
@@ -47,3 +57,4 @@ This repo uses
 [Architecture Decision Records](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions)
 to record architectural decisions for this project.
 They are stored in [doc/architecture/decisions](doc/architecture/decisions).
+
