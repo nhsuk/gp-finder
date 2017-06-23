@@ -10,6 +10,12 @@ describe('messages', () => {
     expect(message).to.equal('Enter the name of your surgery, the name of your GP or a postcode.');
   });
 
+  it('should have an error message for when the postcode is invalid', () => {
+    const message = messages.invalidPostcodeMessage();
+
+    expect(message).to.equal('Check you\'re using the right postcode. Or search using the name of your GP or surgery.');
+  });
+
   it('should have an error message for technical problems', () => {
     const message = messages.technicalProblems();
 
