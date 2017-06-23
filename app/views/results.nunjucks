@@ -19,9 +19,10 @@
 
 {% block content %}
 <div class="reading-width">
-  {% if gps.length === 0 %}
+  {% if nonEngland %}
+    {% include "includes/no-results.nunjucks" %}
+  {% elif gps.length === 0 %}
     {% include "includes/search-form.nunjucks" %}
-
   {% else %}
     <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{ search }}">Search results</h1>
     <h2 class='results__header'>{{resultsHeader}}</h2>
