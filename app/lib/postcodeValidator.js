@@ -1,4 +1,5 @@
 const messages = require('../lib/messages');
+const renderer = require('../middleware/renderer');
 const log = require('../lib/logger');
 
 function setSearchLabel(res, postcode) {
@@ -15,14 +16,14 @@ function handlePostcodeError(error, postcode, res, next) {
   next(error);
 }
 
-function postcodeNotEnglish(renderer, req, res) {
+function postcodeNotEnglish(req, res) {
   log.info(`Rendering no results page for non-english postcode '${res.locals.processedSearch}'`);
   /* eslint-enable no-param-reassign*/
   res.locals.nonEngland = true;
   return renderer.results(req, res);
 }
 
-function invalidPostcode(postcode, renderer, req, res) {
+function invalidPostcode(postcode, req, res) {
   const errorMessage = messages.invalidPostcodeMessage(postcode);
   log.info({ postcode }, 'Location failed validation');
   // eslint-disable-next-line no-param-reassign
