@@ -1,5 +1,5 @@
 <div class="results">
   <div class="results-block results-block--none">
-    <h2 class="results__header results__header--none">There are no GP surgeries near '{{ search }}' as it's outside of England. </h2>
+    <h2 class="results__header results__header--none">There are no GP surgeries near '{{ processedSearch }}' as it's outside of England. </h2>
   </div>
 </div>
