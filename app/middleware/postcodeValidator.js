@@ -1,52 +1,52 @@
 const log = require('../lib/logger');
 const renderer = require('../middleware/renderer');
-const isNotEnglishPostcode = require('../lib/isNotEnglishPostcode');
 const postcodeValidator = require('../lib/postcodeValidator');
+const isNotEnglishPostcode = require('../lib/isNotEnglishPostcode');
+const PostcodesIO = require('postcodesio-client');
 
-function setSearchLabel(res, postcode) {
-  // eslint-disable-next-line no-param-reassign
-  res.locals.searchErrorLabel = `The postcode '${postcode}' does not exist.`;
+const postcodes = new PostcodesIO();
+
+function handleError(error, postcode, res, next) {
+  postcodeValidator.handlePostcodeError(error, postcode, res, next);
 }
 
-function validateEnglishLocation(req, res, next) {
-  const postcode = res.locals.processedSearch;
-
-  log.info('validate-location-start');
-  const validationResult = postcodeValidator(postcode);
-  log.info(`validationResult - TODO turn this into a promise!!! ${validationResult}`);
-  log.info('validate-location-end');
-
-  // eslint-disable-next-line no-param-reassign
-  res.locals.processedSearch = validationResult.input;
-
-  if (validationResult.errorMessage) {
-    log.info({ postcode }, 'Location failed validation');
-    // eslint-disable-next-line no-param-reassign
-    res.locals.errorMessage = validationResult.errorMessage;
-    setSearchLabel(res, postcode);
-    renderer.searchForYourGp(req, res);
+function validatePostcode(result, postcode, rendererParam, req, res, next) {
+  if (!result) {
+    postcodeValidator.invalidPostcode(postcode, rendererParam, req, res);
   } else {
     next();
   }
 }
 
-function renderNoResultsPage(req, res) {
-  log.info(`Rendering no results page for non-english postcode '${res.locals.postcode}'`);
-  /* eslint-enable no-param-reassign*/
-  res.locals.nonEngland = true;
-  renderer.results(req, res);
+function validateEnglishLocation(rendererParam, req, res, next) {
+  const postcode = res.locals.processedSearch;
+
+  if (postcodeValidator.isOutcode(postcode)) {
+    log.info('validate-outcode-skip');
+    next();
+  } else {
+    log.info('validate-location-start');
+    postcodes
+      .validate(postcode)
+      .then(result => validatePostcode(result, postcode, rendererParam, req, res, next))
+      .catch(error => handleError(error, postcode, res, next));
+    log.info('validate-location-end');
+  }
 }
 
 function validateLocation(req, res, next) {
   if (res.locals.postcode === res.locals.processedSearch) {
+    const rendererParam = renderer;
     if (isNotEnglishPostcode(res.locals.postcode)) {
-      renderNoResultsPage(req, res);
+      postcodeValidator.postcodeNotEnglish(rendererParam, req, res);
     } else {
-      validateEnglishLocation(req, res, next);
+      validateEnglishLocation(rendererParam, req, res, next);
     }
   } else {
     next();
   }
 }
 
-module.exports = validateLocation;
+module.exports = {
+  validateLocation
+};
