@@ -47,6 +47,4 @@ function validateLocation(req, res, next) {
   }
 }
 
-module.exports = {
-  validateLocation
-};
+module.exports = validateLocation;
