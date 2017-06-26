@@ -16,14 +16,14 @@ function handlePostcodeError(error, postcode, res, next) {
   next(error);
 }
 
-function postcodeNotEnglish(req, res) {
+function renderPostcodeNotEnglish(req, res) {
   log.info(`Rendering no results page for non-english postcode '${res.locals.processedSearch}'`);
   /* eslint-enable no-param-reassign*/
   res.locals.nonEngland = true;
   return renderer.results(req, res);
 }
 
-function invalidPostcode(postcode, req, res) {
+function renderInvalidPostcodePage(postcode, req, res) {
   const errorMessage = messages.invalidPostcodeMessage(postcode);
   log.info({ postcode }, 'Location failed validation');
   // eslint-disable-next-line no-param-reassign
@@ -45,7 +45,7 @@ function isPostcode(postcode) {
 module.exports = {
   isOutcode,
   isPostcode,
-  invalidPostcode,
-  postcodeNotEnglish,
+  renderInvalidPostcodePage,
+  renderPostcodeNotEnglish,
   handlePostcodeError
 };

@@ -15,7 +15,7 @@ function lookupPostcode(req, res, next) {
         next();
       } else if (!err) {
         log.info('validate-outcode-invalid');
-        postcodeValidator.invalidPostcode(res.locals.processedSearch, req, res);
+        postcodeValidator.renderInvalidPostcodePage(res.locals.processedSearch, req, res);
         log.info('validate-outcode-end');
       } else {
         log.info('lookup-outcode-error');
@@ -31,7 +31,7 @@ function lookupPostcode(req, res, next) {
         next();
       } else if (postcode && postcode.country !== 'England') {
         log.info('revalidate-postcode-notEnglish');
-        postcodeValidator.postcodeNotEnglish(req, res);
+        postcodeValidator.renderPostcodeNotEnglish(req, res);
         log.info('revalidate-postcode-notEnglish');
       } else {
         log.info('lookup-postcode-error');
