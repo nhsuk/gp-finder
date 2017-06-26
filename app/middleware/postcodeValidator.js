@@ -1,5 +1,4 @@
 const log = require('../lib/logger');
-const renderer = require('../middleware/renderer');
 const postcodeValidator = require('../lib/postcodeValidator');
 const isNotEnglishPostcode = require('../lib/isNotEnglishPostcode');
 const PostcodesIO = require('postcodesio-client');
@@ -10,15 +9,15 @@ function handleError(error, postcode, res, next) {
   postcodeValidator.handlePostcodeError(error, postcode, res, next);
 }
 
-function validatePostcode(result, postcode, rendererParam, req, res, next) {
+function validatePostcode(result, postcode, req, res, next) {
   if (!result) {
-    postcodeValidator.invalidPostcode(postcode, rendererParam, req, res);
+    postcodeValidator.invalidPostcode(postcode, req, res);
   } else {
     next();
   }
 }
 
-function validateEnglishLocation(rendererParam, req, res, next) {
+function validateEnglishLocation(req, res, next) {
   const postcode = res.locals.processedSearch;
 
   if (postcodeValidator.isOutcode(postcode)) {
@@ -28,7 +27,7 @@ function validateEnglishLocation(rendererParam, req, res, next) {
     log.info('validate-location-start');
     postcodes
       .validate(postcode)
-      .then(result => validatePostcode(result, postcode, rendererParam, req, res, next))
+      .then(result => validatePostcode(result, postcode, req, res, next))
       .catch(error => handleError(error, postcode, res, next));
     log.info('validate-location-end');
   }
@@ -36,11 +35,10 @@ function validateEnglishLocation(rendererParam, req, res, next) {
 
 function validateLocation(req, res, next) {
   if (res.locals.postcode === res.locals.processedSearch) {
-    const rendererParam = renderer;
     if (isNotEnglishPostcode(res.locals.postcode)) {
-      postcodeValidator.postcodeNotEnglish(rendererParam, req, res);
+      postcodeValidator.postcodeNotEnglish(req, res);
     } else {
-      validateEnglishLocation(rendererParam, req, res, next);
+      validateEnglishLocation(req, res, next);
     }
   } else {
     next();
