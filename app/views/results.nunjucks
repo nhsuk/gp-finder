@@ -23,7 +23,11 @@
     {% include "includes/search-form.nunjucks" %}
 
   {% else %}
-    <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{ search }}">Search results</h1>
+    {% if (search) and (postcode) or (postcode) %}
+      <h1 class="sr-only" data-results="{{gps.length}}" data-termpc="{{processedSearch}}">Search results</h1>
+    {% else %}
+      <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{search}}">Search results</h1>
+    {% endif %}
     <h2 class='results__header'>{{resultsHeader}}</h2>
     {% if (search) and (postcode) %}
       <p>When you enter a name and a postcode, we only search using the postcode.</p>
