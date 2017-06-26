@@ -11,7 +11,7 @@ function handleError(error, postcode, res, next) {
 
 function validatePostcode(result, postcode, req, res, next) {
   if (!result) {
-    postcodeValidator.invalidPostcode(postcode, req, res);
+    postcodeValidator.renderInvalidPostcodePage(postcode, req, res);
   } else {
     next();
   }
@@ -36,7 +36,7 @@ function validateEnglishLocation(req, res, next) {
 function validateLocation(req, res, next) {
   if (res.locals.postcode === res.locals.processedSearch) {
     if (isNotEnglishPostcode(res.locals.postcode)) {
-      postcodeValidator.postcodeNotEnglish(req, res);
+      postcodeValidator.renderPostcodeNotEnglish(req, res);
     } else {
       validateEnglishLocation(req, res, next);
     }
