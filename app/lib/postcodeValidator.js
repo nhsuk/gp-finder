@@ -19,7 +19,7 @@ function postcodeNotEnglish(renderer, req, res) {
   log.info(`Rendering no results page for non-english postcode '${res.locals.processedSearch}'`);
   /* eslint-enable no-param-reassign*/
   res.locals.nonEngland = true;
-  renderer.results(req, res);
+  return renderer.results(req, res);
 }
 
 function invalidPostcode(postcode, renderer, req, res) {
