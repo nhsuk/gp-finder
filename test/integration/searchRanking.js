@@ -54,7 +54,7 @@ function expectHighRankForAddress(res, expected, resultsThreshold) {
 }
 
 describe('Results page with ranking', () => {
-  describe('Search by postcode', () => {
+  describe('Search by postcode in the name', () => {
     it(`of 'HG5 0JL' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'HG5 0JL';
       const expected = 'Beech House Surgery';
