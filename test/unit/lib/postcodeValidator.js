@@ -19,17 +19,19 @@ describe('Postcode validation', () => {
       expect(res.locals.errorMessage).to.be.equal(messages.technicalProblems());
     });
   });
+
   describe('error handling for renderPostcodeNotEnglish', () => {
     it('should set a not England flag in the results', () => {
+      const postcode = 'EH1';
       const req = {};
       const res = {};
       res.locals = {};
-      res.locals.nonEngland = null;
+      res.locals.errorMessage = null;
       res.render = function () {};
 
-      postcodeValidator.renderPostcodeNotEnglish(req, res);
+      postcodeValidator.renderPostcodeNotEnglish(postcode, req, res);
 
-      expect(res.locals.nonEngland).to.be.equal(true);
+      expect(res.locals.errorMessage).to.be.equal(messages.notEnglishPostcodeMessage());
     });
   });
 
