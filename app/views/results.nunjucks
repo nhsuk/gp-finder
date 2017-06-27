@@ -19,9 +19,7 @@
 
 {% block content %}
 <div class="reading-width">
-  {% if nonEngland %}
-    {% include "includes/no-results.nunjucks" %}
-  {% elif gps.length === 0 %}
+  {% if gps.length === 0 %}
     {% include "includes/search-form.nunjucks" %}
   {% else %}
     {% if (search) and (postcode) or (postcode) %}

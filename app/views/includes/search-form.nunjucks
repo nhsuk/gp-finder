@@ -12,7 +12,7 @@
         <p>{{ errorMessage }} </p>
       {% elif gps.length === 0 %}
         {% if postcode %}
-          <h2>We can't find a surgery matching near '{{processedSearch}}'</h2>
+          <h2>We can't find a surgery near to '{{processedSearch}}'</h2>
           <p>Check you're using the right postcode. Or search using the name of your GP or surgery.</p>
         {% else %}
           <h2>We can't find a surgery matching '{{processedSearch}}'</h2>

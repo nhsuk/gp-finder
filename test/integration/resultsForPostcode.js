@@ -37,6 +37,15 @@ function expectHighRankForPostcode(res, expected, resultsThreshold) {
   expect(highRank).to.equal(true, `expected '${expected}' in top ${resultsThreshold} results (${searchResults})`);
 }
 
+function expectErrorMessagesForPostcode(res, errorMessage, errorMessage2) {
+  const $ = cheerio.load(res.text);
+  const noResultsHeader = $('.form-item-wrapper h2').text();
+  const noResultsParagraph = $('.form-item-wrapper p').text();
+
+  expect(noResultsHeader).to.contain(errorMessage);
+  expect(noResultsParagraph).to.contain(errorMessage2);
+}
+
 describe('Results page with postcode search', () => {
   describe('Search by valid full postcode', () => {
     it(`of 'HG5 0JL' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
@@ -74,23 +83,74 @@ describe('Results page with postcode search', () => {
     });
   });
 
-  describe('Search by valid out of England outcode', () => {
-    it('should return an error message for postcodes in Scotland', () => {
-      // TODO
-    });
+  describe('Search by valid postcode and valid name', () => {
+    it('should ignore the name search and only show results for the postcode search', (done) => {
+      const search = 'ignored search';
+      const postcode = 'HG5 0JL';
+      const expected = 'Beech House Surgery';
 
-    it('should return an error message for outcodes in Scotland', () => {
-      // TODO
+      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
+        expectHighRankForPostcode(res, expected, RESULTS_THRESHOLD);
+        done();
+      });
+    });
+  });
+
+  describe('Search by valid out of England outcode', () => {
+    it('should return an error message for outcodes in Scotland', (done) => {
+      const search = '';
+      const postcode = 'EH1';
+      const errorMessage = 'This service is for GP surgeries in England';
+      const errorMessage2 = 'If you\'re not in England, ask your GP\'s receptionist or visit the surgery website to find out if you can ' +
+        'book an appointment online. If you\'ve used the wrong postcode, you can search again.';
+
+      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
+        expectErrorMessagesForPostcode(res, errorMessage, errorMessage2);
+        done();
+      });
     });
   });
 
   describe('Search by valid out of England postcode', () => {
-    // TODO:
+    it('should return an error message for postcodes in Scotland', (done) => {
+      const search = '';
+      const postcode = 'EH1 1EN';
+      const errorMessage = 'This service is for GP surgeries in England';
+      const errorMessage2 = 'If you\'re not in England, ask your GP\'s receptionist or visit the surgery website to find out if you can ' +
+        'book an appointment online. If you\'ve used the wrong postcode, you can search again.';
+
+      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
+        expectErrorMessagesForPostcode(res, errorMessage, errorMessage2);
+        done();
+      });
+    });
   });
+
+  describe('Search by invalid outcode', () => {
+    it('should return a descriptive message', (done) => {
+      const search = '';
+      const postcode = 'S50';
+      const errorMessage = `The postcode '${postcode}' does not exist.`;
+      const errorMessage2 = 'Check you\'re using the right postcode. Or search using the name of your GP or surgery.';
+
+      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
+        expectErrorMessagesForPostcode(res, errorMessage, errorMessage2);
+        done();
+      });
+    });
+  });
+
   describe('Search by invalid postcode', () => {
-    // TODO:
-  });
-  describe('Search by valid postcode and valid name', () => {
-    // TODO:
+    it('should return a descriptive message', (done) => {
+      const search = '';
+      const postcode = 'S50 3EW';
+      const errorMessage = `The postcode '${postcode}' does not exist.`;
+      const errorMessage2 = 'Check you\'re using the right postcode. Or search using the name of your GP or surgery.';
+
+      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
+        expectErrorMessagesForPostcode(res, errorMessage, errorMessage2);
+        done();
+      });
+    });
   });
 });
