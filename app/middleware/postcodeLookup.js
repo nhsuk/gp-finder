@@ -31,7 +31,7 @@ function lookupPostcode(req, res, next) {
         next();
       } else if (postcode && postcode.country !== 'England') {
         log.info('revalidate-postcode-notEnglish');
-        postcodeValidator.renderPostcodeNotEnglish(req, res);
+        postcodeValidator.renderPostcodeNotEnglish(res.locals.processedSearch, req, res);
         log.info('revalidate-postcode-notEnglish');
       } else {
         log.info('lookup-postcode-error');
