@@ -75,14 +75,22 @@ describe('Results page with postcode search', () => {
   });
 
   describe('Search by valid out of England outcode', () => {
-    // TODO:
+    it('should return an error message for postcodes in Scotland', () => {
+      // TODO
+    });
+
+    it('should return an error message for outcodes in Scotland', () => {
+      // TODO
+    });
   });
 
   describe('Search by valid out of England postcode', () => {
     // TODO:
   });
-
   describe('Search by invalid postcode', () => {
+    // TODO:
+  });
+  describe('Search by valid postcode and valid name', () => {
     // TODO:
   });
 });

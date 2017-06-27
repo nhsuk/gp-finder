@@ -6,43 +6,45 @@ const expect = chai.expect;
 
 describe('Postcode validation', () => {
   describe('error handling for handlePostcodeError', () => {
-    xit('should return an errorMessage when an error exists', () => {
+    it('should return an errorMessage when an error exists', () => {
       const error = 'Some error';
       const postcode = 'S3';
-      const res = { errorMessage: null };
-      const next = {};
+      const res = {};
+      res.locals = {};
+      res.locals.errorMessage = null;
+      const next = function () {};
 
       postcodeValidator.handlePostcodeError(error, postcode, res, next);
 
-      expect(res.errorMessage)
-        .to.be
-        .equal(messages.technicalProblems());
+      expect(res.locals.errorMessage).to.be.equal(messages.technicalProblems());
     });
   });
   describe('error handling for renderPostcodeNotEnglish', () => {
-    xit('should set a not England flag in the results', () => {
-      const res = { locals: { nonEngland: null } };
+    it('should set a not England flag in the results', () => {
       const req = {};
+      const res = {};
+      res.locals = {};
+      res.locals.nonEngland = null;
+      res.render = function () {};
 
       postcodeValidator.renderPostcodeNotEnglish(req, res);
 
-      expect(res.locals.nonEngland)
-        .to.be
-        .equal(true);
+      expect(res.locals.nonEngland).to.be.equal(true);
     });
   });
 
   describe('error handling for renderInvalidPostcodePage', () => {
-    xit('should return an errorMessage when the postcode is invalid', () => {
+    it('should return an errorMessage when the postcode is invalid', () => {
       const postcode = 'S50 3EW';
-      const res = { errorMessage: null };
       const req = {};
+      const res = {};
+      res.locals = {};
+      res.locals.errorMessage = null;
+      res.render = function () {};
 
       postcodeValidator.renderInvalidPostcodePage(postcode, req, res);
 
-      expect(res.errorMessage)
-        .to.be
-        .equal(messages.invalidPostcodeMessage(postcode));
+      expect(res.locals.errorMessage).to.be.equal(messages.invalidPostcodeMessage());
     });
   });
 });
