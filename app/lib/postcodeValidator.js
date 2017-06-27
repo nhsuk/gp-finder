@@ -8,26 +8,23 @@ function setSearchLabel(res, postcode) {
 }
 
 function handlePostcodeError(error, postcode, res, next) {
-  const errMsg = 'Error with postcode validation';
-
-  const errorMessage = messages.technicalProblems;
-  log.info({ postcode }, errMsg);
-  res.locals.errorMessage = errorMessage;
+  log.info({ postcode }, 'Error with postcode validation');
+  // eslint-disable-next-line no-param-reassign
+  res.locals.errorMessage = messages.technicalProblems();
   next(error);
 }
 
 function renderPostcodeNotEnglish(req, res) {
   log.info(`Rendering no results page for non-english postcode '${res.locals.processedSearch}'`);
-  /* eslint-enable no-param-reassign*/
+  // eslint-disable-next-line no-param-reassign
   res.locals.nonEngland = true;
   return renderer.results(req, res);
 }
 
 function renderInvalidPostcodePage(postcode, req, res) {
-  const errorMessage = messages.invalidPostcodeMessage(postcode);
   log.info({ postcode }, 'Location failed validation');
   // eslint-disable-next-line no-param-reassign
-  res.locals.errorMessage = errorMessage;
+  res.locals.errorMessage = messages.invalidPostcodeMessage();
   setSearchLabel(res, postcode);
   renderer.searchForYourGp(req, res);
 }
