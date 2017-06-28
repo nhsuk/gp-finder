@@ -1,9 +1,9 @@
 const log = require('../lib/logger');
 const postcodeValidator = require('../lib/postcodeValidator');
 const isNotEnglishPostcode = require('../lib/isNotEnglishPostcode');
-const PostcodesIO = require('postcodesio-client');
+const PostcodesIOClient = require('postcodesio-client');
 
-const postcodes = new PostcodesIO();
+const PostcodesIO = new PostcodesIOClient();
 
 function handleError(error, postcode, res, next) {
   postcodeValidator.handlePostcodeError(error, postcode, res, next);
@@ -25,7 +25,7 @@ function validateEnglishLocation(req, res, next) {
     next();
   } else {
     log.info('validate-location-start');
-    postcodes
+    PostcodesIO
       .validate(postcode)
       .then(result => validatePostcode(result, postcode, req, res, next))
       .catch(error => handleError(error, postcode, res, next));
