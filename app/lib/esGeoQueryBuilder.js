@@ -11,7 +11,7 @@ function build(location) {
           },
           filter: {
             geo_distance: {
-              distance: '5km',
+              distance: '50mi',
               'location.coordinates': {
                 lon: location.lon,
                 lat: location.lat
@@ -28,7 +28,7 @@ function build(location) {
               lat: location.lat
             },
             order: 'asc',
-            unit: 'km',
+            unit: 'mi',
             distance_type: 'plane'
           }
         }

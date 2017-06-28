@@ -21,7 +21,6 @@
 <div class="reading-width">
   {% if gps.length === 0 %}
     {% include "includes/search-form.nunjucks" %}
-
   {% else %}
     {% if (search) and (postcode) or (postcode) %}
       <h1 class="sr-only" data-results="{{gps.length}}" data-termpc="{{processedSearch}}">Search results</h1>
