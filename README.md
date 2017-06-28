@@ -27,7 +27,7 @@ the application is being run. This is best practice as described by
 ## Application development
 
 The application has some scripts to make things easier for development. For
-more information about scrips, please read the info [here](scripts/README.md).
+more information about scripts, please read the info [here](scripts/README.md).
 
 Please run the [`./scripts/bootstrap`](scripts/bootstrap) script first and
 follow the instructions.
