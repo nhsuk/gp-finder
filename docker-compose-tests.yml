@@ -22,8 +22,6 @@ services:
     command: sh ./scripts/container-ci-tests
     volumes:
       - gp-finder-ci-tests-node_modules:/code/node_modules
-    env_file:
-      - .env
     environment:
       COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
       NODE_ENV: development
