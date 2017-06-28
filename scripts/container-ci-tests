@@ -4,4 +4,4 @@
 
 wait_for_es_to_start
 
-yarn run travis
+yarn run ci
