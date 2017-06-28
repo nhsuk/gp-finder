@@ -20,7 +20,7 @@
 {% endif %}
 {% if gp.distance %}
   <p class="results__address">
-  Distance: {{ gp.distance | float | round(2) }} km
+  Distance: {{ gp.distance | float | round(2) }} mi
   </p>
 {% endif %}
 {% if not gp.bookOnlineLink %}
