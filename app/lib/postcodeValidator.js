@@ -4,13 +4,13 @@ const log = require('../lib/logger');
 
 function setInvalidPostcodeLabel(res, postcode) {
   // eslint-disable-next-line no-param-reassign
-  res.locals.searchErrorLabel = `The postcode '${postcode}' does not exist.`;
+  res.locals.searchErrorLabel = `The postcode '${postcode}' does not exist`;
   res.locals.searchErrorClass = 'postcode';
 }
 
-function setNotEnglishPostcodeLabel(res) {
+function setNotEnglishPostcodeLabel(res, postcode) {
   // eslint-disable-next-line no-param-reassign
-  res.locals.searchErrorLabel = 'This service is for GP surgeries in England';
+  res.locals.searchErrorLabel = `The postcode '${postcode}' is not in England`;
 }
 
 function handlePostcodeError(error, postcode, res, next) {
@@ -24,7 +24,7 @@ function renderPostcodeNotEnglish(postcode, req, res) {
   log.info({ postcode }, 'Location outside of England');
   // eslint-disable-next-line no-param-reassign
   res.locals.errorMessage = messages.notEnglishPostcodeMessage();
-  setNotEnglishPostcodeLabel(res);
+  setNotEnglishPostcodeLabel(res, postcode);
   renderer.searchForYourGp(req, res);
 }
 

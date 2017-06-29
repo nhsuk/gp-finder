@@ -48,11 +48,17 @@ describe('messages', () => {
       expect(message).to.equal(`If your surgery is not here, check the postcode you have entered is right and ${searchAgainLink}. You can also search by the name of your GP or surgery.`);
     });
 
+<<<<<<< HEAD
     it('should have a GP name message when only a name has been passed', () => {
       const message = messages.searchHelpMessage(false, true);
 
       expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}. You can also search by your postcode.`);
     });
+=======
+    expect(message).to.equal('This service is for GP surgeries in England. If your GP is not in England, go to their website or contact ' +
+      'reception to find out if you can book an appointment online. If you\'ve used the wrong postcode, you can search again.');
+  });
+>>>>>>> 401aad8... :arrow_left: update copy for error messages
 
     it('should have a combined message when a postcode and name have been passed', () => {
       const message = messages.searchHelpMessage(true, true);
