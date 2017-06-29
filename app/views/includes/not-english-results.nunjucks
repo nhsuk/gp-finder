@@ -1,13 +1,14 @@
 <div class="results">
   <div class="results-block results-block--none">
-    <h2 class="results__header results__header--none">This service is for GP surgeries in England. </h2>
+    <h2 class="results__header results__header--none">This service is for GP surgeries in England</h2>
   </div>
     <div class="results__none-content">
-      <p>The postcode you tried is '{{ processedSearch }}'.
-      If you've used the wrong postcode, you can check the postcode and <a href='/book-a-gp-appointment'>search again</a>.</p>
-      <p>You might be getting this result because you live in Scotland, Wales or Northern Ireland, or because you live near a border with one of those countries.</p>
-      <p><a href="https://www.nhsinform.scot/national-service-directory/gp-practices/">Find your GP Surgery in Scotland on the NHS Inform website</a>.</p>
-      <p><a href="http://www.nhsdirect.wales.nhs.uk/localservices/searchlocalservices.aspx?s=Pharmacy">Find your GP Surgery in Wales on the NHS Direct Wales website</a>.</p>
-      <p><a href="http://servicefinder.hscni.net">Find your GP Surgery in Northern Ireland on the Health and Social Care Online website</a>.</p>
+      <p>You entered the postcode '{{ processedSearch }}'. This is not an English postcode.
+      If you entered the wrong postcode you can <a href='/book-a-gp-appointment'>search again</a>.</p>
+      <p>If you live outside of England, contact your GP surgery to find out if you can book an appointment online.
+      Find contact details for GP surgeries in:</p>
+      <p>Scotland on the <a href="https://www.nhsinform.scot/national-service-directory/gp-practices/">NHS Inform website</a>.</p>
+      <p>Wales on the <a href="http://www.nhsdirect.wales.nhs.uk/LocalServices/?s=GPSurgeries">NHS Direct Wales</a>.</p>
+      <p>Northern Ireland on the <a href="http://servicefinder.hscni.net">Health and Social Care Online website</a>.</p>
     </div>
 </div>
