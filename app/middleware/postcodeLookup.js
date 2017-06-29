@@ -11,6 +11,7 @@ function lookupPostcode(req, res, next) {
     PostcodesIO.outcode(postcode, (err, outcodeDetails) => {
       if (outcodeDetails) {
         res.locals.location = { lat: outcodeDetails.latitude, lon: outcodeDetails.longitude };
+        res.locals.isOutcode = true;
         log.info(`outcode ${JSON.stringify(res.locals.location)}`);
         next();
       } else if (!err) {

@@ -62,7 +62,7 @@ describe('Results page', () => {
     describe('no matching surgeries found', () => {
       it('should return a descriptive message when searching by name', (done) => {
         const search = 'asdasdas';
-        const errorMessage = `We can't find a surgery matching '${search}'`;
+        const errorMessage = `We can't find a surgery using '${search}'`;
 
         assertSearchResponse(search, (err, res) => {
           const $ = cheerio.load(res.text);
