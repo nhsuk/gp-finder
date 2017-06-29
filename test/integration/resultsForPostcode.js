@@ -70,23 +70,23 @@ describe('Results page with postcode search', () => {
     });
   });
 
-  describe('Search by valid outcode', () => {
-    it(`of 'HG5' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
-      const search = '';
-      const postcode = 'HG5';
-      const expected = 'Beech House Surgery';
+  describe('Search by postcode and name', () => {
+    it('of \'HG5 0JL\' and \'Park Parade\' should rank \'Park Parade Surgery\' as the top result', (done) => {
+      const search = 'Park Parade';
+      const postcode = 'HG5 0JL';
+      const expected = 'Park Parade Surgery';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
-        expectHighRankForPostcode(res, expected, RESULTS_THRESHOLD);
+        expectHighRankForPostcode(res, expected, 1);
         done();
       });
     });
   });
 
-  describe('Search by valid postcode and valid name', () => {
-    it('should ignore the name search and only show results for the postcode search', (done) => {
-      const search = 'ignored search';
-      const postcode = 'HG5 0JL';
+  describe('Search by valid outcode', () => {
+    it(`of 'HG5' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+      const search = '';
+      const postcode = 'HG5';
       const expected = 'Beech House Surgery';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {

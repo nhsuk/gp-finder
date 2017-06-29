@@ -24,15 +24,12 @@
   {% else %}
     <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{search}}">Search results</h1>
     <h2 class='results__header'>{{resultsHeader}}</h2>
-    {% if (search) and (postcode) %}
-      <p>When you enter a name and a postcode, we only search using the postcode.</p>
-    {% endif %}
     {% set resultsSubheaderContext = 'If this is not your surgery,' if gps.length === 1 else 'If your surgery is not here,' %}
     {% if postcode %}
       {% if isOutcode %}
-        <p>We found {{resultsSubHeader}} close to the '{{processedSearch}}' area.
+        <p>We found {{resultsSubHeader}} close to the '{{postcode}}' area.
       {% else %}
-        <p>We found {{resultsSubHeader}} near to '{{processedSearch}}'.
+        <p>We found {{resultsSubHeader}} near to '{{postcode}}'.
       {% endif %}
       {{resultsSubheaderContext}} check the postcode and <a href='/book-a-gp-appointment'>search again</a>.
       Or search with the name of your GP or surgery instead.</p>

@@ -12,7 +12,7 @@ describe('Postcode validation', () => {
       const res = {};
       res.locals = {};
       res.locals.errorMessage = null;
-      const next = function () {};
+      const next = () => {};
 
       postcodeValidator.handlePostcodeError(error, postcode, res, next);
 
@@ -27,7 +27,7 @@ describe('Postcode validation', () => {
       const res = {};
       res.locals = {};
       res.locals.errorMessage = null;
-      res.render = function () {};
+      res.render = () => {};
 
       postcodeValidator.renderPostcodeNotEnglish(postcode, req, res);
 
@@ -42,7 +42,7 @@ describe('Postcode validation', () => {
       const res = {};
       res.locals = {};
       res.locals.errorMessage = null;
-      res.render = function () {};
+      res.render = () => {};
 
       postcodeValidator.renderInvalidPostcodePage(postcode, req, res);
 
