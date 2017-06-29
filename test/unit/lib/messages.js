@@ -19,8 +19,8 @@ describe('messages', () => {
   it('should have an error message for when there is an out of England postcode/outcode', () => {
     const message = messages.notEnglishPostcodeMessage();
 
-    expect(message).to.equal('If you\'re not in England, ask your GP\'s receptionist or visit the surgery website to find out if you can ' +
-      'book an appointment online. If you\'ve used the wrong postcode, you can search again.');
+    expect(message).to.equal('This service is for GP surgeries in England. If your GP is not in England, go to their website or contact ' +
+      'reception to find out if you can book an appointment online. If you\'ve used the wrong postcode, you can search again.');
   });
 
   it('should have an error message for technical problems', () => {
