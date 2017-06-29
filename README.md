@@ -51,9 +51,9 @@ to manage our git hooks that will ensure a baseline code quality.
 You can run the tests continuously using [`./scripts/test`](scripts/test), and once you are happy with the changes you 
 have made and want to commit and push your changes, some git hooks will run as spot checks for linting, unit tests and 
 security vulnerabilities and coverage.
-For this to work seamlessly you need to `yarn install` when you first clone the app as well as 
+For this to work seamlessly you need to `yarn install` when you first clone the app as well as fill in the ENV variables. 
 
-There's an .env_sample with the ENV variables needed to fill in for development. 
+There is an .env_sample with the ENV variables needed to fill in for the hooks to work. 
 
 To use that, copy the file and fill in the info. We use [Coveralls](https://coveralls.io) and [Snyk](https://snyk.io/) 
 that you can sign up to using your GH account.
