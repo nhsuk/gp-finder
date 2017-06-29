@@ -1,16 +1,6 @@
 jQuery(function($) {
   $(document).ready(function () {
 
-    // If user search includes a postcode
-    if ($('h1.sr-only').attr('data-termpc')){
-      $('.results').mark($('h1.sr-only').data('termpc').toLowerCase(),{
-        "element": "em",
-        "className": "highlight",
-        "accuracy": "exact"
-      });
-    }
-
-    // If user search doesn't include a post code
     if ($('h1.sr-only').attr('data-term')){
       var searchTerm = $('h1.sr-only').data('term').toLowerCase();
           // remove speach mark
