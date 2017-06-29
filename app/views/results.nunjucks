@@ -39,7 +39,7 @@
     {% else %}
       <p>We found {{resultsSubHeader}} using '{{search}}'.
       {{resultsSubheaderContext}} check that the text you entered is right and <a href='/book-a-gp-appointment'>search again</a>.
-      You will get better results if you enter a full name. Or you can search with a postcode instead.</p>
+      You get better results if you enter a full name. Or you can search with a postcode instead.</p>
     {% endif %}
     <div class="grid-row">
       <ol class="results">

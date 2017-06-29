@@ -12,7 +12,7 @@
         <p>{{ errorMessage }} </p>
       {% elif gps.length === 0 %}
          <h2>We can't find a surgery using '{{processedSearch}}'</h2>
-         <p>Check the text you entered is right. You will get better results if you enter a full name. Or you can search with a postcode instead.</p>
+         <p>Check the text you entered is right. You get better results if you enter a full name. Or you can search with a postcode instead.</p>
       {% else %}
         <h2>Find your GP surgery</h2>
         <p>You need to do this to go to your booking system. Enter the name of your surgery, the name of your GP or a postcode.</p>
