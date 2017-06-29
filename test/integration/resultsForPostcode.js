@@ -46,6 +46,13 @@ function expectErrorMessagesForPostcode(res, errorMessage, errorMessage2) {
   expect(noResultsParagraph).to.contain(errorMessage2);
 }
 
+function expectMessageForNotEnglishPostcode(res, message) {
+  const $ = cheerio.load(res.text);
+  const noResultsHeader = $('.results__header').text();
+
+  expect(noResultsHeader).to.contain(message);
+}
+
 describe('Results page with postcode search', () => {
   describe('Search by valid full postcode', () => {
     it(`of 'HG5 0JL' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
@@ -97,30 +104,26 @@ describe('Results page with postcode search', () => {
   });
 
   describe('Search by valid out of England outcode', () => {
-    it('should return an error message for outcodes in Scotland', (done) => {
+    it('should return a descriptive message for outcodes in Scotland', (done) => {
       const search = '';
       const postcode = 'EH1';
-      const errorMessage = 'This service is for GP surgeries in England';
-      const errorMessage2 = 'If you\'re not in England, ask your GP\'s receptionist or visit the surgery website to find out if you can ' +
-        'book an appointment online. If you\'ve used the wrong postcode, you can search again.';
+      const message = 'This service is for GP surgeries in England';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
-        expectErrorMessagesForPostcode(res, errorMessage, errorMessage2);
+        expectMessageForNotEnglishPostcode(res, message);
         done();
       });
     });
   });
 
   describe('Search by valid out of England postcode', () => {
-    it('should return an error message for postcodes in Scotland', (done) => {
+    it('should return a descriptive message for postcodes in Scotland', (done) => {
       const search = '';
       const postcode = 'EH1 1EN';
-      const errorMessage = 'This service is for GP surgeries in England';
-      const errorMessage2 = 'If you\'re not in England, ask your GP\'s receptionist or visit the surgery website to find out if you can ' +
-        'book an appointment online. If you\'ve used the wrong postcode, you can search again.';
+      const message = 'This service is for GP surgeries in England';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
-        expectErrorMessagesForPostcode(res, errorMessage, errorMessage2);
+        expectMessageForNotEnglishPostcode(res, message);
         done();
       });
     });

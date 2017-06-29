@@ -26,12 +26,12 @@ describe('Postcode validation', () => {
       const req = {};
       const res = {};
       res.locals = {};
-      res.locals.errorMessage = null;
+      res.locals.notEnglish = null;
       res.render = () => {};
 
       postcodeValidator.renderPostcodeNotEnglish(postcode, req, res);
 
-      expect(res.locals.errorMessage).to.be.equal(messages.notEnglishPostcodeMessage());
+      expect(res.locals.notEnglish).to.be.equal(true);
     });
   });
 

@@ -8,11 +8,6 @@ function setInvalidPostcodeLabel(res, postcode) {
   res.locals.searchErrorClass = 'postcode';
 }
 
-function setNotEnglishPostcodeLabel(res) {
-  // eslint-disable-next-line no-param-reassign
-  res.locals.searchErrorLabel = 'This service is for GP surgeries in England';
-}
-
 function handlePostcodeError(error, postcode, res, next) {
   log.info({ postcode }, 'Error with postcode validation');
   // eslint-disable-next-line no-param-reassign
@@ -23,9 +18,8 @@ function handlePostcodeError(error, postcode, res, next) {
 function renderPostcodeNotEnglish(postcode, req, res) {
   log.info({ postcode }, 'Location outside of England');
   // eslint-disable-next-line no-param-reassign
-  res.locals.errorMessage = messages.notEnglishPostcodeMessage();
-  setNotEnglishPostcodeLabel(res);
-  renderer.searchForYourGp(req, res);
+  res.locals.notEnglish = true;
+  renderer.results(req, res);
 }
 
 function renderInvalidPostcodePage(postcode, req, res) {

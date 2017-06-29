@@ -44,7 +44,6 @@ describe('messages', () => {
 
     it('should have a postcode message when only a postcode has been passed', () => {
       const message = messages.searchHelpMessage(true, false);
-
       expect(message).to.equal(`If your surgery is not here, check the postcode you have entered is right and ${searchAgainLink}. You can also search by the name of your GP or surgery.`);
     });
 
@@ -56,7 +55,6 @@ describe('messages', () => {
 
     it('should have a combined message when a postcode and name have been passed', () => {
       const message = messages.searchHelpMessage(true, true);
-
       expect(message).to.equal(`If your surgery is not here, check the postcode and text you have entered are right and ${searchAgainLink}.`);
     });
   });
