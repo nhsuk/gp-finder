@@ -1,10 +1,6 @@
 check:
   global:
     statements: 90
-<<<<<<< HEAD
-=======
-    lines: 90
->>>>>>> f1a5d3d... :dog: add husky, re-do githooks, separare processor, tests
     branches: 80 # TODO: put me back to 90
     functions: 90
     lines: 90
