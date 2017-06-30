@@ -17,3 +17,13 @@ services:
       map-public-http: 3000
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
+    logging:
+      driver: splunk
+      options:
+        splunk-url: ${SPLUNK_HEC_URL}
+        splunk-token: ${SPLUNK_HEC_TOKEN}
+        splunk-insecureskipverify: "true"
+        splunk-sourcetype: docker
+        splunk-source: gp-finder
+        splunk-verify-connection: "false"
+
