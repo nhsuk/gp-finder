@@ -60,13 +60,13 @@ function expectHighRankForAddress(res, expected, resultsThreshold) {
 
 describe('Results page with ranking', () => {
   describe('Search by postcode', () => {
-    it(`of 'HG5 0JL' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+    it('of \'HG5 0JL\' should rank \'Beech House Surgery\' as the top result', (done) => {
       const search = 'Beech';
       const postcode = 'HG5 0JL';
       const expected = 'Beech House Surgery';
 
       makeSearchRequestAndCheckExpectations(search, postcode, done, (err, res) => {
-        expectHighRankForName(res, expected, RESULTS_THRESHOLD);
+        expectHighRankForName(res, expected, 1);
       });
     });
     it(`of 'HG5' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {

@@ -37,12 +37,12 @@ describe('GP Surgery Data Mapper', () => {
       expect(result).to.be.eql([]);
     });
 
-    it('for a GP Surgery that has no doctors  will not return any doctors', () => {
+    it('for a GP Surgery that has no doctors will not return any doctors', () => {
       const gpData = {};
       const searchStr = 'Roberts';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
-      expect(result).to.be.eql(undefined);
+      expect(result).to.be.eql([]);
     });
 
     it('for a GP Surgery that has doctors with the name matching the search will return those doctors', () => {
@@ -81,6 +81,42 @@ describe('GP Surgery Data Mapper', () => {
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
       expect(result).to.be.eql(['Dr. Elizabeth Beech', 'Dr. B Beech']);
+    });
+
+    it('for a GP Surgery that has doctors an empty search string will return no doctors', () => {
+      const gpData = { doctors: [
+        { name: 'Dr. A Farooq' },
+        { name: 'Dr. Carter' },
+        { name: 'Dr. B Farooq' }
+      ] };
+      const searchStr = '';
+      const result = gpDataMapper.getFilteredGps(gpData, searchStr);
+
+      expect(result).to.be.eql([]);
+    });
+
+    it('for a GP Surgery that has doctors an whitespace search string will return no doctors', () => {
+      const gpData = { doctors: [
+        { name: 'Dr. A Farooq' },
+        { name: 'Dr. Carter' },
+        { name: 'Dr. B Farooq' }
+      ] };
+      const searchStr = ' ';
+      const result = gpDataMapper.getFilteredGps(gpData, searchStr);
+
+      expect(result).to.be.eql([]);
+    });
+
+    it('for a GP Surgery that has doctors a search for just "dr" will return no doctors', () => {
+      const gpData = { doctors: [
+        { name: 'Dr. A Farooq' },
+        { name: 'Dr. Carter' },
+        { name: 'Dr. B Farooq' }
+      ] };
+      const searchStr = 'dr';
+      const result = gpDataMapper.getFilteredGps(gpData, searchStr);
+
+      expect(result).to.be.eql([]);
     });
   });
 
