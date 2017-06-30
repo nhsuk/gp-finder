@@ -27,3 +27,4 @@ services:
         splunk-source: gp-finder
         splunk-verify-connection: "false"
         tag: '{{.ImageName}} {{.Name}} {{.FullID}}'
+        splunk-format: json
