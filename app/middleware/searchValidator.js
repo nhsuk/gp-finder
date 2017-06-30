@@ -16,6 +16,8 @@ function validateSearch(req, res, next) {
     res.locals.errorMessage = messages.emptySearchMessage();
     // eslint-disable-next-line no-param-reassign
     res.locals.searchErrorLabel = 'You need to enter some text';
+    // eslint-disable-next-line no-param-reassign
+    res.locals.searchErrorClass = 'blank';
     renderer.searchForYourGp(req, res);
   } else {
     next();

@@ -9,7 +9,7 @@
     <div class="form-item-wrapper">
       {% if errorMessage %}
         <h2>{{ searchErrorLabel }}</h2>
-        <p>{{ errorMessage }} </p>
+        <p>{{ errorMessage }}</p>
       {% elif gps.length === 0 %}
          <h2>We can't find a surgery using '{{search}}'</h2>
          <p>Check the text you entered is right. You get better results if you enter a full name. Or you can search with a postcode instead.</p>
@@ -18,19 +18,19 @@
         <p>You need to do this to go to your booking system. Enter the name of your surgery, the name of your GP or a postcode.</p>
       {% endif %}
       {% if errorMessage %}
-      <div class="form-group error">
+      <div class="form-group error error__{{searchErrorClass}}">
       {% elif gps.length === 0 %}
-      <div class="form-group error">
+      <div class="form-group error error__search">
       {% else %}
       <div class="form-group">
       {% endif %}
         <fieldset>
           <legend class="sr-only">LEGEND</legend>
-          <div class="form-group">
+          <div class="form-group form-group__search">
             <label class="form-label form-label--bold" for="search">{{ searchLabel }}</label>
             <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
           </div>
-          <div class="form-group">
+          <div class="form-group form-group__postcode">
             <label class="form-label form-label--bold" for="postcode">Postcode</label>
             <input autocomplete="off" type="text" class="form-control" name="postcode" id="postcode" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
           </div>
