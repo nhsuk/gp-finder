@@ -42,7 +42,7 @@ function invalidPostcodeMessage() {
 
 function notEnglishPostcodeMessage() {
   return 'This service is for GP surgeries in England. If your GP is not in England, go to their website or contact ' +
-    'reception to find out if you can book an appointment online. If you\'ve used the wrong postcode, you can search again.';
+    'reception to find out if you can book an appointment online. If you\'ve used the wrong location, you can search again.';
 }
 
 function technicalProblems() {
