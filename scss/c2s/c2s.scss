@@ -485,7 +485,7 @@ form {
       border-color:$red;
     }
     &__search,
-    &__pc {
+    &__postcode {
       margin-right: 15px;
       border-left: none;
       padding-left: 0px;
@@ -507,7 +507,7 @@ form {
         }
       }
     }
-    &__pc {
+    &__postcode {
       .form-group {
         &__postcode {
           padding-left:10px;
