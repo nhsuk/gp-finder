@@ -5,7 +5,7 @@ const PostcodesIOClient = require('postcodesio-client');
 const PostcodesIO = new PostcodesIOClient();
 
 function lookupPostcode(req, res, next) {
-  const postcode = res.locals.processedSearch;
+  const postcode = res.locals.postcode;
 
   if (postcodeValidator.isOutcode(postcode)) {
     PostcodesIO.outcode(postcode, (err, outcodeDetails) => {

@@ -1,5 +1,6 @@
 // eslint-disable-next-line new-cap
 const router = require('express').Router();
+const preRender = require('../app/middleware/preRender');
 const renderer = require('../app/middleware/renderer');
 const setLocals = require('../app/middleware/setLocals');
 const searchProcessor = require('../app/middleware/searchProcessor');
@@ -17,6 +18,7 @@ router.get('/results',
   postcodeLookup,
   getGps,
   logZeroResults,
+  preRender,
   renderer.results
 );
 

@@ -18,7 +18,7 @@ function validatePostcode(result, postcode, req, res, next) {
 }
 
 function validateEnglishLocation(req, res, next) {
-  const postcode = res.locals.processedSearch;
+  const postcode = res.locals.postcode;
 
   if (postcodeValidator.isOutcode(postcode)) {
     log.info('validate-outcode-skip');
@@ -34,7 +34,7 @@ function validateEnglishLocation(req, res, next) {
 }
 
 function validateLocation(req, res, next) {
-  if (res.locals.postcode === res.locals.processedSearch) {
+  if (res.locals.postcode) {
     if (isNotEnglishPostcode(res.locals.postcode)) {
       postcodeValidator.renderPostcodeNotEnglish(res.locals.postcode, req, res);
     } else {

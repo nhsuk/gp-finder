@@ -11,13 +11,11 @@
     {% if gp.address.postcode %} {{ gp.address.postcode }} {% endif %}
   </p>
 {% endif %}
-{% if gp.filterGps %}
-  <ul>
-    {% for gp in gp.filterGps %}
-      <li class="results__gp">{{ gp | title }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
+<ul>
+  {% for gp in gp.filterGps %}
+    <li class="results__gp">{{ gp | title }}</li>
+  {% endfor %}
+</ul>
 {% if gp.distance %}
   <p class="results__address">
   Distance: {{ gp.distance | float | round(2) }} miles

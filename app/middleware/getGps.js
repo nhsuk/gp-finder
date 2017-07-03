@@ -35,11 +35,11 @@ function mapResults(results, res, searchTerm) {
 }
 
 function getGps(req, res, next) {
-  const searchTerm = res.locals.processedSearch;
+  const searchTerm = res.locals.search;
   let esQuery;
 
   if (res.locals.location) {
-    esQuery = esGeoQueryBuilder.build(res.locals.location);
+    esQuery = esGeoQueryBuilder.build(res.locals.location, searchTerm);
   } else {
     esQuery = esQueryBuilder.build(searchTerm);
   }

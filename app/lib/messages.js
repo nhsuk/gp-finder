@@ -1,3 +1,37 @@
+function searchHelpMessage(hasPostcode, hasSearchTerm) {
+  const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+  let helpPrompt = 'If your surgery is not here, ';
+  if (hasPostcode) {
+    helpPrompt += 'check the postcode ';
+    if (hasSearchTerm) {
+      helpPrompt += `and text you have entered are right and ${searchAgainLink}.`;
+    } else {
+      helpPrompt += `you have entered is right and ${searchAgainLink}. You can also search by the name of your GP or surgery.`;
+    }
+  } else {
+    helpPrompt += `check the text you have entered is right and ${searchAgainLink}. You can also search by your postcode.`;
+  }
+
+  return helpPrompt;
+}
+
+function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
+  let returnValue = `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}`;
+  if (searchPostcode) {
+    if (searchPostcode.isOutcode) {
+      returnValue += ` close to the '${searchPostcode.term}' area`;
+    } else {
+      returnValue += ` near to '${searchPostcode.term}'`;
+    }
+  }
+
+  if (searchTerm) {
+    returnValue += `${(searchPostcode) ? ' and' : ''} using '${searchTerm}'`;
+  }
+
+  return `${returnValue}.`;
+}
+
 function emptySearchMessage() {
   return 'Enter the name of your surgery, the name of your GP or a postcode.';
 }
@@ -16,6 +50,8 @@ function technicalProblems() {
 }
 
 module.exports = {
+  searchInfomationMessage,
+  searchHelpMessage,
   emptySearchMessage,
   invalidPostcodeMessage,
   notEnglishPostcodeMessage,

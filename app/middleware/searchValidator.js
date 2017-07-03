@@ -1,29 +1,21 @@
 const log = require('../lib/logger');
 const renderer = require('../middleware/renderer');
-const searchValidator = require('../lib/searchValidator');
+const messages = require('../lib/messages');
 
-function setSearchLabel(res) {
-  // eslint-disable-next-line no-param-reassign
-  res.locals.searchErrorLabel = 'You need to enter some text';
+function isEmptySearch(searchTermName, searchTermPostcode) {
+  return (!(searchTermName) && !(searchTermPostcode));
 }
 
 function validateSearch(req, res, next) {
   const searchTermName = res.locals.search;
   const searchTermPostcode = res.locals.postcode;
 
-  log.info('validate-search-start');
-  const validationResult = searchValidator.checkForEmptySearch(searchTermName, searchTermPostcode);
-
-  log.info('validate-search-end');
-
-  // eslint-disable-next-line no-param-reassign
-  res.locals.processedSearch = validationResult.input;
-
-  if (validationResult.errorMessage) {
-    log.info(validationResult.input, 'Search failed validation');
+  if (isEmptySearch(searchTermName, searchTermPostcode)) {
+    log.info('Empty Search');
     // eslint-disable-next-line no-param-reassign
-    res.locals.errorMessage = validationResult.errorMessage;
-    if (!(validationResult.input)) { setSearchLabel(res); }
+    res.locals.errorMessage = messages.emptySearchMessage();
+    // eslint-disable-next-line no-param-reassign
+    res.locals.searchErrorLabel = 'You need to enter some text';
     renderer.searchForYourGp(req, res);
   } else {
     next();
