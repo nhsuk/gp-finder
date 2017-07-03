@@ -152,6 +152,15 @@ form {
     margin-top:48px;
     &--error {
       margin-top:0px;
+      h2 {
+        border: 3px solid red;
+        padding: 10px;
+        font-size: 1.25em;
+        line-height: 1.5em;
+        &+p {
+          margin-top: 64px;
+        }
+      }
     }
   }
   .form-control {
@@ -215,6 +224,9 @@ form {
     .form-control {
       padding:5px 4px 4px;
       margin-top:0;
+    }
+    &.error {
+      margin-top:32px;
     }
   }
   .error {
@@ -452,10 +464,7 @@ form {
 form {
   .error {
     margin-right: 15px;
-    border-left: 4px solid $red;
-    padding-left: 10px;
     .form-group {
-      color: $red;
       .form-control {
         border: 3px solid $red;
         &:focus {
@@ -474,6 +483,48 @@ form {
     }
     .form-control {
       border-color:$red;
+    }
+    &__search,
+    &__postcode {
+      margin-right: 15px;
+      border-left: none;
+      padding-left: 0px;
+      .form-group {
+        .form-control {
+          border-color:$black;
+        }
+      }
+    }
+    &__search {
+      .form-group {
+        &__search {
+          border-left: 4px solid $red;
+          padding-left: 10px;
+          .form-control {
+            padding-left: 10px;
+            border-color:$red;
+          }
+        }
+      }
+    }
+    &__postcode {
+      .form-group {
+        &__postcode {
+          padding-left:10px;
+          border-left: 4px solid $red;
+          .form-control {
+            padding-left: 10px;
+            border-color:$red;
+          }
+        }
+      }
+    }
+    &__blank {
+      padding-left:0;
+      .form-group {
+        padding-left: 10px;
+        border-left: 4px solid $red;
+      }
     }
   }
 }
