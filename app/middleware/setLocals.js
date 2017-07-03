@@ -5,7 +5,6 @@ function fromRequest(req, res, next) {
   res.locals.search = req.query.search;
   res.locals.postcode = req.query.postcode;
   res.locals.isOutcode = false;
-  res.locals.notEnglish = '';
   res.locals.searchLabel = 'Surgery or GP name';
   res.locals.searchButton = 'Next';
 

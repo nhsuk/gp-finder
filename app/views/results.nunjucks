@@ -18,8 +18,9 @@
 {% endblock %}
 
 {% block content %}
+<<<<<<< HEAD
 <div class="reading-width results">
-  {% if notEnglish %}
+  {% if outOfEnglandMessage %}
     {% include "includes/not-english-results.nunjucks" %}
   {% elif gps.length === 0 %}
     {% include "includes/search-form.nunjucks" %}

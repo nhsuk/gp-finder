@@ -52,6 +52,27 @@ function noResultsMessage(searchPostcode, searchTerm) {
   return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
 }
 
+function outOfEnglandMessage(searchPostcode, searchTerm) {
+  let returnValue = 'You entered';
+  const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+
+  if (searchPostcode) {
+    if (searchPostcode.isOutcode) {
+      returnValue += ` the area '${searchPostcode.term}'`;
+    } else {
+      returnValue += ` the postcode '${searchPostcode.term}'`;
+    }
+  }
+
+  if (searchTerm) {
+    returnValue += `${(searchPostcode) ? ' and' : ''} '${searchTerm}'`;
+  }
+
+  returnValue += `. This search is not in England. If you entered the wrong location you can ${searchAgainLink}.`;
+
+  return returnValue;
+}
+
 function emptySearchMessage() {
   return 'Enter the name of your surgery, the name of your GP or a postcode.';
 }
@@ -68,6 +89,7 @@ module.exports = {
   searchInfomationMessage,
   searchHelpMessage,
   noResultsMessage,
+  outOfEnglandMessage,
   emptySearchMessage,
   invalidPostcodeMessage,
   technicalProblems,
