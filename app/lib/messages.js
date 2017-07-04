@@ -9,7 +9,7 @@ function searchHelpMessage(hasPostcode, hasSearchTerm) {
       helpPrompt += `you have entered is right and ${searchAgainLink}. You can also search by the name of your GP or surgery.`;
     }
   } else {
-    helpPrompt += `check the text you have entered is right and ${searchAgainLink}. You can also search by your postcode.`;
+    helpPrompt += `check the text you have entered is right and ${searchAgainLink}. You can also search using a postcode.`;
   }
 
   return helpPrompt;
@@ -36,24 +36,17 @@ function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
   return `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}${promptBuilder(searchPostcode, searchTerm)}.`;
 }
 
-function noResultsMessage(res, noResult, searchPostcode, searchTerm) {
-  let headerPrompt = '';
+function noResultsMessage(res, searchPostcode, searchTerm) {
+  const headerPrompt = `<h2>We can not find a surgery${promptBuilder(searchPostcode, searchTerm)}</h2>`;
   let paragraphPrompt = '';
-  if (noResult) {
-    headerPrompt = `<h2>We can not find a surgery${promptBuilder(searchPostcode, searchTerm)}</h2>`;
-    if ((searchPostcode) && (searchTerm)) {
-      paragraphPrompt = '<p>Check the name and the postcode you entered are right. You get better results if you enter ' +
-        'a full name or postcode.</p>';
-      res.locals.searchErrorClass = 'blank';
-    } else if (searchTerm) { // there are no postcode only errors
-      res.locals.searchErrorClass = 'search';
-      paragraphPrompt = '<p>Check the name you entered is right. You get better results if you enter a full name. ' +
-        'Or you can search with a postcode instead.</p>';
-    }
-  } else {
-    headerPrompt = '<h2>Find your GP surgery</h2>';
-    paragraphPrompt = ' <p>You need to do this to go to your booking system. Enter the name of your surgery, ' +
-      'the name of your GP or a postcode.</p>';
+  if ((searchPostcode) && (searchTerm)) {
+    paragraphPrompt = '<p>Check the name and the postcode you entered are right. You get better results if you enter ' +
+      'a full name or postcode.</p>';
+    res.locals.searchErrorClass = 'blank';
+  } else if (searchTerm) { // NOTE: there are no postcode only errors
+    res.locals.searchErrorClass = 'search';
+    paragraphPrompt = '<p>Check the name you entered is right. You get better results if you enter a full name. ' +
+      'You can also search using a postcode.</p>';
   }
   return `${headerPrompt} ${paragraphPrompt}`;
 }

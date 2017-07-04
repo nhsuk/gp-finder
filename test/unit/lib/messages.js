@@ -51,7 +51,7 @@ describe('messages', () => {
     it('should have a GP name message when only a name has been passed', () => {
       const message = messages.searchHelpMessage(false, true);
 
-      expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}. You can also search by your postcode.`);
+      expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}. You can also search using a postcode.`);
     });
 
     it('should have a combined message when a postcode and name have been passed', () => {
@@ -65,42 +65,35 @@ describe('messages', () => {
     const res = {};
     res.locals = { searchErrorClass: '' };
 
-    it('should have a different message when there are results', () => {
-      const message = messages.noResultsMessage(res, false, 'sheffield', 's3');
-
-      expect(message).to.equal('<h2>Find your GP surgery</h2>  <p>You need to do this to go to your booking system. Enter the name of your surgery, ' +
-      'the name of your GP or a postcode.</p>');
-    });
-
     it('should have a GP name message when only a name has been passed', () => {
-      const message = messages.noResultsMessage(res, true, undefined, 'netherthorpte');
+      const message = messages.noResultsMessage(res, undefined, 'netherthorpte');
 
       expect(message).to.equal('<h2>We can not find a surgery using \'netherthorpte\'</h2> <p>Check the name you entered ' +
-        'is right. You get better results if you enter a full name. Or you can search with a postcode instead.</p>');
+        'is right. You get better results if you enter a full name. You can also search using a postcode.</p>');
     });
 
     it('should have a GP name error class when only a name has been passed', () => {
-      messages.noResultsMessage(res, true, undefined, 'netherthorpte');
+      messages.noResultsMessage(res, undefined, 'netherthorpte');
 
       expect(res.locals.searchErrorClass).to.equal('search');
     });
 
     it('should have a combined message when a postcode and name have been passed', () => {
-      const message = messages.noResultsMessage(res, true, { isOutcode: false, term: 'TR21 0HE' }, 'Dave');
+      const message = messages.noResultsMessage(res, { isOutcode: false, term: 'TR21 0HE' }, 'Dave');
 
       expect(message).to.equal('<h2>We can not find a surgery near to \'TR21 0HE\' using \'Dave\'</h2> <p>Check the ' +
         'name and the postcode you entered are right. You get better results if you enter a full name or postcode.</p>');
     });
 
     it('should have a combined message when an outcode and name have been passed', () => {
-      const message = messages.noResultsMessage(res, true, { isOutcode: true, term: 'TR21' }, 'Dave');
+      const message = messages.noResultsMessage(res, { isOutcode: true, term: 'TR21' }, 'Dave');
 
       expect(message).to.equal('<h2>We can not find a surgery close to the \'TR21\' area using \'Dave\'</h2> <p>Check the ' +
         'name and the postcode you entered are right. You get better results if you enter a full name or postcode.</p>');
     });
 
-    it('should have a combined error classe when a postcode and name have been passed', () => {
-      messages.noResultsMessage(res, true, { isOutcode: true, term: 'TR21' }, 'Dave');
+    it('should have a combined error class when a postcode and name have been passed', () => {
+      messages.noResultsMessage(res, { isOutcode: true, term: 'TR21' }, 'Dave');
 
       expect(res.locals.searchErrorClass).to.equal('blank');
     });
