@@ -52,23 +52,19 @@ function noResultsMessage(searchPostcode, searchTerm) {
   return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
 }
 
-function outOfEnglandMessage(searchPostcode, searchTerm) {
-  let returnValue = 'You entered';
+function outOfEnglandMessage(searchPostcode) {
   const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+  let returnValue = '';
 
   if (searchPostcode) {
     if (searchPostcode.isOutcode) {
-      returnValue += ` the area '${searchPostcode.term}'`;
+      returnValue = `The area '${searchPostcode.term}'`;
     } else {
-      returnValue += ` the postcode '${searchPostcode.term}'`;
+      returnValue = `The postcode '${searchPostcode.term}'`;
     }
   }
 
-  if (searchTerm) {
-    returnValue += `${(searchPostcode) ? ' and' : ''} '${searchTerm}'`;
-  }
-
-  returnValue += `. This search is not in England. If you entered the wrong location you can ${searchAgainLink}.`;
+  returnValue += ` is not in England. If you entered the wrong postcode, you can ${searchAgainLink}.`;
 
   return returnValue;
 }

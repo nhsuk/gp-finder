@@ -99,23 +99,13 @@ describe('messages', () => {
 
   describe('out of England message', () => {
     it('should have a postcode message when only a postcode has been passed', () => {
-      const message = messages.outOfEnglandMessage({ isOutcode: false, term: 'EH1 HE1' }, '');
-      expect(message).to.contain('You entered the postcode \'EH1 HE1\'. This search is not in England.');
+      const message = messages.outOfEnglandMessage({ isOutcode: false, term: 'EH1 HE1' });
+      expect(message).to.contain('The postcode \'EH1 HE1\' is not in England.');
     });
 
     it('should have an outcode message when only an outcode has been passed', () => {
-      const message = messages.outOfEnglandMessage({ isOutcode: true, term: 'EH1' }, '');
-      expect(message).to.contain('You entered the area \'EH1\'. This search is not in England.');
-    });
-
-    it('should have a postcode and text search message when both postcode and text has been passed', () => {
-      const message = messages.outOfEnglandMessage({ isOutcode: false, term: 'EH1 HE1' }, 'Smith');
-      expect(message).to.contain('You entered the postcode \'EH1 HE1\' and \'Smith\'. This search is not in England.');
-    });
-
-    it('should have an outcode and text search message when both postcode and text has been passed', () => {
-      const message = messages.outOfEnglandMessage({ isOutcode: true, term: 'EH1' }, 'Smith');
-      expect(message).to.contain('You entered the area \'EH1\' and \'Smith\'. This search is not in England.');
+      const message = messages.outOfEnglandMessage({ isOutcode: true, term: 'EH1' });
+      expect(message).to.contain('The area \'EH1\' is not in England.');
     });
   });
 });

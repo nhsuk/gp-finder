@@ -18,7 +18,6 @@
 {% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
 <div class="reading-width results">
   {% if outOfEnglandMessage %}
     {% include "includes/not-english-results.nunjucks" %}

@@ -104,7 +104,7 @@ describe('Results page with postcode search', () => {
   });
 
   describe('Search by valid out of England outcode', () => {
-    it('should return a descriptive message for outcodes in Scotland', (done) => {
+    xit('should return a descriptive message for outcodes in Scotland', (done) => {
       const search = '';
       const postcode = 'EH1';
       const message = 'This service is for GP surgeries in England';
@@ -117,7 +117,7 @@ describe('Results page with postcode search', () => {
   });
 
   describe('Search by valid out of England postcode', () => {
-    it('should return a descriptive message for postcodes in Scotland', (done) => {
+    xit('should return a descriptive message for postcodes in Scotland', (done) => {
       const search = '';
       const postcode = 'EH1 1EN';
       const message = 'This service is for GP surgeries in England';
