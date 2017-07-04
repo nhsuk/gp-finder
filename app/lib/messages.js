@@ -27,7 +27,7 @@ function promptBuilder(searchPostcode, searchTerm) {
   }
 
   if (searchTerm) {
-    returnValue += `${(searchPostcode) ? ' and' : ''} using '${searchTerm}'`;
+    returnValue += ` using '${searchTerm}'`;
   }
   return returnValue;
 }
@@ -42,7 +42,8 @@ function noResultsMessage(res, noResult, searchPostcode, searchTerm) {
   if (noResult) {
     headerPrompt = `<h2>We can not find a surgery${promptBuilder(searchPostcode, searchTerm)}</h2>`;
     if ((searchPostcode) && (searchTerm)) {
-      paragraphPrompt = '<p>Check the location and name you entered are right and search again.</p>';
+      paragraphPrompt = '<p>Check the name and the postcode you entered are right. You get better results if you enter ' +
+        'a full name or postcode.</p>';
       res.locals.searchErrorClass = 'blank';
     } else if (searchTerm) { // there are no postcode only errors
       res.locals.searchErrorClass = 'search';

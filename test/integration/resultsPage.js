@@ -80,7 +80,7 @@ describe('Results page', () => {
       it('should return a descriptive message when searching by name and postcode', (done) => {
         const search = 'dave';
         const postcode = 'TR21 0HE';
-        const errorMessage = `We can not find a surgery near to '${postcode}' and using '${search}'`;
+        const errorMessage = `We can not find a surgery near to '${postcode}' using '${search}'`;
 
         assertSearchResponse(search, postcode, done, (err, res) => {
           const $ = cheerio.load(res.text);

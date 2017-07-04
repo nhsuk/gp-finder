@@ -35,7 +35,7 @@ describe('messages', () => {
 
     it('should have a postcode and text search message when both postcode and text has been passed', () => {
       const message = messages.searchInfomationMessage(false, { isOutcode: false, term: 'HG5 0JL' }, 'Beech House');
-      expect(message).to.equal('We found these surgeries near to \'HG5 0JL\' and using \'Beech House\'.');
+      expect(message).to.equal('We found these surgeries near to \'HG5 0JL\' using \'Beech House\'.');
     });
   });
 
@@ -88,15 +88,15 @@ describe('messages', () => {
     it('should have a combined message when a postcode and name have been passed', () => {
       const message = messages.noResultsMessage(res, true, { isOutcode: false, term: 'TR21 0HE' }, 'Dave');
 
-      expect(message).to.equal('<h2>We can not find a surgery near to \'TR21 0HE\' and using \'Dave\'</h2> <p>Check the ' +
-        'location and name you entered are right and search again.</p>');
+      expect(message).to.equal('<h2>We can not find a surgery near to \'TR21 0HE\' using \'Dave\'</h2> <p>Check the ' +
+        'name and the postcode you entered are right. You get better results if you enter a full name or postcode.</p>');
     });
 
     it('should have a combined message when an outcode and name have been passed', () => {
       const message = messages.noResultsMessage(res, true, { isOutcode: true, term: 'TR21' }, 'Dave');
 
-      expect(message).to.equal('<h2>We can not find a surgery close to the \'TR21\' area and using \'Dave\'</h2> <p>Check the ' +
-        'location and name you entered are right and search again.</p>');
+      expect(message).to.equal('<h2>We can not find a surgery close to the \'TR21\' area using \'Dave\'</h2> <p>Check the ' +
+        'name and the postcode you entered are right. You get better results if you enter a full name or postcode.</p>');
     });
 
     it('should have a combined error classe when a postcode and name have been passed', () => {
