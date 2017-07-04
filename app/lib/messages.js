@@ -15,8 +15,9 @@ function searchHelpMessage(hasPostcode, hasSearchTerm) {
   return helpPrompt;
 }
 
-function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
-  let returnValue = `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}`;
+function promptBuilder(searchPostcode, searchTerm) {
+  let returnValue = '';
+
   if (searchPostcode) {
     if (searchPostcode.isOutcode) {
       returnValue += ` close to the '${searchPostcode.term}' area`;
@@ -28,8 +29,32 @@ function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
   if (searchTerm) {
     returnValue += `${(searchPostcode) ? ' and' : ''} using '${searchTerm}'`;
   }
+  return returnValue;
+}
 
-  return `${returnValue}.`;
+function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
+  return `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}${promptBuilder(searchPostcode, searchTerm)}.`;
+}
+
+function noResultsMessage(res, noResult, searchPostcode, searchTerm) {
+  let headerPrompt = '';
+  let paragraphPrompt = '';
+  if (noResult) {
+    headerPrompt = `<h2>We can not find a surgery${promptBuilder(searchPostcode, searchTerm)}</h2>`;
+    if ((searchPostcode) && (searchTerm)) {
+      paragraphPrompt = '<p>Check the location and name you entered are right and search again.</p>';
+      res.locals.searchErrorClass = 'blank';
+    } else if (searchTerm) { // there are no postcode only errors
+      res.locals.searchErrorClass = 'search';
+      paragraphPrompt = '<p>Check the name you entered is right. You get better results if you enter a full name. ' +
+        'Or you can search with a postcode instead.</p>';
+    }
+  } else {
+    headerPrompt = '<h2>Find your GP surgery</h2>';
+    paragraphPrompt = ' <p>You need to do this to go to your booking system. Enter the name of your surgery, ' +
+      'the name of your GP or a postcode.</p>';
+  }
+  return `${headerPrompt} ${paragraphPrompt}`;
 }
 
 function emptySearchMessage() {
@@ -52,6 +77,7 @@ function technicalProblems() {
 module.exports = {
   searchInfomationMessage,
   searchHelpMessage,
+  noResultsMessage,
   emptySearchMessage,
   invalidPostcodeMessage,
   notEnglishPostcodeMessage,

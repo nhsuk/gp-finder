@@ -6,6 +6,8 @@ function preRender(req, res, next) {
      { isOutcode: res.locals.isOutcode, term: res.locals.postcode }
      : undefined;
 
+  res.locals.noResultsMessage =
+    messages.noResultsMessage(res, res.locals.gps.length === 0, postcode, res.locals.search);
   res.locals.searchInformationMessage =
     messages.searchInfomationMessage(res.locals.gps.length === 1, postcode, res.locals.search);
   res.locals.searchHelpMessage =
