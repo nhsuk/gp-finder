@@ -258,7 +258,14 @@ form {
   .reading-width {
     > p {
       &:last-of-type{
-        margin-bottom: 64px;
+        margin-bottom: 0px;
+      }
+    }
+    &.results {
+      > p {
+        &:last-of-type{
+          margin-bottom: 64px;
+        }
       }
     }
     .grid-row {

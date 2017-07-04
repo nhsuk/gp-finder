@@ -22,7 +22,7 @@ jQuery(function($) {
 
       terms.forEach(function(term, index){
         if(term.length >= 3) {
-          $('.results').mark(term, {
+          $('ol.results').mark(term, {
             "wildcards": "withSpaces",
             "ignoreJoiners": true,
             "acrossElements": true,
