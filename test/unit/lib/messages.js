@@ -59,5 +59,12 @@ describe('messages', () => {
 
       expect(message).to.equal(`If your surgery is not here, check the postcode and text you have entered are right and ${searchAgainLink}.`);
     });
+
+    it('should have an error message for when there is an out of England postcode/outcode', () => {
+      const message = messages.notEnglishPostcodeMessage();
+
+      expect(message).to.equal('This service is for GP surgeries in England. If your GP is not in England, go to their website or contact ' +
+        'reception to find out if you can book an appointment online. If you\'ve used the wrong location, you can search again.');
+    });
   });
 });

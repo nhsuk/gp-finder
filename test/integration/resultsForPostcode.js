@@ -100,9 +100,9 @@ describe('Results page with postcode search', () => {
     it('should return an error message for outcodes in Scotland', (done) => {
       const search = '';
       const postcode = 'EH1';
-      const errorMessage = 'This service is for GP surgeries in England';
-      const errorMessage2 = 'If you\'re not in England, ask your GP\'s receptionist or visit the surgery website to find out if you can ' +
-        'book an appointment online. If you\'ve used the wrong postcode, you can search again.';
+      const errorMessage = `The area '${postcode}' is not in England`;
+      const errorMessage2 = 'This service is for GP surgeries in England. If your GP is not in England, go to their website or contact ' +
+        'reception to find out if you can book an appointment online. If you\'ve used the wrong location, you can search again.';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
         expectErrorMessagesForPostcode(res, errorMessage, errorMessage2);
@@ -115,9 +115,9 @@ describe('Results page with postcode search', () => {
     it('should return an error message for postcodes in Scotland', (done) => {
       const search = '';
       const postcode = 'EH1 1EN';
-      const errorMessage = 'This service is for GP surgeries in England';
-      const errorMessage2 = 'If you\'re not in England, ask your GP\'s receptionist or visit the surgery website to find out if you can ' +
-        'book an appointment online. If you\'ve used the wrong postcode, you can search again.';
+      const errorMessage = `The postcode '${postcode}' is not in England`;
+      const errorMessage2 = 'This service is for GP surgeries in England. If your GP is not in England, go to their website or contact ' +
+        'reception to find out if you can book an appointment online. If you\'ve used the wrong location, you can search again.';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
         expectErrorMessagesForPostcode(res, errorMessage, errorMessage2);
@@ -130,7 +130,7 @@ describe('Results page with postcode search', () => {
     it('should return a descriptive message', (done) => {
       const search = '';
       const postcode = 'S50';
-      const errorMessage = `The postcode '${postcode}' does not exist.`;
+      const errorMessage = `The area '${postcode}' does not exist`;
       const errorMessage2 = 'Check you\'re using the right postcode. Or search using the name of your GP or surgery.';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
@@ -144,7 +144,7 @@ describe('Results page with postcode search', () => {
     it('should return a descriptive message', (done) => {
       const search = '';
       const postcode = 'S50 3EW';
-      const errorMessage = `The postcode '${postcode}' does not exist.`;
+      const errorMessage = `The postcode '${postcode}' does not exist`;
       const errorMessage2 = 'Check you\'re using the right postcode. Or search using the name of your GP or surgery.';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
