@@ -4,7 +4,7 @@ const log = require('../lib/logger');
 
 function setInvalidPostcodeLabel(res, postcode) {
   // eslint-disable-next-line no-param-reassign
-  res.locals.searchErrorLabel = `The postcode '${postcode}' does not exist.`;
+  res.locals.searchErrorLabel = `The postcode '${postcode}' does not exist`;
   res.locals.searchErrorClass = 'postcode';
 }
 

@@ -9,14 +9,15 @@ function searchHelpMessage(hasPostcode, hasSearchTerm) {
       helpPrompt += `you have entered is right and ${searchAgainLink}. You can also search by the name of your GP or surgery.`;
     }
   } else {
-    helpPrompt += `check the text you have entered is right and ${searchAgainLink}. You can also search by your postcode.`;
+    helpPrompt += `check the text you have entered is right and ${searchAgainLink}. You can also search using a postcode.`;
   }
 
   return helpPrompt;
 }
 
-function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
-  let returnValue = `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}`;
+function promptBuilder(searchPostcode, searchTerm) {
+  let returnValue = '';
+
   if (searchPostcode) {
     if (searchPostcode.isOutcode) {
       returnValue += ` close to the '${searchPostcode.term}' area`;
@@ -26,10 +27,29 @@ function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
   }
 
   if (searchTerm) {
-    returnValue += `${(searchPostcode) ? ' and' : ''} using '${searchTerm}'`;
+    returnValue += ` using '${searchTerm}'`;
   }
+  return returnValue;
+}
 
-  return `${returnValue}.`;
+function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
+  return `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}${promptBuilder(searchPostcode, searchTerm)}.`;
+}
+
+function noResultsMessage(searchPostcode, searchTerm) {
+  const headerPrompt = `We can not find a surgery${promptBuilder(searchPostcode, searchTerm)}`;
+  let paragraphPrompt = '';
+  let errorClass = '';
+  if ((searchPostcode) && (searchTerm)) {
+    paragraphPrompt = 'Check the name and the postcode you entered are right. You get better results if you enter ' +
+      'a full name or postcode.';
+    errorClass = 'blank';
+  } else if (searchTerm) { // NOTE: there are no postcode only errors
+    errorClass = 'search';
+    paragraphPrompt = 'Check the name you entered is right. You get better results if you enter a full name. ' +
+      'You can also search using a postcode.';
+  }
+  return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
 }
 
 function emptySearchMessage() {
@@ -52,6 +72,7 @@ function technicalProblems() {
 module.exports = {
   searchInfomationMessage,
   searchHelpMessage,
+  noResultsMessage,
   emptySearchMessage,
   invalidPostcodeMessage,
   notEnglishPostcodeMessage,

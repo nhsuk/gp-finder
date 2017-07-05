@@ -35,7 +35,7 @@ describe('messages', () => {
 
     it('should have a postcode and text search message when both postcode and text has been passed', () => {
       const message = messages.searchInfomationMessage(false, { isOutcode: false, term: 'HG5 0JL' }, 'Beech House');
-      expect(message).to.equal('We found these surgeries near to \'HG5 0JL\' and using \'Beech House\'.');
+      expect(message).to.equal('We found these surgeries near to \'HG5 0JL\' using \'Beech House\'.');
     });
   });
 
@@ -51,13 +51,51 @@ describe('messages', () => {
     it('should have a GP name message when only a name has been passed', () => {
       const message = messages.searchHelpMessage(false, true);
 
-      expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}. You can also search by your postcode.`);
+      expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}. You can also search using a postcode.`);
     });
 
     it('should have a combined message when a postcode and name have been passed', () => {
       const message = messages.searchHelpMessage(true, true);
 
       expect(message).to.equal(`If your surgery is not here, check the postcode and text you have entered are right and ${searchAgainLink}.`);
+    });
+  });
+
+  describe('no results prompt', () => {
+    it('should have a GP name message when only a name has been passed', () => {
+      const message = messages.noResultsMessage(undefined, 'netherthorpte');
+
+      expect(message.header).to.equal('We can not find a surgery using \'netherthorpte\'');
+      expect(message.paragraph).to.equal('Check the name you entered ' +
+        'is right. You get better results if you enter a full name. You can also search using a postcode.');
+    });
+
+    it('should have a GP name error class when only a name has been passed', () => {
+      const message = messages.noResultsMessage(undefined, 'netherthorpte');
+
+      expect(message.class).to.equal('search');
+    });
+
+    it('should have a combined message when a postcode and name have been passed', () => {
+      const message = messages.noResultsMessage({ isOutcode: false, term: 'TR21 0HE' }, 'Dave');
+
+      expect(message.header).to.equal('We can not find a surgery near to \'TR21 0HE\' using \'Dave\'');
+      expect(message.paragraph).to.equal('Check the ' +
+        'name and the postcode you entered are right. You get better results if you enter a full name or postcode.');
+    });
+
+    it('should have a combined message when an outcode and name have been passed', () => {
+      const message = messages.noResultsMessage({ isOutcode: true, term: 'TR21' }, 'Dave');
+
+      expect(message.header).to.equal('We can not find a surgery close to the \'TR21\' area using \'Dave\'');
+      expect(message.paragraph).to.equal('Check the ' +
+        'name and the postcode you entered are right. You get better results if you enter a full name or postcode.');
+    });
+
+    it('should have a combined error class when a postcode and name have been passed', () => {
+      const message = messages.noResultsMessage({ isOutcode: true, term: 'TR21' }, 'Dave');
+
+      expect(message.class).to.equal('blank');
     });
   });
 });

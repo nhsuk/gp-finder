@@ -6,6 +6,11 @@ function preRender(req, res, next) {
      { isOutcode: res.locals.isOutcode, term: res.locals.postcode }
      : undefined;
 
+  res.locals.noResultsMessage =
+    messages.noResultsMessage(postcode, res.locals.search);
+  if (res.locals.noResultsMessage) {
+    res.locals.searchErrorClass = res.locals.noResultsMessage.class;
+  }
   res.locals.searchInformationMessage =
     messages.searchInfomationMessage(res.locals.gps.length === 1, postcode, res.locals.search);
   res.locals.searchHelpMessage =

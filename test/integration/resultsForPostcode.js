@@ -130,7 +130,7 @@ describe('Results page with postcode search', () => {
     it('should return a descriptive message', (done) => {
       const search = '';
       const postcode = 'S50';
-      const errorMessage = `The postcode '${postcode}' does not exist.`;
+      const errorMessage = `The postcode '${postcode}' does not exist`;
       const errorMessage2 = 'Check you\'re using the right postcode. Or search using the name of your GP or surgery.';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
@@ -144,7 +144,7 @@ describe('Results page with postcode search', () => {
     it('should return a descriptive message', (done) => {
       const search = '';
       const postcode = 'S50 3EW';
-      const errorMessage = `The postcode '${postcode}' does not exist.`;
+      const errorMessage = `The postcode '${postcode}' does not exist`;
       const errorMessage2 = 'Check you\'re using the right postcode. Or search using the name of your GP or surgery.';
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {

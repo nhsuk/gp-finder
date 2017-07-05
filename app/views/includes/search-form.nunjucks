@@ -10,19 +10,17 @@
       {% if errorMessage %}
         <h2>{{ searchErrorLabel }}</h2>
         <p>{{ errorMessage }}</p>
-      {% elif gps.length === 0 %}
-         <h2>We can't find a surgery using '{{search}}'</h2>
-         <p>Check the text you entered is right. You get better results if you enter a full name. Or you can search with a postcode instead.</p>
+      {% elif (gps.length === 0) %}
+        <h2>{{ noResultsMessage.header }} </h2>
+        <p>{{ noResultsMessage.paragraph }} </p>
       {% else %}
         <h2>Find your GP surgery</h2>
-        <p>You need to do this to go to your booking system. Enter the name of your surgery, the name of your GP or a postcode.</p>
+        <p>You need to do this to go to your booking system. Search using one or both of the boxes below.</p>
       {% endif %}
-      {% if errorMessage %}
-      <div class="form-group error error__{{searchErrorClass}}">
-      {% elif gps.length === 0 %}
-      <div class="form-group error error__search">
+      {% if (errorMessage) or (gps.length === 0) %}
+        <div class="form-group error error__{{searchErrorClass}}">
       {% else %}
-      <div class="form-group">
+        <div class="form-group">
       {% endif %}
         <fieldset>
           <legend class="sr-only">LEGEND</legend>

@@ -11,10 +11,10 @@ chai.use(chaiHttp);
 
 const resultsRoute = `${constants.SITE_ROOT}/results/`;
 
-function assertSearchResponse(search, done, assertions) {
+function assertSearchResponse(search, postcode, done, assertions) {
   chai.request(app)
     .get(resultsRoute)
-    .query({ search, postcode: '' })
+    .query({ search, postcode })
     .end((err, res) => {
       iExpect.htmlWith200Status(err, res);
       assertions(err, res);
@@ -28,16 +28,18 @@ describe('Results page', () => {
   describe('page layout', () => {
     it('should contain HTML', (done) => {
       const search = 'Surgery';
+      const postcode = '';
 
-      assertSearchResponse(search, done, (err, res) => {
+      assertSearchResponse(search, postcode, done, (err, res) => {
         iExpect.htmlWith200Status(err, res);
       });
     });
 
     it('should contain a header with the string', (done) => {
       const search = 'Surgery';
+      const postcode = '';
 
-      assertSearchResponse(search, done, (err, res) => {
+      assertSearchResponse(search, postcode, done, (err, res) => {
         const $ = cheerio.load(res.text);
         const resultsHeader = $('.results__header').text();
 
@@ -49,8 +51,9 @@ describe('Results page', () => {
       describe('multiple matches', () => {
         it('should have more than one result', (done) => {
           const search = 'Surgery';
+          const postcode = '';
 
-          assertSearchResponse(search, done, (err, res) => {
+          assertSearchResponse(search, postcode, done, (err, res) => {
             const $ = cheerio.load(res.text);
             const searchResults = $('.results__item--nearby');
 
@@ -63,9 +66,23 @@ describe('Results page', () => {
     describe('no matching surgeries found', () => {
       it('should return a descriptive message when searching by name', (done) => {
         const search = 'asdasdas';
-        const errorMessage = `We can't find a surgery using '${search}'`;
+        const postcode = '';
+        const errorMessage = `We can not find a surgery using '${search}'`;
 
-        assertSearchResponse(search, done, (err, res) => {
+        assertSearchResponse(search, postcode, done, (err, res) => {
+          const $ = cheerio.load(res.text);
+          const noResultsHeader = $('#content').text();
+
+          expect(noResultsHeader).to.contain(errorMessage);
+        });
+      });
+
+      it('should return a descriptive message when searching by name and postcode', (done) => {
+        const search = 'dave';
+        const postcode = 'TR21 0HE';
+        const errorMessage = `We can not find a surgery near to '${postcode}' using '${search}'`;
+
+        assertSearchResponse(search, postcode, done, (err, res) => {
           const $ = cheerio.load(res.text);
           const noResultsHeader = $('#content').text();
 
@@ -79,8 +96,9 @@ describe('Results page', () => {
     describe('Surgeries with phone number', () => {
       it('should return message to contact reception with phone number link', (done) => {
         const search = 'Bents Green Surgery Sheffield';
+        const postcode = '';
 
-        assertSearchResponse(search, done, (err, res) => {
+        assertSearchResponse(search, postcode, done, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
 
@@ -93,8 +111,9 @@ describe('Results page', () => {
     describe('Surgeries without phone number', () => {
       it('should return message to contact reception without phone number link', (done) => {
         const search = 'St Martins Healthcare Services';
+        const postcode = '';
 
-        assertSearchResponse(search, done, (err, res) => {
+        assertSearchResponse(search, postcode, done, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
 
@@ -108,8 +127,9 @@ describe('Results page', () => {
   describe('Surgeries with booking system which can be linked to', () => {
     it('should return a booking link for a surgery', (done) => {
       const search = 'Crookes Valley Medical Centre Sheffield';
+      const postcode = '';
 
-      assertSearchResponse(search, done, (err, res) => {
+      assertSearchResponse(search, postcode, done, (err, res) => {
         const $ = cheerio.load(res.text);
         const searchResults = $('.results__item--nearby .results__details .results__name a').first();
 
@@ -123,8 +143,9 @@ describe('Results page', () => {
     describe('when the surgery has a website', () => {
       it('should return a booking link to the surgery website', (done) => {
         const search = 'Hambleden Surgery';
+        const postcode = '';
 
-        assertSearchResponse(search, done, (err, res) => {
+        assertSearchResponse(search, postcode, done, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details .results__name a').first();
 
@@ -137,8 +158,9 @@ describe('Results page', () => {
     describe('when the surgery does not have a website', () => {
       it('should display a call the reception message', (done) => {
         const search = 'Sabden';
+        const postcode = '';
 
-        assertSearchResponse(search, done, (err, res) => {
+        assertSearchResponse(search, postcode, done, (err, res) => {
           const $ = cheerio.load(res.text);
           const searchResults = $('.results__item--nearby .results__details').first();
 
