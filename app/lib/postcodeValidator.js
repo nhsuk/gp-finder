@@ -2,15 +2,20 @@ const messages = require('../lib/messages');
 const renderer = require('../middleware/renderer');
 const log = require('../lib/logger');
 
+function isOutcode(postcode) {
+  const outcodeRegex = /^[A-Z]{1,2}[0-9][0-9A-Z]?$/gi;
+  return postcode.match(outcodeRegex);
+}
+
+function isPostcode(postcode) {
+  const postcodeRegex = /^[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}$/gi;
+  return postcode.match(postcodeRegex);
+}
+
 function setInvalidPostcodeLabel(res, postcode) {
   // eslint-disable-next-line no-param-reassign
   res.locals.searchErrorLabel = `The postcode '${postcode}' does not exist`;
   res.locals.searchErrorClass = 'postcode';
-}
-
-function setNotEnglishPostcodeLabel(res) {
-  // eslint-disable-next-line no-param-reassign
-  res.locals.searchErrorLabel = 'This service is for GP surgeries in England';
 }
 
 function handlePostcodeError(error, postcode, res, next) {
@@ -23,9 +28,9 @@ function handlePostcodeError(error, postcode, res, next) {
 function renderPostcodeNotEnglish(postcode, req, res) {
   log.info({ postcode }, 'Location outside of England');
   // eslint-disable-next-line no-param-reassign
-  res.locals.errorMessage = messages.notEnglishPostcodeMessage();
-  setNotEnglishPostcodeLabel(res);
-  renderer.searchForYourGp(req, res);
+  const postcodeHash = { isOutcode: isOutcode(postcode), term: postcode };
+  res.locals.outOfEnglandMessage = messages.outOfEnglandMessage(postcodeHash, res.locals.search);
+  renderer.results(req, res);
 }
 
 function renderInvalidPostcodePage(postcode, req, res) {
@@ -34,16 +39,6 @@ function renderInvalidPostcodePage(postcode, req, res) {
   res.locals.errorMessage = messages.invalidPostcodeMessage();
   setInvalidPostcodeLabel(res, postcode);
   renderer.searchForYourGp(req, res);
-}
-
-function isOutcode(postcode) {
-  const outcodeRegex = /^[A-Z]{1,2}[0-9][0-9A-Z]?$/gi;
-  return postcode.match(outcodeRegex);
-}
-
-function isPostcode(postcode) {
-  const postcodeRegex = /^[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}$/gi;
-  return postcode.match(postcodeRegex);
 }
 
 module.exports = {

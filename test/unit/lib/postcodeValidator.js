@@ -23,15 +23,17 @@ describe('Postcode validation', () => {
   describe('error handling for renderPostcodeNotEnglish', () => {
     it('should set a not England flag in the results', () => {
       const postcode = 'EH1';
+      const search = '';
       const req = {};
       const res = {};
       res.locals = {};
-      res.locals.errorMessage = null;
+      res.locals.outOfEnglandMessage = null;
       res.render = () => {};
 
       postcodeValidator.renderPostcodeNotEnglish(postcode, req, res);
 
-      expect(res.locals.errorMessage).to.be.equal(messages.notEnglishPostcodeMessage());
+      expect(res.locals.outOfEnglandMessage)
+        .to.be.equal(messages.outOfEnglandMessage({ isOutcode: true, term: postcode }, search));
     });
   });
 

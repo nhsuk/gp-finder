@@ -19,7 +19,9 @@
 
 {% block content %}
 <div class="reading-width results">
-  {% if gps.length === 0 %}
+  {% if outOfEnglandMessage %}
+    {% include "includes/not-english-results.nunjucks" %}
+  {% elif gps.length === 0 %}
     {% include "includes/search-form.nunjucks" %}
   {% else %}
     <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{search}}">Search results</h1>

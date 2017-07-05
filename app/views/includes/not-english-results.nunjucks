@@ -1,0 +1,24 @@
+{% block header %}
+<h1 class="page-title">Book a GP appointment online</h1>
+{% endblock %}
+
+{% block meta %}
+{% if errorMessage %}
+  <meta name="DCSext.GPBlank" content="1">
+{% endif %}
+{% endblock %}
+
+
+<div class="form-like form-like--error">
+  <h2>This service is for GP surgeries in England</h2>
+  <div class="form-like-item-wrapper">
+    <p>{{ outOfEnglandMessage | safe}}</p>
+    <p>If you live outside of England, contact your GP surgery to find out if you can book an appointment online.
+  </div>
+  <p>Find contact details for GP surgeries in:</p>
+  <ul>
+    <li>Scotland on the <a href="https://www.nhsinform.scot/national-service-directory/gp-practices/">NHS Inform website</a></li>
+    <li>Wales on the <a href="http://www.nhsdirect.wales.nhs.uk/LocalServices/?s=GPSurgeries">NHS Direct Wales</a></li>
+    <li>Northern Ireland on the <a href="http://servicefinder.hscni.net">Health and Social Care Online website</a></li>
+  </ul>
+</div>

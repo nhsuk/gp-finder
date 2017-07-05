@@ -44,7 +44,6 @@ describe('messages', () => {
 
     it('should have a postcode message when only a postcode has been passed', () => {
       const message = messages.searchHelpMessage(true, false);
-
       expect(message).to.equal(`If your surgery is not here, check the postcode you have entered is right and ${searchAgainLink}. You can also search by the name of your GP or surgery.`);
     });
 
@@ -56,7 +55,6 @@ describe('messages', () => {
 
     it('should have a combined message when a postcode and name have been passed', () => {
       const message = messages.searchHelpMessage(true, true);
-
       expect(message).to.equal(`If your surgery is not here, check the postcode and text you have entered are right and ${searchAgainLink}.`);
     });
   });
@@ -96,6 +94,18 @@ describe('messages', () => {
       const message = messages.noResultsMessage({ isOutcode: true, term: 'TR21' }, 'Dave');
 
       expect(message.class).to.equal('blank');
+    });
+  });
+
+  describe('out of England message', () => {
+    it('should have a postcode message when only a postcode has been passed', () => {
+      const message = messages.outOfEnglandMessage({ isOutcode: false, term: 'EH1 HE1' });
+      expect(message).to.contain('The postcode \'EH1 HE1\' is not in England.');
+    });
+
+    it('should have an outcode message when only an outcode has been passed', () => {
+      const message = messages.outOfEnglandMessage({ isOutcode: true, term: 'EH1' });
+      expect(message).to.contain('The area \'EH1\' is not in England.');
     });
   });
 });

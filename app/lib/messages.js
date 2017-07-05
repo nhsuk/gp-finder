@@ -52,17 +52,29 @@ function noResultsMessage(searchPostcode, searchTerm) {
   return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
 }
 
+function outOfEnglandMessage(searchPostcode) {
+  const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+  let returnValue = '';
+
+  if (searchPostcode) {
+    if (searchPostcode.isOutcode) {
+      returnValue = `The area '${searchPostcode.term}'`;
+    } else {
+      returnValue = `The postcode '${searchPostcode.term}'`;
+    }
+  }
+
+  returnValue += ` is not in England. If you entered the wrong postcode, you can ${searchAgainLink}.`;
+
+  return returnValue;
+}
+
 function emptySearchMessage() {
   return 'Enter the name of your surgery, the name of your GP or a postcode.';
 }
 
 function invalidPostcodeMessage() {
   return 'Check you\'re using the right postcode. Or search using the name of your GP or surgery.';
-}
-
-function notEnglishPostcodeMessage() {
-  return 'If you\'re not in England, ask your GP\'s receptionist or visit the surgery website to find out if you can ' +
-    'book an appointment online. If you\'ve used the wrong postcode, you can search again.';
 }
 
 function technicalProblems() {
@@ -73,8 +85,8 @@ module.exports = {
   searchInfomationMessage,
   searchHelpMessage,
   noResultsMessage,
+  outOfEnglandMessage,
   emptySearchMessage,
   invalidPostcodeMessage,
-  notEnglishPostcodeMessage,
   technicalProblems,
 };
