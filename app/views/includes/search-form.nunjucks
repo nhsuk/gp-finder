@@ -11,7 +11,8 @@
         <h2>{{ searchErrorLabel }}</h2>
         <p>{{ errorMessage }}</p>
       {% elif (gps.length === 0) %}
-        {{ noResultsMessage | safe }}
+        <h2>{{ noResultsMessage.header }} </h2>
+        <p>{{ noResultsMessage.paragraph }} </p>
       {% else %}
         <h2>Find your GP surgery</h2>
         <p>You need to do this to go to your booking system. Search using one or both of the boxes below.</p>

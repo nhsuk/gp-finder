@@ -36,19 +36,20 @@ function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
   return `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}${promptBuilder(searchPostcode, searchTerm)}.`;
 }
 
-function noResultsMessage(res, searchPostcode, searchTerm) {
-  const headerPrompt = `<h2>We can not find a surgery${promptBuilder(searchPostcode, searchTerm)}</h2>`;
+function noResultsMessage(searchPostcode, searchTerm) {
+  const headerPrompt = `We can not find a surgery${promptBuilder(searchPostcode, searchTerm)}`;
   let paragraphPrompt = '';
+  let errorClass = '';
   if ((searchPostcode) && (searchTerm)) {
-    paragraphPrompt = '<p>Check the name and the postcode you entered are right. You get better results if you enter ' +
-      'a full name or postcode.</p>';
-    res.locals.searchErrorClass = 'blank';
+    paragraphPrompt = 'Check the name and the postcode you entered are right. You get better results if you enter ' +
+      'a full name or postcode.';
+    errorClass = 'blank';
   } else if (searchTerm) { // NOTE: there are no postcode only errors
-    res.locals.searchErrorClass = 'search';
-    paragraphPrompt = '<p>Check the name you entered is right. You get better results if you enter a full name. ' +
-      'You can also search using a postcode.</p>';
+    errorClass = 'search';
+    paragraphPrompt = 'Check the name you entered is right. You get better results if you enter a full name. ' +
+      'You can also search using a postcode.';
   }
-  return `${headerPrompt} ${paragraphPrompt}`;
+  return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
 }
 
 function emptySearchMessage() {
