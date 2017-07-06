@@ -1,5 +1,5 @@
 const chai = require('chai');
-const postcodeValidator = require('../../../app/lib/postcodeValidator');
+const renderer = require('../../../app/middleware/renderer');
 const messages = require('../../../app/lib/messages');
 
 const expect = chai.expect;
@@ -14,7 +14,7 @@ describe('Postcode validation', () => {
       res.locals.errorMessage = null;
       const next = () => {};
 
-      postcodeValidator.handlePostcodeError(error, postcode, res, next);
+      renderer.postcodeError(error, postcode, res, next);
 
       expect(res.locals.errorMessage).to.be.equal(messages.technicalProblems());
     });
@@ -30,7 +30,7 @@ describe('Postcode validation', () => {
       res.locals.outOfEnglandMessage = null;
       res.render = () => {};
 
-      postcodeValidator.renderPostcodeNotEnglish(postcode, req, res);
+      renderer.postcodeNotEnglish(postcode, req, res);
 
       expect(res.locals.outOfEnglandMessage)
         .to.be.equal(messages.outOfEnglandMessage({ isOutcode: true, term: postcode }, search));
@@ -46,7 +46,7 @@ describe('Postcode validation', () => {
       res.locals.errorMessage = null;
       res.render = () => {};
 
-      postcodeValidator.renderInvalidPostcodePage(postcode, req, res);
+      renderer.invalidPostcodePage(postcode, req, res);
 
       expect(res.locals.errorMessage).to.be.equal(messages.invalidPostcodeMessage());
     });
