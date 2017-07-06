@@ -1,9 +1,11 @@
 const postcodeValidator = require('../lib/postcodeValidator');
-const renderer = require('./renderer');
 const log = require('../lib/logger');
 const PostcodesIOClient = require('postcodesio-client');
 
-const PostcodesIO = new PostcodesIOClient();
+// eslint-disable-next-line no-var
+var PostcodesIO = new PostcodesIOClient();
+// eslint-disable-next-line no-var
+var renderer = require('./renderer');
 
 function outsideEngland(outcodeDetails) {
   return !outcodeDetails.country.some(c => c === 'England');
@@ -29,7 +31,7 @@ function lookupPostcode(req, res, next) {
         log.info('validate-outcode-end');
       } else {
         log.info('lookup-outcode-error');
-        renderer.handlePostcodeError(err, outcodeDetails, res, next);
+        renderer.postcodeError(err, outcodeDetails, res, next);
         log.info('lookup-outcode-error');
       }
     });
