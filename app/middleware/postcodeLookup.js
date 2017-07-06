@@ -2,6 +2,7 @@ const postcodeValidator = require('../lib/postcodeValidator');
 const log = require('../lib/logger');
 const PostcodesIOClient = require('postcodesio-client');
 
+// rewire (a framework for mocking) doesn't support const
 // eslint-disable-next-line no-var
 var PostcodesIO = new PostcodesIOClient();
 // eslint-disable-next-line no-var
@@ -47,7 +48,7 @@ function lookupPostcode(req, res, next) {
         log.info('validate-postcode-notEnglish');
       } else {
         log.info('lookup-postcode-error');
-        renderer.handlePostcodeError(err, postcodeDetails, res, next);
+        renderer.postcodeError(err, postcodeDetails, res, next);
         log.info('lookup-postcode-error');
       }
     });
