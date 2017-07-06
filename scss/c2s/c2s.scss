@@ -147,7 +147,7 @@ details {
 /*
    Form elements
 */
-form {
+form, div {
   &.form {
     margin-top:48px;
     &--error {
@@ -468,7 +468,7 @@ form {
    Error styling
 */
 
-form {
+form, div {
   .error {
     margin-right: 15px;
     .form-group {

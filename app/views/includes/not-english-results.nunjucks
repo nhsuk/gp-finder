@@ -2,16 +2,9 @@
 <h1 class="page-title">Book a GP appointment online</h1>
 {% endblock %}
 
-{% block meta %}
-{% if errorMessage %}
-  <meta name="DCSext.GPBlank" content="1">
-{% endif %}
-{% endblock %}
-
-
-<div class="form-like form-like--error">
-  <h2>This service is for GP surgeries in England</h2>
-  <div class="form-like-item-wrapper">
+<div class="form form--error">
+  <div class="form-item-wrapper">
+    <h2>This service is for GP surgeries in England</h2>
     <p>{{ outOfEnglandMessage | safe}}</p>
     <p>If you live outside of England, contact your GP surgery to find out if you can book an appointment online.
   </div>
