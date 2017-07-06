@@ -36,10 +36,10 @@ describe('esGeoQueryBuilder', () => {
   it('should populate the query with the search term', () => {
     const query = esGeoQueryBuilder.build(location, searchTerm);
     expect(findKeyValuePair(query, 'query', searchTerm))
-    .to.be.equal(
-      true,
-      `"query: ${searchTerm}" not found in\n${util.inspect(query, { depth: null })}`
-    );
+      .to.be.equal(
+        true,
+        `"query: ${searchTerm}" not found in\n${util.inspect(query, { depth: null })}`
+      );
   });
 
   it('should not populate the query with an empty search term', () => {

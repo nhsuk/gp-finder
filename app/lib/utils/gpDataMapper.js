@@ -8,7 +8,7 @@ function isNonEmptyTerm(term) {
 }
 
 function getFilteredGps(gpData, searchStr) {
- // match[4] will be for the doctors name
+  // match[4] will be for the doctors name
   const regex = /^((doctor|dr\.|dr)(\s+|$))?\s*(.*)$/i;
   if (gpData.doctors) {
     let filteredDocs = [];
