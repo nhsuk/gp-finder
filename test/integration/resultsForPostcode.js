@@ -48,8 +48,8 @@ function expectErrorMessagesForPostcode(res, errorMessage, errorMessage2) {
 
 function expectMessageForNotEnglishPostcode(res, message, message2) {
   const $ = cheerio.load(res.text);
-  const notEnglishHeader = $('.form-like.form-like--error h2').text();
-  const resultsParagraph = $('.form-like-item-wrapper p:first-child').text();
+  const notEnglishHeader = $('.form-item-wrapper h2').text();
+  const resultsParagraph = $('.form-item-wrapper p').text();
 
   expect(notEnglishHeader).to.contain(message);
   expect(resultsParagraph).to.contain(message2);
