@@ -2,25 +2,37 @@ const postcodeValidator = require('../lib/postcodeValidator');
 const log = require('../lib/logger');
 const PostcodesIOClient = require('postcodesio-client');
 
-const PostcodesIO = new PostcodesIOClient();
+// rewire (a framework for mocking) doesn't support const
+// eslint-disable-next-line no-var
+var PostcodesIO = new PostcodesIOClient();
+// eslint-disable-next-line no-var
+var renderer = require('./renderer');
+
+function outsideEngland(outcodeDetails) {
+  return !outcodeDetails.country.some(c => c === 'England');
+}
 
 function lookupPostcode(req, res, next) {
   const postcode = res.locals.postcode;
 
   if (postcodeValidator.isOutcode(postcode)) {
     PostcodesIO.outcode(postcode, (err, outcodeDetails) => {
-      if (outcodeDetails) {
+      if (outcodeDetails && outsideEngland(outcodeDetails)) {
+        log.info('validate-outcode-notEnglish');
+        renderer.postcodeNotEnglish(postcode, req, res);
+        log.info('validate-outcode-notEnglish');
+      } else if (outcodeDetails) {
         res.locals.location = { lat: outcodeDetails.latitude, lon: outcodeDetails.longitude };
         res.locals.isOutcode = true;
         log.info(`outcode ${JSON.stringify(res.locals.location)}`);
         next();
       } else if (!err) {
         log.info('validate-outcode-invalid');
-        postcodeValidator.renderInvalidPostcodePage(postcode, req, res);
+        renderer.invalidPostcodePage(postcode, req, res);
         log.info('validate-outcode-end');
       } else {
         log.info('lookup-outcode-error');
-        postcodeValidator.handlePostcodeError(err, outcodeDetails, res, next);
+        renderer.postcodeError(err, outcodeDetails, res, next);
         log.info('lookup-outcode-error');
       }
     });
@@ -31,12 +43,12 @@ function lookupPostcode(req, res, next) {
         log.info(`lookup ${JSON.stringify(res.locals.location)}`);
         next();
       } else if (postcodeDetails && postcodeDetails.country !== 'England') {
-        log.info('revalidate-postcode-notEnglish');
-        postcodeValidator.renderPostcodeNotEnglish(postcodeDetails, req, res);
-        log.info('revalidate-postcode-notEnglish');
+        log.info('validate-postcode-notEnglish');
+        renderer.postcodeNotEnglish(postcode, req, res);
+        log.info('validate-postcode-notEnglish');
       } else {
         log.info('lookup-postcode-error');
-        postcodeValidator.handlePostcodeError(err, postcodeDetails, res, next);
+        renderer.postcodeError(err, postcodeDetails, res, next);
         log.info('lookup-postcode-error');
       }
     });
