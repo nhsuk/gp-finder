@@ -29,7 +29,8 @@ jQuery(function($) {
             "separateWordSearch": false,
             "element": "em",
             "className": "highlight",
-            "accuracy": "exact"
+            "accuracy": "exact",
+            "exclude": ["section *"]
           });
         }
       });
