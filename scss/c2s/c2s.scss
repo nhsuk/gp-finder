@@ -150,15 +150,28 @@ details {
 form, div {
   &.form {
     margin-top:48px;
+    .form-item-wrapper {
+      clear:both;
+      padding-top:16px;
+      h2 {
+        font-size:24px;
+        line-height:1em;
+        +p {
+          margin-top:0;
+        }
+      }
+    }
     &--error {
       margin-top:0px;
-      h2 {
-        border: 3px solid red;
-        padding: 10px;
-        font-size: 1.25em;
-        line-height: 1.5em;
-        &+p {
-          margin-top: 64px;
+      .form-item-wrapper {
+        h2 {
+          border: 3px solid red;
+          padding: 10px;
+          font-size: 1.4em;
+          line-height: 1.5em;
+          &+p {
+            margin-top: 64px;
+          }
         }
       }
     }
@@ -214,6 +227,7 @@ form, div {
       font-size: 20px;
       &--bold {
         font-weight: 600;
+        margin-bottom:5px;
       }
       &--smaller {
         + p {
@@ -233,9 +247,6 @@ form, div {
     @include media(desktop) {
       padding-left:32px;
     }
-  }
-  .form-item-wrapper {
-    clear:both;
   }
 }
 /*
@@ -529,7 +540,7 @@ form, div {
     &__blank {
       padding-left:0;
       .form-group {
-        padding-left: 10px;
+        padding-left: 20px;
         border-left: 4px solid $red;
       }
     }
