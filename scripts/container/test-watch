@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # shellcheck disable=SC1091
-. ./scripts/utils
+. ./scripts/container/utils
 
 wait_for_es_to_start
 
-yarn test-ci
+yarn test-watch

@@ -6,7 +6,7 @@ services:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: scripts/container-test-watch
+    command: scripts/container/test-watch
     volumes:
       - gp-finder-tests-node_modules:/code/node_modules
     environment:
@@ -19,7 +19,7 @@ services:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: scripts/container-ci-tests
+    command: scripts/container/ci-tests
     volumes:
       - gp-finder-ci-tests-node_modules:/code/node_modules
     environment:
