@@ -15,13 +15,13 @@ services:
     links:
       - gp-finder-db:es
 
-  travis-tests:
+  ci-tests:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: sh ./scripts/container-travis-tests
+    command: sh ./scripts/container-ci-tests
     volumes:
-      - gp-finder-travis-tests-node_modules:/code/node_modules
+      - gp-finder-ci-tests-node_modules:/code/node_modules
     environment:
       COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
       NODE_ENV: development
@@ -39,4 +39,4 @@ services:
 
 volumes:
   gp-finder-tests-node_modules:
-  gp-finder-travis-tests-node_modules:
+  gp-finder-ci-tests-node_modules:
