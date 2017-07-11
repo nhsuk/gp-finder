@@ -10,12 +10,15 @@ before_install:
 install:
   - sudo sysctl -w vm.max_map_count=262144
 
-before_script: greenkeeper-lockfile-update
+before_script:
+  - greenkeeper-lockfile-update
 
-script: ./scripts/travis-test
+script: 
+  - scripts/test-ci
 
 after_script:
   - docker-compose -f docker-compose-tests.yml down -v
   - greenkeeper-lockfile-upload
 
-after_success: bash ./scripts/deploy.sh
+after_success:
+  - scripts/deploy.sh

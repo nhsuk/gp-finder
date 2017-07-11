@@ -24,6 +24,6 @@ USER $USERNAME
 
 VOLUME /code/perf-tests
 
-RUN [ "yarn", "run", "build-css" ]
+RUN [ "yarn", "build-css" ]
 
 CMD [ "yarn", "start" ]

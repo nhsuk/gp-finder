@@ -6,7 +6,7 @@ services:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: sh ./scripts/container-tests
+    command: scripts/container-test-watch
     volumes:
       - gp-finder-tests-node_modules:/code/node_modules
     environment:
@@ -15,17 +15,16 @@ services:
     links:
       - gp-finder-db:es
 
-  travis-tests:
+  ci-tests:
     extends:
       file: docker-compose.yml
       service: base-app
-    command: sh ./scripts/container-travis-tests
+    command: scripts/container-ci-tests
     volumes:
-      - gp-finder-travis-tests-node_modules:/code/node_modules
+      - gp-finder-ci-tests-node_modules:/code/node_modules
     environment:
       COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
       NODE_ENV: development
-      SNYK_TOKEN: ${SNYK_TOKEN}
       TRAVIS: ${TRAVIS}
       TRAVIS_BRANCH: ${TRAVIS_BRANCH}
       TRAVIS_COMMIT: ${TRAVIS_COMMIT}
@@ -39,4 +38,4 @@ services:
 
 volumes:
   gp-finder-tests-node_modules:
-  gp-finder-travis-tests-node_modules:
+  gp-finder-ci-tests-node_modules:
