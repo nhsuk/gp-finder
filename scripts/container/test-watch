@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# shellcheck disable=SC1091
+. ./scripts/container/utils
+
+wait_for_es_to_start
+
+yarn test-watch
