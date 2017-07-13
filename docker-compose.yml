@@ -7,7 +7,7 @@ services:
       context: .
       args:
         NODE_ENV: ${NODE_ENV-development}
-    command: yarn run watch-dev
+    command: yarn start-watch
     volumes:
       - .:/code
     environment:
