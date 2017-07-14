@@ -18,11 +18,11 @@
 <p>You can book an appointment online if:</p>
 <ul>
   <li>your GP is in England</li>
-  <li>you have registered for your GP's online services</li>
+  <li>you have joined your GP surgery’s online services</li>
 </ul>
 <details class="not-registered" role="group">
   <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
-    <span class="details__summary">How to sign up for online services</span>
+    <span class="details__summary">How to join online services</span>
   </summary>
 
   <div id="details-content-0" aria-hidden="true" class="callout callout--info callout--friendly">
