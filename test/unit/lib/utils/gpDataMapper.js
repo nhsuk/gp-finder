@@ -118,6 +118,18 @@ describe('GP Surgery Data Mapper', () => {
 
       expect(result).to.be.eql([]);
     });
+
+    it('regex in search terms should not be used', () => {
+      const gpData = { doctors: [
+        { name: 'Dr. A Farooq' },
+        { name: 'Dr. Carter' },
+        { name: 'Dr. B Farooq' }
+      ] };
+      const searchStr = 'Carter \\w';
+      const result = gpDataMapper.getFilteredGps(gpData, searchStr);
+
+      expect(result).to.be.eql(['Dr. Carter']);
+    });
   });
 
   describe('mapped title for doctors', () => {

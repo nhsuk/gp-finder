@@ -7,23 +7,26 @@ function isNonEmptyTerm(term) {
   return term;
 }
 
+function isNotTitle(term) {
+  const regex = /^(doctor|dr\.|dr)$/i;
+  return !regex.test(term);
+}
+
 function getFilteredGps(gpData, searchStr) {
-  // match[4] will be for the doctors name
-  const regex = /^((doctor|dr\.|dr)(\s+|$))?\s*(.*)$/i;
   if (gpData.doctors) {
     let filteredDocs = [];
 
-    const termRegexes = regex
-      .exec(searchStr)[4]
+    const searchTerms = searchStr
       .split(' ')
       .filter(isNonEmptyTerm)
-      .map(term => new RegExp(term, 'i'));
+      .filter(isNotTitle)
+      .map(term => term.toLowerCase());
 
-    termRegexes.forEach((regexp) => {
+    searchTerms.forEach((term) => {
       filteredDocs = filteredDocs
         .concat(
           gpData.doctors
-            .filter(doctor => regexp.test(doctor.name))
+            .filter(doctor => doctor.name && doctor.name.toLowerCase().includes(term))
             .map(doctor => doctor.name)
         );
     });
