@@ -15,7 +15,7 @@
         <p>{{ noResultsMessage.paragraph }} </p>
       {% else %}
         <h2>Find your GP surgery</h2>
-        <p>You need to do this to go to your booking system. Search using one or both of the boxes below.</p>
+        <p>You need to do this to go to your booking system.</p>
       {% endif %}
       {% if (errorMessage) or (gps.length === 0) %}
         <div class="form-group error error__{{searchErrorClass}}">
