@@ -3,8 +3,8 @@ function getBookOnlineLink(gpData) {
     ? gpData.onlineServices.appointments.url : undefined;
 }
 
-function isNonEmptyTerm(term) {
-  return term;
+function isNotEmptyString(string) {
+  return string;
 }
 
 function isNotTitle(term) {
@@ -18,7 +18,7 @@ function getFilteredGps(gpData, searchStr) {
 
     const searchTerms = searchStr
       .split(' ')
-      .filter(isNonEmptyTerm)
+      .filter(isNotEmptyString)
       .filter(isNotTitle)
       .map(term => term.toLowerCase());
 
@@ -26,7 +26,8 @@ function getFilteredGps(gpData, searchStr) {
       filteredDocs = filteredDocs
         .concat(
           gpData.doctors
-            .filter(doctor => doctor.name && doctor.name.toLowerCase().includes(term))
+            .filter(d => isNotEmptyString(d.name))
+            .filter(doctor => doctor.name.toLowerCase().includes(term))
             .map(doctor => doctor.name)
         );
     });
