@@ -9,7 +9,7 @@ var PostcodesIO = new PostcodesIOClient();
 var renderer = require('./renderer');
 
 function outsideEngland(outcodeDetails) {
-  return !outcodeDetails.country.some(c => c === 'England');
+  return !outcodeDetails.country.includes('England');
 }
 
 function lookupPostcode(req, res, next) {
