@@ -1,5 +1,6 @@
-function searchHelpMessage(hasPostcode, hasSearchTerm) {
-  const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+
+function searchHelp(hasPostcode, hasSearchTerm) {
   let helpPrompt = 'If your surgery is not here, ';
   if (hasPostcode) {
     helpPrompt += 'check the postcode ';
@@ -15,7 +16,7 @@ function searchHelpMessage(hasPostcode, hasSearchTerm) {
   return helpPrompt;
 }
 
-function promptBuilder(searchPostcode, searchTerm) {
+function postcodeProximityMessage(searchPostcode, searchTerm) {
   let returnValue = '';
 
   if (searchPostcode) {
@@ -32,12 +33,12 @@ function promptBuilder(searchPostcode, searchTerm) {
   return returnValue;
 }
 
-function searchInfomationMessage(singleResult, searchPostcode, searchTerm) {
-  return `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}${promptBuilder(searchPostcode, searchTerm)}.`;
+function searchInformation(singleResult, searchPostcode, searchTerm) {
+  return `We found ${(singleResult) ? 'this surgery' : 'these surgeries'}${postcodeProximityMessage(searchPostcode, searchTerm)}.`;
 }
 
-function noResultsMessage(searchPostcode, searchTerm) {
-  const headerPrompt = `We can not find a surgery${promptBuilder(searchPostcode, searchTerm)}`;
+function noResults(searchPostcode, searchTerm) {
+  const headerPrompt = `We can not find a surgery${postcodeProximityMessage(searchPostcode, searchTerm)}`;
   let paragraphPrompt = '';
   let errorClass = '';
   if ((searchPostcode) && (searchTerm)) {
@@ -52,8 +53,7 @@ function noResultsMessage(searchPostcode, searchTerm) {
   return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
 }
 
-function outOfEnglandMessage(searchPostcode) {
-  const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+function outOfEngland(searchPostcode) {
   let returnValue = '';
 
   if (searchPostcode) {
@@ -69,11 +69,11 @@ function outOfEnglandMessage(searchPostcode) {
   return returnValue;
 }
 
-function emptySearchMessage() {
+function emptySearch() {
   return 'Enter the name of your surgery, the name of your GP or a postcode.';
 }
 
-function invalidPostcodeMessage() {
+function invalidPostcode() {
   return 'Check you\'re using the right postcode. Or search using the name of your GP or surgery.';
 }
 
@@ -82,11 +82,11 @@ function technicalProblems() {
 }
 
 module.exports = {
-  searchInfomationMessage,
-  searchHelpMessage,
-  noResultsMessage,
-  outOfEnglandMessage,
-  emptySearchMessage,
-  invalidPostcodeMessage,
+  searchInformation,
+  searchHelp,
+  noResults,
+  outOfEngland,
+  emptySearch,
+  invalidPostcode,
   technicalProblems,
 };

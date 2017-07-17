@@ -19,14 +19,14 @@ function postcodeError(error, postcode, res, next) {
 function postcodeNotEnglish(postcode, req, res) {
   log.info({ postcode }, 'Location outside of England');
   const postcodeHash = { isOutcode: postcodeValidator.isOutcode(postcode), term: postcode };
-  res.locals.outOfEnglandMessage = messages.outOfEnglandMessage(postcodeHash, res.locals.search);
+  res.locals.outOfEnglandMessage = messages.outOfEngland(postcodeHash, res.locals.search);
   results(req, res);
 }
 
 function setInvalidPostcodeLabel(res, postcode) {
   res.locals.searchErrorLabel = `The postcode '${postcode}' does not exist`;
   res.locals.searchErrorClass = 'postcode';
-  res.locals.errorMessage = messages.invalidPostcodeMessage();
+  res.locals.errorMessage = messages.invalidPostcode();
 }
 
 function invalidPostcodePage(postcode, req, res) {

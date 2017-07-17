@@ -20,23 +20,25 @@ function render(result, postcode, req, res, next) {
 function validatePostcode(req, res, next) {
   const postcode = res.locals.postcode;
 
+  log.debug({ postcode }, 'validatePostcode');
+
   if (postcodeValidator.isOutcode(postcode)) {
-    log.info('validate-outcode-skip');
+    log.debug('is Outcode');
     next();
   } else {
-    log.info('validate-postcode-start');
     PostcodesIO
       .validate(postcode)
       .then(result => render(result, postcode, req, res, next))
       .catch(error => handleError(error, postcode, res, next));
-    log.info('validate-postcode-end');
   }
 }
 
-module.exports = (req, res, next) => {
+function postcodeValidation(req, res, next) {
   if (res.locals.postcode) {
     validatePostcode(req, res, next);
   } else {
     next();
   }
-};
+}
+
+module.exports = postcodeValidation;

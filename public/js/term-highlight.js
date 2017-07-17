@@ -2,13 +2,12 @@ jQuery(function($) {
   $(document).ready(function () {
 
     if ($('h1.sr-only').attr('data-term')){
-      var searchTerm = $('h1.sr-only').data('term').toLowerCase();
-          // remove speach mark
-          searchTerm = searchTerm.replace(/[".]/g,'');
-          // remove special characters
-          searchTerm = searchTerm.replace(/[;]/g,'');
-          // Change Doctor to Dr
-          searchTerm = searchTerm.replace('doctor','dr');
+      var searchTerm = $('h1.sr-only')
+        .data('term')
+        .toLowerCase()
+        .replace(/[".]/g,'')     // remove speech mark
+        .replace(/[;]/g,'')      // remove special characters
+        .replace('doctor','dr'); // Change Doctor to Dr
 
       var terms = searchTerm.split(' ');
 

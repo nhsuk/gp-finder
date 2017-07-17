@@ -23,7 +23,7 @@ describe('Results page error handling', () => {
   describe('when search is not included', () => {
     it('should return a descriptive error messages', (done) => {
       const search = null;
-      const errorMessage = messages.emptySearchMessage();
+      const errorMessage = messages.emptySearch();
 
       assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
@@ -41,7 +41,7 @@ describe('Results page error handling', () => {
     const search = '';
 
     it('should return a descriptive error messages', (done) => {
-      const errorMessage = messages.emptySearchMessage();
+      const errorMessage = messages.emptySearch();
 
       assertSearchResponse(search, (err, res) => {
         iExpect.htmlWith200Status(err, res);
@@ -68,7 +68,7 @@ describe('Results page error handling', () => {
   describe('when search is some empty spaces', () => {
     it('should return a descriptive error messages', (done) => {
       const search = '   ';
-      const errorMessage = messages.emptySearchMessage();
+      const errorMessage = messages.emptySearch();
 
       assertSearchResponse(search, (err, res) => {
         iExpect.htmlWith200Status(err, res);

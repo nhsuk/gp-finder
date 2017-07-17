@@ -6,7 +6,7 @@ const expect = chai.expect;
 
 describe('Postcode validation', () => {
   describe('error handling for handlePostcodeError', () => {
-    it('should return an errorMessage when an error exists', () => {
+    it('should return an error message when an error exists', () => {
       const error = 'Some error';
       const postcode = 'S3';
       const res = {};
@@ -33,12 +33,12 @@ describe('Postcode validation', () => {
       renderer.postcodeNotEnglish(postcode, req, res);
 
       expect(res.locals.outOfEnglandMessage)
-        .to.be.equal(messages.outOfEnglandMessage({ isOutcode: true, term: postcode }, search));
+        .to.be.equal(messages.outOfEngland({ isOutcode: true, term: postcode }, search));
     });
   });
 
   describe('error handling for renderInvalidPostcodePage', () => {
-    it('should return an errorMessage when the postcode is invalid', () => {
+    it('should return an error message when the postcode is invalid', () => {
       const postcode = 'S50 3EW';
       const req = {};
       const res = {};
@@ -48,7 +48,7 @@ describe('Postcode validation', () => {
 
       renderer.invalidPostcodePage(postcode, req, res);
 
-      expect(res.locals.errorMessage).to.be.equal(messages.invalidPostcodeMessage());
+      expect(res.locals.errorMessage).to.be.equal(messages.invalidPostcode());
     });
   });
 });
