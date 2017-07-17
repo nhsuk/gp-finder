@@ -20,7 +20,7 @@
     <meta name="DCSext.ServiceName" content="GP Appointment Finder" />
     {% block meta %}{% endblock %}
 
-    {% set qs = '?v=10' %}
+    {% set qs = '?v=8' %}
 
     <!--[if gt IE 8]><!--><link href="{{ SITE_ROOT }}/css/nhsuk.css{{ qs }}" media="screen" rel="stylesheet" type="text/css"><!--<![endif]-->
     <!--[if IE 6]><link href="{{ SITE_ROOT }}/css/nhsuk-ie6.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
