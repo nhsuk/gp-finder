@@ -15,44 +15,44 @@ function outsideEngland(outcodeDetails) {
 function lookupPostcode(req, res, next) {
   const postcode = res.locals.postcode;
 
-  if (postcodeValidator.isOutcode(postcode)) {
-    PostcodesIO.outcode(postcode, (err, outcodeDetails) => {
-      if (outcodeDetails && outsideEngland(outcodeDetails)) {
-        log.info('validate-outcode-notEnglish');
-        renderer.postcodeNotEnglish(postcode, req, res);
-        log.info('validate-outcode-notEnglish');
-      } else if (outcodeDetails) {
-        res.locals.location = { lat: outcodeDetails.latitude, lon: outcodeDetails.longitude };
-        res.locals.isOutcode = true;
-        log.info(`outcode ${JSON.stringify(res.locals.location)}`);
-        next();
-      } else if (!err) {
-        log.info('validate-outcode-invalid');
-        renderer.invalidPostcodePage(postcode, req, res);
-        log.info('validate-outcode-end');
-      } else {
-        log.info('lookup-outcode-error');
-        renderer.postcodeError(err, outcodeDetails, res, next);
-        log.info('lookup-outcode-error');
-      }
-    });
-  } else if (postcodeValidator.isPostcode(postcode)) {
-    PostcodesIO.lookup(postcode, (err, postcodeDetails) => {
-      if (postcodeDetails && postcodeDetails.country === 'England') {
-        res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
-        log.info(`lookup ${JSON.stringify(res.locals.location)}`);
-        next();
-      } else if (postcodeDetails && postcodeDetails.country !== 'England') {
-        log.info('validate-postcode-notEnglish');
-        renderer.postcodeNotEnglish(postcode, req, res);
-        log.info('validate-postcode-notEnglish');
-      } else {
-        log.info('lookup-postcode-error');
-        renderer.postcodeError(err, postcodeDetails, res, next);
-        log.info('lookup-postcode-error');
-      }
-    });
+  log.debug({ postcode }, 'lookupPostcode');
+
+  if (postcode) {
+    if (postcodeValidator.isOutcode(postcode)) {
+      log.debug('is outcode');
+      PostcodesIO.outcode(postcode, (err, outcodeDetails) => {
+        log.debug({ postcodeIOResponse: { outcodeDetails } }, 'PostcodeIO outcode response');
+        if (outcodeDetails && outsideEngland(outcodeDetails)) {
+          renderer.postcodeNotEnglish(postcode, req, res);
+        } else if (outcodeDetails) {
+          res.locals.location = { lat: outcodeDetails.latitude, lon: outcodeDetails.longitude };
+          res.locals.isOutcode = true;
+          next();
+        } else if (!err) {
+          renderer.invalidPostcodePage(postcode, req, res);
+        } else {
+          renderer.postcodeError(err, outcodeDetails, res, next);
+        }
+      });
+    } else if (postcodeValidator.isPostcode(postcode)) {
+      log.debug('is postcode');
+      PostcodesIO.lookup(postcode, (err, postcodeDetails) => {
+        log.debug({ postcodeIOResponse: { postcodeDetails } }, 'PostcodeIO postcode response');
+        if (postcodeDetails && postcodeDetails.country === 'England') {
+          res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
+          next();
+        } else if (postcodeDetails && postcodeDetails.country !== 'England') {
+          renderer.postcodeNotEnglish(postcode, req, res);
+        } else {
+          renderer.postcodeError(err, postcodeDetails, res, next);
+        }
+      });
+    } else {
+      log.debug('not valid outcode or postcode');
+      next();
+    }
   } else {
+    log.debug('no postcode');
     next();
   }
 }
