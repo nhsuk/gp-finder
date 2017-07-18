@@ -7,28 +7,33 @@
 {% endif %}
   <div>
     <div class="form-item-wrapper">
-
       {% if errorMessage %}
-      <div class="form-group error">
-      {% elif gps.length === 0 %}
-      <div class="form-group error">
+        <h2>{{ searchErrorLabel }}</h2>
+        <p>{{ errorMessage }}</p>
+      {% elif (gps.length === 0) %}
+        <h2>{{ noResultsMessage.header }} </h2>
+        <p>{{ noResultsMessage.paragraph }} </p>
       {% else %}
-      <div class="form-group">
+        <h2>Find your GP surgery</h2>
+        <p>You need to do this to go to your booking system.</p>
       {% endif %}
-          {% if errorMessage %}
-          <label class="form-label--bold form-label--smaller" for="search">{{ searchLabel }}</label>
-          <p>{{ errorMessage }} </p>
-          {% elif gps.length === 0 %}
-          <label class="form-label--bold form-label--smaller" for="search">We can't find a surgery matching '{{search}}'</label>
-          <p>Check the name you're using is correct and search again. You can also search using the name of your GP.</p>
-          {% else %}
-          <label class="form-label--bold form-label--smaller" for="search">{{ searchLabel }}</label>
-          <p>Search by surgery name or GP name to go to your booking system.</p>
-          {% endif %}
-          <div class="form-group">
+      {% if (errorMessage) or (gps.length === 0) %}
+        <div class="form-group error error__{{searchErrorClass}}">
+      {% else %}
+        <div class="form-group">
+      {% endif %}
+        <fieldset>
+          <legend class="sr-only">LEGEND</legend>
+          <div class="form-group form-group__search">
+            <label class="form-label form-label--bold" for="search">{{ searchLabel }}</label>
             <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
           </div>
-        </div>
+          <div class="form-group form-group__postcode">
+            <label class="form-label form-label--bold" for="postcode">Postcode</label>
+            <input autocomplete="off" type="text" class="form-control" name="postcode" id="postcode" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
+          </div>
+        </fieldset>
+      </div>
 
         <div class="form-item-wrapper">
           <div class="form-group form-group--submit">

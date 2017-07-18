@@ -8,7 +8,7 @@ wait_for_es_to_start() {
   ES_PORT=${ES_PORT:-9200}
 
   echo "Waiting for a response from http://$ES_HOST:$ES_PORT"
-  while ! wget -q http://"$ES_HOST":"$ES_PORT" ; do
+  while ! wget -q -O /dev/null http://"$ES_HOST":"$ES_PORT" ; do
     if [ $count -gt $max_count ];
     then
       break

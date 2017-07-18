@@ -3,23 +3,31 @@ function getBookOnlineLink(gpData) {
     ? gpData.onlineServices.appointments.url : undefined;
 }
 
+function isNotEmptyString(string) {
+  return string;
+}
+
+function isNotTitle(term) {
+  const regex = /^(doctor|dr\.|dr)$/i;
+  return !regex.test(term);
+}
+
 function getFilteredGps(gpData, searchStr) {
   if (gpData.doctors) {
-    let filteredSearchStr = searchStr;
     let filteredDocs = [];
 
-    if (searchStr.match(/^(doctor|dr.|dr)/i)) {
-      filteredSearchStr = searchStr.replace(/^\S+ /g, '');
-    }
-    const searchArr = filteredSearchStr.split(' ');
+    const searchTerms = searchStr
+      .split(' ')
+      .filter(isNotEmptyString)
+      .filter(isNotTitle)
+      .map(term => term.toLowerCase());
 
-    searchArr.forEach((searchSubStr) => {
-      const regexp = new RegExp(searchSubStr, 'i');
-
+    searchTerms.forEach((term) => {
       filteredDocs = filteredDocs
         .concat(
           gpData.doctors
-            .filter(doctor => regexp.test(doctor.name))
+            .filter(d => isNotEmptyString(d.name))
+            .filter(doctor => doctor.name.toLowerCase().includes(term))
             .map(doctor => doctor.name)
         );
     });
@@ -27,7 +35,7 @@ function getFilteredGps(gpData, searchStr) {
     return [...new Set(filteredDocs)];
   }
 
-  return undefined;
+  return [];
 }
 
 function mappedTitleForGps(doctors) {

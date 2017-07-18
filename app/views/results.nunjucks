@@ -18,16 +18,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="reading-width">
-  {% if gps.length === 0 %}
+<div class="reading-width results">
+  {% if outOfEnglandMessage %}
+    {% include "includes/not-english-results.nunjucks" %}
+  {% elif gps.length === 0 %}
     {% include "includes/search-form.nunjucks" %}
-
   {% else %}
-    <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{ search }}">Search results</h1>
+    <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{search}}">Search results</h1>
     <h2 class='results__header'>{{resultsHeader}}</h2>
-    <p>We found {{resultsSubHeader}} using '{{search}}'.
-    If your surgery isn't here, check the name and <a href='/book-a-gp-appointment'>search again</a>.
-    You can also search using your GP's name.</p>
+    <p>{{searchInformationMessage}}<p>
+    <p>{{searchHelpMessage | safe }}<p>
     <div class="grid-row">
       <ol class="results">
         {% for gp in gps %}

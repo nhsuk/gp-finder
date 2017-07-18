@@ -1,5 +1,0 @@
-<div class="results">
-  <div class="results-block results-block--none">
-    <h2 class="results__header results__header--none">There are no GP surgeries matching '{{ search }}'</h2>
-  </div>
-</div>
