@@ -1,4 +1,3 @@
-const postcodeValidator = require('../lib/postcodeValidator');
 const log = require('../lib/logger');
 const PostcodesIOClient = require('postcodesio-client');
 
@@ -8,8 +7,14 @@ var PostcodesIO = new PostcodesIOClient();
 // eslint-disable-next-line no-var
 var renderer = require('./renderer');
 
-function outsideEngland(outcodeDetails) {
-  return !outcodeDetails.country.includes('England');
+function outsideEngland(postcodeDetails) {
+  return !(Array.isArray(postcodeDetails.country) ?
+    postcodeDetails.country.includes('England') :
+    postcodeDetails.country === 'England');
+}
+
+function isOutcode(postcodeDetails) {
+  return !postcodeDetails.postcode;
 }
 
 function lookupPostcode(req, res, next) {
@@ -18,39 +23,24 @@ function lookupPostcode(req, res, next) {
   log.debug({ postcode }, 'lookupPostcode');
 
   if (postcode) {
-    if (postcodeValidator.isOutcode(postcode)) {
-      log.debug('is outcode');
-      PostcodesIO.outcode(postcode, (err, outcodeDetails) => {
-        log.debug({ postcodeIOResponse: { outcodeDetails } }, 'PostcodeIO outcode response');
-        if (outcodeDetails && outsideEngland(outcodeDetails)) {
+    PostcodesIO.lookup(postcode, (err, postcodeDetails) => {
+      log.debug({ postcodeIOResponse: { postcodeDetails } }, 'PostcodeIO postcode response');
+
+      if (err) {
+        renderer.postcodeError(err, postcode, res, next);
+      } else if (postcodeDetails) {
+        res.locals.isOutcode = isOutcode(postcodeDetails);
+        if (outsideEngland(postcodeDetails)) {
           renderer.postcodeNotEnglish(postcode, req, res);
-        } else if (outcodeDetails) {
-          res.locals.location = { lat: outcodeDetails.latitude, lon: outcodeDetails.longitude };
-          res.locals.isOutcode = true;
-          next();
-        } else if (!err) {
-          renderer.invalidPostcodePage(postcode, req, res);
         } else {
-          renderer.postcodeError(err, outcodeDetails, res, next);
-        }
-      });
-    } else if (postcodeValidator.isPostcode(postcode)) {
-      log.debug('is postcode');
-      PostcodesIO.lookup(postcode, (err, postcodeDetails) => {
-        log.debug({ postcodeIOResponse: { postcodeDetails } }, 'PostcodeIO postcode response');
-        if (postcodeDetails && postcodeDetails.country === 'England') {
           res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
+          log.debug({ isOutcode: res.locals.isOutcode, location: res.locals.location });
           next();
-        } else if (postcodeDetails && postcodeDetails.country !== 'England') {
-          renderer.postcodeNotEnglish(postcode, req, res);
-        } else {
-          renderer.postcodeError(err, postcodeDetails, res, next);
         }
-      });
-    } else {
-      log.debug('not valid outcode or postcode');
-      next();
-    }
+      } else {
+        renderer.invalidPostcodePage(postcode, req, res);
+      }
+    });
   } else {
     log.debug('no postcode');
     next();
