@@ -57,60 +57,6 @@ describe('Postcode lookup', () => {
       .equal(true, 'Should have passed invalid postcode to renderer');
   });
 
-  it('should render a \'Not England\' error page when the postcode is not in England', () => {
-    const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
-    const postcodesIOClientFake = {
-      lookup: (postcode, callback) => { callback(null, { country: 'Scotland' }); }
-    };
-
-    const postcodeNotEnglishSpy = sinon.spy();
-    const rendererMock = {
-      postcodeNotEnglish: postcodeNotEnglishSpy
-    };
-
-    // eslint-disable-next-line no-underscore-dangle
-    postcodeLookup.__set__('PostcodesIO', postcodesIOClientFake);
-    // eslint-disable-next-line no-underscore-dangle
-    postcodeLookup.__set__('renderer', rendererMock);
-
-    postcodeLookup({}, { locals: { postcode: 'TD9 0AA' } }, () => {});
-
-    expect(postcodeNotEnglishSpy.calledOnce)
-      .to
-      .equal(true, 'Should have called postcodeNotEnglish renderer once');
-    expect(postcodeNotEnglishSpy.calledWith('TD9 0AA'))
-      .to
-      .equal(true, 'Should have passed postcode to renderer');
-  });
-
-  it('should render a \'Not England\' error page when the outcode is not in England', () => {
-    const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
-    const postcodesIOClientFake = {
-      lookup: (postcode, callback) => {
-        callback(null, { country: ['Scotland'] });
-      }
-    };
-
-    const postcodeNotEnglishSpy = sinon.spy();
-    const rendererMock = {
-      postcodeNotEnglish: postcodeNotEnglishSpy
-    };
-
-    // eslint-disable-next-line no-underscore-dangle
-    postcodeLookup.__set__('PostcodesIO', postcodesIOClientFake);
-    // eslint-disable-next-line no-underscore-dangle
-    postcodeLookup.__set__('renderer', rendererMock);
-
-    postcodeLookup({}, { locals: { postcode: 'TD9' } }, () => {});
-
-    expect(postcodeNotEnglishSpy.calledOnce)
-      .to
-      .equal(true, 'Should have called postcodeNotEnglish renderer once');
-    expect(postcodeNotEnglishSpy.calledWith('TD9'))
-      .to
-      .equal(true, 'Should have passed outcode to renderer');
-  });
-
   it('should add the outcode flag to locals if outcode is used', () => {
     const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
     const postcodesIOClientFake = {
@@ -129,6 +75,7 @@ describe('Postcode lookup', () => {
     const nextSpy = () => {
       called = true;
       expect(res.locals.isOutcode).to.equal(true);
+      // TODO: need to assert on res.locals.location and postcodeLocationDetails
     };
 
     // eslint-disable-next-line no-underscore-dangle
