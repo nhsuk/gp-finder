@@ -111,6 +111,36 @@ describe('Postcode lookup', () => {
       .equal(true, 'Should have passed outcode to renderer');
   });
 
+  it('outcode flag should be passed to renderer', () => {
+    const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
+    const postcodesIOClientFake = {
+      lookup: (postcode, callback) => {
+        callback(null, { country: ['England'] });
+      }
+    };
+
+    const res = {
+      locals: {
+        postcode: 'HG5'
+      }
+    };
+    let called = false;
+
+    const nextSpy = () => {
+      called = true;
+      expect(res.locals.isOutcode).to.equal(true);
+    };
+
+    // eslint-disable-next-line no-underscore-dangle
+    postcodeLookup.__set__('PostcodesIO', postcodesIOClientFake);
+
+    postcodeLookup({}, res, nextSpy);
+
+    expect(called)
+      .to
+      .equal(true, 'Should have called next once');
+  });
+
   it('should pass the coordinates to next when the postcode is in England', () => {
     const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
     const postcodesIOClientFake = {
@@ -125,7 +155,7 @@ describe('Postcode lookup', () => {
 
     const res = {
       locals: {
-        postcode: 'HG5'
+        postcode: 'HG5 0JL'
       }
     };
     let called = false;
