@@ -111,7 +111,7 @@ describe('Postcode lookup', () => {
       .equal(true, 'Should have passed outcode to renderer');
   });
 
-  it('outcode flag should be passed to renderer', () => {
+  it('should add the outcode flag to locals if outcode is used', () => {
     const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
     const postcodesIOClientFake = {
       lookup: (postcode, callback) => {
@@ -141,7 +141,7 @@ describe('Postcode lookup', () => {
       .equal(true, 'Should have called next once');
   });
 
-  it('should pass the coordinates to next when the postcode is in England', () => {
+  it('should add the coordinates to locals when the postcode is in England', () => {
     const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
     const postcodesIOClientFake = {
       lookup: (postcode, callback) => {
@@ -155,7 +155,7 @@ describe('Postcode lookup', () => {
 
     const res = {
       locals: {
-        postcode: 'HG5 0JL'
+        postcode: 'HG5'
       }
     };
     let called = false;
