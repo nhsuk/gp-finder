@@ -5,12 +5,11 @@ const sinon = require('sinon');
 const expect = chai.expect;
 
 describe('notInEnglandHandler', () => {
-
   it('should render a \'Not England\' error page when the outcode is not in England', () => {
     const notInEnglandHandler = rewire('../../../app/middleware/notInEnglandHandler');
-    const location = {
+    const postcodeLocationDetails = {
       postcode: 'TD9',
-      country: [ 'Scotland' ]
+      country: ['Scotland'],
     };
 
     const postcodeNotEnglishSpy = sinon.spy();
@@ -21,7 +20,7 @@ describe('notInEnglandHandler', () => {
     // eslint-disable-next-line no-underscore-dangle
     notInEnglandHandler.__set__('renderer', rendererMock);
 
-    notInEnglandHandler({}, { locals: { location } }, () => {});
+    notInEnglandHandler({}, { locals: { postcodeLocationDetails } }, () => {});
 
     expect(postcodeNotEnglishSpy.calledOnce)
       .to
@@ -42,12 +41,12 @@ describe('notInEnglandHandler', () => {
     // eslint-disable-next-line no-underscore-dangle
     notInEnglandHandler.__set__('renderer', rendererMock);
 
-    const location = {
+    const postcodeLocationDetails = {
       postcode: 'TD9 0AA',
       country: 'Scotland'
     };
 
-    notInEnglandHandler({}, { locals: { location } }, () => {});
+    notInEnglandHandler({}, { locals: { postcodeLocationDetails } }, () => {});
 
     expect(postcodeNotEnglishSpy.calledOnce)
       .to
@@ -57,21 +56,34 @@ describe('notInEnglandHandler', () => {
       .equal(true, 'Should have passed postcode to renderer');
   });
 
-  it('should render a \'Not England\' error page when the postcode/outcode is not in England', () => {
+  it('should pass to next if postcode/outcode is in England', () => {
     const notInEnglandHandler = rewire('../../../app/middleware/notInEnglandHandler');
 
     const nextSpy = sinon.spy();
 
-    const location = {
+    const postcodeLocationDetails = {
       postcode: 'HG5 0JL',
       country: 'England'
     };
 
-    notInEnglandHandler({}, { locals: { location } }, nextSpy);
+    notInEnglandHandler({}, { locals: { postcodeLocationDetails } }, nextSpy);
 
     expect(nextSpy.calledOnce)
       .to
       .equal(true, 'Should have called next once');
   });
 
+  it('should pass to next if non-postcode search', () => {
+    const notInEnglandHandler = rewire('../../../app/middleware/notInEnglandHandler');
+
+    const nextSpy = sinon.spy();
+
+    const locals = {};
+
+    notInEnglandHandler({}, { locals }, nextSpy);
+
+    expect(nextSpy.calledOnce)
+      .to
+      .equal(true, 'Should have called next once');
+  });
 });

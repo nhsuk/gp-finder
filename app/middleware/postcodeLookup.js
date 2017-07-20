@@ -7,12 +7,6 @@ var PostcodesIO = new PostcodesIOClient();
 // eslint-disable-next-line no-var
 var renderer = require('./renderer');
 
-function outsideEngland(postcodeDetails) {
-  return !(Array.isArray(postcodeDetails.country) ?
-    postcodeDetails.country.includes('England') :
-    postcodeDetails.country === 'England');
-}
-
 function isOutcode(postcodeDetails) {
   return postcodeDetails.postcode === undefined;
 }
@@ -30,13 +24,9 @@ function lookupPostcode(req, res, next) {
         renderer.postcodeError(err, postcode, res, next);
       } else if (postcodeDetails) {
         res.locals.isOutcode = isOutcode(postcodeDetails);
-        if (outsideEngland(postcodeDetails)) {
-          renderer.postcodeNotEnglish(postcode, req, res);
-        } else {
-          res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
-          log.debug({ isOutcode: res.locals.isOutcode, location: res.locals.location });
-          next();
-        }
+        res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
+        res.locals.postcodeLocationDetails = { postcode, country: postcodeDetails.country };
+        next();
       } else {
         renderer.invalidPostcodePage(postcode, req, res);
       }

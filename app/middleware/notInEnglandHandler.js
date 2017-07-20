@@ -1,4 +1,7 @@
 const log = require('../lib/logger');
+// rewire (a framework for mocking) doesn't support const
+// eslint-disable-next-line no-var
+var renderer = require('./renderer');
 
 function outsideEngland(country) {
   return !(Array.isArray(country) ?
@@ -7,16 +10,19 @@ function outsideEngland(country) {
 }
 
 function notInEnglandHandler(req, res, next) {
-  const location = res.locals.location;
+  const location = res.locals.postcodeLocationDetails;
 
   log.debug({ location }, 'notInEnglandHandler');
 
-  if (outsideEngland(location.country)) {
-    renderer.postcodeNotEnglish(location.postcode, req, res);
+  if (location) {
+    if (outsideEngland(location.country)) {
+      renderer.postcodeNotEnglish(location.postcode, req, res);
+    } else {
+      next();
+    }
   } else {
     next();
   }
 }
-
 
 module.exports = notInEnglandHandler;

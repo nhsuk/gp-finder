@@ -6,6 +6,7 @@ const setLocals = require('../app/middleware/setLocals');
 const stripWhitespace = require('../app/middleware/stripWhitespace');
 const searchValidator = require('../app/middleware/searchValidator');
 const postcodeLookup = require('../app/middleware/postcodeLookup');
+const notInEnglandHandler = require('../app/middleware/notInEnglandHandler');
 const getGps = require('../app/middleware/getGps');
 const logZeroResults = require('../app/middleware/logZeroResults');
 
@@ -14,6 +15,7 @@ router.get('/results',
   stripWhitespace,
   searchValidator,
   postcodeLookup,
+  notInEnglandHandler,
   getGps,
   logZeroResults,
   preRender,
