@@ -1,0 +1,29 @@
+{
+  "outcode": "TD9",
+  "longitude": -2.77657929395506,
+  "latitude": 55.3977217554393,
+  "northings": 611806,
+  "eastings": 350911,
+  "admin_district": [
+    "Carlisle",
+    "Scottish Borders"
+  ],
+  "parish": [
+    "Nicholforest",
+    "Bewcastle"
+  ],
+  "admin_county": [
+    "Cumbria"
+  ],
+  "admin_ward": [
+    "Jedburgh and District",
+    "Selkirkshire",
+    "Lyne",
+    "Hawick and Hermitage",
+    "Hawick and Denholm"
+  ],
+  "country": [
+    "England",
+    "Scotland"
+  ]
+}

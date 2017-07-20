@@ -8,7 +8,6 @@ describe('notInEnglandHandler', () => {
   it('should render a \'Not England\' error page when the outcode is not in England', () => {
     const notInEnglandHandler = rewire('../../../app/middleware/notInEnglandHandler');
     const postcodeLocationDetails = {
-      postcode: 'TD9',
       country: ['Scotland'],
     };
 
@@ -20,7 +19,12 @@ describe('notInEnglandHandler', () => {
     // eslint-disable-next-line no-underscore-dangle
     notInEnglandHandler.__set__('renderer', rendererMock);
 
-    notInEnglandHandler({}, { locals: { postcodeLocationDetails } }, () => {});
+    const locals = {
+      postcode: 'TD9',
+      postcodeLocationDetails
+    };
+
+    notInEnglandHandler({}, { locals }, () => {});
 
     expect(postcodeNotEnglishSpy.calledOnce)
       .to
@@ -42,11 +46,15 @@ describe('notInEnglandHandler', () => {
     notInEnglandHandler.__set__('renderer', rendererMock);
 
     const postcodeLocationDetails = {
-      postcode: 'TD9 0AA',
-      country: 'Scotland'
+      country: ['Scotland']
     };
 
-    notInEnglandHandler({}, { locals: { postcodeLocationDetails } }, () => {});
+    const locals = {
+      postcode: 'TD9 0AA',
+      postcodeLocationDetails
+    };
+
+    notInEnglandHandler({}, { locals }, () => {});
 
     expect(postcodeNotEnglishSpy.calledOnce)
       .to
@@ -63,7 +71,7 @@ describe('notInEnglandHandler', () => {
 
     const postcodeLocationDetails = {
       postcode: 'HG5 0JL',
-      country: 'England'
+      country: ['England']
     };
 
     notInEnglandHandler({}, { locals: { postcodeLocationDetails } }, nextSpy);

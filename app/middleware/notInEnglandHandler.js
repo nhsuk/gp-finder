@@ -4,19 +4,18 @@ const log = require('../lib/logger');
 var renderer = require('./renderer');
 
 function outsideEngland(country) {
-  return !(Array.isArray(country) ?
-    country.includes('England') :
-    country === 'England');
+  return !country.includes('England');
 }
 
 function notInEnglandHandler(req, res, next) {
   const location = res.locals.postcodeLocationDetails;
+  const postcode = res.locals.postcode;
 
   log.debug({ location }, 'notInEnglandHandler');
 
   if (location) {
     if (outsideEngland(location.country)) {
-      renderer.postcodeNotEnglish(location.postcode, req, res);
+      renderer.postcodeNotEnglish(postcode, req, res);
     } else {
       next();
     }

@@ -1,0 +1,32 @@
+{
+  "postcode": "HG5 0JL",
+  "quality": 1,
+  "eastings": 435147,
+  "northings": 457192,
+  "country": "England",
+  "nhs_ha": "Yorkshire and the Humber",
+  "longitude": -1.46519099452929,
+  "latitude": 54.0095586395326,
+  "parliamentary_constituency": "Harrogate and Knaresborough",
+  "european_electoral_region": "Yorkshire and The Humber",
+  "primary_care_trust": "North Yorkshire and York",
+  "region": "Yorkshire and The Humber",
+  "lsoa": "Harrogate 009B",
+  "msoa": "Harrogate 009",
+  "incode": "0JL",
+  "outcode": "HG5",
+  "admin_district": "Harrogate",
+  "parish": "Knaresborough",
+  "admin_county": "North Yorkshire",
+  "admin_ward": "Knaresborough East",
+  "ccg": "NHS Harrogate and Rural District",
+  "nuts": "North Yorkshire CC",
+  "codes": {
+    "admin_district": "E07000165",
+    "admin_county": "E10000023",
+    "admin_ward": "E05006248",
+    "parish": "E04007372",
+    "ccg": "E38000073",
+    "nuts": "UKE22"
+  }
+}
