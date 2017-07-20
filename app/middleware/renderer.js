@@ -1,5 +1,4 @@
 const messages = require('../lib/messages');
-const postcodeValidator = require('../lib/postcodeValidator');
 const log = require('../lib/logger');
 
 function results(req, res) {
@@ -17,8 +16,8 @@ function postcodeError(error, postcode, res, next) {
 }
 
 function postcodeNotEnglish(postcode, req, res) {
-  log.info({ postcode }, 'Location outside of England');
-  const postcodeHash = { isOutcode: postcodeValidator.isOutcode(postcode), term: postcode };
+  const postcodeHash = { isOutcode: res.locals.isOutcode, term: postcode };
+  log.info({ postcodeHash }, 'Location outside of England');
   res.locals.outOfEnglandMessage = messages.outOfEngland(postcodeHash, res.locals.search);
   results(req, res);
 }
