@@ -14,7 +14,7 @@ function outsideEngland(postcodeDetails) {
 }
 
 function isOutcode(postcodeDetails) {
-  return !postcodeDetails.postcode;
+  return postcodeDetails.postcode === undefined;
 }
 
 function lookupPostcode(req, res, next) {
