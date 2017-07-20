@@ -7,6 +7,16 @@ var PostcodesIO = new PostcodesIOClient();
 // eslint-disable-next-line no-var
 var renderer = require('./renderer');
 
+function getCountryAsArray(country) {
+  return Array.isArray(country) ? country : [country];
+}
+
+function postcodeDetailsMapper(postcodeDetails) {
+  return {
+    country: getCountryAsArray(postcodeDetails.country)
+  };
+}
+
 function isOutcode(postcodeDetails) {
   return postcodeDetails.postcode === undefined;
 }
@@ -25,7 +35,8 @@ function lookupPostcode(req, res, next) {
       } else if (postcodeDetails) {
         res.locals.isOutcode = isOutcode(postcodeDetails);
         res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
-        res.locals.postcodeLocationDetails = { postcode, country: postcodeDetails.country };
+        res.locals.postcodeLocationDetails =
+          postcodeDetailsMapper(postcodeDetails);
         next();
       } else {
         renderer.invalidPostcodePage(postcode, req, res);
