@@ -1,0 +1,10 @@
+@import "nhsuk-ie6";
+@import "c2s-ie";
+
+.page-section .results__item {
+  height:1px;
+}
+.page-section .grid-row .results__item--nearby .clear-both {
+  background-color: #fff;
+  border-top:4px solid #d9e1e2;
+}

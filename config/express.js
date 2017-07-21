@@ -55,12 +55,10 @@ module.exports = (app, config) => {
       styleSrc: [
         '\'self\'',
         '\'unsafe-inline\'',
-        'fast.fonts.net',
-        'https://dhrlmnmyf2njb.cloudfront.net/',
+        'assets.nhs.uk',
       ],
       fontSrc: [
-        'fast.fonts.net',
-        'https://dhrlmnmyf2njb.cloudfront.net/',
+        'assets.nhs.uk',
       ],
       connectSrc: [
         '\'self\'',

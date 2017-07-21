@@ -1,0 +1,19 @@
+@import "nhsuk-ie8";
+@import "c2s-ie";
+
+.link-back {
+  padding-left: 14px;
+  &:before {
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid #0b0c0c;
+    border-top: 5px solid transparent;
+    content: "";
+    display: block;
+    height: 0;
+    left: 0;
+    margin-top: -6px;
+    position: absolute;
+    top: 50%;
+    width: 0;
+  }
+}
