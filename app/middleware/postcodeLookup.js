@@ -11,14 +11,19 @@ function getCountryAsArray(country) {
   return Array.isArray(country) ? country : [country];
 }
 
-function postcodeDetailsMapper(postcodeDetails) {
-  return {
-    country: getCountryAsArray(postcodeDetails.country)
-  };
+function isOutcode(postcodeDetails) {
+  return postcodeDetails.incode === undefined;
 }
 
-function isOutcode(postcodeDetails) {
-  return postcodeDetails.postcode === undefined;
+function postcodeDetailsMapper(postcodeDetails) {
+  return {
+    isOutcode: isOutcode(postcodeDetails),
+    location: {
+      lat: postcodeDetails.latitude,
+      lon: postcodeDetails.longitude
+    },
+    country: getCountryAsArray(postcodeDetails.country)
+  };
 }
 
 function lookupPostcode(req, res, next) {
@@ -33,7 +38,6 @@ function lookupPostcode(req, res, next) {
       if (err) {
         renderer.postcodeError(err, postcode, res, next);
       } else if (postcodeDetails) {
-        res.locals.isOutcode = isOutcode(postcodeDetails);
         res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
         res.locals.postcodeLocationDetails =
           postcodeDetailsMapper(postcodeDetails);

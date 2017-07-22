@@ -36,10 +36,11 @@ function mapResults(results, res, searchTerm) {
 
 function getGps(req, res, next) {
   const searchTerm = res.locals.search;
+  const postcodeLocationDetails = res.locals.postcodeLocationDetails;
   let esQuery;
 
-  if (res.locals.location) {
-    esQuery = esGeoQueryBuilder.build(res.locals.location, searchTerm);
+  if (postcodeLocationDetails) {
+    esQuery = esGeoQueryBuilder.build(postcodeLocationDetails.location, searchTerm);
   } else {
     esQuery = esQueryBuilder.build(searchTerm);
   }

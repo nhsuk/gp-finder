@@ -113,7 +113,7 @@ describe('Postcode lookup', () => {
       const postcodeLookup = getPostcodeLookup(null, postcodeSampleResponse_HG50JL);
 
       const localsExpectations = () => {
-        expect(res.locals.isOutcode).to.equal(false);
+        expect(res.locals.postcodeLocationDetails.isOutcode).to.equal(false);
       };
 
       const nextSpy = getSpyWithExpectations(localsExpectations);
@@ -128,7 +128,7 @@ describe('Postcode lookup', () => {
       const postcodeLookup = getPostcodeLookup(null, outcodeSampleResponse_HG5);
 
       const localsExpectations = () => {
-        expect(res.locals.isOutcode).to.equal(true);
+        expect(res.locals.postcodeLocationDetails.isOutcode).to.equal(true);
       };
 
       const nextSpy = getSpyWithExpectations(localsExpectations);
