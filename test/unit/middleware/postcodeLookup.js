@@ -39,7 +39,7 @@ describe('Postcode lookup', () => {
 
     const postcodeLookup = getPostcodeLookup('Error!', null, rendererMock);
 
-    postcodeLookup({}, { locals: { postcode: 'HG5 0JL' } }, () => {});
+    postcodeLookup({}, { locals: { postcodeSearch: 'HG5 0JL' } }, () => {});
 
     expect(postcodeErrorSpy.calledOnce)
       .to
@@ -56,7 +56,7 @@ describe('Postcode lookup', () => {
     };
     const postcodeLookup = getPostcodeLookup(null, null, rendererMock);
 
-    postcodeLookup({}, { locals: { postcode: 'blah' } }, () => {});
+    postcodeLookup({}, { locals: { postcodeSearch: 'blah' } }, () => {});
 
     expect(postcodeNotValidSpy.calledOnce)
       .to
@@ -70,7 +70,7 @@ describe('Postcode lookup', () => {
     describe('country should always be mapped to an array', () => {
       // postcode.io returns country as a string for postcodes and array for outcodes
       it('postcode string country should be mapped to array', () => {
-        const res = { locals: { postcode: 'HG5 0JL' } };
+        const res = { locals: { postcodeSearch: 'HG5 0JL' } };
         const postcodeLookup = getPostcodeLookup(null, postcodeSampleResponse_HG50JL);
 
         const localsExpectations = () => {
@@ -90,7 +90,7 @@ describe('Postcode lookup', () => {
 
       it('outcode string array of countries should be preserved as array', () => {
         // postcode.io returns country as a string for postcodes and array for outcodes
-        const res = { locals: { postcode: 'TD9' } };
+        const res = { locals: { postcodeSearch: 'TD9' } };
         const postcodeLookup = getPostcodeLookup(null, outcodeSampleResponseCrossBorder_TD9);
         const localsExpectations = () => {
           expect(Array.isArray(res.locals.postcodeLocationDetails.country)).to.equal(true);
@@ -109,7 +109,7 @@ describe('Postcode lookup', () => {
     });
 
     it('outcode flag should be false if postcode in details', () => {
-      const res = { locals: { postcode: 'HG5 0JL' } };
+      const res = { locals: { postcodeSearch: 'HG5 0JL' } };
       const postcodeLookup = getPostcodeLookup(null, postcodeSampleResponse_HG50JL);
 
       const localsExpectations = () => {
@@ -124,7 +124,7 @@ describe('Postcode lookup', () => {
     });
 
     it('outcode flag should be true if no postcode in details', () => {
-      const res = { locals: { postcode: 'HG5' } };
+      const res = { locals: { postcodeSearch: 'HG5' } };
       const postcodeLookup = getPostcodeLookup(null, outcodeSampleResponse_HG5);
 
       const localsExpectations = () => {
@@ -145,7 +145,7 @@ describe('Postcode lookup', () => {
 
       const res = {
         locals: {
-          postcode: 'HG5'
+          postcodeSearch: 'HG5'
         }
       };
 
@@ -165,7 +165,7 @@ describe('Postcode lookup', () => {
   it('should not pass postcode location details to next when the postcode is empty', () => {
     const postcodeLookup = getPostcodeLookup();
 
-    const res = { locals: { postcode: '' } };
+    const res = { locals: { postcodeSearch: '' } };
 
     const expectations = () => {
       expect(res.locals.postcodeLocationDetails).to.equal(undefined);

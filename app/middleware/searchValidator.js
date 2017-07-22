@@ -8,7 +8,7 @@ function isEmptySearch(searchTermName, searchTermPostcode) {
 
 function validateSearch(req, res, next) {
   const searchTermName = res.locals.search;
-  const searchTermPostcode = res.locals.postcode;
+  const searchTermPostcode = res.locals.postcodeSearch;
 
   if (isEmptySearch(searchTermName, searchTermPostcode)) {
     log.info('Empty Search');

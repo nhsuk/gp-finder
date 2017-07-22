@@ -20,7 +20,7 @@ describe('notInEnglandHandler', () => {
     notInEnglandHandler.__set__('renderer', rendererMock);
 
     const locals = {
-      postcode: 'TD9',
+      postcodeSearch: 'TD9',
       postcodeLocationDetails
     };
 
@@ -50,7 +50,7 @@ describe('notInEnglandHandler', () => {
     };
 
     const locals = {
-      postcode: 'TD9 0AA',
+      postcodeSearch: 'TD9 0AA',
       postcodeLocationDetails
     };
 
