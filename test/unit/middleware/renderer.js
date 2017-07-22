@@ -28,7 +28,7 @@ describe('Postcode validation', () => {
       const res = {};
       res.locals = {};
       res.locals.outOfEnglandMessage = null;
-      res.locals.isOutcode = true;
+      res.locals.postcodeLocationDetails = { isOutcode: true };
       res.render = () => {};
 
       renderer.postcodeNotEnglish(postcode, req, res);

@@ -3,7 +3,7 @@ const messages = require('../lib/messages');
 function preRender(req, res, next) {
   const postcode =
    (res.locals.postcode) ?
-     { isOutcode: res.locals.isOutcode, term: res.locals.postcode }
+     { isOutcode: res.locals.postcodeLocationDetails.isOutcode, term: res.locals.postcode }
      : undefined;
 
   res.locals.noResultsMessage =
