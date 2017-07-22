@@ -27,23 +27,23 @@ function postcodeDetailsMapper(postcodeDetails) {
 }
 
 function lookupPostcode(req, res, next) {
-  const postcode = res.locals.postcode;
+  const postcodeSearch = res.locals.postcodeSearch;
 
-  log.debug({ postcode }, 'lookupPostcode');
+  log.debug({ postcodeSearch }, 'lookupPostcode');
 
-  if (postcode) {
-    PostcodesIO.lookup(postcode, (err, postcodeDetails) => {
+  if (postcodeSearch) {
+    PostcodesIO.lookup(postcodeSearch, (err, postcodeDetails) => {
       log.debug({ postcodeIOResponse: { postcodeDetails } }, 'PostcodeIO postcode response');
 
       if (err) {
-        renderer.postcodeError(err, postcode, res, next);
+        renderer.postcodeError(err, postcodeSearch, res, next);
       } else if (postcodeDetails) {
         res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
         res.locals.postcodeLocationDetails =
           postcodeDetailsMapper(postcodeDetails);
         next();
       } else {
-        renderer.invalidPostcodePage(postcode, req, res);
+        renderer.invalidPostcodePage(postcodeSearch, req, res);
       }
     });
   } else {
