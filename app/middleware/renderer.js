@@ -2,7 +2,11 @@ const messages = require('../lib/messages');
 const log = require('../lib/logger');
 
 function results(req, res) {
-  res.render('results');
+  if (res.locals.gps.length > 0) {
+    res.render('results');
+  } else {
+    res.render('no-results');
+  }
 }
 
 function searchForYourGp(req, res) {

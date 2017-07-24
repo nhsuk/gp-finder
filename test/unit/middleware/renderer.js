@@ -57,6 +57,47 @@ describe('Postcode validation', () => {
     });
   });
 
+  describe('results', () => {
+    const req = {};
+    it('should render results page when there are GPs', () => {
+      const res = {
+        locals: {
+          gps: [
+            'The Surgery'
+          ]
+        }
+      };
+
+      const localsExpectations = (viewName) => {
+        expect(viewName).to.equal('results');
+      };
+
+      res.render = getSpy('res.render', localsExpectations);
+
+      renderer.results(req, res);
+
+      expectCalledOnce(res.render);
+    });
+
+    it('should render no results page when there are no GPs', () => {
+      const res = {
+        locals: {
+          gps: []
+        }
+      };
+
+      const localsExpectations = (viewName) => {
+        expect(viewName).to.equal('no-results');
+      };
+
+      res.render = getSpy('res.render', localsExpectations);
+
+      renderer.results(req, res);
+
+      expectCalledOnce(res.render);
+    });
+  });
+
   describe('error handling for renderInvalidPostcodePage', () => {
     it('should return an error message when the postcode is invalid', () => {
       const postcode = 'S50 3EW';
