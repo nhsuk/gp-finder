@@ -19,7 +19,7 @@ function postcodeNotEnglish(postcode, req, res) {
   const postcodeHash = { isOutcode: res.locals.postcodeLocationDetails.isOutcode, term: postcode };
   log.info({ postcodeHash }, 'Location outside of England');
   res.locals.outOfEnglandMessage = messages.outOfEngland(postcodeHash, res.locals.search);
-  results(req, res);
+  res.render('outside-england');
 }
 
 function setInvalidPostcodeLabel(res, postcode) {
