@@ -44,7 +44,7 @@ describe('Postcode validation', () => {
       };
 
       const localsExpectations = (viewName) => {
-        expect(viewName).to.equal(viewName);
+        expect(viewName).to.equal('outside-england');
         expect(res.locals.outOfEnglandMessage)
           .to.equal(messages.outOfEngland({ isOutcode: true, term: postcode }, search));
       };
