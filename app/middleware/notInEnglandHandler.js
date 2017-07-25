@@ -1,7 +1,5 @@
 const log = require('../lib/logger');
-// rewire (a framework for mocking) doesn't support const
-// eslint-disable-next-line no-var
-var renderer = require('./renderer');
+const renderer = require('./renderer');
 
 function outsideEngland(country) {
   return !country.includes('England');
