@@ -26,6 +26,12 @@ function getPostcodeIOClientFake({ error, response } = {}) {
 }
 
 function getRewiredPostcodeLookup(postcodesIOClientFake) {
+  // Tried to avoid having to use rewire (since we don't need to use it
+  // for stubbing app/middleware/renderer but had no joy with
+  // const stub = sinon
+  //   .stub(PostcodesIOClient, 'lookup')
+  //   .callsFake(() => { console.log('Fake called'); });
+  // I think this is because the line PostcodesIO = new PostcodesIOClient(); in the SUT
   const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
 
   // eslint-disable-next-line no-underscore-dangle
@@ -45,7 +51,6 @@ describe('Postcode lookup', () => {
     it('should render an error page for postcode search when postcode.io is not available', () => {
       const postcodesIOClientFake = getPostcodeIOClientFake({ error: 'Error!' });
 
-      // Tried to use stub(PostcodeIOClient, 'lookup').callsFake(...) but had no luck
       const postcodeLookup = getRewiredPostcodeLookup(postcodesIOClientFake);
 
       mockRenderer.expects('postcodeError').once().withArgs('Error!');
