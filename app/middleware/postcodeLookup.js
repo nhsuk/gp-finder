@@ -4,8 +4,7 @@ const PostcodesIOClient = require('postcodesio-client');
 // rewire (a framework for mocking) doesn't support const
 // eslint-disable-next-line no-var
 var PostcodesIO = new PostcodesIOClient();
-// eslint-disable-next-line no-var
-var renderer = require('./renderer');
+const renderer = require('./renderer');
 
 function getCountryAsArray(country) {
   return Array.isArray(country) ? country : [country];
