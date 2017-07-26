@@ -36,6 +36,7 @@ function mapResults(results, res, searchTerm) {
 
 function getGps(req, res, next) {
   const searchTerm = res.locals.search;
+  const postcode = res.locals.postcodeSearch;
   const postcodeLocationDetails = res.locals.postcodeLocationDetails;
   let esQuery;
 
@@ -47,7 +48,16 @@ function getGps(req, res, next) {
 
   elasticsearchClient
     .search(esQuery)
-    .then(results => mapResults(results, res, searchTerm))
+    .then((results) => {
+      log.debug({
+        postcode,
+        searchTerm,
+        postcodeLocationDetails,
+        esQuery,
+        resultCount: results.hits.total
+      }, 'getGps');
+      mapResults(results, res, searchTerm);
+    })
     .then(next)
     .catch(error => handleError(error, next));
 }

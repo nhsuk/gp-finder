@@ -4,7 +4,8 @@ const PostcodesIOClient = require('postcodesio-client');
 // rewire (a framework for mocking) doesn't support const
 // eslint-disable-next-line no-var
 var PostcodesIO = new PostcodesIOClient();
-const renderer = require('./renderer');
+// eslint-disable-next-line no-var
+var renderer = require('./renderer');
 
 function getCountryAsArray(country) {
   return Array.isArray(country) ? country : [country];
@@ -25,25 +26,23 @@ function postcodeDetailsMapper(postcodeDetails) {
   };
 }
 
-function lookupPostcode(req, res, next) {
+async function lookupPostcode(req, res, next) {
   const postcodeSearch = res.locals.postcodeSearch;
 
   log.debug({ postcodeSearch }, 'lookupPostcode');
-
   if (postcodeSearch) {
-    PostcodesIO.lookup(postcodeSearch, (err, postcodeDetails) => {
+    try {
+      const postcodeDetails = await PostcodesIO.lookup(postcodeSearch);
       log.debug({ postcodeIOResponse: { postcodeDetails } }, 'PostcodeIO postcode response');
-
-      if (err) {
-        renderer.postcodeError(err, postcodeSearch, res, next);
-      } else if (postcodeDetails) {
-        res.locals.postcodeLocationDetails =
-          postcodeDetailsMapper(postcodeDetails);
+      if (postcodeDetails) {
+        res.locals.postcodeLocationDetails = postcodeDetailsMapper(postcodeDetails);
         next();
       } else {
         renderer.invalidPostcodePage(postcodeSearch, req, res);
       }
-    });
+    } catch (error) {
+      renderer.postcodeError(error, postcodeSearch, req, res);
+    }
   } else {
     log.debug('no postcode');
     next();

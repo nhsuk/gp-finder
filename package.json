@@ -37,6 +37,8 @@
   "homepage": "https://github.com/nhsuk/gp-finder#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chai-arrays": "^1.0.0",
+    "chai-as-promised": "^7.1.1",
     "compression": "^1.7.0",
     "cookie-parser": "^1.4.3",
     "elasticsearch": "^13.2.0",
