@@ -1,4 +1,5 @@
 const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
 const sinon = require('sinon');
 const rewire = require('rewire');
 const spyUtils = require('../../lib/spy-utils');
@@ -15,17 +16,21 @@ const getNextSpy = spyUtils.getNextSpy;
 const getNextExpectations = spyUtils.getNextExpectations;
 const expectCalledOnce = spyUtils.expectCalledOnce;
 
-function getFakeLookup(error, response) {
-  return (postcode, callback) => { callback(error, response); };
-}
+chai.use(chaiAsPromised);
+
+// function getFakeLookup(error, response) {
+//   return (postcode, callback) => { callback(error, response); };
+// }
 
 function getPostcodeIOClientFake({ error, response } = {}) {
   return {
-    lookup: getFakeLookup(error, response)
+    lookup: ((error) ?
+      sinon.stub().rejects(error) :
+      sinon.stub().resolves(response))
   };
 }
 
-function getRewiredPostcodeLookup(postcodesIOClientFake) {
+function getRewiredPostcodeLookup(postcodesIOClientFake, rendererFake) {
   // Tried to avoid having to use rewire (since we don't need to use it
   // for stubbing app/middleware/renderer but had no joy with
   // const stub = sinon
@@ -36,6 +41,9 @@ function getRewiredPostcodeLookup(postcodesIOClientFake) {
 
   // eslint-disable-next-line no-underscore-dangle
   postcodeLookup.__set__('PostcodesIO', postcodesIOClientFake);
+
+  // eslint-disable-next-line no-underscore-dangle
+  postcodeLookup.__set__('renderer', rendererFake);
 
   return postcodeLookup;
 }
@@ -49,15 +57,19 @@ describe('Postcode lookup', () => {
     afterEach(() => {
     });
     it('should render an error page for postcode search when postcode.io is not available', () => {
-      const postcodesIOClientFake = getPostcodeIOClientFake({ error: 'Error!' });
+      // const postcodesIOClientFake = getPostcodeIOClientFake({ error: 'Error!' });
+      const postcodesIOClientFake = {
+        lookup: sinon.stub().rejects('Error!')
+      };
+      const rendererFake = {
+        postcodeError: sinon.spy()
+      };
 
-      const postcodeLookup = getRewiredPostcodeLookup(postcodesIOClientFake);
-
-      mockRenderer.expects('postcodeError').once().withArgs('Error!');
-
-      postcodeLookup({}, { locals: { postcodeSearch: 'HG5 0JL' } }, () => {});
-
-      mockRenderer.verify();
+      const postcodeLookup = getRewiredPostcodeLookup(postcodesIOClientFake, rendererFake);
+      return postcodeLookup({}, { locals: { postcodeSearch: 'HG5 0JL' } })
+        .then(() => {
+          expect(rendererFake.postcodeError.calledWith('Error!')).to.equal(true, 'Error not as expected');
+        });
     });
 
     it('should render an invalid postcode page when postcode io thinks it is not a postcode', () => {
