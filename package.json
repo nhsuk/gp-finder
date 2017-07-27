@@ -46,7 +46,7 @@
     "node-sass": "^4.5.3",
     "normalize-scss": "^7.0.0",
     "nunjucks": "^3.0.1",
-    "postcodesio-client": "neilbmclaughlin/postcodesio-client-node#feature/add-outcode-lookup",
+    "postcodesio-client": "billinghamj/postcodesio-client-node",
     "require-environment-variables": "^1.1.2",
     "verror": "^1.10.0"
   },
