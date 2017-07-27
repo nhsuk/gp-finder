@@ -22,7 +22,8 @@
     "test": "NODE_ENV=test mocha --recursive test",
     "test-ci": "yarn lint && yarn coverage-check && yarn coverage-upload",
     "test-unit": "NODE_ENV=test mocha --recursive test/unit",
-    "test-watch": "yarn test -- --reporter min --watch"
+    "test-watch": "yarn test -- --reporter min --watch",
+    "test-watch-unit": "yarn test-unit -- --reporter min --watch"
   },
   "repository": {
     "type": "git",
@@ -47,7 +48,7 @@
     "node-sass": "^4.5.3",
     "normalize-scss": "^7.0.0",
     "nunjucks": "^3.0.1",
-    "postcodesio-client": "neilbmclaughlin/postcodesio-client-node#feature/add-outcode-lookup",
+    "postcodesio-client": "billinghamj/postcodesio-client-node",
     "require-environment-variables": "^1.1.2",
     "verror": "^1.10.0"
   },

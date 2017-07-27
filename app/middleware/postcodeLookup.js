@@ -26,28 +26,28 @@ function postcodeDetailsMapper(postcodeDetails) {
   };
 }
 
-function lookupPostcode(req, res, next) {
+async function lookupPostcode(req, res, next) {
   const postcodeSearch = res.locals.postcodeSearch;
 
   log.debug({ postcodeSearch }, 'lookupPostcode');
-
   if (postcodeSearch) {
-    return PostcodesIO.lookup(postcodeSearch)
-      .then((postcodeDetails) => {
-        log.debug({ postcodeIOResponse: { postcodeDetails } }, 'PostcodeIO postcode response');
-        if (postcodeDetails) {
-          res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
-          res.locals.postcodeLocationDetails =
-            postcodeDetailsMapper(postcodeDetails);
-          next();
-        } else {
-          renderer.invalidPostcodePage(postcodeSearch, req, res);
-        }
-      })
-      .catch(error => renderer.postcodeError(error, postcodeSearch, req, res));
+    try {
+      const postcodeDetails = await PostcodesIO.lookup(postcodeSearch);
+      log.debug({ postcodeIOResponse: { postcodeDetails } }, 'PostcodeIO postcode response');
+      if (postcodeDetails) {
+        res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
+        res.locals.postcodeLocationDetails = postcodeDetailsMapper(postcodeDetails);
+        next();
+      } else {
+        renderer.invalidPostcodePage(postcodeSearch, req, res);
+      }
+    } catch (error) {
+      renderer.postcodeError(error, postcodeSearch, req, res);
+    }
+  } else {
+    log.debug('no postcode');
+    next();
   }
-  log.debug('no postcode');
-  return next();
 }
 
 module.exports = lookupPostcode;
