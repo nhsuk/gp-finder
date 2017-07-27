@@ -22,6 +22,7 @@
     "test": "NODE_ENV=test mocha --recursive test",
     "test-ci": "yarn lint && yarn coverage-check && yarn coverage-upload",
     "test-unit": "NODE_ENV=test mocha --recursive test/unit",
+    "test-integration-watch": "NODE_ENV=test mocha --recursive test/integration --reporter min --watch",
     "test-watch": "yarn test -- --reporter min --watch"
   },
   "repository": {
