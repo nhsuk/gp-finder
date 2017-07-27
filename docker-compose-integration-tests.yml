@@ -1,0 +1,41 @@
+version: '2.1'
+
+services:
+
+  tests:
+    extends:
+      file: docker-compose.yml
+      service: base-app
+    command: scripts/container/tests
+    volumes:
+      - gp-finder-tests-node_modules:/code/node_modules
+    environment:
+      NODE_ENV: test
+    user: root
+    links:
+      - gp-finder-db:es
+
+  tests-integration:
+    extends:
+      file: docker-compose.yml
+      service: base-app
+    command: scripts/container/integration-tests
+    volumes:
+      - gp-finder-test-ci-node_modules:/code/node_modules
+    environment:
+      COVERALLS_REPO_TOKEN: ${COVERALLS_REPO_TOKEN}
+      NODE_ENV: development
+      TRAVIS: ${TRAVIS}
+      TRAVIS_BRANCH: ${TRAVIS_BRANCH}
+      TRAVIS_COMMIT: ${TRAVIS_COMMIT}
+      TRAVIS_JOB_ID: ${TRAVIS_JOB_ID}
+    user: root
+    links:
+      - gp-finder-db:es
+
+  gp-finder-db:
+    image: "nhsuk/profiles-db-elastic:${profiles_db_elastic_docker_image_tag-0.4.0}"
+
+volumes:
+  gp-finder-tests-node_modules:
+  gp-finder-test-ci-node_modules:
