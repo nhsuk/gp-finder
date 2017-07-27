@@ -158,8 +158,8 @@ describe('Postcode lookup', () => {
         }
       };
       const localsExpectations = getNextExpectations(() => {
-        expect(res.locals.location.lat).to.equal(55.3977217554393, 'res.locals.location.lat');
-        expect(res.locals.location.lon).to.equal(-2.77657929395506, 'res.locals.location.lon');
+        expect(res.locals.postcodeLocationDetails.location.lat).to.equal(55.3977217554393, 'res.locals.location.lat');
+        expect(res.locals.postcodeLocationDetails.location.lon).to.equal(-2.77657929395506, 'res.locals.location.lon');
       });
 
       const next = getNextSpy(localsExpectations);

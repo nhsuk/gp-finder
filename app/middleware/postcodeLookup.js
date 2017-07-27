@@ -37,7 +37,6 @@ function lookupPostcode(req, res, next) {
       if (err) {
         renderer.postcodeError(err, postcodeSearch, res, next);
       } else if (postcodeDetails) {
-        res.locals.location = { lat: postcodeDetails.latitude, lon: postcodeDetails.longitude };
         res.locals.postcodeLocationDetails =
           postcodeDetailsMapper(postcodeDetails);
         next();
