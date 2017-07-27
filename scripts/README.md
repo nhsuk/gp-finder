@@ -1,11 +1,25 @@
-# Scripts (too rule them all)
+# Scripts
 
-The scripts in these folder are meant to help the user/contributor to get up and running with the application fast.
+See [https://github.com/github/scripts-to-rule-them-all](https://github.com/github/scripts-to-rule-them-all)
+for additional background on these scripts.
 
-[`bootstrap`](bootstrap)- will point you towards the setup you will need before picking up this application
+Below is a list of scripts available, along with a simple description of
+what each one does. The details of what they are doing is available within the
+script.
 
-[`start`](start) - will start the application within the container and restart on file changes: `http://localhost:3000`
+[`bootstrap`](bootstrap)
+Installs project's direct dependencies e.g. npm packages.
 
-[`test`](test) - will run the tests continually within the container.
+[`deploy`](deploy)
+Clone [ci-deployment](https://github.com/nhsuk/ci-deployment.git) repo and
+execute `deploy` script.
 
-[`test-ci`](test-ci) - will runs the tests within the container in CI. Will lint the code, run all the tests and generate code coverage stats.
+[`start`](start)
+Starts the application within a container, available on [localhost:3000](http://localhost:3000).
+The application will restart on file changes.
+
+[`test`](test)
+Runs the application's tests within the container.
+
+[`test-ci`](test-ci)
+Runs the tests within the container, used for CI. Lint is run and code coverage is generated and checked.
