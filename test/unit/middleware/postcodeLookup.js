@@ -62,7 +62,7 @@ describe('Postcode lookup', () => {
         lookup: sinon.stub().rejects('Error!')
       };
       const rendererFake = {
-        postcodeError: sinon.spy()
+        postcodeError: sinon.spy((error) => { console.log(error); })
       };
 
       const postcodeLookup = getRewiredPostcodeLookup(postcodesIOClientFake, rendererFake);
