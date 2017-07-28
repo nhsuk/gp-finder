@@ -1,5 +1,4 @@
 const chai = require('chai');
-const chaiAsPromised = require('chai-as-promised');
 const chaiArrays = require('chai-arrays');
 const sinon = require('sinon');
 const rewire = require('rewire');
@@ -15,7 +14,6 @@ const expect = chai.expect;
 const getNextSpy = spyUtils.getNextSpy;
 const expectCalledOnce = spyUtils.expectCalledOnce;
 
-chai.use(chaiAsPromised);
 chai.use(chaiArrays);
 
 function getRejectingPostcodeIOClientFake(error) {
@@ -37,12 +35,6 @@ function getRendererFake(methodName) {
 }
 
 function getRewiredPostcodeLookup(postcodesIOClientFake, rendererFake) {
-  // Tried to avoid having to use rewire (since we don't need to use it
-  // for stubbing app/middleware/renderer but had no joy with
-  // const stub = sinon
-  //   .stub(PostcodesIOClient, 'lookup')
-  //   .callsFake(() => { console.log('Fake called'); });
-  // I think this is because the line PostcodesIO = new PostcodesIOClient(); in the SUT
   const postcodeLookup = rewire('../../../app/middleware/postcodeLookup');
 
   // eslint-disable-next-line no-underscore-dangle
