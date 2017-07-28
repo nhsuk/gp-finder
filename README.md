@@ -1,5 +1,6 @@
 # GP Finder
 
+[![GitHub Release](https://img.shields.io/github/release/nhsuk/gp-finder.svg)](https://github.com/nhsuk/gp-finder/releases/latest/)
 [![Greenkeeper badge](https://badges.greenkeeper.io/nhsuk/gp-finder.svg)](https://greenkeeper.io/)
 
 [![Build Status](https://travis-ci.org/nhsuk/gp-finder.svg?branch=master)](https://travis-ci.org/nhsuk/gp-finder)
