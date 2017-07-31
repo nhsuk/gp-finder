@@ -22,7 +22,7 @@ function postcodeError(error, postcode, res, next) {
 function postcodeNotEnglish(postcode, req, res) {
   const postcodeHash = { isOutcode: res.locals.postcodeLocationDetails.isOutcode, term: postcode };
   log.info({ postcodeHash }, 'Location outside of England');
-  res.locals.outOfEnglandMessage = messages.outOfEngland(postcodeHash, res.locals.search);
+  res.locals.outOfEnglandMessage = messages.outOfEngland(postcodeHash);
   res.render('outside-england');
 }
 
