@@ -9,14 +9,9 @@ function notInEnglandHandler(req, res, next) {
   const location = res.locals.postcodeLocationDetails;
   const postcodeSearch = res.locals.postcodeSearch;
 
-  log.debug({ location }, 'notInEnglandHandler');
-
-  if (location) {
-    if (outsideEngland(location.country)) {
-      renderer.postcodeNotEnglish(postcodeSearch, req, res);
-    } else {
-      next();
-    }
+  if (location && outsideEngland(location.country)) {
+    log.debug({ location }, 'Outside of England');
+    renderer.postcodeNotEnglish(postcodeSearch, req, res);
   } else {
     next();
   }

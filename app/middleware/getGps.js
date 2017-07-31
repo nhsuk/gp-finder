@@ -34,17 +34,17 @@ function mapResults(results, res, searchTerm) {
   res.locals.resultsSubHeader = resultsFormat.pluraliseSurgery(res.locals.gps.length, searchTerm);
 }
 
+function getEsQuery(postcodeLocationDetails, searchTerm) {
+  return (postcodeLocationDetails) ?
+    esGeoQueryBuilder.build(postcodeLocationDetails.location, searchTerm) :
+    esQueryBuilder.build(searchTerm);
+}
+
 function getGps(req, res, next) {
   const searchTerm = res.locals.search;
   const postcode = res.locals.postcodeSearch;
   const postcodeLocationDetails = res.locals.postcodeLocationDetails;
-  let esQuery;
-
-  if (postcodeLocationDetails) {
-    esQuery = esGeoQueryBuilder.build(postcodeLocationDetails.location, searchTerm);
-  } else {
-    esQuery = esQueryBuilder.build(searchTerm);
-  }
+  const esQuery = getEsQuery(postcodeLocationDetails, searchTerm);
 
   elasticsearchClient
     .search(esQuery)

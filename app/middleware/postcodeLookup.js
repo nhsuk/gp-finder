@@ -12,7 +12,7 @@ function getCountryAsArray(country) {
 }
 
 function isOutcode(postcodeDetails) {
-  return postcodeDetails.incode === undefined;
+  return !postcodeDetails.incode;
 }
 
 function postcodeDetailsMapper(postcodeDetails) {
