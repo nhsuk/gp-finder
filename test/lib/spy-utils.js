@@ -23,27 +23,9 @@ function getNextSpy(expectations) {
   return getSpy('next', expectations);
 }
 
-function getNextExpectations(expectations) {
-  const expectNoError = (err) => {
-    expect(err).to.be.equal(undefined, 'Error passed to next.');
-  };
-  return (err) => {
-    expectNoError(err);
-    expectations();
-  };
-}
-
-function getMock(methodName, expectations) {
-  const mock = {};
-  mock[methodName] = getSpy(methodName, expectations);
-  return mock;
-}
-
 module.exports = {
   getSpy,
   getNextSpy,
-  getNextExpectations,
   expectNotCalled,
   expectCalledOnce,
-  getMock
 };
