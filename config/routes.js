@@ -8,7 +8,6 @@ const searchValidator = require('../app/middleware/searchValidator');
 const postcodeLookup = require('../app/middleware/postcodeLookup');
 const notInEnglandHandler = require('../app/middleware/notInEnglandHandler');
 const getGps = require('../app/middleware/getGps');
-const logZeroResults = require('../app/middleware/logZeroResults');
 
 router.get('/results',
   setLocals.fromRequest,
@@ -17,7 +16,6 @@ router.get('/results',
   postcodeLookup,
   notInEnglandHandler,
   getGps,
-  logZeroResults,
   preRender,
   renderer.results
 );
