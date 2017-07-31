@@ -29,7 +29,7 @@ function postcodeDetailsMapper(postcodeDetails) {
 async function lookupPostcode(req, res, next) {
   const postcodeSearch = res.locals.postcodeSearch;
 
-  log.debug({ postcodeSearch }, 'lookupPostcode');
+  log.debug({ postcodeSearch }, 'postcode search text');
   if (postcodeSearch) {
     try {
       const postcodeDetails = await PostcodesIO.lookup(postcodeSearch);

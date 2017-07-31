@@ -49,7 +49,7 @@ function getGps(req, res, next) {
   elasticsearchClient
     .search(esQuery)
     .then((results) => {
-      log.debug({
+      log.info({
         postcode,
         searchTerm,
         postcodeLocationDetails,
