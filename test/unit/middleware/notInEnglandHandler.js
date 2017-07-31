@@ -17,7 +17,7 @@ describe('notInEnglandHandler', () => {
       mockRenderer.verify();
       mockRenderer.restore();
     });
-    it('should render a \'Not England\' error page when the outcode is not in England', () => {
+    it('should call postcodeNotEnglish when the outcode is wholly outside England', () => {
       const locals = {
         postcodeSearch: 'TD9',
         postcodeLocationDetails: {
@@ -32,7 +32,35 @@ describe('notInEnglandHandler', () => {
       expectNotCalled(next);
     });
 
-    it('should render a \'Not England\' error page when the postcode is not in England', () => {
+    it('should call next when the outcode is wholly in England', () => {
+      const locals = {
+        postcodeSearch: 'HG5',
+        postcodeLocationDetails: {
+          country: ['England']
+        }
+      };
+      const next = getNextSpy();
+
+      notInEnglandHandler({}, { locals }, next);
+
+      expectCalledOnce(next);
+    });
+
+    it('should call next when the outcode is partially in England', () => {
+      const locals = {
+        postcodeSearch: 'TD9',
+        postcodeLocationDetails: {
+          country: ['England', 'Scotland']
+        }
+      };
+      const next = getNextSpy();
+
+      notInEnglandHandler({}, { locals }, next);
+
+      expectCalledOnce(next);
+    });
+
+    it('should call postcodeNotEnglish when the postcode is not in England', () => {
       const locals = {
         postcodeSearch: 'TD9 0AA',
         postcodeLocationDetails: {
@@ -49,20 +77,7 @@ describe('notInEnglandHandler', () => {
     });
   });
 
-  it('should pass to next if postcode/outcode is in England', () => {
-    const postcodeLocationDetails = {
-      postcode: 'HG5 0JL',
-      country: ['England']
-    };
-
-    const next = getNextSpy();
-
-    notInEnglandHandler({}, { locals: { postcodeLocationDetails } }, next);
-
-    expectCalledOnce(next);
-  });
-
-  it('should pass to next if non-postcode search', () => {
+  it('should call next if non-postcode search', () => {
     const next = getNextSpy();
 
     const locals = {};
