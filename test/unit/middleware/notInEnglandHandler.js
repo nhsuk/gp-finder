@@ -21,7 +21,7 @@ describe('notInEnglandHandler', () => {
       const locals = {
         postcodeSearch: 'TD9',
         postcodeLocationDetails: {
-          country: ['Scotland']
+          countries: ['Scotland']
         }
       };
       mockRenderer.expects('postcodeNotEnglish').once().withArgs('TD9');
@@ -36,7 +36,7 @@ describe('notInEnglandHandler', () => {
       const locals = {
         postcodeSearch: 'HG5',
         postcodeLocationDetails: {
-          country: ['England']
+          countries: ['England']
         }
       };
       const next = getNextSpy();
@@ -50,7 +50,7 @@ describe('notInEnglandHandler', () => {
       const locals = {
         postcodeSearch: 'TD9',
         postcodeLocationDetails: {
-          country: ['England', 'Scotland']
+          countries: ['England', 'Scotland']
         }
       };
       const next = getNextSpy();
@@ -64,7 +64,7 @@ describe('notInEnglandHandler', () => {
       const locals = {
         postcodeSearch: 'TD9 0AA',
         postcodeLocationDetails: {
-          country: ['Scotland']
+          countries: ['Scotland']
         }
       };
       mockRenderer.expects('postcodeNotEnglish').once().withArgs('TD9 0AA');

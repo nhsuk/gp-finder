@@ -7,8 +7,8 @@ var PostcodesIO = new PostcodesIOClient();
 // eslint-disable-next-line no-var
 var renderer = require('./renderer');
 
-function getCountryAsArray(country) {
-  return Array.isArray(country) ? country : [country];
+function toArray(countries) {
+  return Array.isArray(countries) ? countries : [countries];
 }
 
 function isOutcode(postcodeDetails) {
@@ -22,7 +22,7 @@ function postcodeDetailsMapper(postcodeDetails) {
       lat: postcodeDetails.latitude,
       lon: postcodeDetails.longitude
     },
-    country: getCountryAsArray(postcodeDetails.country)
+    countries: toArray(postcodeDetails.country)
   };
 }
 

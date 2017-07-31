@@ -87,7 +87,7 @@ describe('Postcode lookup', () => {
         await postcodeLookup({}, res, next);
 
         expectCalledOnce(next);
-        const countries = res.locals.postcodeLocationDetails.country;
+        const countries = res.locals.postcodeLocationDetails.countries;
         expect(countries).to.be.array()
           .and.to.be.ofSize(1)
           .and.to.be.equalTo(['England']);
@@ -105,7 +105,7 @@ describe('Postcode lookup', () => {
         await postcodeLookup({}, res, next);
 
         expectCalledOnce(next);
-        const countries = res.locals.postcodeLocationDetails.country;
+        const countries = res.locals.postcodeLocationDetails.countries;
         expect(countries).to.be.array()
           .and.to.be.ofSize(2)
           .and.to.be.equalTo(['England', 'Scotland']);
