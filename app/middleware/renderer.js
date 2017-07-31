@@ -14,14 +14,14 @@ function searchForYourGp(req, res) {
 }
 
 function postcodeError(error, postcode, res, next) {
-  log.info({ postcode }, 'Error with postcode validation');
+  log.debug({ postcode }, 'Error in postcode');
   res.locals.errorMessage = messages.technicalProblems();
   next(error);
 }
 
 function postcodeNotEnglish(postcode, req, res) {
   const postcodeHash = { isOutcode: res.locals.postcodeLocationDetails.isOutcode, term: postcode };
-  log.info({ postcodeHash }, 'Location outside of England');
+  log.debug({ postcodeHash }, 'Location outside of England');
   res.locals.outOfEnglandMessage = messages.outOfEngland(postcodeHash);
   res.render('outside-england');
 }
@@ -33,7 +33,7 @@ function setInvalidPostcodeLabel(res, postcode) {
 }
 
 function invalidPostcodePage(postcode, req, res) {
-  log.info({ postcode }, 'Location failed validation');
+  log.debug({ postcode }, 'Location failed validation');
   setInvalidPostcodeLabel(res, postcode);
   searchForYourGp(req, res);
 }
