@@ -9,11 +9,13 @@ function homePageBase($) {
 
 function homePageEmptyEntry($) {
   homePageBase($);
+  expect($('title').html()).to.match(/^Please retry - Book a GP appointment online/);
   expect($('.form--error .form-item-wrapper > h2').text()).to.contain('You need to enter some text');
 }
 
 function homePage($) {
   homePageBase($);
+  expect($('title').html()).to.match(/^Book a GP appointment online/);
   expect($('label[for=search]').text()).to.contain('Surgery or GP name');
 }
 

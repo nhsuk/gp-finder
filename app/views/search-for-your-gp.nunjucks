@@ -10,7 +10,7 @@
 {% endif %}
 {% endblock %}
 
-{% block pageTitle %}Find a GP to book an appointment with{% endblock %}
+{% block pageTitle %}Book a GP appointment online{% endblock %}
 
 {% block content %}
 <div class="reading-width">
