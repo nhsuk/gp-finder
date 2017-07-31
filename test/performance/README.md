@@ -6,6 +6,8 @@ Each test can be customised with the following parameters:
 | Parameter    | Description                                           | Default                     |
 | :----------- | :---------------------------------------------------- | :-------------------------- |
 | `hostname`   | URL of server to test                                 | staging.beta.nhschoices.net |
+| `protocol`   | Protocol required for request                         | https                       |
+| `port`       | Port required for request                             | 443                         |
 | `users`      | Simulated number of concurrent users                  | 5                           |
 | `rampup`     | Time in seconds to ramp up to total number of users   | 20                          |
 | `duration`   | Time in seconds to run test                           | 120                         |
@@ -38,5 +40,5 @@ the available parameters.
 Note: only parameters wishing to be overridden need to be supplied.
 
 `jmeter -n -t ./<path-to-test>/<test-name>.jmx
--Jhostname=perf.test.nhschoices.net -Jusers=10 -Jrampup=10 -Jduration=500
--Jthroughput=60 Jcsvfile=search-terms.csv -l gp-finder.jtl`
+-Jhostname=localhost -Jprotocol=http -Jport=3000 -Jusers=10 -Jrampup=10
+-Jduration=500 -Jthroughput=60 Jcsvfile=search-terms.csv -l gp-finder.jtl`
