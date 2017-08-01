@@ -1,0 +1,46 @@
+{
+  "outcode": "HG5",
+  "longitude": -1.45795488599241,
+  "latitude": 54.0133515811383,
+  "northings": 457617,
+  "eastings": 435617,
+  "admin_district": [
+    "Harrogate"
+  ],
+  "parish": [
+    "Flaxby",
+    "Marton cum Grafton",
+    "Goldsborough",
+    "Coneythorpe and Clareton",
+    "Brearton",
+    "Boroughbridge",
+    "Scriven",
+    "Harrogate, unparished area",
+    "Spofforth with Stockeld",
+    "Ferrensby",
+    "Knaresborough",
+    "Scotton",
+    "Arkendale",
+    "Staveley",
+    "Allerton Mauleverer with Hopperton",
+    "Roecliffe",
+    "Plompton",
+    "Farnham"
+  ],
+  "admin_county": [
+    "North Yorkshire"
+  ],
+  "admin_ward": [
+    "Newby",
+    "Knaresborough Scriven Park",
+    "Ribston",
+    "Hookstone",
+    "Knaresborough East",
+    "Spofforth with Lower Wharfedale",
+    "Claro",
+    "Knaresborough King James"
+  ],
+  "country": [
+    "England"
+  ]
+}

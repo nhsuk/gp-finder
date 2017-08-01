@@ -4,26 +4,11 @@
 
 {% block meta %}
 <meta name="WT.gposs" content="{{ search }}"></meta>
-{% if gps.length === 0 %}
-  <meta name="WT.gposs_r" content="0"></meta>
-{% else %}
-  <meta name="WT.gposs_r" content="1"></meta>
-{% endif %}
-{% endblock %}
-
-{% block header %}
-{% if gps.length === 0 %}
-<h1 class="page-title">Book a GP appointment online</h1>
-{% endif %}
+<meta name="WT.gposs_r" content="1"></meta>
 {% endblock %}
 
 {% block content %}
 <div class="reading-width results">
-  {% if outOfEnglandMessage %}
-    {% include "includes/not-english-results.nunjucks" %}
-  {% elif gps.length === 0 %}
-    {% include "includes/search-form.nunjucks" %}
-  {% else %}
     <h1 class="sr-only" data-results="{{gps.length}}" data-term="{{search}}">Search results</h1>
     <h2 class='results__header'>{{resultsHeader}}</h2>
     <p>{{searchInformationMessage}}<p>
@@ -40,6 +25,5 @@
         {% endfor %}
       </ol>
     </div>
-  {% endif %}
 </div>
 {% endblock %}

@@ -22,6 +22,7 @@
     "test": "NODE_ENV=test mocha --recursive test",
     "test-ci": "yarn lint && yarn coverage-check && yarn coverage-upload",
     "test-unit": "NODE_ENV=test mocha --recursive test/unit",
+    "test-integration-watch": "NODE_ENV=test mocha --recursive test/integration --reporter min --watch",
     "test-watch": "yarn test -- --reporter min --watch"
   },
   "repository": {
@@ -36,6 +37,7 @@
   "homepage": "https://github.com/nhsuk/gp-finder#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "chai-arrays": "^1.0.0",
     "compression": "^1.7.0",
     "cookie-parser": "^1.4.3",
     "elasticsearch": "^13.2.0",
@@ -46,7 +48,7 @@
     "node-sass": "^4.5.3",
     "normalize-scss": "^7.0.0",
     "nunjucks": "^3.0.1",
-    "postcodesio-client": "neilbmclaughlin/postcodesio-client-node#feature/add-outcode-lookup",
+    "postcodesio-client": "billinghamj/postcodesio-client-node",
     "require-environment-variables": "^1.1.2",
     "verror": "^1.10.0"
   },

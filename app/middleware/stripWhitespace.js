@@ -3,9 +3,9 @@ function stripWhitespace(req, res, next) {
     // eslint-disable-next-line no-param-reassign
     res.locals.search = res.locals.search.trim();
   }
-  if (res.locals.postcode) {
+  if (res.locals.postcodeSearch) {
     // eslint-disable-next-line no-param-reassign
-    res.locals.postcode = res.locals.postcode.trim();
+    res.locals.postcodeSearch = res.locals.postcodeSearch.trim();
   }
   next();
 }
