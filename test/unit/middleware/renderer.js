@@ -36,7 +36,12 @@ describe('Postcode validation', () => {
     it('should set a not England flag in the results', () => {
       const postcode = 'EH1';
       const search = '';
-      const req = {};
+      const req = {
+        query: {
+          postcode: 'EH1',
+          isOutcode: 'true'
+        }
+      };
       const res = {
         locals: {
           postcodeLocationDetails: { isOutcode: true }
@@ -51,7 +56,7 @@ describe('Postcode validation', () => {
 
       res.render = getSpy('res.render', localsExpectations);
 
-      renderer.postcodeNotEnglish(postcode, req, res);
+      renderer.postcodeNotEnglish(req, res);
 
       expectCalledOnce(res.render);
     });

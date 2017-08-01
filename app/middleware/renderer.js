@@ -19,10 +19,10 @@ function postcodeError(error, postcode, res, next) {
   next(error);
 }
 
-function postcodeNotEnglish(postcode, req, res) {
-  const postcodeHash = { isOutcode: res.locals.postcodeLocationDetails.isOutcode, term: postcode };
-  log.debug({ postcodeHash }, 'Location outside of England');
+function postcodeNotEnglish(req, res) {
+  const postcodeHash = { isOutcode: req.query.isOutcode === 'true', term: req.query.postcode };
   res.locals.outOfEnglandMessage = messages.outOfEngland(postcodeHash);
+  log.debug({ query: req.query, postcodeHash, message: res.locals.outOfEnglandMessage });
   res.render('outside-england');
 }
 

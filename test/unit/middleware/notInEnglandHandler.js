@@ -1,89 +1,114 @@
 const sinon = require('sinon');
-const spyUtils = require('../../lib/spy-utils');
-const renderer = require('../../../app/middleware/renderer');
+const chai = require('chai');
+const assertArrays = require('chai-arrays');
 const notInEnglandHandler = require('../../../app/middleware/notInEnglandHandler');
 
-const expectNotCalled = spyUtils.expectNotCalled;
-const expectCalledOnce = spyUtils.expectCalledOnce;
-const getNextSpy = spyUtils.getNextSpy;
+const expect = chai.expect;
+chai.use(assertArrays);
 
+/* Allow .to.be.[false|true] to improve legibility */
+/* eslint-disable no-unused-expressions */
 describe('notInEnglandHandler', () => {
-  describe('outside England', () => {
-    let mockRenderer;
-    beforeEach(() => {
-      mockRenderer = sinon.mock(renderer);
-    });
-    afterEach(() => {
-      mockRenderer.verify();
-      mockRenderer.restore();
-    });
-    it('should call postcodeNotEnglish when the outcode is wholly outside England', () => {
-      const locals = {
-        postcodeSearch: 'TD9',
+  describe('should redirect to outside-england when outside England', () => {
+    it('postcode', () => {
+      const redirect = sinon.spy();
+      const next = sinon.spy();
+      const countries = ['Scotland'];
+      const res = {
+        redirect
+      };
+      res.locals = {
+        postcodeSearch: 'TD9 9AA',
         postcodeLocationDetails: {
-          countries: ['Scotland']
+          isOutcode: false,
+          countries
         }
       };
-      mockRenderer.expects('postcodeNotEnglish').once().withArgs('TD9');
-      const next = getNextSpy();
 
-      notInEnglandHandler({}, { locals }, next);
+      notInEnglandHandler({}, res, next);
 
-      expectNotCalled(next);
+      expect(redirect.calledOnce).to.be.true;
+      expect(redirect.getCall(0).args).to.be.equalTo(['outside-england?postcode=TD9 9AA&isOutcode=false']);
+      expect(next.called).to.be.false;
     });
 
-    it('should call next when the outcode is wholly in England', () => {
-      const locals = {
-        postcodeSearch: 'HG5',
+    it('outcode', () => {
+      const redirect = sinon.spy();
+      const next = sinon.spy();
+      const countries = ['Scotland'];
+      const res = {
+        redirect
+      };
+      res.locals = {
+        postcodeSearch: 'TD9',
         postcodeLocationDetails: {
+          isOutcode: true,
+          countries
+        }
+      };
+
+      notInEnglandHandler({}, res, next);
+
+      expect(redirect.calledOnce).to.be.true;
+      expect(redirect.getCall(0).args).to.be.equalTo(['outside-england?postcode=TD9&isOutcode=true']);
+      expect(next.called).to.be.false;
+    });
+  });
+
+  describe('should call next when inside England', () => {
+    it('postcode wholly in England', () => {
+      const locals = {
+        postcodeSearch: 'HG5 0JL',
+        postcodeLocationDetails: {
+          isOutcode: false,
           countries: ['England']
         }
       };
-      const next = getNextSpy();
+      const next = sinon.spy();
 
       notInEnglandHandler({}, { locals }, next);
 
-      expectCalledOnce(next);
+      expect(next.called).to.be.true;
     });
 
-    it('should call next when the outcode is partially in England', () => {
+    it('outcode wholly in England', () => {
+      const locals = {
+        postcodeSearch: 'HG5',
+        postcodeLocationDetails: {
+          isOutcode: true,
+          countries: ['England']
+        }
+      };
+      const next = sinon.spy();
+
+      notInEnglandHandler({}, { locals }, next);
+
+      expect(next.called).to.be.true;
+    });
+
+    it('outcode partially in England', () => {
       const locals = {
         postcodeSearch: 'TD9',
         postcodeLocationDetails: {
+          isOutcode: true,
           countries: ['England', 'Scotland']
         }
       };
-      const next = getNextSpy();
+      const next = sinon.spy();
 
       notInEnglandHandler({}, { locals }, next);
 
-      expectCalledOnce(next);
-    });
-
-    it('should call postcodeNotEnglish when the postcode is not in England', () => {
-      const locals = {
-        postcodeSearch: 'TD9 0AA',
-        postcodeLocationDetails: {
-          countries: ['Scotland']
-        }
-      };
-      mockRenderer.expects('postcodeNotEnglish').once().withArgs('TD9 0AA');
-      const next = getNextSpy();
-
-      notInEnglandHandler({}, { locals }, next);
-
-      mockRenderer.verify();
-      expectNotCalled(next);
+      expect(next.called).to.be.true;
     });
   });
 
   it('should call next if non-postcode search', () => {
-    const next = getNextSpy();
+    const next = sinon.spy();
 
     const locals = {};
 
     notInEnglandHandler({}, { locals }, next);
 
-    expectCalledOnce(next);
+    expect(next.called).to.be.true;
   });
 });

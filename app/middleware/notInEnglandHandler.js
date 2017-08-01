@@ -1,5 +1,4 @@
 const log = require('../lib/logger');
-const renderer = require('./renderer');
 
 function outsideEngland(countries) {
   return !countries.includes('England');
@@ -11,7 +10,7 @@ function notInEnglandHandler(req, res, next) {
 
   if (location && outsideEngland(location.countries)) {
     log.debug({ location }, 'Outside of England');
-    renderer.postcodeNotEnglish(postcodeSearch, req, res);
+    res.redirect(`outside-england?postcode=${postcodeSearch}&isOutcode=${location.isOutcode}`);
   } else {
     next();
   }

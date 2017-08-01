@@ -20,6 +20,10 @@ router.get('/results',
   renderer.results
 );
 
+router.get('/outside-england',
+  renderer.postcodeNotEnglish
+);
+
 router.get('/',
   setLocals.fromRequest,
   renderer.searchForYourGp
