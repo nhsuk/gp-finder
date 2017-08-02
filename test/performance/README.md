@@ -1,25 +1,25 @@
 # Performance Testing
 
-There are a number of [JMeter](http://jmeter.apache.org/) performance tests.
-Each test can be customised with the following parameters:
-
-| Parameter    | Description                                           | Default                     |
-| :----------- | :---------------------------------------------------- | :-------------------------- |
-| `hostname`   | URL of server to test                                 | staging.beta.nhschoices.net |
-| `protocol`   | Protocol required for request                         | https                       |
-| `port`       | Port required for request                             | 443                         |
-| `users`      | Simulated number of concurrent users                  | 5                           |
-| `rampup`     | Time in seconds to ramp up to total number of users   | 20                          |
-| `duration`   | Time in seconds to run test                           | 120                         |
-| `throughput` | target throughput in samples per minute               | 120                         |
-| `csvfile`    | CSV data file containing words to use for name search | gpname.csv                  |
+[JMeter](http://jmeter.apache.org/) performance tests.
 
 ## Tests
 
-* `gp-finder.jmx` visits the search page and proceeds to execute a search with
-  a term retrieved from the supplied CSV data file
-* `gp-finder-search-only.jmx` executes a search with a term retrieved from the supplied
-  CSV data file
+* `gp-finder.jmx` visits the search page and uses either a string or postcode
+  to search for GPs or locations, respectively.
+
+## Configurable parameters
+
+| Parameter    | Description                                              | Default                     |
+| :----------- | :------------------------------------------------------- | :-------------------------- |
+| `hostname`   | URL of server to test                                    | staging.beta.nhschoices.net |
+| `protocol`   | Protocol required for request                            | https                       |
+| `port`       | Port required for request                                | 443                         |
+| `users`      | Simulated number of concurrent users                     | 5                           |
+| `rampup`     | Time in seconds to ramp up to total number of users      | 20                          |
+| `duration`   | Time in seconds to run test                              | 120                         |
+| `throughput` | target throughput in samples per minute                  | 120                         |
+| `gpnames`    | CSV file containing words for use in name search         | gpnames.csv                 |
+| `postcodes`  | CSV file containing postcodes for use in postcode search | outcodes.csv                |
 
 ## Running Tests
 
@@ -41,4 +41,5 @@ Note: only parameters wishing to be overridden need to be supplied.
 
 `jmeter -n -t ./<path-to-test>/<test-name>.jmx
 -Jhostname=localhost -Jprotocol=http -Jport=3000 -Jusers=10 -Jrampup=10
--Jduration=500 -Jthroughput=60 Jcsvfile=search-terms.csv -l gp-finder.jtl`
+-Jduration=500 -Jthroughput=60 -Jgpnames=search-terms.csv
+-Jpostcodes=london-postcodes.csv -l gp-finder.jtl`
