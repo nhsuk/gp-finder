@@ -47,7 +47,6 @@
     "husky": "^0.14.2",
     "nhsuk-bunyan-logger": "^1.4.1",
     "node-sass": "^4.5.3",
-    "normalize-scss": "^7.0.0",
     "nunjucks": "^3.0.1",
     "postcodesio-client": "billinghamj/postcodesio-client-node",
     "require-environment-variables": "^1.1.2",
