@@ -1,40 +1,42 @@
 {% extends 'layout.nunjucks' %}
 
-{% block header %}
-<h1 class="page-title">Book a GP appointment online</h1>
-{% endblock %}
+{% set title = 'Book a GP appointment online' %}
+
+{% block pageTitle %}{{ title }}{% endblock %}
 
 {% block meta %}
-{% if errorMessage %}
-  <meta name="DCSext.GPBlank" content="1">
-{% endif %}
+  {% if errorMessage %}
+    <meta name="DCSext.GPBlank" content="1">
+  {% endif %}
 {% endblock %}
 
-{% block pageTitle %}Book a GP appointment online{% endblock %}
+{% block header %}
+  <h1 class="page-title">{{ title }}</h1>
+{% endblock %}
 
 {% block content %}
-<div class="reading-width">
-{% if not errorMessage %}
-<p>You can book an appointment online if:</p>
-<ul>
-  <li>your GP is in England</li>
-  <li>you have joined your GP surgery’s online services</li>
-</ul>
-<details class="not-registered" role="group">
-  <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
-    <span class="details__summary">How to join online services</span>
-  </summary>
+  <div class="reading-width">
+  {% if not errorMessage %}
+  <p>You can book an appointment online if:</p>
+  <ul>
+    <li>your GP is in England</li>
+    <li>you have joined your GP surgery’s online services</li>
+  </ul>
+  <details class="not-registered" role="group">
+    <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
+      <span class="details__summary">How to join online services</span>
+    </summary>
 
-  <div id="details-content-0" aria-hidden="true" class="callout callout--info callout--friendly">
-    <div class="reading-width">
-      <p>Ask your surgery for a form to join online services. You might have to provide photo identification and proof
-        of address. After you fill in the form the surgery will send you the information you need to sign in.
-      </p>
+    <div id="details-content-0" aria-hidden="true" class="callout callout--info callout--friendly">
+      <div class="reading-width">
+        <p>Ask your surgery for a form to join online services. You might have to provide photo identification and proof
+          of address. After you fill in the form the surgery will send you the information you need to sign in.
+        </p>
+      </div>
     </div>
+  </details>
+  {% endif %}
+    {% include "includes/search-form.nunjucks" %}
+    <!--<p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>-->
   </div>
-</details>
-{% endif %}
-  {% include "includes/search-form.nunjucks" %}
-  <!--<p class="u-margintop32"><a href="{{ backLink.href }}" class="link-back">{{ backLink.text }}</a></p>-->
-</div>
 {% endblock %}

@@ -1,12 +1,13 @@
 {% extends 'layout.nunjucks' %}
 
-{% set message = 'Sorry, we are experiencing technical problems' %}
+{% set title = 'Sorry, we are experiencing technical problems' %}
 
-{% block pageTitle %} {{ message }} {% endblock %}
+{% block pageTitle %}{{ title }}{% endblock %}
 
 {% block header %}
-  <h1 class="page-title">{{ message }}</h1>
+  <h1 class="page-title">{{ title }}</h1>
 {% endblock %}
+
 {% block content %}
   <div class="reading-width">
     <p>Please try again later.</p>

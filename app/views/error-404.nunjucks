@@ -1,15 +1,15 @@
 {% extends 'layout.nunjucks' %}
 
-{% set message = 'Page not found' %}
+{% set title = 'Page not found' %}
 
-{% block pageTitle %} {{ message }} {% endblock %}
+{% block pageTitle %}{{ title }}{% endblock %}
 
 {% block header %}
-<div>
-  <div class="local-header--question">
-    <h1 class="local-header--title--question">{{ message }}</h1>
+  <div>
+    <div class="local-header--question">
+      <h1 class="local-header--title--question">{{ title }}</h1>
+    </div>
   </div>
-</div>
 {% endblock %}
 
 {% block content %}
