@@ -25,7 +25,7 @@ function assertSearchResponse(search, postcode, done, assertions) {
 describe('Results page', () => {
   const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
 
-  describe('page layout', () => {
+  describe('layout', () => {
     it('should contain HTML', (done) => {
       const search = 'Surgery';
       const postcode = '';

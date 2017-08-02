@@ -1,9 +1,9 @@
-function getBaseQuery() {
+function getBaseQuery(size) {
   return {
     index: 'profiles',
     type: 'gps',
     body: {
-      size: 30,
+      size,
       query: {
         bool: {}
       }

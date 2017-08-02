@@ -40,8 +40,10 @@ describe('esQueryBuilder', () => {
       );
   });
 
-  it('should return the size as 30', () => {
-    const query = esQueryBuilder.build();
+  it('should return the size as set in the locale', () => {
+    const searchTerm = 'search for this';
+    const res = { locals: { resultsReturnedCount: 30 } };
+    const query = esQueryBuilder.build(searchTerm, res.locals.resultsReturnedCount);
 
     expect(query.body.size).to.be.equal(30);
   });
