@@ -46,15 +46,6 @@ function expectErrorMessagesForPostcode(res, errorMessage, errorMessage2) {
   expect(noResultsParagraph).to.contain(errorMessage2);
 }
 
-function expectMessageForNotEnglishPostcode(res, message, message2) {
-  const $ = cheerio.load(res.text);
-  const notEnglishHeader = $('.form-item-wrapper h2').text();
-  const resultsParagraph = $('.form-item-wrapper p').text();
-
-  expect(notEnglishHeader).to.contain(message);
-  expect(resultsParagraph).to.contain(message2);
-}
-
 describe('Results page with postcode search', () => {
   describe('Search by valid full postcode', () => {
     it(`of 'HG5 0JL' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
@@ -100,35 +91,6 @@ describe('Results page with postcode search', () => {
 
       makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
         expectHighRankForPostcode(res, expected, RESULTS_THRESHOLD);
-        done();
-      });
-    });
-  });
-
-  describe('Search by valid out of England outcode', () => {
-    it('should return a descriptive message for outcodes in Scotland', (done) => {
-      const search = '';
-      const postcode = 'EH1';
-      const message = 'This service is for GP surgeries in England';
-      const message2 = `The area '${postcode}' is not in England`;
-
-      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
-        expectMessageForNotEnglishPostcode(res, message, message2);
-
-        done();
-      });
-    });
-  });
-
-  describe('Search by valid out of England postcode', () => {
-    it('should return a descriptive message for postcodes in Scotland', (done) => {
-      const search = '';
-      const postcode = 'EH1 1EN';
-      const message = 'This service is for GP surgeries in England';
-      const message2 = `The postcode '${postcode}' is not in England`;
-
-      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
-        expectMessageForNotEnglishPostcode(res, message, message2);
         done();
       });
     });

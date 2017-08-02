@@ -1,14 +1,9 @@
 {% extends 'layout.nunjucks' %}
 
-{% block pageTitle %}All service results{% endblock %}
+{% block pageTitle %}Outside England{% endblock %}
 
 {% block header %}
 <h1 class="page-title">Book a GP appointment online</h1>
-{% endblock %}
-
-{% block meta %}
-<meta name="WT.gposs" content="{{ search }}"></meta>
-<meta name="WT.gposs_r" content="1"></meta>
 {% endblock %}
 
 {% block content %}
