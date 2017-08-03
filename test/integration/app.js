@@ -72,5 +72,18 @@ describe('app', () => {
           done();
         });
     });
+    it('should have it\'s page title and h1 to have the same info for SEO reasons', (done) => {
+      chai.request(app)
+        .get(`${constants.SITE_ROOT}/`)
+        .end((err, res) => {
+          iExpect.htmlWith200Status(err, res);
+
+          const $ = cheerio.load(res.text);
+
+          expect($('.page-title').text()).to.equal($('title').text());
+          iExpect.homePage($);
+          done();
+        });
+    });
   });
 });
