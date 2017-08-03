@@ -8,10 +8,13 @@ const nunjucks = require('nunjucks');
 const router = require('./routes');
 const locals = require('../app/middleware/locals');
 const constants = require('../app/lib/constants');
+const smartCache = require('../app/middleware/smartCache');
 
 module.exports = (app, config) => {
   // eslint-disable-next-line no-param-reassign
   app.locals.SITE_ROOT = constants.SITE_ROOT;
+
+  app.use(smartCache({ maxAge: config.cacheTimeoutSeconds }));
 
   app.set('views', `${config.root}/app/views`);
   app.set('view engine', 'nunjucks');

@@ -10,6 +10,7 @@ services:
       GOOGLE_ANALYTICS_TRACKING_ID: $GOOGLE_ANALYTICS_TRACKING_ID
       WEBTRENDS_ANALYTICS_TRACKING_ID: $WEBTRENDS_ANALYTICS_TRACKING_ID
       ES_HOST: profiles-db-elastic.profiles-db-elastic
+      CACHE_TIMEOUT_SECONDS: 1800
     labels:
       traefik.enable: true
       traefik.frontend.rule: $TRAEFIK_RULE
