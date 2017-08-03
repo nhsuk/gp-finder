@@ -43,9 +43,9 @@ function getEsQuery(postcodeLocationDetails, searchTerm, size) {
 function getGps(req, res, next) {
   const searchTerm = res.locals.search;
   const postcode = res.locals.postcodeSearch;
-  const resultsReturnedCount = res.locals.resultsReturnedCount;
+  const resultsLimit = res.locals.RESULTS_LIMIT;
   const postcodeLocationDetails = res.locals.postcodeLocationDetails;
-  const esQuery = getEsQuery(postcodeLocationDetails, searchTerm, resultsReturnedCount);
+  const esQuery = getEsQuery(postcodeLocationDetails, searchTerm, resultsLimit);
 
   elasticsearchClient
     .search(esQuery)

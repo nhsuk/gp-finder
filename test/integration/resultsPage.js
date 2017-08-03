@@ -47,6 +47,20 @@ describe('Results page', () => {
       });
     });
 
+    it('should contain meta data with results information', (done) => {
+      const search = 'Surgery';
+      const postcode = '';
+
+      assertSearchResponse(search, postcode, done, (err, res) => {
+        const $ = cheerio.load(res.text);
+        const resultsLimit = $('meta[name="DCSext.GPResultsLimit"]').attr('content');
+        const totalResults = $('meta[name="DCSext.GPTotalResults"]').attr('content');
+
+        expect(resultsLimit).to.eq('30');
+        expect(totalResults).to.eq('3687');
+      });
+    });
+
     describe('matching surgeries found', () => {
       describe('multiple matches', () => {
         it('should have more than one result', (done) => {
