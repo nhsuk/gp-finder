@@ -1,4 +1,7 @@
-@import "normalize";
+@import "normalize/variables";
+@import "normalize/vertical-rhythm";
+@import "normalize/normalize-mixin";
+
 @import "environment/tools/mixins/addons";
 
 @import "environment/generic/border-box";

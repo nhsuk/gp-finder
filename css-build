@@ -1,7 +1,7 @@
 #!/bin/sh
 
 OUTPUT_STYLE=${1:-compressed}
-INCLUDE_PATH="--include-path node_modules/normalize-scss/sass --include-path scss-0.4.4"
+INCLUDE_PATH="--include-path scss-0.5.0"
 
 echo "node-sass with output-style of ${OUTPUT_STYLE}"
 
