@@ -48,7 +48,7 @@
     "nhsuk-bunyan-logger": "^1.4.1",
     "node-sass": "^4.5.3",
     "nunjucks": "^3.0.1",
-    "postcodesio-client": "billinghamj/postcodesio-client-node",
+    "postcodesio-client": "^0.2.0",
     "require-environment-variables": "^1.1.2",
     "verror": "^1.10.0"
   },
@@ -70,6 +70,6 @@
     "nodemon": "^1.11.0",
     "rewire": "^2.5.2",
     "sinon": "^3.0.0",
-    "snyk": "^1.36.2"
+    "snyk": "^1.38.1"
   }
 }
