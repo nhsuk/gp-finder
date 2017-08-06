@@ -13,3 +13,7 @@ npm-debug.log.*
 .idea/*
 
 index.html
+
+.vscode
+jmeter.log
+*.jtl
