@@ -34,17 +34,18 @@ function mapResults(results, res, searchTerm) {
   res.locals.resultsSubHeader = resultsFormat.pluraliseSurgery(res.locals.gps.length, searchTerm);
 }
 
-function getEsQuery(postcodeLocationDetails, searchTerm) {
+function getEsQuery(postcodeLocationDetails, searchTerm, size) {
   return (postcodeLocationDetails) ?
-    esGeoQueryBuilder.build(postcodeLocationDetails.location, searchTerm) :
-    esQueryBuilder.build(searchTerm);
+    esGeoQueryBuilder.build(postcodeLocationDetails.location, searchTerm, size) :
+    esQueryBuilder.build(searchTerm, size);
 }
 
 function getGps(req, res, next) {
   const searchTerm = res.locals.search;
   const postcode = res.locals.postcodeSearch;
+  const resultsLimit = res.locals.RESULTS_LIMIT;
   const postcodeLocationDetails = res.locals.postcodeLocationDetails;
-  const esQuery = getEsQuery(postcodeLocationDetails, searchTerm);
+  const esQuery = getEsQuery(postcodeLocationDetails, searchTerm, resultsLimit);
 
   elasticsearchClient
     .search(esQuery)
@@ -56,6 +57,8 @@ function getGps(req, res, next) {
         esQuery,
         resultCount: results.hits.total
       }, 'getGps');
+      // eslint-disable-next-line no-param-reassign
+      res.locals.resultsCount = results.hits.total;
       mapResults(results, res, searchTerm);
     })
     .then(next)

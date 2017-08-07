@@ -50,8 +50,9 @@ describe('esGeoQueryBuilder', () => {
     );
   });
 
-  it('should return the size as 30', () => {
-    const query = esGeoQueryBuilder.build(location, searchTerm);
+  it('should return the size as per the setting in the locale', () => {
+    const res = { locals: { resultsReturnedCount: 30 } };
+    const query = esGeoQueryBuilder.build(location, searchTerm, res.locals.resultsReturnedCount);
     expect(query.body.size).to.be.equal(30);
   });
 });

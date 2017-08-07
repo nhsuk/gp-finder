@@ -5,6 +5,8 @@
 {% block meta %}
 <meta name="WT.gposs" content="{{ search }}"></meta>
 <meta name="WT.gposs_r" content="1"></meta>
+<meta name="DCSext.GPResultsLimit" content="{{ RESULTS_LIMIT }}"></meta>
+<meta name="DCSext.GPTotalResults" content="{{ resultsCount }}"></meta>
 {% endblock %}
 
 {% block content %}

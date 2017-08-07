@@ -1,8 +1,8 @@
 const getShouldClause = require('./utils/getTextSearchShouldClause');
 const getBaseQuery = require('./utils/getBaseQuery');
 
-function build(location, searchTerm) {
-  const query = getBaseQuery();
+function build(location, searchTerm, size) {
+  const query = getBaseQuery(size);
 
   query.body.query.bool.filter = {
     geo_distance: {

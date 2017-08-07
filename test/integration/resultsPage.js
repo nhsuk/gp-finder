@@ -25,7 +25,7 @@ function assertSearchResponse(search, postcode, done, assertions) {
 describe('Results page', () => {
   const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
 
-  describe('page layout', () => {
+  describe('layout', () => {
     it('should contain HTML', (done) => {
       const search = 'Surgery';
       const postcode = '';
@@ -44,6 +44,20 @@ describe('Results page', () => {
         const resultsHeader = $('.results__header').text();
 
         expect(resultsHeader).to.contain('Which is your surgery?');
+      });
+    });
+
+    it('should contain meta data with results information', (done) => {
+      const search = 'Surgery';
+      const postcode = '';
+
+      assertSearchResponse(search, postcode, done, (err, res) => {
+        const $ = cheerio.load(res.text);
+        const resultsLimit = $('meta[name="DCSext.GPResultsLimit"]').attr('content');
+        const totalResults = $('meta[name="DCSext.GPTotalResults"]').attr('content');
+
+        expect(resultsLimit).to.eq('30');
+        expect(totalResults).to.eq('3687');
       });
     });
 
