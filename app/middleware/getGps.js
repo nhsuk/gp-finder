@@ -19,13 +19,18 @@ function mapResults(results, res, searchTerm) {
     // eslint-disable-next-line no-underscore-dangle
     const gp = result._source;
 
-    // eslint-disable-next-line no-param-reassign
-    gp.bookOnlineLink = gpDataMapper.getBookOnlineLink(gp);
-    // eslint-disable-next-line no-param-reassign
-    gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
+    if (gp) {
+      // eslint-disable-next-line no-param-reassign
+      gp.bookOnlineLink = gpDataMapper.getBookOnlineLink(gp);
 
-    if (result.sort) {
-      gp.distance = result.sort[0];
+      if (searchTerm) {
+        // eslint-disable-next-line no-param-reassign
+        gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
+      }
+
+      if (result.sort) {
+        gp.distance = result.sort[0];
+      }
     }
 
     return gp;
