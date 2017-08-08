@@ -48,6 +48,21 @@ function expectErrorMessagesForPostcode(res, errorMessage, errorMessage2) {
 
 describe('Results page with postcode search', () => {
   describe('Search by valid full postcode', () => {
+    it('of \'HG5 0JL\' when search is not there should ignore search param', (done) => {
+      const search = undefined;
+      const postcode = 'HG5 0JL';
+
+      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
+        const $ = cheerio.load(res.text);
+        const pageTitle = $('.page-title').text();
+        const resultsHeader = $('.results__header').text();
+
+        expect(pageTitle).to.not.contain('Sorry, we are experiencing technical problems');
+        expect(resultsHeader).to.contain('Which is your surgery?');
+        done();
+      });
+    });
+
     it(`of 'HG5 0JL' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = '';
       const postcode = 'HG5 0JL';
@@ -58,6 +73,7 @@ describe('Results page with postcode search', () => {
         done();
       });
     });
+
     it(`of 'HG5 0JL ' should rank trim the postcode and rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = '';
       const postcode = 'HG5 0JL ';
@@ -84,6 +100,21 @@ describe('Results page with postcode search', () => {
   });
 
   describe('Search by valid outcode', () => {
+    it('of \'HG5\' when search is not there should ignore search param', (done) => {
+      const search = undefined;
+      const postcode = 'HG5';
+
+      makeSearchRequestAndCheckExpectations(search, postcode, (err, res) => {
+        const $ = cheerio.load(res.text);
+        const pageTitle = $('.page-title').text();
+        const resultsHeader = $('.results__header').text();
+
+        expect(pageTitle).to.not.contain('Sorry, we are experiencing technical problems');
+        expect(resultsHeader).to.contain('Which is your surgery?');
+        done();
+      });
+    });
+
     it(`of 'HG5' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = '';
       const postcode = 'HG5';
