@@ -20,7 +20,7 @@
     <meta name="DCSext.ServiceName" content="GP Appointment Finder" />
     {% block meta %}{% endblock %}
 
-    {% set qs = '?v=11' %}
+    {% set qs = '?v=12' %}
 
     <!--[if gt IE 8]><!--><link href="{{ SITE_ROOT }}/nhsuk.css{{ qs }}" media="screen" rel="stylesheet" type="text/css"><!--<![endif]-->
     <!--[if IE 6]><link href="{{ SITE_ROOT }}/nhsuk-ie6.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="notification-banner notification-banner__js-hidden" id="global-cookies-banner" role="alert">
+    <div class="notification-banner notification-banner--js-hidden" id="global-cookies-banner" role="alert">
       <p class="notification-banner--inner">
       NHS.UK uses cookies to make the site simpler.
       <a href="https://beta.nhs.uk/help/cookies">Find out more about cookies</a>
