@@ -1,11 +1,11 @@
-##TMR _number_ | GP Finder
+## TMR _number_ | Connecting to Services: GP Finder
 
 Created by: _person_ on _date_.
 Requestor: _person_
 Owner (Change Manager): Dominic Hamilton
 
 Status: _raised/live validated_
- CAB Status: _proposed/approved_ 
+ CAB Status: Submitted for Approval
 Service: Connecting to Services: GP Finder
 Category: Software
 
@@ -70,9 +70,9 @@ Testing Completed:
 
 Yes
 *	Automated integration and unit tests passing in CI.
-*	Code coverage @ _percentage_
-*	Performance tests passing on staging
-*	No vulnerabilities detected
+*	Code coverage @ [_percentage_](https://coveralls.io/github/nhsuk/gp-finder?branch=_tag_) 
+*	[Performance tests passing on staging](link to TC)
+*	[No vulnerabilities detected](https://snyk.io/test/github/nhsuk/gp-finder)
  
 
 General Comments:
@@ -91,12 +91,12 @@ Remediation Time (Minutes): 10min
 Implementation Steps:
 
 Team City Deployment
-Release 0.13.0 from [here](link to TC)
+* Release _tag_ from [here](link to prod TC) and [here](link to DR prod TC)
 
 Remediation Plan:
 
 Team City Deployment
-·	Release 0.9.0 from [here](link to TC)
+* Release _previous_tag_ from [here](link to prod TC) and [here](link to DR prod TC) 
  
 
 Review:
