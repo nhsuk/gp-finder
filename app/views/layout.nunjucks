@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <div class="notification-banner notification-banner--js-hidden" id="global-cookies-banner" role="alert">
+    <div class="notification-banner notification-banner--js-hidden" id="global-cookies-banner">
       <p class="notification-banner--inner">
       NHS.UK uses cookies to make the site simpler.
       <a href="https://beta.nhs.uk/help/cookies">Find out more about cookies</a>
