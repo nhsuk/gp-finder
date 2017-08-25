@@ -9,6 +9,7 @@ module.exports = {
   cacheTimeoutSeconds: process.env.CACHE_TIMEOUT_SECONDS || 0,
   env: process.env.NODE_ENV || 'development',
   root: rootPath,
+  newRelicLicenceKey: process.env.NEW_RELIC_LICENCE_KEY,
   port: process.env.PORT || 3000,
   es: {
     host: process.env.ES_HOST || 'es',
