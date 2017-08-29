@@ -1,6 +1,6 @@
+require('newrelic');
 const express = require('express');
 const config = require('./config/config');
-require('newrelic');
 const configExpress = require('./config/express');
 
 const app = express();
