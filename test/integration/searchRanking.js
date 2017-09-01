@@ -69,6 +69,7 @@ describe('Results page with ranking', () => {
         expectHighRankForName(res, expected, 1);
       });
     });
+
     it(`of 'HG5' should rank 'Beech House Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = '';
       const postcode = 'HG5';
@@ -79,6 +80,7 @@ describe('Results page with ranking', () => {
       });
     });
   });
+
   describe('Surgeries with the specific surgery query', () => {
     const postcode = '';
     it(`of 'park parade' should rank 'Park Parade Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
@@ -89,22 +91,25 @@ describe('Results page with ranking', () => {
         expectHighRankForName(res, expected, RESULTS_THRESHOLD);
       });
     });
+
     it(`of 'Street Lane' should rank 'Street Lane Practice' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Street Lane';
-      const expected = 'Street Lane Practice';
+      const expected = 'The Street Lane Practice';
 
       makeSearchRequestAndCheckExpectations(search, postcode, done, (err, res) => {
         expectHighRankForName(res, expected, RESULTS_THRESHOLD);
       });
     });
-    it(`of 'Baker' should rank 'Dr D Baker & Partner' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+
+    it(`of 'Baker' should rank 'Dr Baker & Partners Practice' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Baker';
-      const expected = 'Dr D Baker & Partner';
+      const expected = 'Dr Baker & Partners Practice';
 
       makeSearchRequestAndCheckExpectations(search, postcode, done, (err, res) => {
         expectHighRankForName(res, expected, RESULTS_THRESHOLD);
       });
     });
+
     it(`of 'Miller' should rank 'Miller Street Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Miller';
       const expected = 'Miller Street Surgery';
@@ -113,23 +118,26 @@ describe('Results page with ranking', () => {
         expectHighRankForName(res, expected, RESULTS_THRESHOLD);
       });
     });
-    it(`of 'Andrew Smith' should rank 'Smith & Partners' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+
+    it(`of 'Andrew Smith' should rank 'Dr Darcy & Partners' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Andrew Smith';
-      const expected = 'Smith & Partners';
+      const expected = 'Dr Darcy & Partners';
 
       makeSearchRequestAndCheckExpectations(search, postcode, done, (err, res) => {
         expectHighRankForName(res, expected, RESULTS_THRESHOLD);
       });
     });
-    it(`of 'dr Andrew Smith' should rank 'Smith & Partners' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+
+    it(`of 'dr Andrew Smith' should rank 'Dr Darcy & Partners' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'dr Andrew Smith';
-      const expected = 'Smith & Partners';
+      const expected = 'Dr Darcy & Partners';
 
       makeSearchRequestAndCheckExpectations(search, postcode, done, (err, res) => {
         expectHighRankForName(res, expected, RESULTS_THRESHOLD);
       });
     });
   });
+
   describe('Surgeries with the specific doctor query', () => {
     const postcode = '';
     it(`of 'dr Andrew Smith' should rank 'Dr Andrew Smith' in the first ${RESULTS_THRESHOLD} results`, (done) => {
@@ -140,6 +148,7 @@ describe('Results page with ranking', () => {
         expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
       });
     });
+
     it(`of 'Doctor Andrew Smith' should rank 'Dr Andrew Smith' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Doctor Andrew Smith';
       const expected = 'Dr Andrew Smith';
@@ -148,14 +157,16 @@ describe('Results page with ranking', () => {
         expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
       });
     });
-    it(`of 'Baker' should rank 'Dr David John Baker' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+
+    it(`of 'Baker' should rank 'Dr Jack Baker' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Baker';
-      const expected = 'Dr David John Baker';
+      const expected = 'Dr Jack Baker';
 
       makeSearchRequestAndCheckExpectations(search, postcode, done, (err, res) => {
         expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
       });
     });
+
     it(`of 'Babar Farooq' should rank 'Dr Babar Farooq' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Babar Farooq';
       const expected = 'Dr Babar Farooq';
@@ -164,6 +175,7 @@ describe('Results page with ranking', () => {
         expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
       });
     });
+
     it(`of 'Louise Miller' should rank 'Dr Louise Miller' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Louise Miller';
       const expected = 'Dr Louise Miller';
@@ -172,6 +184,7 @@ describe('Results page with ranking', () => {
         expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
       });
     });
+
     it(`of 'Doctor Monisha Kurian' should rank 'Dr Monisha Kurian' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Doctor Monisha Kurian';
       const expected = 'Dr Monisha Kurian';
@@ -180,6 +193,7 @@ describe('Results page with ranking', () => {
         expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
       });
     });
+
     it(`of 'Dr Ramdeehul' should rank 'Dr Amal Ramdeehul' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const search = 'Dr Ramdeehul';
       const expected = 'Dr Amal Ramdeehul';
@@ -188,6 +202,7 @@ describe('Results page with ranking', () => {
         expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
       });
     });
+
     describe('Doctors names which include punctuation', () => {
       it(`of 'Yule-Smith' should rank 'Dr Annabel Louise Yule-Smith' in the first ${RESULTS_THRESHOLD} results`, (done) => {
         const search = 'Yule-Smith';
@@ -197,6 +212,7 @@ describe('Results page with ranking', () => {
           expectHighRankForDoctor(res, expected, RESULTS_THRESHOLD);
         });
       });
+
       it(`of "Karen O'Connor" should rank "Dr Karen O'Connor" in the first ${RESULTS_THRESHOLD} results`, (done) => {
         const search = 'Karen O\'Connor';
         const expected = 'Dr Karen O\'connor';
@@ -207,20 +223,22 @@ describe('Results page with ranking', () => {
       });
     });
   });
+
   describe('Surgeries with the specific surgery query that exist in the address', () => {
     it(`with 'Ireland Wood' should rank 'Ireland Wood Surgery' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const postcode = '';
       const search = 'Ireland Wood';
-      const expected = 'Ireland Wood Surgery';
+      const expected = 'Iveson Approach';
 
       makeSearchRequestAndCheckExpectations(search, postcode, done, (err, res) => {
         expectHighRankForAddress(res, expected, RESULTS_THRESHOLD);
       });
     });
-    it(`with 'Idle' should rank 'Idle Medical Centre' in the first ${RESULTS_THRESHOLD} results`, (done) => {
+
+    it(`with 'Idle' should rank '440 Highfield Road' in the first ${RESULTS_THRESHOLD} results`, (done) => {
       const postcode = '';
       const search = 'Idle';
-      const expected = 'Idle Medical Centre';
+      const expected = '440 Highfield Road';
 
       makeSearchRequestAndCheckExpectations(search, postcode, done, (err, res) => {
         expectHighRankForAddress(res, expected, RESULTS_THRESHOLD);
