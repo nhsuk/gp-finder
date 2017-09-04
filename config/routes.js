@@ -9,7 +9,8 @@ const postcodeLookup = require('../app/middleware/postcodeLookup');
 const notInEnglandHandler = require('../app/middleware/notInEnglandHandler');
 const getGps = require('../app/middleware/getGps');
 
-router.get('/results',
+router.get(
+  '/results',
   setLocals.fromRequest,
   stripWhitespace,
   searchValidator,
@@ -20,11 +21,13 @@ router.get('/results',
   renderer.results
 );
 
-router.get('/outside-england',
+router.get(
+  '/outside-england',
   renderer.postcodeNotEnglish
 );
 
-router.get('/',
+router.get(
+  '/',
   setLocals.fromRequest,
   renderer.searchForYourGp
 );

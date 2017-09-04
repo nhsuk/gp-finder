@@ -24,12 +24,10 @@ function getFilteredGps(gpData, searchStr) {
 
     searchTerms.forEach((term) => {
       filteredDocs = filteredDocs
-        .concat(
-          gpData.doctors
-            .filter(d => isNotEmptyString(d.name))
-            .filter(doctor => doctor.name.toLowerCase().includes(term))
-            .map(doctor => doctor.name)
-        );
+        .concat(gpData.doctors
+          .filter(d => isNotEmptyString(d.name))
+          .filter(doctor => doctor.name.toLowerCase().includes(term))
+          .map(doctor => doctor.name));
     });
 
     return [...new Set(filteredDocs)];
