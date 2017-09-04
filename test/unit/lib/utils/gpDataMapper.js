@@ -46,11 +46,13 @@ describe('GP Surgery Data Mapper', () => {
     });
 
     it('for a GP Surgery that has doctors with the name matching the search will return those doctors', () => {
-      const gpData = { doctors: [
-        { name: 'Dr. A Farooq' },
-        { name: 'Dr. Carter' },
-        { name: 'Dr. B Farooq' }
-      ] };
+      const gpData = {
+        doctors: [
+          { name: 'Dr. A Farooq' },
+          { name: 'Dr. Carter' },
+          { name: 'Dr. B Farooq' }
+        ]
+      };
       const searchStr = 'Farooq';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
@@ -58,12 +60,14 @@ describe('GP Surgery Data Mapper', () => {
     });
 
     it('for a GP Surgery that has doctors with some of the name matching the search will return those doctors', () => {
-      const gpData = { doctors: [
-        { name: 'Dr. Elizabeth Beech' },
-        { name: 'Dr. Elizabeth Ash' },
-        { name: 'Dr. Elizabeth' },
-        { name: 'Dr. B Beech' }
-      ] };
+      const gpData = {
+        doctors: [
+          { name: 'Dr. Elizabeth Beech' },
+          { name: 'Dr. Elizabeth Ash' },
+          { name: 'Dr. Elizabeth' },
+          { name: 'Dr. B Beech' }
+        ]
+      };
       const searchStr = 'Elizabeth Beech';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
@@ -71,12 +75,14 @@ describe('GP Surgery Data Mapper', () => {
     });
 
     it('for a GP Surgery that has Dr/Dr. in the title but not related to the search it should be ignored', () => {
-      const gpData = { doctors: [
-        { name: 'Dr. Elizabeth Beech' },
-        { name: 'Dr. Elizabeth Ash' },
-        { name: 'Dr. Elizabeth' },
-        { name: 'Dr. B Beech' }
-      ] };
+      const gpData = {
+        doctors: [
+          { name: 'Dr. Elizabeth Beech' },
+          { name: 'Dr. Elizabeth Ash' },
+          { name: 'Dr. Elizabeth' },
+          { name: 'Dr. B Beech' }
+        ]
+      };
       const searchStr = 'Dr Beech';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
@@ -84,11 +90,13 @@ describe('GP Surgery Data Mapper', () => {
     });
 
     it('for a GP Surgery that has doctors an empty search string will return no doctors', () => {
-      const gpData = { doctors: [
-        { name: 'Dr. A Farooq' },
-        { name: 'Dr. Carter' },
-        { name: 'Dr. B Farooq' }
-      ] };
+      const gpData = {
+        doctors: [
+          { name: 'Dr. A Farooq' },
+          { name: 'Dr. Carter' },
+          { name: 'Dr. B Farooq' }
+        ]
+      };
       const searchStr = '';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
@@ -96,11 +104,13 @@ describe('GP Surgery Data Mapper', () => {
     });
 
     it('for a GP Surgery that has doctors an whitespace search string will return no doctors', () => {
-      const gpData = { doctors: [
-        { name: 'Dr. A Farooq' },
-        { name: 'Dr. Carter' },
-        { name: 'Dr. B Farooq' }
-      ] };
+      const gpData = {
+        doctors: [
+          { name: 'Dr. A Farooq' },
+          { name: 'Dr. Carter' },
+          { name: 'Dr. B Farooq' }
+        ]
+      };
       const searchStr = ' ';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
@@ -108,11 +118,13 @@ describe('GP Surgery Data Mapper', () => {
     });
 
     it('for a GP Surgery that has doctors a search for just "dr" will return no doctors', () => {
-      const gpData = { doctors: [
-        { name: 'Dr. A Farooq' },
-        { name: 'Dr. Carter' },
-        { name: 'Dr. B Farooq' }
-      ] };
+      const gpData = {
+        doctors: [
+          { name: 'Dr. A Farooq' },
+          { name: 'Dr. Carter' },
+          { name: 'Dr. B Farooq' }
+        ]
+      };
       const searchStr = 'dr';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
@@ -120,11 +132,13 @@ describe('GP Surgery Data Mapper', () => {
     });
 
     it('regex in search terms should not be used', () => {
-      const gpData = { doctors: [
-        { name: 'Dr. A Farooq' },
-        { name: 'Dr. Carter' },
-        { name: 'Dr. B Farooq' }
-      ] };
+      const gpData = {
+        doctors: [
+          { name: 'Dr. A Farooq' },
+          { name: 'Dr. Carter' },
+          { name: 'Dr. B Farooq' }
+        ]
+      };
       const searchStr = 'Carter \\w';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
 
