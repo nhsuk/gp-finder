@@ -328,6 +328,10 @@ binary-extensions@^1.0.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.10.0.tgz#9aeb9a6c5e88638aad171e167f5900abe24835d0"
 
+bintrees@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/bintrees/-/bintrees-1.0.1.tgz#0e655c9b9c2435eaab68bf4027226d2b55a34524"
+
 block-stream@*:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
@@ -1348,6 +1352,14 @@ expand-range@^1.8.1:
 expect-ct@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/expect-ct/-/expect-ct-0.1.0.tgz#52735678de18530890d8d7b95f0ac63640958094"
+
+express-prom-bundle@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/express-prom-bundle/-/express-prom-bundle-3.1.0.tgz#58bacedf07955065a51acf7264c43bf473f2e212"
+  dependencies:
+    on-finished "^2.3.0"
+    prom-client "^10.0.2"
+    url-value-parser "^1.0.0"
 
 express@^4.15.2:
   version "4.15.4"
@@ -3087,7 +3099,7 @@ object.omit@^2.0.0:
     for-own "^0.1.4"
     is-extendable "^0.1.1"
 
-on-finished@~2.3.0:
+on-finished@^2.3.0, on-finished@~2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
   dependencies:
@@ -3356,6 +3368,10 @@ process-nextick-args@~1.0.6:
 progress@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.0.tgz#8a1be366bf8fc23db2bd23f10c6fe920b4389d1f"
+
+prom-client@^10.0.2:
+  version "10.1.0"
+  resolved "https://registry.yarnpkg.com/prom-client/-/prom-client-10.1.0.tgz#b78d1c4fa4527c4573309d821cf6e6128509b6cc"
 
 "promise@>=3.2 <8":
   version "7.3.1"
@@ -4202,6 +4218,12 @@ tar@^2.0.0, tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
+tdigest@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/tdigest/-/tdigest-0.1.1.tgz#2e3cb2c39ea449e55d1e6cd91117accca4588021"
+  dependencies:
+    bintrees "1.0.1"
+
 tempfile@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/tempfile/-/tempfile-1.1.1.tgz#5bcc4eaecc4ab2c707d8bc11d99ccc9a2cb287f2"
@@ -4402,6 +4424,10 @@ url-parse-lax@^1.0.0:
   resolved "https://registry.yarnpkg.com/url-parse-lax/-/url-parse-lax-1.0.0.tgz#7af8f303645e9bd79a272e7a14ac68bc0609da73"
   dependencies:
     prepend-http "^1.0.1"
+
+url-value-parser@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/url-value-parser/-/url-value-parser-1.0.0.tgz#f909af662f47ad16e4f6a508ea579a695305f0d3"
 
 url@^0.11.0:
   version "0.11.0"
