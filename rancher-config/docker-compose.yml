@@ -16,6 +16,8 @@ services:
       traefik.frontend.rule: $TRAEFIK_RULE
       traefik.backend: ${RANCHER_STACK_NAME}-gp-finder-frontend
       traefik.port: 3000
+      prometheus.port: 3000
+      prometheus.monitoring: true
       io.rancher.container.pull_image: always
     logging:
       driver: splunk
