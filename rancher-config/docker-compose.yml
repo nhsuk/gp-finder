@@ -14,8 +14,8 @@ services:
     labels:
       traefik.enable: true
       traefik.frontend.rule: $TRAEFIK_RULE
+      traefik.backend: ${RANCHER_STACK_NAME}-gp-finder-frontend
       traefik.port: 3000
-      map-public-http: 3000
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label_soft: c2s=true
     logging:
