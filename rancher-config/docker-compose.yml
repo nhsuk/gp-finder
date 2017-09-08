@@ -17,7 +17,6 @@ services:
       traefik.backend: ${RANCHER_STACK_NAME}-gp-finder-frontend
       traefik.port: 3000
       io.rancher.container.pull_image: always
-      io.rancher.scheduler.affinity:host_label_soft: c2s=true
     logging:
       driver: splunk
       options:
