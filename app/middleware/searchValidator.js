@@ -12,11 +12,8 @@ function validateSearch(req, res, next) {
 
   if (isEmptySearch(searchTermName, searchTermPostcode)) {
     log.info('Empty Search');
-    // eslint-disable-next-line no-param-reassign
     res.locals.errorMessage = messages.emptySearch();
-    // eslint-disable-next-line no-param-reassign
     res.locals.searchErrorLabel = 'You need to enter some text';
-    // eslint-disable-next-line no-param-reassign
     res.locals.searchErrorClass = 'blank';
     renderer.searchForYourGp(req, res);
   } else {
