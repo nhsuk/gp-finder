@@ -35,7 +35,7 @@ describe('metrics end point', () => {
   });
 
   it('should return a es_get_gp histogram', () => {
-    expect(responseText).to.have.string('# HELP es_get_gp Duration histogram of Elasticsearch request to get GPs\n# TYPE es_get_gp histogram');
+    expect(responseText).to.have.string('# HELP es_get_gp Duration histogram of Elasticsearch request to get GPs with: query_type of name_and_geo or name_only\n# TYPE es_get_gp histogram');
   });
 
   it('should return a postcodes_io_request_duration histogram', () => {
