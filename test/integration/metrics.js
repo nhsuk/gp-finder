@@ -34,6 +34,14 @@ describe('metrics end point', () => {
     expect(responseText).to.have.string('# HELP error_page_views The number of error page views\n# TYPE error_page_views counter');
   });
 
+  it('should return a es_get_gp histogram', () => {
+    expect(responseText).to.have.string('# HELP es_get_gp Duration histogram of Elasticsearch request to get GPs\n# TYPE es_get_gp histogram');
+  });
+
+  it('should return a postcodes_io_request_duration histogram', () => {
+    expect(responseText).to.have.string('# HELP postcodes_io_request_duration Duration histogram of postcodes.io request\n# TYPE postcodes_io_request_duration histogram');
+  });
+
   it('should return an http_request_duration_seconds histogram', () => {
     expect(responseText).to.have.string('# HELP http_request_duration_seconds duration histogram of http responses labeled with: status_code, path\n# TYPE http_request_duration_seconds histogram');
   });

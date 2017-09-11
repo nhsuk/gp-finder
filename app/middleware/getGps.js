@@ -5,6 +5,7 @@ const resultsFormat = require('../lib/utils/resultsHeaderFormater');
 const elasticsearchClient = require('../lib/elasticsearchClient');
 const esQueryBuilder = require('../lib/esQueryBuilder');
 const esGeoQueryBuilder = require('../lib/esGeoQueryBuilder');
+const esGetGpHistogram = require('../lib/promHistograms').esGetGP;
 
 function handleError(error, next) {
   const errMsg = 'Error with ES';
@@ -49,9 +50,11 @@ function getGps(req, res, next) {
   const postcodeLocationDetails = res.locals.postcodeLocationDetails;
   const esQuery = getEsQuery(postcodeLocationDetails, searchTerm, resultsLimit);
 
+  const endTimer = esGetGpHistogram.startTimer();
   elasticsearchClient
     .search(esQuery)
     .then((results) => {
+      endTimer();
       log.info({
         postcode,
         searchTerm,

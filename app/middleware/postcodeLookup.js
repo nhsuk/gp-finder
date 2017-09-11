@@ -1,5 +1,6 @@
 const log = require('../lib/logger');
 const PostcodesIOClient = require('postcodesio-client');
+const postcodesIORequestHistogram = require('../lib/promHistograms').postcodesIORequest;
 
 // rewire (a framework for mocking) doesn't support const
 // eslint-disable-next-line no-var
@@ -30,6 +31,7 @@ async function lookupPostcode(req, res, next) {
   const postcodeSearch = res.locals.postcodeSearch;
 
   log.debug({ postcodeSearch }, 'postcode search text');
+  const endTimer = postcodesIORequestHistogram.startTimer();
   if (postcodeSearch) {
     try {
       const postcodeDetails = await PostcodesIO.lookup(postcodeSearch);
@@ -42,6 +44,8 @@ async function lookupPostcode(req, res, next) {
       }
     } catch (error) {
       renderer.postcodeError(error, postcodeSearch, req, res);
+    } finally {
+      endTimer();
     }
   } else {
     log.debug('no postcode');
