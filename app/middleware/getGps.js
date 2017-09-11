@@ -14,17 +14,14 @@ function handleError(error, next) {
 }
 
 function mapResults(results, res, searchTerm) {
-  // eslint-disable-next-line no-param-reassign
   res.locals.gps = results.hits.hits.map((result) => {
     // eslint-disable-next-line no-underscore-dangle
     const gp = result._source;
 
     if (gp) {
-      // eslint-disable-next-line no-param-reassign
       gp.bookOnlineLink = gpDataMapper.getBookOnlineLink(gp);
 
       if (searchTerm) {
-        // eslint-disable-next-line no-param-reassign
         gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
       }
 
@@ -62,7 +59,6 @@ function getGps(req, res, next) {
         esQuery,
         resultCount: results.hits.total
       }, 'getGps');
-      // eslint-disable-next-line no-param-reassign
       res.locals.resultsCount = results.hits.total;
       mapResults(results, res, searchTerm);
     })
