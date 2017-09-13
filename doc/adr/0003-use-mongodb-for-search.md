@@ -4,7 +4,7 @@ Date: 2017-02-27
 
 ## Status
 
-Accepted
+Superseded ([0004](https://github.com/nhsuk/gp-finder/blob/master/doc/adr/0004-use-elasticsearch-for-search.md))
 
 ## Context
 
