@@ -26,6 +26,6 @@ Provide a general summary of your changes in the Title
 
 ## Checklist
 <!-- Ensure each of the points below have been considered and completed where applicable -->
-- [ ] An [ADR](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions)
+- [ ] An [ADR](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions) has been created and any deprecated/superceeded ADR's have had their status updated.
 - [ ] New and/or updated tests
 - [ ] Version of the cache is increased
