@@ -1,11 +1,9 @@
-# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.1
-# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+version: v1.5.2
 ignore:
   'npm:debug:20170905':
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
         reason: Debug is not user facing.
-        expires: '2017-10-27T07:56:09.729Z'
+        expires: '2017-10-27T14:18:33.643Z'
     - helmet > connect > debug:
         reason: Debug is not user facing.
         expires: '2017-10-27T07:56:09.730Z'
@@ -15,17 +13,32 @@ ignore:
     - node-pre-gyp > tar-pack > debug:
         reason: Debug is not user facing.
         expires: '2017-10-27T07:56:09.730Z'
+    - helmet > connect > debug:
+        reason: 'n'
+        expires: '2017-10-27T14:04:27.532Z'
+    - helmet > connect > finalhandler > debug:
+        reason: 'n'
+        expires: '2017-10-27T14:04:27.533Z'
   'npm:tough-cookie:20170905':
     - node-pre-gyp > request > tough-cookie:
         reason: Node-pre-gyp is not user facing.
         expires: '2017-10-27T07:03:19.713Z'
       nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
         reason: Debug is not user facing.
-        expires: '2017-10-27T07:56:09.730Z'
+        expires: '2017-10-27T14:18:33.643Z'
     - node-pre-gyp > request > tough-cookie:
         reason: Node-pre-gyp is not user facing.
         expires: '2017-10-27T07:56:09.730Z'
-# patches apply the minimum changes required to fix a vulnerability
+    - nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        reason: Debug is not user facing.
+        expires: '2017-10-27T07:56:09.730Z'
+  'npm:mime:20170907':
+    - express > send > mime:
+        reason: None given
+        expires: '2017-10-27T14:18:33.644Z'
+    - express > serve-static > send > mime:
+        reason: None given
+        expires: '2017-10-27T14:18:33.644Z'
 patch:
   'npm:debug:20170905':
     - helmet > connect > debug:
