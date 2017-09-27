@@ -1,7 +1,6 @@
 0.17.0 / TBC
 ===================
 - Update all available npm dependencies
-- Update Docker container to node `8.6.0-alpine`
 
 0.16.1 / 2017-09-13
 ===================

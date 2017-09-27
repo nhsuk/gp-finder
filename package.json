@@ -8,8 +8,8 @@
     "coverage-clear": "rm -Rf coverage",
     "coverage-check": "yarn coverage-generate && istanbul check-coverage --config .istanbul.yml",
     "coverage-check-unit": "yarn coverage-generate-unit && istanbul check-coverage --config .istanbul.unit.yml",
-    "coverage-generate": "yarn coverage-clear && yarn istanbul cover _mocha -- --recursive",
-    "coverage-generate-unit": "yarn coverage-clear && yarn istanbul cover _mocha -- --recursive test/unit",
+    "coverage-generate": "yarn coverage-clear && yarn istanbul cover -- _mocha -- --recursive",
+    "coverage-generate-unit": "yarn coverage-clear && yarn istanbul cover -- _mocha -- --recursive test/unit",
     "coverage-upload": "cat ./coverage/lcov.info | coveralls",
     "git-hook": "yarn lint && yarn coverage-check-unit",
     "istanbul": "NODE_ENV=test istanbul",
@@ -24,7 +24,7 @@
     "test-ci": "yarn lint && yarn coverage-check && yarn coverage-upload",
     "test-unit": "NODE_ENV=test mocha --recursive test/unit",
     "test-integration-watch": "NODE_ENV=test mocha --recursive test/integration --reporter min --watch",
-    "test-watch": "yarn test --reporter min --watch"
+    "test-watch": "yarn test -- --reporter min --watch"
   },
   "repository": {
     "type": "git",
