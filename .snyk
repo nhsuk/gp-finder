@@ -1,4 +1,6 @@
-version: v1.5.2
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:debug:20170905':
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
@@ -23,27 +25,33 @@ ignore:
     - node-pre-gyp > request > tough-cookie:
         reason: Node-pre-gyp is not user facing.
         expires: '2017-10-27T07:03:19.713Z'
-      nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
-        reason: Debug is not user facing.
-        expires: '2017-10-27T14:18:33.643Z'
     - node-pre-gyp > request > tough-cookie:
         reason: Node-pre-gyp is not user facing.
         expires: '2017-10-27T07:56:09.730Z'
     - nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
         reason: Debug is not user facing.
         expires: '2017-10-27T07:56:09.730Z'
+    - nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        reason: Debug is not user facing.
+        expires: '2017-10-27T14:18:33.643Z'
   'npm:mime:20170907':
     - express > send > mime:
         reason: None given
-        expires: '2017-10-27T14:18:33.644Z'
+        expires: '2017-10-28T13:53:39.196Z'
     - express > serve-static > send > mime:
         reason: None given
-        expires: '2017-10-27T14:18:33.644Z'
+        expires: '2017-10-28T13:53:39.196Z'
+# patches apply the minimum changes required to fix a vulnerability
 patch:
   'npm:debug:20170905':
     - helmet > connect > debug:
         patched: '2017-09-27T06:58:10.463Z'
+      nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
+        patched: '2017-09-28T13:52:40.075Z'
     - helmet > connect > finalhandler > debug:
         patched: '2017-09-27T06:58:10.463Z'
     - node-pre-gyp > tar-pack > debug:
         patched: '2017-09-27T06:58:10.463Z'
+  'npm:tough-cookie:20170905':
+    - nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        patched: '2017-09-28T13:52:40.075Z'
