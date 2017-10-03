@@ -1,9 +1,7 @@
 0.16.2 / 2017-10-3
 ===================
-- Update ADR guidance/superseded mongo ADR
-- Update all stable npm dependencies
+- Update all npm dependencies
 - Use threshold file for performance testing for baseline
-- Update CHANGELOG
 
 0.16.1 / 2017-09-13
 ===================
