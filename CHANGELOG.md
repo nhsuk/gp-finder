@@ -1,6 +1,7 @@
-0.17.0 / TBC
+0.16.2 / 2017-10-3
 ===================
-- Update all available npm dependencies
+- Update all npm dependencies
+- Use threshold file for performance testing for baseline
 
 0.16.1 / 2017-09-13
 ===================
