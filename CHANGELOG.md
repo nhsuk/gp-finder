@@ -1,3 +1,7 @@
+0.17.0 / TBC
+============
+- Exclude subdomains from Strict-Transport-Security header
+
 0.16.2 / 2017-10-3
 ===================
 - Update all npm dependencies
