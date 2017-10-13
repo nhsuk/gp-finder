@@ -32,55 +32,51 @@ module.exports = (app, config) => {
 
   log.info(nunjucksEnvironment, 'nunjucks environment configuration');
 
-  app.use(helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: [
-        '\'self\'',
-      ],
-      childSrc: [
-        'https://*.hotjar.com:*',
-      ],
-      scriptSrc: [
-        '\'self\'',
-        '\'unsafe-inline\'',
-        '\'unsafe-eval\'',
-        'data:',
-        'www.google-analytics.com',
-        's.webtrends.com',
-        'statse.webtrendslive.com',
-        'static.hotjar.com',
-        'script.hotjar.com',
-        'cdn.jsdelivr.net',
-      ],
-      imgSrc: [
-        '\'self\'',
-        'data:',
-        'static.hotjar.com',
-        'www.google-analytics.com',
-        'statse.webtrendslive.com',
-        'hm.webtrends.com',
-      ],
-      styleSrc: [
-        '\'self\'',
-        '\'unsafe-inline\'',
-        'assets.nhs.uk',
-      ],
-      fontSrc: [
-        'assets.nhs.uk',
-      ],
-      connectSrc: [
-        '\'self\'',
-        'https://*.hotjar.com:*',
-        'wss://*.hotjar.com',
-      ],
-    },
+  app.use(helmet({
+    frameguard: { action: 'deny' },
+    hsts: { includeSubDomains: false },
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: [
+          '\'self\'',
+        ],
+        childSrc: [
+          '*.hotjar.com',
+        ],
+        scriptSrc: [
+          '\'self\'',
+          '\'unsafe-eval\'',
+          '\'unsafe-inline\'',
+          'data:',
+          '*.google-analytics.com',
+          '*.hotjar.com',
+          '*.webtrends.com',
+          '*.webtrendslive.com',
+          'cdn.jsdelivr.net',
+        ],
+        imgSrc: [
+          '\'self\'',
+          'data:',
+          '*.google-analytics.com',
+          '*.hotjar.com',
+          '*.webtrends.com',
+          '*.webtrendslive.com',
+        ],
+        styleSrc: [
+          '\'self\'',
+          '\'unsafe-inline\'',
+          'assets.nhs.uk',
+        ],
+        fontSrc: [
+          'assets.nhs.uk',
+        ],
+        connectSrc: [
+          '\'self\'',
+          '*.hotjar.com:*',
+        ],
+      },
+    }
   }));
-  app.use(helmet.xssFilter());
-  app.use(helmet.frameguard({ action: 'deny' }));
-  app.use(helmet.hidePoweredBy());
-  app.use(helmet.ieNoOpen());
-  app.use(helmet.noSniff());
-  app.use(helmet.hsts({ includeSubDomains: false }));
 
   app.use(locals(config));
 
