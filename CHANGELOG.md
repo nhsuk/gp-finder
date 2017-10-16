@@ -1,4 +1,4 @@
-0.18.0 / TBD
+0.18.0 / 2017-10-17
 ===================
 - Be less specific about third party domains within content security policy
 
