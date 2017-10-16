@@ -1,3 +1,7 @@
+0.18.0 / TBD
+===================
+- Be less specific about third party domains within content security policy
+
 0.17.0 / 2017-10-10
 ============
 - Exclude subdomains from Strict-Transport-Security header
