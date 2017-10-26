@@ -13,6 +13,7 @@ services:
       CACHE_TIMEOUT_SECONDS: 1800
     labels:
       traefik.enable: true
+      traefik.frontend.auth.basic: ${BASIC_AUTH}
       traefik.frontend.rule: $TRAEFIK_RULE
       traefik.backend: ${RANCHER_STACK_NAME}-gp-finder-frontend
       traefik.port: 3000
