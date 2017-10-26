@@ -5,28 +5,29 @@ services:
   gp-finder-frontend:
     image: "nhsuk/gp-finder:$DOCKER_IMAGE_TAG"
     environment:
-      NODE_ENV: production
-      HOTJAR_ANALYTICS_TRACKING_ID: $HOTJAR_ANALYTICS_TRACKING_ID
-      GOOGLE_ANALYTICS_TRACKING_ID: $GOOGLE_ANALYTICS_TRACKING_ID
-      WEBTRENDS_ANALYTICS_TRACKING_ID: $WEBTRENDS_ANALYTICS_TRACKING_ID
-      ES_HOST: ${ES_HOST}
       CACHE_TIMEOUT_SECONDS: 1800
+      ES_HOST: ${ES_HOST}
+      GOOGLE_ANALYTICS_TRACKING_ID: $GOOGLE_ANALYTICS_TRACKING_ID
+      HOTJAR_ANALYTICS_TRACKING_ID: $HOTJAR_ANALYTICS_TRACKING_ID
+      NODE_ENV: production
+      WEBTRENDS_ANALYTICS_TRACKING_ID: $WEBTRENDS_ANALYTICS_TRACKING_ID
     labels:
-      traefik.enable: true
-      traefik.frontend.rule: $TRAEFIK_RULE
-      traefik.backend: ${RANCHER_STACK_NAME}-gp-finder-frontend
-      traefik.port: 3000
-      prometheus.port: 3000
-      prometheus.monitoring: true
       io.rancher.container.pull_image: always
+      prometheus.monitoring: true
+      prometheus.port: 3000
+      traefik.enable: true
+      traefik.backend: ${RANCHER_STACK_NAME}-gp-finder-frontend
+      traefik.frontend.auth.basic: ${BASIC_AUTH}
+      traefik.frontend.rule: $TRAEFIK_RULE
+      traefik.port: 3000
     logging:
       driver: splunk
       options:
-        splunk-url: ${SPLUNK_HEC_URL}
-        splunk-token: ${SPLUNK_HEC_TOKEN}
+        splunk-format: json
         splunk-insecureskipverify: "true"
-        splunk-sourcetype: docker
         splunk-source: gp-finder
+        splunk-sourcetype: docker
+        splunk-token: ${SPLUNK_HEC_TOKEN}
+        splunk-url: ${SPLUNK_HEC_URL}
         splunk-verify-connection: "false"
         tag: "{{`{{.ImageName}} {{.Name}} {{.FullID}}`}}"
-        splunk-format: json
