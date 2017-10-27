@@ -1,7 +1,7 @@
 0.19.0 / 2017-10-31
 ===================
 - Add basic authentication to service when running test environments in Rancher
-- Upgrade Docker container to `node:8.8.0-alpine`
+- Upgrade Docker container to `node:8.8.1-alpine`
 - Update npm dependencies
 
 0.18.0 / 2017-10-17
