@@ -2,28 +2,19 @@
 version: v1.7.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  'npm:debug:20170905':
-    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
-        reason: Debug is not user facing.
-        expires: '2017-10-28T15:38:53.215Z'
-    - node-pre-gyp > tar-pack > debug:
-        reason: Node-pre-gyp is not user facing.
-        expires: '2017-10-28T15:38:53.216Z'
-  'npm:tough-cookie:20170905':
-    - node-pre-gyp > request > tough-cookie:
-        reason: Node-pre-gyp is not user facing.
-        expires: '2017-10-28T15:36:12.798Z'
-      nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
-        reason: Yarn doesn't upgrade subdependencies
-        expires: '2017-10-28T15:38:53.216Z'
-    - node-pre-gyp > request > tough-cookie:
-        reason: None given
-        expires: '2017-10-28T15:38:53.216Z'
   'npm:mime:20170907':
     - express > send > mime:
-        reason: None given
-        expires: '2017-10-28T15:38:53.216Z'
+        reason: Express 4.16 has problems
+        expires: '2017-11-24T08:35:14.002Z'
     - express > serve-static > send > mime:
-        reason: None given
-        expires: '2017-10-28T15:38:53.216Z'
+        reason: Express 4.16 has problems
+        expires: '2017-11-24T08:35:14.002Z'
+  'npm:debug:20170905':
+    - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
+        reason: Not user facing
+        expires: '2017-11-24T08:35:14.002Z'
+  'npm:tough-cookie:20170905':
+    - nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
+        reason: Not user facing
+        expires: '2017-11-24T08:35:14.002Z'
 patch: {}
