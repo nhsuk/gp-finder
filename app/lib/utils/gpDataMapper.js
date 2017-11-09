@@ -1,6 +1,6 @@
-function getBookOnlineLink(gpData) {
-  return (gpData.onlineServices && gpData.onlineServices.appointments)
-    ? gpData.onlineServices.appointments.url : undefined;
+function getLeaveReviewLink() {
+  // return `https://www.nhs.uk/Services/GP/LeaveReview/DefaultView.aspx?id=${gpData.choicesId}`;
+  return 'https://gp-feedback-prototype-lab2.herokuapp.com/nhs-choices-2_2';
 }
 
 function isNotEmptyString(string) {
@@ -73,7 +73,7 @@ function mappedTitleForGps(doctors) {
 }
 
 module.exports = {
-  getBookOnlineLink,
+  getLeaveReviewLink,
   getFilteredGps,
   mappedTitleForGps,
 };
