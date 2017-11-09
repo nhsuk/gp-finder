@@ -23,8 +23,6 @@ function assertSearchResponse(search, postcode, done, assertions) {
 }
 
 describe('Results page', () => {
-  const noOnlineBookingLinkMessage = 'This surgery doesn&apos;t have an online booking system.';
-
   describe('layout', () => {
     it('should contain HTML', (done) => {
       const search = 'Surgery';
@@ -101,85 +99,6 @@ describe('Results page', () => {
           const noResultsHeader = $('#content').text();
 
           expect(noResultsHeader).to.contain(errorMessage);
-        });
-      });
-    });
-  });
-
-  describe('Surgeries without booking system', () => {
-    describe('Surgeries with phone number', () => {
-      it('should return message to contact reception with phone number link', (done) => {
-        const search = 'bushby';
-        const postcode = '';
-
-        assertSearchResponse(search, postcode, done, (err, res) => {
-          const $ = cheerio.load(res.text);
-          const searchResults = $('.results__item--nearby .results__details').first();
-
-          expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 0116 241 4956 to book an appointment.');
-          expect($('a[href^="tel:"]', searchResults).text()).to.equal('0116 241 4956');
-        });
-      });
-    });
-
-    describe('Surgeries without phone number', () => {
-      it('should return message to contact reception without phone number link', (done) => {
-        const search = 'Mechanic Institute';
-        const postcode = '';
-
-        assertSearchResponse(search, postcode, done, (err, res) => {
-          const $ = cheerio.load(res.text);
-          const searchResults = $('.results__item--nearby .results__details').first();
-
-          expect(searchResults.html()).to.contain(noOnlineBookingLinkMessage);
-          expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception to book an appointment.');
-        });
-      });
-    });
-  });
-
-  describe('Surgeries with booking system which can be linked to', () => {
-    it('should return a booking link for a surgery', (done) => {
-      const search = 'Medi Access';
-      const postcode = '';
-
-      assertSearchResponse(search, postcode, done, (err, res) => {
-        const $ = cheerio.load(res.text);
-        const searchResults = $('.results__item--nearby .results__details .results__name a').first();
-
-        expect(searchResults.text()).to.equal('Medi Access Ltd');
-        expect(searchResults.attr('href')).to.equal('https://systmonline.tpp-uk.com/Login?PracticeId=B81693');
-      });
-    });
-  });
-
-  describe('Surgeries with booking system which can not be linked to', () => {
-    describe('when the surgery has a website', () => {
-      it('should return a booking link to the surgery website', (done) => {
-        const search = 'Sunlight Centre Surgery';
-        const postcode = '';
-
-        assertSearchResponse(search, postcode, done, (err, res) => {
-          const $ = cheerio.load(res.text);
-          const searchResults = $('.results__item--nearby .results__details .results__name a').first();
-
-          expect(searchResults.text()).to.equal('Sunlight Centre Surgery');
-          expect(searchResults.attr('href')).to.equal('http://www.sunlightsurgery.co.uk');
-        });
-      });
-    });
-
-    describe('when the surgery does not have a website', () => {
-      it('should display a call the reception message', (done) => {
-        const search = 'Blewbury Surgery';
-        const postcode = '';
-
-        assertSearchResponse(search, postcode, done, (err, res) => {
-          const $ = cheerio.load(res.text);
-          const searchResults = $('.results__item--nearby .results__details').first();
-
-          expect($('.callout p', searchResults).text().trim()).to.equal('This surgery doesn\'t have an online booking system. Call reception on 01235 517760 to book an appointment.');
-          expect($('a[href^="tel:"]', searchResults).text()).to.equal('01235 517760');
         });
       });
     });
