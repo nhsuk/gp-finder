@@ -2,6 +2,7 @@
 ===================
 - Upgrade Docker container to `node:8.9.1-alpine`
 - Remove redundant `--` for forwarding script options
+- Update npm dependencies
 
 0.19.0 / 2017-10-31
 ===================
