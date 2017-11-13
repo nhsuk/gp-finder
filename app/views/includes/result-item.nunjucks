@@ -1,5 +1,5 @@
 <h3 class="results__name">
-  {{ gp.displayName }}
+  {{ gp.displayName }} {% if gp.distance %} ({{ gp.distance | float | round(2) }} miles) {% endif %}
 </h3>
 {% if gp.address %}
   <p class="results__address">
@@ -12,9 +12,4 @@
     <li class="results__gp">{{ gp | title }}</li>
   {% endfor %}
 </ul>
-{% if gp.distance %}
-  <p class="results__address">
-  Distance: {{ gp.distance | float | round(2) }} miles
-  </p>
-{% endif %}
 <p><a href="{{gp.leaveReviewLink}}">Leave a review</a></p>
