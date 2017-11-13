@@ -1,6 +1,8 @@
 {% extends 'layout.nunjucks' %}
 
-{% block pageTitle %}All service results{% endblock %}
+{% set title = 'Contact your GP surgery' %}
+
+{% block pageTitle %}{{ title }}{% endblock %}
 
 {% block meta %}
 <meta name="WT.gposs" content="{{ search }}"></meta>
@@ -8,7 +10,7 @@
 {% endblock %}
 
 {% block header %}
-<h1 class="page-title">Book a GP appointment online</h1>
+  <h1 class="page-title">{{ title }}</h1>
 {% endblock %}
 
 {% block content %}

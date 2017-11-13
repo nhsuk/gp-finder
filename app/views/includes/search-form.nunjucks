@@ -15,7 +15,7 @@
         <p>{{ noResultsMessage.paragraph }} </p>
       {% else %}
         <h2>Find your GP surgery</h2>
-        <p>You need to do this so we can send your review to the right place.</p>
+        <p>You need to do this so we can get your GP contact details.</p>
       {% endif %}
       {% if (errorMessage) or (gps.length === 0) %}
         <div class="form-group error error__{{searchErrorClass}}">
@@ -27,6 +27,9 @@
           <div class="form-group form-group__search">
             <label class="form-label form-label--bold" for="search">{{ searchLabel }}</label>
             <input autocomplete="off" type="text" class="form-control" name="search" id="search" value=""{% if errorMessage %} aria-describedby="error-message" aria-invalid="true"{% endif %}>
+          </div>
+          <div class="form-group">
+            <p class="form-label--bold">or</p>
           </div>
           <div class="form-group form-group__postcode">
             <label class="form-label form-label--bold" for="postcode">Surgery postcode or your home postcode</label>

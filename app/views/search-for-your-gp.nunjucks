@@ -1,6 +1,6 @@
 {% extends 'layout.nunjucks' %}
 
-{% set title = 'Leave a review about your GP practice' %}
+{% set title = 'Contact your GP surgery' %}
 
 {% block pageTitle %}{{ title }}{% endblock %}
 

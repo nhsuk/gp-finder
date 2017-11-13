@@ -1,20 +1,17 @@
 <h3 class="results__name">
-  {{ gp.displayName }}
+  {{ gp.displayName }} {% if gp.distance %} ({{ gp.distance | float | round(2) }} miles) {% endif %}
 </h3>
 {% if gp.address %}
   <p class="results__address">
     {% if gp.address.addressLines %} {{ gp.address.addressLines | safe | replace(",", ", ") }}, {% endif %}
     {% if gp.address.postcode %} {{ gp.address.postcode }} {% endif %}
   </p>
+  {% if gp.contact.telephone %} <p class="results__address">Telephone: {{ gp.contact.telephone }}</p> {% endif %}
+  {% if gp.contact.email %} <p class="results__address">Email: <a href="mailto:{{gp.contact.email}}">{{ gp.contact.email }}</a></p> {% endif %}
+  {% if gp.contact.website %} <p class="results__address">Website: <a href="{{ gp.contact.website }}">{{ gp.contact.website }}</a></p> {% endif %}
 {% endif %}
 <ul>
   {% for gp in gp.filterGps %}
     <li class="results__gp">{{ gp | title }}</li>
   {% endfor %}
 </ul>
-{% if gp.distance %}
-  <p class="results__address">
-  Distance: {{ gp.distance | float | round(2) }} miles
-  </p>
-{% endif %}
-<p><a href="{{gp.leaveReviewLink}}">Leave a review</a></p>
