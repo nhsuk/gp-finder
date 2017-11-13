@@ -1,4 +1,4 @@
-FROM node:8.8.1-alpine
+FROM node:8.9.1-alpine
 
 ENV USERNAME nodeuser
 

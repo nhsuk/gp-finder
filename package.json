@@ -1,6 +1,6 @@
 {
   "name": "gp-finder",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "description": "Web app to find your GP",
   "main": "server.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "test-ci": "yarn lint && yarn coverage-check && yarn coverage-upload",
     "test-unit": "NODE_ENV=test mocha --recursive test/unit",
     "test-integration-watch": "NODE_ENV=test mocha --recursive test/integration --reporter min --watch",
-    "test-watch": "yarn test -- --reporter min --watch"
+    "test-watch": "yarn test --reporter min --watch"
   },
   "repository": {
     "type": "git",
