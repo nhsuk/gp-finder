@@ -1,6 +1,5 @@
-<script src="{{ SITE_ROOT }}/js/jquery-1.12.4.min.js" type="text/javascript"></script>
+<script src="{{ SITE_ROOT }}/js/vendor/jquery-1.12.4.min.js" type="text/javascript"></script>
 <script src="{{ SITE_ROOT }}/js/cookie-message.js{{ qs }}" type="text/javascript"></script>
-<script src="{{ SITE_ROOT }}/js/selection-buttons.js{{ qs }}" type="text/javascript"></script>
 {% if gps.length > 0 %}
 <script type="text/javascript" src="{{ SITE_ROOT }}/js/vendor/highlight/jquery.mark-8.10.1.min.js"></script>
 <script src="{{ SITE_ROOT }}/js/term-highlight.js{{ qs }}" type="text/javascript"></script>
