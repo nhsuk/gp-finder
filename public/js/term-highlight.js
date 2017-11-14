@@ -1,6 +1,9 @@
-jQuery(function($) {
-  $(document).ready(function () {
+(function(global){
+  "use strict"
+  var $ = global.jQuery;
+  var document = global.document;
 
+  $(document).ready(function () {
     if ($('h1.sr-only').attr('data-term')){
       var searchTerm = $('h1.sr-only')
         .data('term')
@@ -35,4 +38,4 @@ jQuery(function($) {
       });
     }
   });
-});
+})(window);
