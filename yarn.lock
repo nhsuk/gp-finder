@@ -3765,9 +3765,9 @@ restore-cursor@^2.0.0:
     onetime "^2.0.0"
     signal-exit "^3.0.2"
 
-rewire@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/rewire/-/rewire-3.0.0.tgz#562a43185dcf8f66b3cdfbb88e90cf4d3c1b8c6d"
+rewire@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/rewire/-/rewire-3.0.1.tgz#e58b71eb7e10b3bc371069118fa4f2f99f975427"
   dependencies:
     babel-core "^6.26.0"
     babel-plugin-transform-es2015-block-scoping "^6.26.0"
