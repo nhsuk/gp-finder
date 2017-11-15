@@ -1,5 +1,6 @@
 @import "../environment/settings/colours";
 @import "../environment/settings/typography";
+@import "../environment/tools/functions/asset-urls";
 
 .global-footer {
   background-color: $nhs-blue;
@@ -30,7 +31,7 @@
   }
 
   &:before {
-    background: url("images/logotype-nhs-colour.png") no-repeat;
+    background: image-url("logotype-nhs-colour.png") no-repeat;
     background-size: contain;
     content: "";
     display: block;
@@ -46,7 +47,7 @@
     @media
       (-webkit-min-device-pixel-ratio: 2),
       (min-resolution: 192dpi) {
-      background-image: url("images/logotype-nhs-colour@2x.png");
+      background-image: image-url("logotype-nhs-colour@2x.png");
       background-size: 79px 32px;
     }
   }
