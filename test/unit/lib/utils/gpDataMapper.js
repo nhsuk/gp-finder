@@ -4,29 +4,6 @@ const gpDataMapper = require('../../../../app/lib/utils/gpDataMapper');
 const expect = chai.expect;
 
 describe('GP Surgery Data Mapper', () => {
-  describe('booking url', () => {
-    it('for a GP Surgery that has appointments POMI data and a url will return the url', () => {
-      const gpData = { onlineServices: { appointments: { supplier: 'EMIS', url: 'http://example.com' } } };
-      const result = gpDataMapper.getBookOnlineLink(gpData);
-
-      expect(result).to.be.equal('http://example.com');
-    });
-
-    it('for a GP Surgery that has no appointments POMI data will return undefined', () => {
-      const gpData = { onlineServices: { repeatPrescription: {} } };
-      const result = gpDataMapper.getBookOnlineLink(gpData);
-
-      expect(result).to.be.equal(undefined);
-    });
-
-    it('for a GP Surgery that has no online services  data will return undefined', () => {
-      const gpData = {};
-      const result = gpDataMapper.getBookOnlineLink(gpData);
-
-      expect(result).to.be.equal(undefined);
-    });
-  });
-
   // Array comparison: https://medium.com/@victorleungtw/testing-with-mocha-array-comparison-e9a45b57df27
   describe('filtered doctors', () => {
     it('for a GP Surgery that has no doctors with the name matching the search will not return any doctors', () => {
