@@ -1,6 +1,6 @@
 function getLeaveReviewLink() {
   // return `https://www.nhs.uk/Services/GP/LeaveReview/DefaultView.aspx?id=${gpData.choicesId}`;
-  return 'https://gp-feedback-prototype-lab2.herokuapp.com/nhs-choices-2_2';
+  return 'https://gp-feedback-prototype-lab3.herokuapp.com/2_leave_a_written_review';
 }
 
 function isNotEmptyString(string) {

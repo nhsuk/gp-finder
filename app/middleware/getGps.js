@@ -21,7 +21,7 @@ function mapResults(results, res, searchTerm) {
     const gp = result._source;
 
     if (gp) {
-      gp.leaveReviewLink = gpDataMapper.getLeaveReviewLink(gp);
+      gp.leaveReviewLink = gpDataMapper.getLeaveReviewLink();
 
       if (searchTerm) {
         gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));

@@ -1,6 +1,7 @@
 const backLinkUtils = require('../lib/utils/backLink');
 
 function fromRequest(req, res, next) {
+  res.locals.leaveReviewLink = req.query.leaveReviewLink;
   res.locals.search = req.query.search;
   res.locals.postcodeSearch = req.query.postcode;
   res.locals.resultsCount = 0;
