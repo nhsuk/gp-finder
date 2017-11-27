@@ -1,6 +1,6 @@
-function getLeaveReviewLink() {
+function getLeaveReviewLink(surgeryName) {
   // return `https://www.nhs.uk/Services/GP/LeaveReview/DefaultView.aspx?id=${gpData.choicesId}`;
-  return 'https://gp-feedback-prototype-lab3.herokuapp.com/2_leave_a_written_review';
+  return `https://gp-feedback-prototype-lab3.herokuapp.com/2_leave_a_written_review?surgeryName=${surgeryName}`;
 }
 
 function isNotEmptyString(string) {
