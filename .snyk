@@ -21,4 +21,8 @@ ignore:
     - node-sass > request > tunnel-agent:
         reason: no fix available
         expires: '2017-12-27T09:30:48.283Z'
+  'npm:qs:20170213':
+    - postcodesio-client > json-client > qs:
+        reason: no upgrade available
+        expires: '2017-12-27T11:07:32.596Z'
 patch: {}

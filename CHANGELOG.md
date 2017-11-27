@@ -1,7 +1,12 @@
+0.20.2 / TBA
+===================
+- Update postcodesio-client
+
 0.20.1 / 2017-11-28
 ===================
 - Update rewire and express
 - Fix Webtrends 'undefined' bug
+- Update rewire, express and postcodesio-client
 
 0.20.0 / 2017-11-16
 ===================
