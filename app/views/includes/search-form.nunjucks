@@ -40,6 +40,7 @@
 
         <div class="form-item-wrapper">
           <div class="form-group form-group--submit">
+            <input type="hidden" name="callback" value="{{ callback }}">
             <input type="submit" class="button" value="{{ searchButton }}">
           </div>
         </div>

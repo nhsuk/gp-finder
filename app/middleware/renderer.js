@@ -10,7 +10,7 @@ function results(req, res) {
 }
 
 function searchForYourGp(req, res) {
-  res.render('search-for-your-gp');
+  res.render('search-for-your-gp', { callback: res.locals.callback });
 }
 
 function postcodeError(error, postcode, res, next) {

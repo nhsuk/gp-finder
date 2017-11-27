@@ -12,6 +12,7 @@ services:
       - .:/code
     environment:
       NODE_ENV: ${NODE_ENV-development}
+      GP_FEEDBACK_PROTOTYPE: ${GP_FEEDBACK_PROTOTYPE}
       ES_HOST: ${ES_HOST}
       ES_PORT: ${ES_PORT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
