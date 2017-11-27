@@ -17,4 +17,8 @@ ignore:
     - nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
         reason: Not user facing
         expires: '2017-11-24T08:35:14.002Z'
+  'npm:tunnel-agent:20170305':
+    - node-sass > request > tunnel-agent:
+        reason: no fix available
+        expires: '2017-12-27T09:30:48.283Z'
 patch: {}
