@@ -3247,7 +3247,7 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-nunjucks@3.0.1:
+nunjucks@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/nunjucks/-/nunjucks-3.0.1.tgz#4de74a3e550baf6fa3370323f3d1c7c2a86bdc4d"
   dependencies:
@@ -3541,7 +3541,7 @@ postcode@^0.2.5:
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/postcode/-/postcode-0.2.5.tgz#1c1893a7b6da2ea5c8f19bff158593ac81502c78"
 
-postcodesio-client@^0.3.0:
+postcodesio-client@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/postcodesio-client/-/postcodesio-client-0.3.1.tgz#48008edaf29f79480b4ab3c3ae9eedcc8918a72c"
   dependencies:
