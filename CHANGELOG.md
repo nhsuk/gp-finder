@@ -1,3 +1,7 @@
+0.20.1 / TBA
+===================
+- Update rewire and express
+
 0.20.0 / 2017-11-16
 ===================
 - Upgrade Docker container to `node:8.9.1-alpine`
