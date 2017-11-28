@@ -1,6 +1,7 @@
-0.20.1 / TBA
+0.20.1 / 2017-11-28
 ===================
 - Update rewire and express
+- Fix Webtrends 'undefined' bug
 
 0.20.0 / 2017-11-16
 ===================
