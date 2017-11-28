@@ -1,4 +1,4 @@
-const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+const searchAgainLink = '<a href=\'/\'>search again</a>';
 
 function searchHelp(hasPostcode, hasSearchTerm) {
   let helpPrompt = 'If your surgery is not here, ';

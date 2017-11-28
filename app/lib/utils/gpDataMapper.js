@@ -1,6 +1,7 @@
-function getBookOnlineLink(gpData) {
-  return (gpData.onlineServices && gpData.onlineServices.appointments)
-    ? gpData.onlineServices.appointments.url : undefined;
+
+function getLeaveReviewLink(callback, surgeryName) {
+  // return `https://www.nhs.uk/Services/GP/LeaveReview/DefaultView.aspx?id=${gpData.choicesId}`;
+  return `${callback}?surgeryName=${surgeryName}`;
 }
 
 function isNotEmptyString(string) {
@@ -73,7 +74,7 @@ function mappedTitleForGps(doctors) {
 }
 
 module.exports = {
-  getBookOnlineLink,
+  getLeaveReviewLink,
   getFilteredGps,
   mappedTitleForGps,
 };

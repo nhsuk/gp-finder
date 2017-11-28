@@ -1,9 +1,5 @@
 <h3 class="results__name">
-  {% if gp.bookOnlineLink %}
-    <a href="{{gp.bookOnlineLink}}">{{ gp.displayName }}</a>
-  {% else %}
-    {{ gp.displayName }}
-  {% endif %}
+  {{ gp.displayName }} {% if gp.distance %} ({{ gp.distance | float | round(2) }} miles) {% endif %}
 </h3>
 {% if gp.address %}
   <p class="results__address">
@@ -16,13 +12,4 @@
     <li class="results__gp">{{ gp | title }}</li>
   {% endfor %}
 </ul>
-{% if gp.distance %}
-  <p class="results__address">
-  Distance: {{ gp.distance | float | round(2) }} miles
-  </p>
-{% endif %}
-{% if not gp.bookOnlineLink %}
-  <section class="callout callout--info callout--compact">
-    <p>This surgery doesn't have an online booking system. Call reception {% if gp.contact.telephone %}on <a href="tel:{{gp.contact.telephone}}">{{gp.contact.telephone}}</a> {% endif %}to book an appointment.
-  </section>
-{% endif %}
+<p><a href="{{gp.leaveReviewLink}}">Leave a review</a></p>

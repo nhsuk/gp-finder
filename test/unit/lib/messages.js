@@ -40,7 +40,7 @@ describe('messages', () => {
   });
 
   describe('search help prompt', () => {
-    const searchAgainLink = '<a href=\'/book-a-gp-appointment\'>search again</a>';
+    const searchAgainLink = '<a href=\'/\'>search again</a>';
 
     it('should have a postcode message when only a postcode has been passed', () => {
       const message = messages.searchHelp(true, false);
