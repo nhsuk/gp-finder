@@ -12,7 +12,6 @@ services:
       - .:/code
     environment:
       NODE_ENV: ${NODE_ENV-development}
-      GP_FEEDBACK_PROTOTYPE: ${GP_FEEDBACK_PROTOTYPE}
       ES_HOST: ${ES_HOST}
       ES_PORT: ${ES_PORT}
       SPLUNK_HEC_TOKEN: ${SPLUNK_HEC_TOKEN}
@@ -28,7 +27,7 @@ services:
     links:
       - gp-finder-db:es
     ports:
-      - 3000:3000
+      - 3100:3000
     volumes:
       - gp-finder-node_modules:/code/node_modules
 
