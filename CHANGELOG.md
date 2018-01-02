@@ -1,3 +1,7 @@
+0.21.0 / 2018-01-09
+===================
+- Update npm dependencies
+
 0.20.1 / 2017-11-28
 ===================
 - Update rewire and express
