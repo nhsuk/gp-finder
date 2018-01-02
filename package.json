@@ -1,6 +1,6 @@
 {
   "name": "gp-finder",
-  "version": "0.20.1",
+  "version": "0.21.0",
   "description": "Web app to find your GP",
   "main": "server.js",
   "scripts": {
