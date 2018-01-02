@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.7.1
+version: v1.10.1
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   'npm:mime:20170907':
@@ -11,14 +11,14 @@ ignore:
         expires: '2017-11-24T08:35:14.002Z'
   'npm:debug:20170905':
     - nunjucks > chokidar > fsevents > node-pre-gyp > tar-pack > debug:
-        reason: Not user facing
-        expires: '2017-11-24T08:35:14.002Z'
+        reason: No upgrade path
+        expires: '2018-02-01T09:06:14.930Z'
   'npm:tough-cookie:20170905':
     - nunjucks > chokidar > fsevents > node-pre-gyp > request > tough-cookie:
-        reason: Not user facing
-        expires: '2017-11-24T08:35:14.002Z'
+        reason: No upgrade path
+        expires: '2018-02-01T09:06:14.930Z'
   'npm:tunnel-agent:20170305':
     - node-sass > request > tunnel-agent:
-        reason: no fix available
-        expires: '2017-12-27T09:30:48.283Z'
+        reason: Not user facing
+        expires: '2018-02-01T09:06:14.930Z'
 patch: {}
