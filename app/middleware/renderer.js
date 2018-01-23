@@ -9,6 +9,10 @@ function results(req, res) {
   }
 }
 
+function start(req, res) {
+  res.render('start');
+}
+
 function searchForYourGp(req, res) {
   res.render('search-for-your-gp');
 }
@@ -40,6 +44,7 @@ function invalidPostcodePage(postcode, req, res) {
 
 module.exports = {
   results,
+  start,
   searchForYourGp,
   postcodeError,
   postcodeNotEnglish,

@@ -10,7 +10,7 @@ function searchHelp(hasPostcode, hasSearchTerm) {
       helpPrompt += `you have entered is right and ${searchAgainLink}. You can also search by the name of your GP or surgery.`;
     }
   } else {
-    helpPrompt += `check the text you have entered is right and ${searchAgainLink}. You can also search using a postcode.`;
+    helpPrompt += `check the text you have entered is right and ${searchAgainLink}.`;
   }
 
   return helpPrompt;
@@ -47,8 +47,7 @@ function noResults(searchPostcode, searchTerm) {
     errorClass = 'blank';
   } else if (searchTerm) { // NOTE: there are no postcode only errors
     errorClass = 'search';
-    paragraphPrompt = 'Check the name you entered is right. You get better results if you enter a full name. ' +
-      'You can also search using a postcode.';
+    paragraphPrompt = 'Check the name you entered is right. You get better results if you enter a full name.';
   }
   return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
 }

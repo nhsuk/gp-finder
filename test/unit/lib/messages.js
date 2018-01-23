@@ -50,7 +50,7 @@ describe('messages', () => {
     it('should have a GP name message when only a name has been passed', () => {
       const message = messages.searchHelp(false, true);
 
-      expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}. You can also search using a postcode.`);
+      expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}.`);
     });
 
     it('should have a combined message when a postcode and name have been passed', () => {
@@ -65,7 +65,7 @@ describe('messages', () => {
 
       expect(message.header).to.equal('We can not find a surgery using \'netherthorpte\'');
       expect(message.paragraph).to.equal('Check the name you entered ' +
-        'is right. You get better results if you enter a full name. You can also search using a postcode.');
+        'is right. You get better results if you enter a full name.');
     });
 
     it('should have a GP name error class when only a name has been passed', () => {

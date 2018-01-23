@@ -6,7 +6,7 @@ function fromRequest(req, res, next) {
   res.locals.resultsCount = 0;
   res.locals.isOutcode = false;
   res.locals.searchLabel = 'Surgery or GP name';
-  res.locals.searchButton = 'Search';
+  res.locals.searchButton = 'Next';
 
   const backLink = backLinkUtils(req, res);
 
