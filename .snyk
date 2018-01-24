@@ -19,6 +19,6 @@ ignore:
         expires: '2018-02-01T09:06:14.930Z'
   'npm:tunnel-agent:20170305':
     - node-sass > request > tunnel-agent:
-        reason: Not user facing
-        expires: '2018-02-01T09:06:14.930Z'
+        reason: None given
+        expires: '2018-02-23T13:40:20.732Z'
 patch: {}
