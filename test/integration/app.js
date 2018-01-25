@@ -3,7 +3,6 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../../server');
 const constants = require('../../app/lib/constants');
-const iExpect = require('../lib/expectations');
 
 const expect = chai.expect;
 
@@ -44,29 +43,23 @@ describe('app', () => {
   });
 
   describe('The home page', () => {
-    it('should contain a generic back link', (done) => {
+    const pageTitle = 'Book an appointment through GP online services';
+    it('should have a page title', (done) => {
       chai.request(app)
         .get(`${constants.SITE_ROOT}/`)
         .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
-
           const $ = cheerio.load(res.text);
 
-          expect($('.link-back').text()).to.equal('');
-          iExpect.homePage($);
+          expect($('.page-title').text()).to.equal(pageTitle);
           done();
         });
     });
-    it('should have it\'s page title and h1 to have the same info for SEO reasons', (done) => {
+    it('should have matching page title and h1 for SEO reasons', (done) => {
       chai.request(app)
         .get(`${constants.SITE_ROOT}/`)
         .end((err, res) => {
-          iExpect.htmlWith200Status(err, res);
-
           const $ = cheerio.load(res.text);
-
           expect($('.page-title').text()).to.equal($('title').text());
-          iExpect.homePage($);
           done();
         });
     });

@@ -3,8 +3,6 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../../server');
 const constants = require('../../app/lib/constants');
-const iExpect = require('../lib/expectations');
-const messages = require('../../app/lib/messages');
 
 const expect = chai.expect;
 
@@ -20,15 +18,24 @@ function assertSearchResponse(search, postcode, assertions) {
 }
 
 function assertEmptyResponse(search, postcode, done) {
-  const errorMessage = messages.emptySearch();
-
   assertSearchResponse(search, postcode, (err, res) => {
     const $ = cheerio.load(res.text);
 
-    iExpect.homePageEmptyEntry($);
-    const errorHeader = $('#content').text();
+    expect($('title').html()).to.match(/^Please retry - What&apos;s your GP surgery&apos;s name?/);
+    expect($('.form--error .form-item-wrapper > h2').text()).to.contain('You need to enter some text');
 
-    expect(errorHeader).to.contain(errorMessage);
+    done();
+  });
+}
+
+function assertInvalidPostcodeResponse(search, postcode, done) {
+  assertSearchResponse(search, postcode, (err, res) => {
+    const $ = cheerio.load(res.text);
+
+    expect($('title').html()).to.match(/^Please retry - What&apos;s your GP surgery&apos;s name?/);
+    expect($('.form-item-wrapper').text()).to.contain('The postcode');
+    expect($('.form-item-wrapper').text()).to.contain('does not exist');
+
     done();
   });
 }
@@ -96,13 +103,7 @@ describe('Results page error handling', () => {
     it('should return a descriptive error messages', (done) => {
       const search = undefined;
       const postcode = 'S50';
-
-      assertSearchResponse(search, postcode, (err, res) => {
-        const $ = cheerio.load(res.text);
-
-        iExpect.homePageInvalidPostcode($);
-        done();
-      });
+      assertInvalidPostcodeResponse(search, postcode, done);
     });
   });
 
@@ -110,12 +111,7 @@ describe('Results page error handling', () => {
     it('should return a descriptive error messages', (done) => {
       const search = undefined;
       const postcode = 'S50 3EW';
-      assertSearchResponse(search, postcode, (err, res) => {
-        const $ = cheerio.load(res.text);
-
-        iExpect.homePageInvalidPostcode($);
-        done();
-      });
+      assertInvalidPostcodeResponse(search, postcode, done);
     });
   });
 });

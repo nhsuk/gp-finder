@@ -17,7 +17,9 @@ function assertSearchResponse(search, postcode, done, assertions) {
     .query({ search, postcode })
     .end((err, res) => {
       iExpect.htmlWith200Status(err, res);
-      assertions(err, res);
+      if (assertions) {
+        assertions(err, res);
+      }
       done();
     });
 }
@@ -30,9 +32,7 @@ describe('Results page', () => {
       const search = 'Surgery';
       const postcode = '';
 
-      assertSearchResponse(search, postcode, done, (err, res) => {
-        iExpect.htmlWith200Status(err, res);
-      });
+      assertSearchResponse(search, postcode, done);
     });
 
     it('should contain a header with the string', (done) => {
