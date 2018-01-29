@@ -27,9 +27,15 @@ router.get(
 );
 
 router.get(
-  '/',
+  '/search-for-your-gp',
   setLocals.fromRequest,
   renderer.searchForYourGp
+);
+
+router.get(
+  '/',
+  setLocals.fromRequest,
+  renderer.start
 );
 
 module.exports = router;

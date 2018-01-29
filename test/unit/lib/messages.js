@@ -50,7 +50,7 @@ describe('messages', () => {
     it('should have a GP name message when only a name has been passed', () => {
       const message = messages.searchHelp(false, true);
 
-      expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}. You can also search using a postcode.`);
+      expect(message).to.equal(`If your surgery is not here, check the text you have entered is right and ${searchAgainLink}.`);
     });
 
     it('should have a combined message when a postcode and name have been passed', () => {
@@ -64,36 +64,13 @@ describe('messages', () => {
       const message = messages.noResults(undefined, 'netherthorpte');
 
       expect(message.header).to.equal('We can not find a surgery using \'netherthorpte\'');
-      expect(message.paragraph).to.equal('Check the name you entered ' +
-        'is right. You get better results if you enter a full name. You can also search using a postcode.');
+      expect(message.paragraph).to.equal('Check the name or postcode you entered is correct.');
     });
 
     it('should have a GP name error class when only a name has been passed', () => {
       const message = messages.noResults(undefined, 'netherthorpte');
 
       expect(message.class).to.equal('search');
-    });
-
-    it('should have a combined message when a postcode and name have been passed', () => {
-      const message = messages.noResults({ isOutcode: false, term: 'TR21 0HE' }, 'Dave');
-
-      expect(message.header).to.equal('We can not find a surgery near to \'TR21 0HE\' using \'Dave\'');
-      expect(message.paragraph).to.equal('Check the ' +
-        'name and the postcode you entered are right. You get better results if you enter a full name or postcode.');
-    });
-
-    it('should have a combined message when an outcode and name have been passed', () => {
-      const message = messages.noResults({ isOutcode: true, term: 'TR21' }, 'Dave');
-
-      expect(message.header).to.equal('We can not find a surgery close to the \'TR21\' area using \'Dave\'');
-      expect(message.paragraph).to.equal('Check the ' +
-        'name and the postcode you entered are right. You get better results if you enter a full name or postcode.');
-    });
-
-    it('should have a combined error class when a postcode and name have been passed', () => {
-      const message = messages.noResults({ isOutcode: true, term: 'TR21' }, 'Dave');
-
-      expect(message.class).to.equal('blank');
     });
   });
 

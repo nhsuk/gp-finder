@@ -1,0 +1,46 @@
+{% extends 'layout.nunjucks' %}
+
+{% set title = 'Book a GP appointment online' %}
+
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block header %}
+  <h1 class="page-title">{{ title }}</h1>
+{% endblock %}
+
+{% block content %}
+  <div class="reading-width">
+  <p>If your GP surgery allows patients to book appointments online, use this service to:</p>
+  <ul>
+    <li>find your surgery’s online services website</li>
+    <li>sign in and book an appointment</li>
+  </ul>
+
+  <p>You will need:</p>
+  <ul>
+    <li>the name of your surgery or your home postcode</li>
+    <li>the username and password it gave you for online services</li>
+  </ul>
+
+  </div>
+    <form action="search-for-your-gp" method="GET">
+    <div class="section">
+      <div class="button__spacing">
+        <input type="submit" class="button" value="Start">
+      </div>
+    </div>
+  </form>
+
+  <details class="not-registered" role="group">
+    <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
+      <span class="details__summary">I haven’t got a username and password</span>
+    </summary>
+
+    <div id="details-content-0" aria-hidden="true" class="callout callout--info callout--friendly">
+      <div class="reading-width">
+        <p>Ask receptionists at your surgery for a form to join online services. 
+If you’ve forgotten or lost your username and password, use this service to find your online services website and ask for a reminder.</p>
+      </div>
+    </div>
+  </details>
+{% endblock %}

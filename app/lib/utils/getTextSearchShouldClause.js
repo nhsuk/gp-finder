@@ -33,33 +33,6 @@ function getShouldClause(searchTerm) {
           cutoff_frequency: 0.0001
         }
       }
-    },
-    {
-      nested: {
-        path: 'doctors',
-        query: {
-          bool: {
-            should: [
-              {
-                match_phrase: {
-                  'doctors.name': {
-                    query: searchTerm,
-                    boost: 2,
-                    slop: 1
-                  }
-                }
-              },
-              {
-                match: {
-                  'doctors.name': {
-                    query: searchTerm
-                  }
-                }
-              }
-            ]
-          }
-        },
-      }
     }
   ];
 

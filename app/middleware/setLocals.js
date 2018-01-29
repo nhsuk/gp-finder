@@ -1,12 +1,16 @@
 const backLinkUtils = require('../lib/utils/backLink');
+const parseSearch = require('../lib/utils/parseSearch');
 
 function fromRequest(req, res, next) {
-  res.locals.search = req.query.search;
-  res.locals.postcodeSearch = req.query.postcode;
+  if (req.query.search) {
+    const searchTerms = parseSearch.getSearchTerms(req.query.search);
+    res.locals.search = searchTerms.search;
+    res.locals.postcodeSearch = searchTerms.postcode;
+  }
   res.locals.resultsCount = 0;
   res.locals.isOutcode = false;
   res.locals.searchLabel = 'Surgery or GP name';
-  res.locals.searchButton = 'Search';
+  res.locals.searchButton = 'Next';
 
   const backLink = backLinkUtils(req, res);
 
