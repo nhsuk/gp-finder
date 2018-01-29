@@ -1,6 +1,6 @@
 {% extends 'layout.nunjucks' %}
 
-{% set title = 'What\'s your GP surgery\'s name?' %}
+{% set title = 'Enter your GP surgery\'s name or your home postcode' %}
 
 {% block pageTitle %}{{ title }}{% endblock %}
 

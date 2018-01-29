@@ -39,16 +39,8 @@ function searchInformation(singleResult, searchPostcode, searchTerm) {
 
 function noResults(searchPostcode, searchTerm) {
   const headerPrompt = `We can not find a surgery${postcodeProximityMessage(searchPostcode, searchTerm)}`;
-  let paragraphPrompt = '';
-  let errorClass = '';
-  if ((searchPostcode) && (searchTerm)) {
-    paragraphPrompt = 'Check the name and the postcode you entered are right. You get better results if you enter ' +
-      'a full name or postcode.';
-    errorClass = 'blank';
-  } else if (searchTerm) { // NOTE: there are no postcode only errors
-    errorClass = 'search';
-    paragraphPrompt = 'Check the name you entered is right. You get better results if you enter a full name.';
-  }
+  const errorClass = 'search';
+  const paragraphPrompt = 'Check the name or postcode you entered is correct.';
   return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
 }
 
@@ -69,7 +61,7 @@ function outOfEngland(searchPostcode) {
 }
 
 function emptySearch() {
-  return 'Enter the name of your surgery, the name of your GP or a postcode.';
+  return 'what text should be here?';
 }
 
 function invalidPostcode() {

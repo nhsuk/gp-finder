@@ -43,7 +43,7 @@ describe('app', () => {
   });
 
   describe('The home page', () => {
-    const pageTitle = 'Book an appointment through GP online services';
+    const pageTitle = 'Book a GP appointment online';
     it('should have a page title', (done) => {
       chai.request(app)
         .get(`${constants.SITE_ROOT}/`)

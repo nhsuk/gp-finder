@@ -10,87 +10,42 @@ chai.use(chaiHttp);
 
 const resultsRoute = `${constants.SITE_ROOT}/results/`;
 
-function assertSearchResponse(search, postcode, assertions) {
+const retryRegex = /^Please retry - Enter your GP surgery&apos;s name or your home postcode/;
+
+function assertSearchResponse(search, assertions) {
   chai.request(app)
     .get(resultsRoute)
-    .query({ search, postcode })
+    .query({ search })
     .end(assertions);
 }
 
-function assertEmptyResponse(search, postcode, done) {
-  assertSearchResponse(search, postcode, (err, res) => {
+function assertEmptyResponse(search, done) {
+  assertSearchResponse(search, (err, res) => {
     const $ = cheerio.load(res.text);
 
-    expect($('title').html()).to.match(/^Please retry - What&apos;s your GP surgery&apos;s name?/);
+    expect($('title').html()).to.match(retryRegex);
     expect($('.form--error .form-item-wrapper > h2').text()).to.contain('You need to enter some text');
 
     done();
   });
 }
 
-function assertInvalidPostcodeResponse(search, postcode, done) {
-  assertSearchResponse(search, postcode, (err, res) => {
-    const $ = cheerio.load(res.text);
-
-    expect($('title').html()).to.match(/^Please retry - What&apos;s your GP surgery&apos;s name?/);
-    expect($('.form-item-wrapper').text()).to.contain('The postcode');
-    expect($('.form-item-wrapper').text()).to.contain('does not exist');
-
-    done();
-  });
-}
-
 describe('Results page error handling', () => {
-  describe('when search and postcode are not included', () => {
+  describe('when search is undefined', () => {
     it('should return a descriptive error messages', (done) => {
       const search = undefined;
-      const postcode = undefined;
-      assertEmptyResponse(search, postcode, done);
+      assertEmptyResponse(search, done);
     });
   });
 
-  describe('when search is empty but postcode is not included', () => {
+  describe('when search is empty', () => {
     it('should return a descriptive error messages', (done) => {
       const search = '';
-      const postcode = undefined;
-      assertEmptyResponse(search, postcode, done);
+      assertEmptyResponse(search, done);
     });
-  });
-
-  describe('when search is not includes but postcode is empty', () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = undefined;
-      const postcode = '';
-      assertEmptyResponse(search, postcode, done);
-    });
-  });
-
-  describe('when search is some empty spaces & postcode is empty', () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = '   ';
-      const postcode = '';
-      assertEmptyResponse(search, postcode, done);
-    });
-  });
-
-  describe('when search is empty & postcode is some empty spaces', () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = '';
-      const postcode = '   ';
-      assertEmptyResponse(search, postcode, done);
-    });
-  });
-
-  describe('when search and postcode are empty strings', () => {
-    const search = '';
-    const postcode = '';
-
-    it('should return a descriptive error messages', (done) => {
-      assertEmptyResponse(search, postcode, done);
-    });
-
     it('should not contain a back link', (done) => {
-      assertSearchResponse(search, postcode, (err, res) => {
+      const search = '';
+      assertSearchResponse(search, (err, res) => {
         const $ = cheerio.load(res.text);
 
         expect($('.link-back:first-of-type').length).to.equal(0);
@@ -99,19 +54,10 @@ describe('Results page error handling', () => {
     });
   });
 
-  describe('when search is not included & postcode is an invalid outcode', () => {
+  describe('when search contains white space', () => {
     it('should return a descriptive error messages', (done) => {
-      const search = undefined;
-      const postcode = 'S50';
-      assertInvalidPostcodeResponse(search, postcode, done);
-    });
-  });
-
-  describe('when search is not included & postcode is an invalid postcode', () => {
-    it('should return a descriptive error messages', (done) => {
-      const search = undefined;
-      const postcode = 'S50 3EW';
-      assertInvalidPostcodeResponse(search, postcode, done);
+      const search = '   ';
+      assertEmptyResponse(search, done);
     });
   });
 });

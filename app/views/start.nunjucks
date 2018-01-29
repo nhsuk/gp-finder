@@ -1,6 +1,6 @@
 {% extends 'layout.nunjucks' %}
 
-{% set title = 'Book an appointment through GP online services' %}
+{% set title = 'Book a GP appointment online' %}
 
 {% block pageTitle %}{{ title }}{% endblock %}
 
@@ -18,9 +18,18 @@
 
   <p>You will need:</p>
   <ul>
-    <li>the name of your surgery</li>
+    <li>the name of your surgery or your home postcode</li>
     <li>the username and password it gave you for online services</li>
   </ul>
+
+  </div>
+    <form action="search-for-your-gp" method="GET">
+    <div class="section">
+      <div class="button__spacing">
+        <input type="submit" class="button" value="Start">
+      </div>
+    </div>
+  </form>
 
   <details class="not-registered" role="group">
     <summary data-analytics="summary" role="button" aria-controls="details-content-0" aria-expanded="false">
@@ -34,12 +43,4 @@ If you’ve forgotten or lost your username and password, use this service to fi
       </div>
     </div>
   </details>
-  </div>
-    <form action="search-for-your-gp" method="GET">
-    <div class="section">
-      <div class="button__spacing">
-        <input type="submit" class="button" value="Start">
-      </div>
-    </div>
-  </form>
 {% endblock %}
