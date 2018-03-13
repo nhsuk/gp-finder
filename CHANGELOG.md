@@ -1,3 +1,7 @@
+0.22.0 / TBC
+===================
+- Update npm dependencies
+
 0.21.0 / 2018-01-09
 ===================
 - Update npm dependencies
