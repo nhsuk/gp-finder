@@ -19,7 +19,7 @@ function expectMessageForNotEnglishPostcode(res, message, message2) {
 function makeSearchRequestAndCheckExpectations(postcode, isOutcode, assertions) {
   chai.request(app)
     .get(outsideEnglandRoute)
-    .query({ postcode, isOutcode })
+    .query({ isOutcode, postcode })
     .end(assertions);
 }
 

@@ -50,7 +50,7 @@ function noResults(searchPostcode, searchTerm) {
     paragraphPrompt = 'Check the name you entered is right. You get better results if you enter a full name. ' +
       'You can also search using a postcode.';
   }
-  return { header: headerPrompt, paragraph: paragraphPrompt, class: errorClass };
+  return { class: errorClass, header: headerPrompt, paragraph: paragraphPrompt };
 }
 
 function outOfEngland(searchPostcode) {
@@ -82,11 +82,11 @@ function technicalProblems() {
 }
 
 module.exports = {
-  searchInformation,
-  searchHelp,
-  noResults,
-  outOfEngland,
   emptySearch,
   invalidPostcode,
+  noResults,
+  outOfEngland,
+  searchHelp,
+  searchInformation,
   technicalProblems,
 };

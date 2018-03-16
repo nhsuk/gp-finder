@@ -25,7 +25,7 @@ function findKeyValuePair(obj, searchKey, searchValue) {
 describe('esGeoQueryBuilder', () => {
   const location = {
     lat: 52.71283117402151,
-    lon: -2.74961048457895
+    lon: -2.74961048457895,
   };
   const searchTerm = 'search for this';
   it('should return an object', () => {

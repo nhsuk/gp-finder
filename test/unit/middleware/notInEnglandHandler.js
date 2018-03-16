@@ -15,14 +15,14 @@ describe('notInEnglandHandler', () => {
       const next = sinon.spy();
       const countries = ['Scotland'];
       const res = {
-        redirect
+        redirect,
       };
       res.locals = {
-        postcodeSearch: 'TD9 9AA',
         postcodeLocationDetails: {
+          countries,
           isOutcode: false,
-          countries
-        }
+        },
+        postcodeSearch: 'TD9 9AA',
       };
 
       notInEnglandHandler({}, res, next);
@@ -37,14 +37,14 @@ describe('notInEnglandHandler', () => {
       const next = sinon.spy();
       const countries = ['Scotland'];
       const res = {
-        redirect
+        redirect,
       };
       res.locals = {
-        postcodeSearch: 'TD9',
         postcodeLocationDetails: {
+          countries,
           isOutcode: true,
-          countries
-        }
+        },
+        postcodeSearch: 'TD9',
       };
 
       notInEnglandHandler({}, res, next);
@@ -58,11 +58,11 @@ describe('notInEnglandHandler', () => {
   describe('should call next when inside England', () => {
     it('postcode wholly in England', () => {
       const locals = {
-        postcodeSearch: 'HG5 0JL',
         postcodeLocationDetails: {
+          countries: ['England'],
           isOutcode: false,
-          countries: ['England']
-        }
+        },
+        postcodeSearch: 'HG5 0JL',
       };
       const next = sinon.spy();
 
@@ -73,11 +73,11 @@ describe('notInEnglandHandler', () => {
 
     it('outcode wholly in England', () => {
       const locals = {
-        postcodeSearch: 'HG5',
         postcodeLocationDetails: {
+          countries: ['England'],
           isOutcode: true,
-          countries: ['England']
-        }
+        },
+        postcodeSearch: 'HG5',
       };
       const next = sinon.spy();
 
@@ -88,11 +88,11 @@ describe('notInEnglandHandler', () => {
 
     it('outcode partially in England', () => {
       const locals = {
-        postcodeSearch: 'TD9',
         postcodeLocationDetails: {
+          countries: ['England', 'Scotland'],
           isOutcode: true,
-          countries: ['England', 'Scotland']
-        }
+        },
+        postcodeSearch: 'TD9',
       };
       const next = sinon.spy();
 

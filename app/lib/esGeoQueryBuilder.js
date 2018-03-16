@@ -8,24 +8,24 @@ function build(location, searchTerm, size) {
     geo_distance: {
       distance: '50mi',
       'location.coordinates': {
+        lat: location.lat,
         lon: location.lon,
-        lat: location.lat
-      }
-    }
+      },
+    },
   };
 
   query.body.sort = [
     {
       _geo_distance: {
+        distance_type: 'plane',
         'location.coordinates': {
+          lat: location.lat,
           lon: location.lon,
-          lat: location.lat
         },
         order: 'asc',
         unit: 'mi',
-        distance_type: 'plane'
-      }
-    }
+      },
+    },
   ];
 
   if (searchTerm) {

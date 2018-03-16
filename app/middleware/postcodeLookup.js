@@ -18,12 +18,12 @@ function isOutcode(postcodeDetails) {
 
 function postcodeDetailsMapper(postcodeDetails) {
   return {
+    countries: toArray(postcodeDetails.country),
     isOutcode: isOutcode(postcodeDetails),
     location: {
       lat: postcodeDetails.latitude,
-      lon: postcodeDetails.longitude
+      lon: postcodeDetails.longitude,
     },
-    countries: toArray(postcodeDetails.country)
   };
 }
 

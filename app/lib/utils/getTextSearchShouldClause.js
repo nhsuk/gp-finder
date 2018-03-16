@@ -3,36 +3,36 @@ function getShouldClause(searchTerm) {
     {
       match_phrase: {
         name: {
-          query: searchTerm,
           boost: 2,
-          slop: 1
-        }
-      }
+          query: searchTerm,
+          slop: 1,
+        },
+      },
     },
     {
       match_phrase: {
         alternativeName: {
-          query: searchTerm,
           boost: 2,
-          slop: 1
-        }
-      }
+          query: searchTerm,
+          slop: 1,
+        },
+      },
     },
     {
       common: {
         name: {
+          cutoff_frequency: 0.0001,
           query: searchTerm,
-          cutoff_frequency: 0.0001
-        }
-      }
+        },
+      },
     },
     {
       common: {
         alternativeName: {
+          cutoff_frequency: 0.0001,
           query: searchTerm,
-          cutoff_frequency: 0.0001
-        }
-      }
+        },
+      },
     },
     {
       nested: {
@@ -43,24 +43,24 @@ function getShouldClause(searchTerm) {
               {
                 match_phrase: {
                   'doctors.name': {
-                    query: searchTerm,
                     boost: 2,
-                    slop: 1
-                  }
-                }
+                    query: searchTerm,
+                    slop: 1,
+                  },
+                },
               },
               {
                 match: {
                   'doctors.name': {
-                    query: searchTerm
-                  }
-                }
-              }
-            ]
-          }
+                    query: searchTerm,
+                  },
+                },
+              },
+            ],
+          },
         },
-      }
-    }
+      },
+    },
   ];
 
   return shouldClause;

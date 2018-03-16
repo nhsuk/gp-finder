@@ -1,7 +1,7 @@
 const expressPromBundle = require('express-prom-bundle');
 const buckets = require('./constants').promHistogramBuckets;
 
-const promBundle = expressPromBundle({ includePath: true, buckets });
+const promBundle = expressPromBundle({ buckets, includePath: true });
 
 module.exports = {
   middleware: promBundle,
