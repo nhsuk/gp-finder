@@ -13,8 +13,8 @@ describe('Postcode validation', () => {
       const postcode = 'S3';
       const res = {
         locals: {
-          postcodeLocationDetails: { isOutcode: true }
-        }
+          postcodeLocationDetails: { isOutcode: true },
+        },
       };
 
       const localsExpectations = (error) => {
@@ -38,14 +38,14 @@ describe('Postcode validation', () => {
       const search = '';
       const req = {
         query: {
+          isOutcode: 'true',
           postcode: 'EH1',
-          isOutcode: 'true'
-        }
+        },
       };
       const res = {
         locals: {
-          postcodeLocationDetails: { isOutcode: true }
-        }
+          postcodeLocationDetails: { isOutcode: true },
+        },
       };
 
       const localsExpectations = (viewName) => {
@@ -68,9 +68,9 @@ describe('Postcode validation', () => {
       const res = {
         locals: {
           gps: [
-            'The Surgery'
-          ]
-        }
+            'The Surgery',
+          ],
+        },
       };
 
       const localsExpectations = (viewName) => {
@@ -87,8 +87,8 @@ describe('Postcode validation', () => {
     it('should render no results page when there are no GPs', () => {
       const res = {
         locals: {
-          gps: []
-        }
+          gps: [],
+        },
       };
 
       const localsExpectations = (viewName) => {
@@ -109,7 +109,7 @@ describe('Postcode validation', () => {
       const req = {};
 
       const res = {
-        locals: {}
+        locals: {},
       };
 
       const localsExpectations = (viewName) => {

@@ -50,8 +50,8 @@ describe('GP Surgery Data Mapper', () => {
         doctors: [
           { name: 'Dr. A Farooq' },
           { name: 'Dr. Carter' },
-          { name: 'Dr. B Farooq' }
-        ]
+          { name: 'Dr. B Farooq' },
+        ],
       };
       const searchStr = 'Farooq';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -65,8 +65,8 @@ describe('GP Surgery Data Mapper', () => {
           { name: 'Dr. Elizabeth Beech' },
           { name: 'Dr. Elizabeth Ash' },
           { name: 'Dr. Elizabeth' },
-          { name: 'Dr. B Beech' }
-        ]
+          { name: 'Dr. B Beech' },
+        ],
       };
       const searchStr = 'Elizabeth Beech';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -80,8 +80,8 @@ describe('GP Surgery Data Mapper', () => {
           { name: 'Dr. Elizabeth Beech' },
           { name: 'Dr. Elizabeth Ash' },
           { name: 'Dr. Elizabeth' },
-          { name: 'Dr. B Beech' }
-        ]
+          { name: 'Dr. B Beech' },
+        ],
       };
       const searchStr = 'Dr Beech';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -94,8 +94,8 @@ describe('GP Surgery Data Mapper', () => {
         doctors: [
           { name: 'Dr. A Farooq' },
           { name: 'Dr. Carter' },
-          { name: 'Dr. B Farooq' }
-        ]
+          { name: 'Dr. B Farooq' },
+        ],
       };
       const searchStr = '';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -108,8 +108,8 @@ describe('GP Surgery Data Mapper', () => {
         doctors: [
           { name: 'Dr. A Farooq' },
           { name: 'Dr. Carter' },
-          { name: 'Dr. B Farooq' }
-        ]
+          { name: 'Dr. B Farooq' },
+        ],
       };
       const searchStr = ' ';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -122,8 +122,8 @@ describe('GP Surgery Data Mapper', () => {
         doctors: [
           { name: 'Dr. A Farooq' },
           { name: 'Dr. Carter' },
-          { name: 'Dr. B Farooq' }
-        ]
+          { name: 'Dr. B Farooq' },
+        ],
       };
       const searchStr = 'dr';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -136,8 +136,8 @@ describe('GP Surgery Data Mapper', () => {
         doctors: [
           { name: 'Dr. A Farooq' },
           { name: 'Dr. Carter' },
-          { name: 'Dr. B Farooq' }
-        ]
+          { name: 'Dr. B Farooq' },
+        ],
       };
       const searchStr = 'Carter \\w';
       const result = gpDataMapper.getFilteredGps(gpData, searchStr);
@@ -153,7 +153,7 @@ describe('GP Surgery Data Mapper', () => {
         'Other Elizabeth Ash',
         'Mrs Elizabeth',
         'Dr. B Beech',
-        'Dr. Beech'
+        'Dr. Beech',
       ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
@@ -165,7 +165,7 @@ describe('GP Surgery Data Mapper', () => {
         'Prof Elizabeth Beech',
         'Proffessor Elizabeth Ash',
         'Prof. Elizabeth',
-        'Pro. B Beech'
+        'Pro. B Beech',
       ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
@@ -175,7 +175,7 @@ describe('GP Surgery Data Mapper', () => {
     it('for doctors that have variations of drs in their title should be changed to Drs', () => {
       const doctors = [
         'drs Smith',
-        'DRS Smith'
+        'DRS Smith',
       ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
@@ -185,7 +185,7 @@ describe('GP Surgery Data Mapper', () => {
     it('for doctors that have variations of General Practitioner|Medi-Access Surgery in their title should be removed', () => {
       const doctors = [
         'General Practitioner Dr Smith',
-        'Medi-Access Surgery Dr Smith'
+        'Medi-Access Surgery Dr Smith',
       ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
@@ -195,7 +195,7 @@ describe('GP Surgery Data Mapper', () => {
     it('for doctors that have variations of Locum/The in their title should be ignored', () => {
       const doctors = [
         'Locum Smith',
-        'The Greatest'
+        'The Greatest',
       ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
@@ -205,7 +205,7 @@ describe('GP Surgery Data Mapper', () => {
     it('for doctors that have nothing in their title should be changed to Dr', () => {
       const doctors = [
         'Smith',
-        'A Farooq'
+        'A Farooq',
       ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 
@@ -214,7 +214,7 @@ describe('GP Surgery Data Mapper', () => {
     it('for doctors that have ./space in their title should be changed to Dr', () => {
       const doctors = [
         ' Smith',
-        '.A Farooq'
+        '.A Farooq',
       ];
       const result = gpDataMapper.mappedTitleForGps(doctors);
 

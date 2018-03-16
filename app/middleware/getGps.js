@@ -41,11 +41,11 @@ function mapResults(results, res, searchTerm) {
 function getEsQuery(postcodeLocationDetails, searchTerm, size) {
   return (postcodeLocationDetails) ?
     {
+      label: 'name_and_geo',
       query: esGeoQueryBuilder.build(postcodeLocationDetails.location, searchTerm, size),
-      label: 'name_and_geo'
     } : {
+      label: 'name_only',
       query: esQueryBuilder.build(searchTerm, size),
-      label: 'name_only'
     };
 }
 
@@ -64,11 +64,11 @@ function getGps(req, res, next) {
     .then((results) => {
       endTimer(timerLabel);
       log.info({
-        postcode,
-        searchTerm,
-        postcodeLocationDetails,
         esQuery,
-        resultCount: results.hits.total
+        postcode,
+        postcodeLocationDetails,
+        resultCount: results.hits.total,
+        searchTerm,
       }, 'getGps');
       res.locals.resultsCount = results.hits.total;
       mapResults(results, res, searchTerm);

@@ -22,7 +22,7 @@ function postcodeError(error, postcode, res, next) {
 function postcodeNotEnglish(req, res) {
   const postcodeHash = { isOutcode: req.query.isOutcode === 'true', term: req.query.postcode };
   res.locals.outOfEnglandMessage = messages.outOfEngland(postcodeHash);
-  log.debug({ query: req.query, postcodeHash, message: res.locals.outOfEnglandMessage });
+  log.debug({ message: res.locals.outOfEnglandMessage, postcodeHash, query: req.query });
   res.render('outside-england');
 }
 
@@ -39,9 +39,9 @@ function invalidPostcodePage(postcode, req, res) {
 }
 
 module.exports = {
-  results,
-  searchForYourGp,
+  invalidPostcodePage,
   postcodeError,
   postcodeNotEnglish,
-  invalidPostcodePage
+  results,
+  searchForYourGp,
 };

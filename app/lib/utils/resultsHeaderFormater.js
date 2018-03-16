@@ -7,6 +7,6 @@ function pluraliseSurgery(count) {
 }
 
 module.exports = {
-  pluraliseSurgeryQuestion,
   pluraliseSurgery,
+  pluraliseSurgeryQuestion,
 };
