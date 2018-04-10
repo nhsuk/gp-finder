@@ -1,7 +1,7 @@
 0.22.0 / TBC
 ===================
 - Update npm dependencies
-- Upgrade to `eslint-config-nhsuk@0.13.0` and apply fixes
+- Upgrade to `eslint-config-nhsuk@0.14.0` and apply fixes
 
 0.21.0 / 2018-01-09
 ===================
