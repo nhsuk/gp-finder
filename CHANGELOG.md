@@ -1,8 +1,11 @@
-0.22.0 / TBC
+0.22.0 / 2018-05-24
 ===================
 - Update npm dependencies
 - Upgrade to `eslint-config-nhsuk@0.14.0` and apply fixes
 - Remove snyk
+- Update Webtrends and GA configuration for GDPR compliance
+- Replace bespoke cookie banner with Cookiebot
+- Only enable GA, Webtrends and Hotjar if consented from Cookiebot
 
 0.21.0 / 2018-01-09
 ===================
