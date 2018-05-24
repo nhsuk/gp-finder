@@ -74,6 +74,7 @@
     if (Cookiebot.consent.statistics) { 
       enableGoogleAnalyticsUniversal(); 
       enableWebtrends();
+    } if (Cookiebot.consent.preferences) {
       enableHotjar();
     }
   }
