@@ -46,7 +46,6 @@ module.exports = (app, config) => {
           '\'self\'',
         ],
         fontSrc: [
-          '*.cookiebot.com',
           'assets.nhs.uk',
         ],
         imgSrc: [
@@ -55,7 +54,6 @@ module.exports = (app, config) => {
           '*.google-analytics.com',
           '*.hotjar.com',
           '*.webtrends.com',
-          '*.cookiebot.com',
           '*.webtrendslive.com',
         ],
         scriptSrc: [
@@ -65,14 +63,12 @@ module.exports = (app, config) => {
           'data:',
           '*.google-analytics.com',
           '*.hotjar.com',
-          '*.cookiebot.com',
           '*.webtrends.com',
           '*.webtrendslive.com',
         ],
         styleSrc: [
           '\'self\'',
           '\'unsafe-inline\'',
-          '*.cookiebot.com',
           'assets.nhs.uk',
         ],
       },
