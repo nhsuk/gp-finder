@@ -15,7 +15,7 @@ const resultsRoute = `${constants.SITE_ROOT}/results/`;
 function assertSearchResponse(search, postcode, assertions) {
   chai.request(app)
     .get(resultsRoute)
-    .query({ search, postcode })
+    .query({ postcode, search })
     .end(assertions);
 }
 

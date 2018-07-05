@@ -5,6 +5,8 @@ const resultsFormat = require('../lib/utils/resultsHeaderFormater');
 const elasticsearchClient = require('../lib/elasticsearchClient');
 const esQueryBuilder = require('../lib/esQueryBuilder');
 const esGeoQueryBuilder = require('../lib/esGeoQueryBuilder');
+const esGetGpHistogram = require('../lib/promHistograms').esGetGP;
+const esQueryLabelName = require('../lib/constants').promESQueryLabelName;
 
 function handleError(error, next) {
   const errMsg = 'Error with ES';
@@ -14,17 +16,14 @@ function handleError(error, next) {
 }
 
 function mapResults(results, res, searchTerm) {
-  // eslint-disable-next-line no-param-reassign
   res.locals.gps = results.hits.hits.map((result) => {
     // eslint-disable-next-line no-underscore-dangle
     const gp = result._source;
 
     if (gp) {
-      // eslint-disable-next-line no-param-reassign
       gp.bookOnlineLink = gpDataMapper.getBookOnlineLink(gp);
 
       if (searchTerm) {
-        // eslint-disable-next-line no-param-reassign
         gp.filterGps = gpDataMapper.mappedTitleForGps(gpDataMapper.getFilteredGps(gp, searchTerm));
       }
 
@@ -41,8 +40,13 @@ function mapResults(results, res, searchTerm) {
 
 function getEsQuery(postcodeLocationDetails, searchTerm, size) {
   return (postcodeLocationDetails) ?
-    esGeoQueryBuilder.build(postcodeLocationDetails.location, searchTerm, size) :
-    esQueryBuilder.build(searchTerm, size);
+    {
+      label: 'name_and_geo',
+      query: esGeoQueryBuilder.build(postcodeLocationDetails.location, searchTerm, size),
+    } : {
+      label: 'name_only',
+      query: esQueryBuilder.build(searchTerm, size),
+    };
 }
 
 function getGps(req, res, next) {
@@ -52,17 +56,20 @@ function getGps(req, res, next) {
   const postcodeLocationDetails = res.locals.postcodeLocationDetails;
   const esQuery = getEsQuery(postcodeLocationDetails, searchTerm, resultsLimit);
 
+  const endTimer = esGetGpHistogram.startTimer();
+  const timerLabel = {};
+  timerLabel[esQueryLabelName] = esQuery.label;
   elasticsearchClient
-    .search(esQuery)
+    .search(esQuery.query)
     .then((results) => {
+      endTimer(timerLabel);
       log.info({
-        postcode,
-        searchTerm,
-        postcodeLocationDetails,
         esQuery,
-        resultCount: results.hits.total
+        postcode,
+        postcodeLocationDetails,
+        resultCount: results.hits.total,
+        searchTerm,
       }, 'getGps');
-      // eslint-disable-next-line no-param-reassign
       res.locals.resultsCount = results.hits.total;
       mapResults(results, res, searchTerm);
     })

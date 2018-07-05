@@ -24,8 +24,8 @@ function getNextSpy(expectations) {
 }
 
 module.exports = {
-  getSpy,
-  getNextSpy,
-  expectNotCalled,
   expectCalledOnce,
+  expectNotCalled,
+  getNextSpy,
+  getSpy,
 };

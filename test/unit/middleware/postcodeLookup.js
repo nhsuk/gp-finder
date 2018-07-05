@@ -18,13 +18,13 @@ chai.use(chaiArrays);
 
 function getRejectingPostcodeIOClientFake(error) {
   return {
-    lookup: sinon.stub().rejects(error)
+    lookup: sinon.stub().rejects(error),
   };
 }
 
 function getResolvingPostcodeIOClientFake(response) {
   return {
-    lookup: sinon.stub().resolves(response)
+    lookup: sinon.stub().resolves(response),
   };
 }
 

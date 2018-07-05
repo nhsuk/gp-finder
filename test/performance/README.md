@@ -43,3 +43,10 @@ Note: only parameters wishing to be overridden need to be supplied.
 -Jhostname=localhost -Jprotocol=http -Jport=3000 -Jusers=10 -Jrampup=10
 -Jduration=500 -Jthroughput=60 -Jgpnames=search-terms.csv
 -Jpostcodes=london-postcodes.csv -l gp-finder.jtl`
+
+## CI pipeline
+We used the JMeter plugin for TeamCity to run basic performance tests against our application during the build pipeline.
+JMeter plugin for TeamCity can use aggregator metrics for the 
+[Performance Metrics Calculations](https://github.com/jtorgan/jmeter_plugin/blob/master/readme.txt#L24). We used the 
+`total` metric in combination with tweaking the requests per second as explained above 
+to achieve a baseline for our app performance.

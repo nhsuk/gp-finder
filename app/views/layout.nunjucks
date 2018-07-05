@@ -5,6 +5,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="DCS.dcsipa" content="1" />
 
     <!--[if IE]><link rel="shortcut icon" href="{{ SITE_ROOT }}/assets/images/favicon.ico"><![endif]-->
     <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
@@ -20,7 +21,7 @@
     <meta name="DCSext.ServiceName" content="GP Appointment Finder" />
     {% block meta %}{% endblock %}
 
-    {% set qs = '?v=12' %}
+    {% set qs = '?v=13' %}
 
     <!--[if gt IE 8]><!--><link href="{{ SITE_ROOT }}/nhsuk.css{{ qs }}" media="screen" rel="stylesheet" type="text/css"><!--<![endif]-->
     <!--[if IE 6]><link href="{{ SITE_ROOT }}/nhsuk-ie6.css{{ qs }}" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
@@ -30,20 +31,7 @@
     <link rel="stylesheet" href="{{ SITE_ROOT }}/print.css{{ qs }}" media="print" type="text/css">
 
     <script type="text/javascript" src="{{ SITE_ROOT }}/js/vendor/polyfills/details.polyfill-1.0.0.min.js"></script>
-
-    {% if HOTJAR_ANALYTICS_TRACKING_ID %}
-       <!-- rational for this code being in head: https://docs.hotjar.com/v1.0/docs/manual -->
-      <script>
-        (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:{{ HOTJAR_ANALYTICS_TRACKING_ID }},hjsv:5};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-        })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-      </script>
-    {% endif %}
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="c725d869-003e-4784-a8b8-a19cd45299ce" type="text/javascript" async></script> 
 
   </head>
 
@@ -54,13 +42,6 @@
       <div class="skiplinks--inner">
         <a href="#content" class="skiplinks--link">Skip to main content</a>
       </div>
-    </div>
-
-    <div class="notification-banner notification-banner--js-hidden" id="global-cookies-banner" role="alert">
-      <p class="notification-banner--inner">
-      NHS.UK uses cookies to make the site simpler.
-      <a href="https://beta.nhs.uk/help/cookies">Find out more about cookies</a>
-      </p>
     </div>
 
     {% include "includes/back-to-choices.nunjucks" %}
