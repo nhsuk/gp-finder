@@ -45,7 +45,7 @@
     "cookie-parser": "^1.4.3",
     "elasticsearch": "^14.0.0",
     "express": "^4.16.0",
-    "express-prom-bundle": "^3.1.0",
+    "express-prom-bundle": "^5.1.0",
     "helmet": "^3.6.1",
     "husky": "^0.14.3",
     "nhsuk-bunyan-logger": "^1.4.1",
